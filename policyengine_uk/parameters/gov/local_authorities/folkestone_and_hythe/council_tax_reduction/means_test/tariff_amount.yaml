@@ -1,0 +1,10 @@
+description: Folkestone and Hythe Council Tax Reduction tariff income per block of capital above the disregard threshold. Section 27.1 of the adopted 2026/27 scheme adds 1 pound per week for every 250 pounds or part thereof of capital above 6,000 pounds.
+values:
+  2026-04-01: 1
+metadata:
+  unit: currency-GBP
+  period: week
+  label: Folkestone and Hythe Council Tax Reduction tariff income per block
+  reference:
+    - title: Folkestone and Hythe District Council - Council Tax Reduction Scheme 2026/27 (Section 27.1)
+      href: https://www.folkestone-hythe.gov.uk/downloads/file/6369/folkestone-hythe-council-tax-reduction-scheme-2026

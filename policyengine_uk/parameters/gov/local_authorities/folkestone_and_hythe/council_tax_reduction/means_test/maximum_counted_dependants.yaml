@@ -1,0 +1,10 @@
+description: Folkestone and Hythe Council Tax Reduction maximum number of dependants counted for the household-type band lookup. Schedule 1 paragraph 4 of the adopted 2026/27 scheme limits any application for reduction to a maximum of two dependant children or young persons.
+values:
+  2026-04-01: 2
+metadata:
+  unit: int
+  period: year
+  label: Folkestone and Hythe Council Tax Reduction maximum counted dependants
+  reference:
+    - title: Folkestone and Hythe District Council - Council Tax Reduction Scheme 2026/27 (Schedule 1 paragraph 4)
+      href: https://www.folkestone-hythe.gov.uk/downloads/file/6369/folkestone-hythe-council-tax-reduction-scheme-2026

@@ -1,0 +1,10 @@
+description: Folkestone and Hythe Council Tax Reduction Band D liability cap ratio. Section 39.1(a) of the adopted 2026/27 scheme caps the eligible Council Tax for the calculation of the reduction at the lower of the actual council tax for the dwelling or the Band D amount. Band D's English ratio is 1.0.
+values:
+  2026-04-01: 1
+metadata:
+  unit: /1
+  period: year
+  label: Folkestone and Hythe Council Tax Reduction Band D liability cap ratio
+  reference:
+    - title: Folkestone and Hythe District Council - Council Tax Reduction Scheme 2026/27 (Section 39.1)
+      href: https://www.folkestone-hythe.gov.uk/downloads/file/6369/folkestone-hythe-council-tax-reduction-scheme-2026

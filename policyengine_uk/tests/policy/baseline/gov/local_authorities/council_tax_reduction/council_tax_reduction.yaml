@@ -36920,3 +36920,695 @@
     sevenoaks_council_tax_reduction: 0
     simulated_council_tax_reduction_benunit: 1_800
     council_tax_reduction: 1_800
+
+- name: Folkestone and Hythe single claimant on no income receives Band 1 100 percent support
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    council_tax_reduction_scheme_supported: true
+    folkestone_and_hythe_council_tax_reduction_is_local_scheme: true
+    folkestone_and_hythe_council_tax_reduction: 1_800
+    simulated_council_tax_reduction_benunit: 1_800
+    council_tax_reduction: 1_800
+    council_tax_less_benefit: 0
+
+- name: Folkestone and Hythe excludes applicants whose capital is above 16,000 pounds
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 16_001
+  output:
+    folkestone_and_hythe_council_tax_reduction: 0
+
+- name: Folkestone and Hythe allows applicants whose capital is exactly 16,000 pounds
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 16_000
+  output:
+    folkestone_and_hythe_council_tax_reduction: 1_800
+
+- name: Folkestone and Hythe applies the 25 pound weekly earnings disregard
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        employment_income: 6_500
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction: 1_800
+
+- name: Folkestone and Hythe single at weekly earnings 200 receives the 75 percent Band 2 award
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        employment_income: 10_400
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction: 1_350
+
+- name: Folkestone and Hythe counts miscellaneous non-earnings income without an earnings disregard
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 9_100
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction: 1_350
+
+- name: Folkestone and Hythe disregards Child Benefit when looking up the band
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+      child:
+        age: 5
+    benunits:
+      benunit:
+        members: [claimant, child]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        child_benefit: 10_400
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: true
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, child]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction: 1_800
+
+- name: Folkestone and Hythe couple with two children at weekly income 360 receives the 75 percent Band 2 award
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      adult_1:
+        age: 35
+        miscellaneous_income: 18_720
+      adult_2:
+        age: 35
+      child_1:
+        age: 5
+      child_2:
+        age: 8
+    benunits:
+      benunit:
+        members: [adult_1, adult_2, child_1, child_2]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: false
+        is_couple: true
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [adult_1, adult_2, child_1, child_2]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction: 1_350
+
+- name: Folkestone and Hythe lone parent with three children uses the two-or-more dependants band only
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 19_240
+      child_1:
+        age: 5
+      child_2:
+        age: 8
+      child_3:
+        age: 12
+    benunits:
+      benunit:
+        members: [claimant, child_1, child_2, child_3]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: true
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, child_1, child_2, child_3]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction: 1_350
+
+- name: Folkestone and Hythe passported income-based JSA claimant gets the 100 percent Band 1 award
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 20_800
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        jsa_income: 4_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction: 1_800
+
+- name: Folkestone and Hythe still excludes passported JSA claimants whose capital exceeds 16,000 pounds
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        jsa_income: 4_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 16_001
+  output:
+    folkestone_and_hythe_council_tax_reduction: 0
+
+- name: Folkestone and Hythe UC claimant disregards housing-costs and LCWRA elements when moving from Band 3 to Band 1
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 13_000
+        universal_credit_pre_benefit_cap: 13_000
+        uc_housing_costs_element: 5_200
+        uc_LCWRA_element: 2_600
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 13_000
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 99_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 20_000
+  output:
+    folkestone_and_hythe_council_tax_reduction: 1_800
+
+- name: Folkestone and Hythe UC claimant counts DWP-assessed earned and unearned income
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 5_200
+        universal_credit_pre_benefit_cap: 5_200
+        uc_housing_costs_element: 2_600
+        uc_earned_income: 5_200
+        uc_unearned_income: 1_300
+        uc_assessable_capital: 0
+        uc_maximum_amount: 5_200
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 99_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 20_000
+  output:
+    folkestone_and_hythe_council_tax_reduction: 1_350
+
+- name: Folkestone and Hythe excludes UC claimants with UC-assessed capital above 16,000 pounds
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 1
+        universal_credit_pre_benefit_cap: 1
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 16_001
+        uc_maximum_amount: 5_000
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction: 0
+
+- name: Folkestone and Hythe applies a flat 10 pound weekly non-dependant deduction
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+      non_dep:
+        age: 25
+        employment_income: 15_000
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+      non_dep_benunit:
+        members: [non_dep]
+        claims_all_entitled_benefits: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 25
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, non_dep]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    council_tax_reduction: 1_280
+
+- name: Folkestone and Hythe waives the non-dependant deduction for a Universal Credit non-dependant with no earnings
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+      non_dep:
+        age: 25
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+      non_dep_benunit:
+        members: [non_dep]
+        claims_all_entitled_benefits: false
+        universal_credit: 8_000
+        universal_credit_pre_benefit_cap: 8_000
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 25
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, non_dep]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    council_tax_reduction: 1_800
+
+- name: Folkestone and Hythe caps eligible liability at the Band D equivalent
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: H
+        council_tax: 3_600
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction: 1_800
+
+- name: Folkestone and Hythe pension-age UC claimant uses the local banded scheme
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 67
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 1
+        universal_credit_pre_benefit_cap: 1
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 10_000
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 67
+        benefits_premiums: 0
+        council_tax_reduction_applicable_amount: 10_000
+        council_tax_reduction_applicable_income: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction_is_local_scheme: true
+    folkestone_and_hythe_council_tax_reduction: 1_800
+    simulated_council_tax_reduction_benunit: 1_800
+    council_tax_reduction: 1_800
+
+- name: Folkestone and Hythe pension-age claimant without UC or income-based benefit uses the national pensioner scheme
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 67
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 67
+        benefits_premiums: 0
+        council_tax_reduction_applicable_amount: 10_000
+        council_tax_reduction_applicable_income: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction_is_local_scheme: false
+    folkestone_and_hythe_council_tax_reduction: 0
+    simulated_council_tax_reduction_benunit: 1_800
+    council_tax_reduction: 1_800
+
+- name: Folkestone and Hythe regulation 60A pensioner stays on the prescribed pensioner scheme
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 67
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 1
+        universal_credit_pre_benefit_cap: 1
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 10_000
+        council_tax_reduction_applicable_amount: 10_000
+        council_tax_reduction_applicable_income: 0
+        folkestone_and_hythe_council_tax_reduction_uc_regulation_60a_pensioner: true
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction_is_local_scheme: false
+    folkestone_and_hythe_council_tax_reduction: 0
+    simulated_council_tax_reduction_benunit: 1_800
+    council_tax_reduction: 1_800
+
+- name: Folkestone and Hythe relevant-period pensioner stays on the prescribed pensioner scheme
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 67
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 1
+        universal_credit_pre_benefit_cap: 1
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 10_000
+        council_tax_reduction_applicable_amount: 10_000
+        council_tax_reduction_applicable_income: 0
+        folkestone_and_hythe_council_tax_reduction_uc_relevant_period_pensioner: true
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    folkestone_and_hythe_council_tax_reduction_is_local_scheme: false
+    folkestone_and_hythe_council_tax_reduction: 0
+    simulated_council_tax_reduction_benunit: 1_800
+    council_tax_reduction: 1_800

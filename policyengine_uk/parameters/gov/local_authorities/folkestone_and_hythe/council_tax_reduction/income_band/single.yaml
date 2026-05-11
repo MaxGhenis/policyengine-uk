@@ -1,0 +1,31 @@
+description: Folkestone and Hythe weekly income-band Council Tax Reduction rate for single applicants with no children or young persons. Schedule 1 paragraph 1 of the adopted 2026/27 scheme sets discount rates 100/75/50/25/0 per cent across the GBP 0.00-150.00, GBP 150.01-200.00, GBP 200.01-251.00, GBP 251.01-368.00 and GBP 368.01+ weekly income bands.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 1.0
+  - threshold:
+      2026-04-01: 150.01
+    amount:
+      2026-04-01: 0.75
+  - threshold:
+      2026-04-01: 200.01
+    amount:
+      2026-04-01: 0.5
+  - threshold:
+      2026-04-01: 251.01
+    amount:
+      2026-04-01: 0.25
+  - threshold:
+      2026-04-01: 368.01
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: Folkestone and Hythe weekly income-band CTR rate, single person
+  reference:
+    - title: Folkestone and Hythe District Council - Council Tax Reduction Scheme 2026/27 (Schedule 1 paragraph 1, single person column)
+      href: https://www.folkestone-hythe.gov.uk/downloads/file/6369/folkestone-hythe-council-tax-reduction-scheme-2026

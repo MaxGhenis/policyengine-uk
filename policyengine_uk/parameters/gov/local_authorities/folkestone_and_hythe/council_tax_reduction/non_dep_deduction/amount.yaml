@@ -1,0 +1,10 @@
+description: Folkestone and Hythe Council Tax Reduction working-age non-dependant deduction. Section 39.5 of the adopted 2026/27 scheme reduces any award by 10 pounds per week for each non-dependant who resides within the premises. Section 39.6 waives the deduction where the non-dependant is on Jobseeker's Allowance (income-based), income-related Employment Support Allowance, Income Support, Pension Credit (Guarantee Credit), or Universal Credit with no earnings.
+values:
+  2026-04-01: 10
+metadata:
+  unit: currency-GBP
+  period: week
+  label: Folkestone and Hythe Council Tax Reduction weekly non-dependant deduction
+  reference:
+    - title: Folkestone and Hythe District Council - Council Tax Reduction Scheme 2026/27 (Section 39.5)
+      href: https://www.folkestone-hythe.gov.uk/downloads/file/6369/folkestone-hythe-council-tax-reduction-scheme-2026

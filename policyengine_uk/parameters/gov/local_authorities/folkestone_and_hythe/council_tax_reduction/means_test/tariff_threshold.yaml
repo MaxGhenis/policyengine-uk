@@ -1,0 +1,10 @@
+description: Folkestone and Hythe Council Tax Reduction tariff-income disregard threshold. Section 27.1 applies tariff income to capital above 6,000 pounds at 1 pound per week for every 250 pounds or part thereof.
+values:
+  2026-04-01: 6_000
+metadata:
+  unit: currency-GBP
+  period: year
+  label: Folkestone and Hythe Council Tax Reduction tariff-income disregard threshold
+  reference:
+    - title: Folkestone and Hythe District Council - Council Tax Reduction Scheme 2026/27 (Section 27.1)
+      href: https://www.folkestone-hythe.gov.uk/downloads/file/6369/folkestone-hythe-council-tax-reduction-scheme-2026

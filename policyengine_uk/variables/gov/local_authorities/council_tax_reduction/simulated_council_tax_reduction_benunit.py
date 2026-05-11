@@ -51,6 +51,7 @@ LOCAL_COUNCIL_TAX_REDUCTION_VARIABLES = [
     "east_hertfordshire_council_tax_reduction",
     "east_suffolk_council_tax_reduction",
     "fenland_council_tax_reduction",
+    "folkestone_and_hythe_council_tax_reduction",
     "forest_of_dean_council_tax_reduction",
     "gateshead_council_tax_reduction",
     "greenwich_council_tax_reduction",
@@ -196,6 +197,9 @@ class simulated_council_tax_reduction_benunit(Variable):
         east_hampshire_local_scheme = benunit(
             "east_hampshire_council_tax_reduction_is_local_scheme", period
         )
+        folkestone_and_hythe_local_scheme = benunit(
+            "folkestone_and_hythe_council_tax_reduction_is_local_scheme", period
+        )
         forest_of_dean_local_scheme = benunit(
             "forest_of_dean_council_tax_reduction_is_local_scheme", period
         )
@@ -303,6 +307,7 @@ class simulated_council_tax_reduction_benunit(Variable):
             & ~coventry_local_scheme
             & ~dartford_local_scheme
             & ~east_hampshire_local_scheme
+            & ~folkestone_and_hythe_local_scheme
             & ~forest_of_dean_local_scheme
             & ~gloucester_local_scheme
             & ~hart_local_scheme

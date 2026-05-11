@@ -250,6 +250,10 @@ def is_fenland(local_authority):
     return local_authority == LocalAuthority.FENLAND
 
 
+def is_folkestone_and_hythe(local_authority):
+    return local_authority == LocalAuthority.FOLKESTONE_AND_HYTHE
+
+
 def is_forest_of_dean(local_authority):
     return local_authority == LocalAuthority.FOREST_OF_DEAN
 
@@ -754,6 +758,14 @@ def is_fenland_working_age(local_authority, country, has_pensioner):
     return (country == Country.ENGLAND) & ~has_pensioner & is_fenland(local_authority)
 
 
+def is_folkestone_and_hythe_working_age(local_authority, country, has_pensioner):
+    return (
+        (country == Country.ENGLAND)
+        & ~has_pensioner
+        & is_folkestone_and_hythe(local_authority)
+    )
+
+
 def is_forest_of_dean_working_age(local_authority, country, has_pensioner):
     return (
         (country == Country.ENGLAND)
@@ -1073,6 +1085,7 @@ def is_supported_scheme(local_authority, country, has_pensioner):
         )
         | is_east_suffolk_working_age(local_authority, country, has_pensioner)
         | is_fenland_working_age(local_authority, country, has_pensioner)
+        | is_folkestone_and_hythe_working_age(local_authority, country, has_pensioner)
         | is_forest_of_dean_working_age(local_authority, country, has_pensioner)
         | is_stevenage_working_age(local_authority, country, has_pensioner)
         | is_stroud_working_age(local_authority, country, has_pensioner)

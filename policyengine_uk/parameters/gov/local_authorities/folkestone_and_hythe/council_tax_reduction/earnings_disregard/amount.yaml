@@ -1,0 +1,10 @@
+description: Folkestone and Hythe Council Tax Reduction weekly earnings disregard. Section 19.1 of the adopted 2026/27 scheme disregards 25 pounds per week from an applicant's net earnings, applies irrespective of the claimant's household, and grants only one disregard per claim.
+values:
+  2026-04-01: 25
+metadata:
+  unit: currency-GBP
+  period: week
+  label: Folkestone and Hythe Council Tax Reduction weekly earnings disregard
+  reference:
+    - title: Folkestone and Hythe District Council - Council Tax Reduction Scheme 2026/27 (Section 19.1)
+      href: https://www.folkestone-hythe.gov.uk/downloads/file/6369/folkestone-hythe-council-tax-reduction-scheme-2026
