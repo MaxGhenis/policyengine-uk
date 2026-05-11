@@ -5,7 +5,7 @@ class rother_council_tax_reduction_weekly_income(Variable):
     value_type = float
     entity = BenUnit
     label = "Rother Council Tax Reduction assessed weekly income"
-    documentation = "Weekly assessed income of the claimant and partner used to look up the Schedule 1 banded discount table. Universal Credit cases use the DWP-assessed UC award (universal_credit_pre_benefit_cap) less the Section 13.2 housing-costs element (and any additional Rother-scoped source-listed disregarded UC element), annualised by multiplying by 12 / 52 (Section 13.3), plus DWP-assessed UC earned and unearned income. Non-UC cases use claimant-and-partner net earnings after tax, primary Class 1 National Insurance, half pension contributions (Section 18.2) and the Section 19.1 25 pound weekly earnings disregard for genuine work, plus source-countable non-earnings income (Section 24 read with the Schedule 2 disregards — Child Benefit, Carer's Allowance, attendance allowance, DLA/PIP/AFIP, housing benefit, support component of ESA, bereavement support and the prescribed war-pension payments are excluded). Schedule 2 paragraph 4 disregards the whole of income for applicants on IS / income-based JSA / income-related ESA. Section 28 tariff income above 6,000 pounds of capital is added in both branches via rother_council_tax_reduction_weekly_tariff_income."
+    documentation = "Weekly assessed income of the claimant and partner used to look up the Schedule 1 banded discount table. Universal Credit cases use the DWP-assessed UC award (universal_credit_pre_benefit_cap) less the Section 13.2 housing-costs element, the current council page's carer/limited-capability/disabled-child elements, and any additional Rother-scoped source-listed disregarded UC element, annualised by multiplying by 12 / 52 (Section 13.3), plus DWP-assessed UC earned and unearned income. Non-UC cases use claimant-and-partner net earnings after tax, primary Class 1 National Insurance, half pension contributions (Section 18.2) and the Section 19.1 25 pound weekly earnings disregard for genuine work, plus source-countable non-earnings income (Section 24 read with the Schedule 2 disregards — Child Benefit, Carer's Allowance, attendance allowance, DLA/PIP/AFIP, housing benefit, support component of ESA, bereavement support and the prescribed war-pension payments are excluded). Schedule 2 paragraph 4 disregards the whole of income for applicants on IS / income-based JSA / income-related ESA. Section 28 tariff income above 6,000 pounds of capital is added in both branches via rother_council_tax_reduction_weekly_tariff_income."
     definition_period = YEAR
     unit = GBP
     reference = "https://rdcpublic.blob.core.windows.net/website-uploads/2025/03/Rother-Council-Tax-Reduction-Scheme-2025-26.pdf"
@@ -23,12 +23,19 @@ class rother_council_tax_reduction_weekly_income(Variable):
             )
             > 0
         )
-        # Section 13.2 names only the housing-costs element. Any other
-        # source-listed disregarded UC element (live page mentions disabled
-        # child, LCW and carer elements) is supplied through a Rother-scoped
-        # source input.
-        disregarded_uc_elements = benunit("uc_housing_costs_element", period) + benunit(
-            "rother_council_tax_reduction_source_disregarded_uc_elements", period
+        # The formal PDF's Section 13.2 names housing costs, while Schedule 2
+        # also disregards UC equivalents of ESA support components and carers'
+        # benefits; the current council page names housing, disabled child,
+        # limited capability for work, and carer elements.
+        disregarded_uc_elements = add(
+            benunit,
+            period,
+            [
+                "uc_housing_costs_element",
+                "uc_carer_element",
+                "uc_disability_elements",
+                "rother_council_tax_reduction_source_disregarded_uc_elements",
+            ],
         )
         countable_uc_award = max_(
             0,

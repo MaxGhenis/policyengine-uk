@@ -38042,6 +38042,43 @@
   output:
     rother_council_tax_reduction: 1_800
 
+- name: Rother UC claimant disregards carer and disability elements listed on the current council page
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 10_400
+        universal_credit_pre_benefit_cap: 10_400
+        uc_carer_element: 2_600
+        uc_LCWRA_element: 2_600
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 10_400
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 99_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: ROTHER
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 20_000
+  output:
+    rother_council_tax_reduction: 1_800
+
 - name: Rother UC claimant counts DWP-assessed earned and unearned income
   period: 2026
   absolute_error_margin: 0.5
