@@ -420,6 +420,10 @@ def is_wakefield(local_authority):
     return local_authority == LocalAuthority.WAKEFIELD
 
 
+def is_wealden(local_authority):
+    return local_authority == LocalAuthority.WEALDEN
+
+
 def is_west_berkshire(local_authority):
     return local_authority == LocalAuthority.WEST_BERKSHIRE
 
@@ -984,6 +988,10 @@ def is_wakefield_working_age(local_authority, country, has_pensioner):
     return (country == Country.ENGLAND) & ~has_pensioner & is_wakefield(local_authority)
 
 
+def is_wealden_working_age(local_authority, country, has_pensioner):
+    return (country == Country.ENGLAND) & ~has_pensioner & is_wealden(local_authority)
+
+
 def is_west_berkshire_working_age(local_authority, country, has_pensioner):
     return (
         (country == Country.ENGLAND)
@@ -1169,6 +1177,7 @@ def is_supported_scheme(local_authority, country, has_pensioner):
         | is_thurrock_working_age(local_authority, country, has_pensioner)
         | is_warrington_working_age(local_authority, country, has_pensioner)
         | is_wakefield_working_age(local_authority, country, has_pensioner)
+        | is_wealden_working_age(local_authority, country, has_pensioner)
         | is_west_berkshire_working_age(local_authority, country, has_pensioner)
         | is_west_suffolk_working_age(local_authority, country, has_pensioner)
         | is_westmorland_and_furness_working_age(

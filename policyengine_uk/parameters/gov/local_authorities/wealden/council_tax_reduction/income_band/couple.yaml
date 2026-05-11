@@ -1,0 +1,31 @@
+description: Wealden weekly income-band Council Tax Reduction rate for couples with no children. The council's working-age scheme page (from 1 April 2026) sets discount rates 100/80/60/40/0 per cent across the GBP 0.00-162.50, GBP 162.51-227.75, GBP 227.76-291.72, GBP 291.73-344.19 and GBP 344.20+ weekly income bands.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 1.0
+  - threshold:
+      2026-04-01: 162.51
+    amount:
+      2026-04-01: 0.8
+  - threshold:
+      2026-04-01: 227.76
+    amount:
+      2026-04-01: 0.6
+  - threshold:
+      2026-04-01: 291.73
+    amount:
+      2026-04-01: 0.4
+  - threshold:
+      2026-04-01: 344.20
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: Wealden weekly income-band CTR rate, couple no children
+  reference:
+    - title: Wealden District Council - Who can get Council Tax Reduction (couple column, 2026/27 bands)
+      href: https://www.wealden.gov.uk/benefits/who-can-get-council-tax-reduction/

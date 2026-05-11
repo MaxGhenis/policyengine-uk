@@ -1,0 +1,10 @@
+description: Wealden Council Tax Reduction working-age capital limit. The council's working-age scheme page states that applicants whose capital, savings and investments add up to more than 6,000 pounds receive no support. The boundary is strict above 6,000 (capital at exactly 6,000 remains eligible).
+values:
+  2026-04-01: 6_000
+metadata:
+  unit: currency-GBP
+  period: year
+  label: Wealden Council Tax Reduction capital limit
+  reference:
+    - title: Wealden District Council - Who can get Council Tax Reduction (capital limit)
+      href: https://www.wealden.gov.uk/benefits/who-can-get-council-tax-reduction/

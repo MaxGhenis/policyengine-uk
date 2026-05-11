@@ -1,0 +1,10 @@
+description: Wealden Council Tax Reduction weekly earnings disregard. The council's working-age scheme page deducts 25 pounds from an applicant's net earnings (and, for Universal Credit claimants, 25 pounds from the DWP-assessed UC earned income) to obtain the net figure used in the band lookup.
+values:
+  2026-04-01: 25
+metadata:
+  unit: currency-GBP
+  period: week
+  label: Wealden Council Tax Reduction weekly earnings disregard
+  reference:
+    - title: Wealden District Council - Who can get Council Tax Reduction (earnings disregard list)
+      href: https://www.wealden.gov.uk/benefits/who-can-get-council-tax-reduction/

@@ -1,0 +1,10 @@
+description: Wealden Council Tax Reduction maximum number of dependants counted for the household-type band lookup. The council's working-age scheme page publishes columns for single applicants, couples, families with one child and families with two or more children, so additional dependants beyond two fall in the same band column.
+values:
+  2026-04-01: 2
+metadata:
+  unit: int
+  period: year
+  label: Wealden Council Tax Reduction maximum counted dependants
+  reference:
+    - title: Wealden District Council - Who can get Council Tax Reduction (2026/27 working-age scheme band table columns)
+      href: https://www.wealden.gov.uk/benefits/who-can-get-council-tax-reduction/

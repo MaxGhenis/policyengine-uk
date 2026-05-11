@@ -110,6 +110,7 @@ LOCAL_COUNCIL_TAX_REDUCTION_VARIABLES = [
     "thurrock_council_tax_reduction",
     "wakefield_council_tax_reduction",
     "warrington_council_tax_reduction",
+    "wealden_council_tax_reduction",
     "west_berkshire_council_tax_reduction",
     "west_suffolk_council_tax_reduction",
     "west_northamptonshire_council_tax_reduction",

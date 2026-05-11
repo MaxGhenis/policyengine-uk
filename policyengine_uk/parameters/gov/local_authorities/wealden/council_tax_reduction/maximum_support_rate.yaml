@@ -1,0 +1,10 @@
+description: Wealden maximum Council Tax Reduction rate. The council's working-age scheme page sets the top Band 1 discount at 100 per cent of council tax liability.
+values:
+  2026-04-01: 1.0
+metadata:
+  unit: /1
+  period: year
+  label: Wealden Council Tax Reduction maximum support rate
+  reference:
+    - title: Wealden District Council - Who can get Council Tax Reduction (2026/27 working-age scheme bands)
+      href: https://www.wealden.gov.uk/benefits/who-can-get-council-tax-reduction/

@@ -38290,3 +38290,503 @@
     rother_council_tax_reduction: 0
     simulated_council_tax_reduction_benunit: 1_800
     council_tax_reduction: 1_800
+
+- name: Wealden single claimant on no income receives Band 1 100 percent support
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    council_tax_reduction_scheme_supported: true
+    wealden_council_tax_reduction: 1_800
+    simulated_council_tax_reduction_benunit: 1_800
+    council_tax_reduction: 1_800
+    council_tax_less_benefit: 0
+
+- name: Wealden excludes applicants whose capital is above 6,000 pounds
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 6_001
+  output:
+    wealden_council_tax_reduction: 0
+
+- name: Wealden allows applicants whose capital is exactly 6,000 pounds
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 6_000
+  output:
+    wealden_council_tax_reduction: 1_800
+
+- name: Wealden applies the 25 pound weekly earnings disregard
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        employment_income: 6_500
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 1_800
+
+- name: Wealden single at weekly income 130 receives the 80 percent Band 2 award
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 6_760
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 1_440
+
+- name: Wealden single at weekly income 200 receives the 60 percent Band 3 award
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 10_400
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 1_080
+
+- name: Wealden single at weekly income 280 receives the 40 percent Band 4 award
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 14_560
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 720
+
+- name: Wealden single above Band 4 income receives no award
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 18_200
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 0
+
+- name: Wealden couple with two children at weekly income 360 receives the 60 percent Band 3 award
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      adult_1:
+        age: 35
+        miscellaneous_income: 18_720
+      adult_2:
+        age: 35
+      child_1:
+        age: 5
+      child_2:
+        age: 8
+    benunits:
+      benunit:
+        members: [adult_1, adult_2, child_1, child_2]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: false
+        is_couple: true
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [adult_1, adult_2, child_1, child_2]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 1_080
+
+- name: Wealden lone parent with three children uses the two-or-more dependants band only
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 18_200
+      child_1:
+        age: 5
+      child_2:
+        age: 8
+      child_3:
+        age: 12
+    benunits:
+      benunit:
+        members: [claimant, child_1, child_2, child_3]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: true
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, child_1, child_2, child_3]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 1_440
+
+- name: Wealden disregards Child Benefit when looking up the band
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+      child:
+        age: 5
+    benunits:
+      benunit:
+        members: [claimant, child]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        child_benefit: 10_400
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: true
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, child]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 1_800
+
+- name: Wealden disregards Carer's Allowance when looking up the band
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        carers_allowance: 4_000
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 1_800
+
+- name: Wealden UC claimant counts only standard and child elements plus earned and unearned income
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 5_000
+        universal_credit_pre_benefit_cap: 5_000
+        uc_standard_allowance: 5_000
+        uc_earned_income: 5_200
+        uc_unearned_income: 1_300
+        uc_assessable_capital: 0
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 99_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 1_080
+
+- name: Wealden UC claimant disregards the carer element when looking up the band
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 10_200
+        universal_credit_pre_benefit_cap: 10_200
+        uc_standard_allowance: 5_000
+        uc_carer_element: 5_200
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 99_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 1_800
+
+- name: Wealden excludes UC claimants with UC-assessed capital above 6,000 pounds
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 1
+        universal_credit_pre_benefit_cap: 1
+        uc_standard_allowance: 1
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 6_001
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 0
+
+- name: Wealden pension-age claimant routes to the national pensioner scheme
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 67
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 67
+        benefits_premiums: 0
+        council_tax_reduction_applicable_amount: 10_000
+        council_tax_reduction_applicable_income: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WEALDEN
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wealden_council_tax_reduction: 0
+    simulated_council_tax_reduction_benunit: 1_800
+    council_tax_reduction: 1_800
