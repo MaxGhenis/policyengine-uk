@@ -1,0 +1,31 @@
+description: Sevenoaks weekly income-band Council Tax Reduction rate for single applicants with no children or young persons. Schedule 1 paragraph 1 of the adopted 2026/27 scheme sets discount rates 80/60/40/20/0 per cent across the GBP 0-103.99, GBP 104.00-167.99, GBP 168.00-232.99, GBP 233.00-333.99 and GBP 334.00+ weekly income bands.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 0.80
+  - threshold:
+      2026-04-01: 104
+    amount:
+      2026-04-01: 0.60
+  - threshold:
+      2026-04-01: 168
+    amount:
+      2026-04-01: 0.40
+  - threshold:
+      2026-04-01: 233
+    amount:
+      2026-04-01: 0.20
+  - threshold:
+      2026-04-01: 334
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: Sevenoaks weekly income-band CTR rate, single applicant no children
+  reference:
+    - title: Sevenoaks District Council - Council Tax Support Local Scheme 2026/27 (Schedule 1 paragraph 1, single person column)
+      href: https://www.sevenoaks.gov.uk/download/downloads/id/4481/council_tax_support_local_scheme_202627.docx

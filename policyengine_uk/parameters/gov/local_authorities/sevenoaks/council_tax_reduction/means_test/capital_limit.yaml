@@ -1,0 +1,10 @@
+description: Sevenoaks Council Tax Reduction working-age capital limit. Section 27.2 of the adopted 2026/27 scheme sets the prescribed amount at 6,000 pounds and Schedule 1 paragraph 5 excludes applicants whose capital is greater than that level. The boundary is strict above 6,000 pounds (capital at exactly 6,000 remains eligible).
+values:
+  2026-04-01: 6_000
+metadata:
+  unit: currency-GBP
+  period: year
+  label: Sevenoaks Council Tax Reduction capital limit
+  reference:
+    - title: Sevenoaks District Council - Council Tax Support Local Scheme 2026/27 (Section 27.2 and Schedule 1 paragraph 5)
+      href: https://www.sevenoaks.gov.uk/download/downloads/id/4481/council_tax_support_local_scheme_202627.docx

@@ -1,0 +1,10 @@
+description: Sevenoaks Council Tax Reduction minimum weekly award. Section 39.6 of the adopted 2026/27 scheme cancels any award calculated at less than 1 pound per week.
+values:
+  2026-04-01: 1
+metadata:
+  unit: currency-GBP
+  period: week
+  label: Sevenoaks Council Tax Reduction minimum weekly award
+  reference:
+    - title: Sevenoaks District Council - Council Tax Support Local Scheme 2026/27 (Section 39.6)
+      href: https://www.sevenoaks.gov.uk/download/downloads/id/4481/council_tax_support_local_scheme_202627.docx

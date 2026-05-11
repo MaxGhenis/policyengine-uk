@@ -1,0 +1,10 @@
+description: Sevenoaks Council Tax Reduction working-age weekly earnings disregard. Section 19.2 of the adopted 2026/27 scheme states that 25 pounds per week is disregarded from an applicant's net earnings, applies irrespective of the applicant's household, and only one disregard is applied per claim.
+values:
+  2026-04-01: 25
+metadata:
+  unit: currency-GBP
+  period: week
+  label: Sevenoaks Council Tax Reduction weekly earnings disregard
+  reference:
+    - title: Sevenoaks District Council - Council Tax Support Local Scheme 2026/27 (Section 19.2)
+      href: https://www.sevenoaks.gov.uk/download/downloads/id/4481/council_tax_support_local_scheme_202627.docx
