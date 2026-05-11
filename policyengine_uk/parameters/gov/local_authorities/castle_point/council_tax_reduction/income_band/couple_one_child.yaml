@@ -1,0 +1,27 @@
+description: Castle Point weekly income-band CTR rate for couples with one child. Schedule 1 paragraph 1 row 4 sets the table at 70/40/40/20/0/0 per cent across the GBP 0.00-171.15, GBP 171.16-256.73, GBP 256.74-342.30, GBP 342.31-427.87, GBP 427.88-513.45 and GBP 513.46+ weekly net income bands.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 0.7
+  - threshold:
+      2026-04-01: 171.16
+    amount:
+      2026-04-01: 0.4
+  - threshold:
+      2026-04-01: 342.31
+    amount:
+      2026-04-01: 0.2
+  - threshold:
+      2026-04-01: 427.88
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: Castle Point weekly income-band CTR rate, couple one child
+  reference:
+    - title: Castle Point Borough Council - Council Tax Reduction Scheme 2026/27, Schedule 1 paragraph 1
+      href: https://www.castlepoint.gov.uk/documents/d/guest/castle-point-ctr-s13a-scheme-2026-final

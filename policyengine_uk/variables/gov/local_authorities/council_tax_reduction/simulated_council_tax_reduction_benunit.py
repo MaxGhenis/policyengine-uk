@@ -28,6 +28,7 @@ LOCAL_COUNCIL_TAX_REDUCTION_VARIABLES = [
     "bury_council_tax_reduction",
     "buckinghamshire_council_tax_reduction",
     "camden_council_tax_reduction",
+    "castle_point_council_tax_reduction",
     "chelmsford_council_tax_reduction",
     "cheltenham_council_tax_reduction",
     "cheshire_west_and_chester_council_tax_reduction",
@@ -163,6 +164,9 @@ class simulated_council_tax_reduction_benunit(Variable):
         buckinghamshire_local_scheme = benunit(
             "buckinghamshire_council_tax_reduction_is_local_scheme", period
         )
+        castle_point_local_scheme = benunit(
+            "castle_point_council_tax_reduction_is_local_scheme", period
+        )
         chelmsford_local_scheme = benunit(
             "chelmsford_council_tax_reduction_is_local_scheme", period
         )
@@ -281,6 +285,7 @@ class simulated_council_tax_reduction_benunit(Variable):
             & ~braintree_local_scheme
             & ~brentwood_local_scheme
             & ~buckinghamshire_local_scheme
+            & ~castle_point_local_scheme
             & ~chelmsford_local_scheme
             & ~cheltenham_local_scheme
             & ~cheshire_west_and_chester_local_scheme

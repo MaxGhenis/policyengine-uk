@@ -1,0 +1,10 @@
+description: Castle Point maximum Council Tax Reduction rate. Paragraph 43.1 sets the working-age maximum at 70 per cent of council tax liability, without any Band cap or non-dependant deduction.
+values:
+  2026-04-01: 0.7
+metadata:
+  unit: /1
+  period: year
+  label: Castle Point Council Tax Reduction maximum support rate
+  reference:
+    - title: Castle Point Borough Council - Council Tax Reduction Scheme 2026/27, paragraph 43.1
+      href: https://www.castlepoint.gov.uk/documents/d/guest/castle-point-ctr-s13a-scheme-2026-final

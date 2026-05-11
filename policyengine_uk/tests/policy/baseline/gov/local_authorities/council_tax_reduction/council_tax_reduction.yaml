@@ -35346,3 +35346,322 @@
     braintree_council_tax_reduction: 0
     simulated_council_tax_reduction_benunit: 1_800
     council_tax_reduction: 1_800
+
+- name: Castle Point single no children on no income receives the 70 percent Band A award
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: CASTLE_POINT
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    council_tax_reduction_scheme_supported: true
+    castle_point_council_tax_reduction_is_local_scheme: true
+    castle_point_council_tax_reduction: 1_260
+    simulated_council_tax_reduction_benunit: 1_260
+    council_tax_reduction: 1_260
+    council_tax_less_benefit: 540
+
+- name: Castle Point excludes applicants whose capital is greater than 6,000 pounds
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: CASTLE_POINT
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 6_001
+  output:
+    castle_point_council_tax_reduction: 0
+
+- name: Castle Point allows applicants with capital at exactly 6,000 pounds
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: CASTLE_POINT
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 6_000
+  output:
+    castle_point_council_tax_reduction: 1_260
+
+- name: Castle Point single no children at weekly income 200 receives the 40 percent band
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 10_400
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: CASTLE_POINT
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    castle_point_council_tax_reduction: 720
+
+- name: Castle Point single no children at weekly income 350 receives the 0 percent band
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 18_200
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: CASTLE_POINT
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    castle_point_council_tax_reduction: 0
+
+- name: Castle Point couple with two children at weekly income 200 receives the 70 percent band
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      adult_1:
+        age: 35
+      adult_2:
+        age: 35
+      child_1:
+        age: 5
+      child_2:
+        age: 8
+    benunits:
+      benunit:
+        members: [adult_1, adult_2, child_1, child_2]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: false
+        is_couple: true
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 10_400
+    households:
+      household:
+        members: [adult_1, adult_2, child_1, child_2]
+        country: ENGLAND
+        local_authority: CASTLE_POINT
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    castle_point_council_tax_reduction: 1_260
+
+- name: Castle Point couple with two children at weekly income 450 receives the 20 percent band
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      adult_1:
+        age: 35
+      adult_2:
+        age: 35
+      child_1:
+        age: 5
+      child_2:
+        age: 8
+    benunits:
+      benunit:
+        members: [adult_1, adult_2, child_1, child_2]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: false
+        is_couple: true
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 23_400
+    households:
+      household:
+        members: [adult_1, adult_2, child_1, child_2]
+        country: ENGLAND
+        local_authority: CASTLE_POINT
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    castle_point_council_tax_reduction: 360
+
+- name: Castle Point passported income-based JSA claimant gets the Band A 70 percent award
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 23_400
+        jsa_income: 4_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: CASTLE_POINT
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    castle_point_council_tax_reduction: 1_260
+
+- name: Castle Point UC claimant uses DWP-assessed UC income and remains capital eligible via UC capital
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 200
+        universal_credit_pre_benefit_cap: 200
+        uc_earned_income: 10_200
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 5_000
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 99_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: CASTLE_POINT
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 20_000
+  output:
+    castle_point_council_tax_reduction: 720
+
+- name: Castle Point excludes UC claimants with UC-assessed capital greater than 6,000 pounds
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 1
+        universal_credit_pre_benefit_cap: 1
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 6_001
+        uc_maximum_amount: 5_000
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: CASTLE_POINT
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    castle_point_council_tax_reduction: 0
