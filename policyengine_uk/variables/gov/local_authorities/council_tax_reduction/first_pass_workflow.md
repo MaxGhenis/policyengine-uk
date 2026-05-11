@@ -22,6 +22,7 @@ Use this when an agent is asked to add one Council Tax Reduction scheme before C
 
 - Add failing YAML tests first in `policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml`.
 - Confirm focused tests fail before implementation.
+- When testing income bands, use source-level inputs such as earnings, tax credits, Child Benefit, UC elements, or other countable income instead of only overriding a generic helper variable; otherwise the test may not prove the scheme-specific income calculation.
 - Keep all parameters and variables jurisdiction-scoped under the council's folder.
 - Register the council in `config.py`, `simulated_council_tax_reduction_benunit.py`, `README.md`, `scheme_work_queue.md`, `agent_handoff.md`, and `changelog.d/council-tax-reduction.added.md`.
 - Cover headline maximum award, capital boundary, taper or band movement, UC path if mentioned, non-dependant behavior, pension-age routing when relevant, and one source-specific edge.

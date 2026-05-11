@@ -35948,6 +35948,7 @@
     people:
       claimant:
         age: 35
+        miscellaneous_income: 7_800
     benunits:
       benunit:
         members: [claimant]
@@ -35958,7 +35959,6 @@
         is_lone_parent: false
         eldest_adult_age: 35
         benefits_premiums: 0
-        council_tax_reduction_applicable_income: 7_800
     households:
       household:
         members: [claimant]
@@ -35970,13 +35970,14 @@
   output:
     rochford_council_tax_reduction: 900
 
-- name: Rochford single no children at weekly income 300 falls outside the bands
+- name: Rochford non-UC worker gets the 20 pound weekly earnings disregard
   period: 2026
   absolute_error_margin: 0.5
   input:
     people:
       claimant:
         age: 35
+        employment_income: 6_000
     benunits:
       benunit:
         members: [claimant]
@@ -35987,7 +35988,35 @@
         is_lone_parent: false
         eldest_adult_age: 35
         benefits_premiums: 0
-        council_tax_reduction_applicable_income: 15_600
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: ROCHFORD
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    rochford_council_tax_reduction: 1_350
+
+- name: Rochford single no children at weekly income 300 falls outside the bands
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 15_600
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
     households:
       household:
         members: [claimant]
@@ -35999,6 +36028,37 @@
   output:
     rochford_council_tax_reduction: 0
 
+- name: Rochford disregards Child Benefit in the non-UC income band
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+      child:
+        age: 5
+    benunits:
+      benunit:
+        members: [claimant, child]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        child_benefit: 10_400
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: true
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, child]
+        country: ENGLAND
+        local_authority: ROCHFORD
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    rochford_council_tax_reduction: 1_350
+
 - name: Rochford couple with two children at weekly income 200 still receives the 75 percent band
   period: 2026
   absolute_error_margin: 0.5
@@ -36006,6 +36066,7 @@
     people:
       adult_1:
         age: 35
+        miscellaneous_income: 10_400
       adult_2:
         age: 35
       child_1:
@@ -36022,7 +36083,6 @@
         is_lone_parent: false
         eldest_adult_age: 35
         benefits_premiums: 0
-        council_tax_reduction_applicable_income: 10_400
     households:
       household:
         members: [adult_1, adult_2, child_1, child_2]
@@ -36041,6 +36101,7 @@
     people:
       adult_1:
         age: 35
+        miscellaneous_income: 20_800
       adult_2:
         age: 35
       child_1:
@@ -36057,7 +36118,6 @@
         is_lone_parent: false
         eldest_adult_age: 35
         benefits_premiums: 0
-        council_tax_reduction_applicable_income: 20_800
     households:
       household:
         members: [adult_1, adult_2, child_1, child_2]
@@ -36076,6 +36136,7 @@
     people:
       claimant:
         age: 35
+        miscellaneous_income: 20_800
     benunits:
       benunit:
         members: [claimant]
@@ -36086,7 +36147,6 @@
         is_lone_parent: false
         eldest_adult_age: 35
         benefits_premiums: 0
-        council_tax_reduction_applicable_income: 20_800
         jsa_income: 4_000
     households:
       household:
@@ -36137,6 +36197,44 @@
   output:
     rochford_council_tax_reduction: 1_350
 
+- name: Rochford UC claimant disregards the severe disabled child element
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+      child:
+        age: 5
+        uc_individual_severely_disabled_child_element: 10_400
+    benunits:
+      benunit:
+        members: [claimant, child]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 10_400
+        universal_credit_pre_benefit_cap: 10_400
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 10_400
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: true
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 99_000
+    households:
+      household:
+        members: [claimant, child]
+        country: ENGLAND
+        local_authority: ROCHFORD
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 20_000
+  output:
+    rochford_council_tax_reduction: 1_350
+
 - name: Rochford excludes UC claimants with UC-assessed capital above 6,000 pounds
   period: 2026
   absolute_error_margin: 0.5
@@ -36171,6 +36269,45 @@
   output:
     rochford_council_tax_reduction: 0
 
+- name: Rochford pension-age UC claimant without carve-out uses the local banded scheme
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 67
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 1
+        universal_credit_pre_benefit_cap: 1
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 10_000
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 67
+        benefits_premiums: 0
+        council_tax_reduction_applicable_amount: 10_000
+        council_tax_reduction_applicable_income: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: ROCHFORD
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    rochford_council_tax_reduction_is_local_scheme: true
+    rochford_council_tax_reduction: 1_350
+    simulated_council_tax_reduction_benunit: 1_350
+    council_tax_reduction: 1_350
+
 - name: Rochford regulation 60A pensioner stays on the prescribed pensioner scheme
   period: 2026
   absolute_error_margin: 0.5
@@ -36192,6 +36329,41 @@
         council_tax_reduction_applicable_amount: 10_000
         council_tax_reduction_applicable_income: 0
         rochford_council_tax_reduction_uc_regulation_60a_pensioner: true
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: ROCHFORD
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    rochford_council_tax_reduction_is_local_scheme: false
+    rochford_council_tax_reduction: 0
+    simulated_council_tax_reduction_benunit: 1_800
+    council_tax_reduction: 1_800
+
+- name: Rochford relevant-period pensioner stays on the prescribed pensioner scheme
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 67
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 1
+        universal_credit_pre_benefit_cap: 1
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 10_000
+        council_tax_reduction_applicable_amount: 10_000
+        council_tax_reduction_applicable_income: 0
+        rochford_council_tax_reduction_uc_relevant_period_pensioner: true
     households:
       household:
         members: [claimant]
