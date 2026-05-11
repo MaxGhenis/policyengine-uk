@@ -10,6 +10,8 @@ Continue PolicyEngine UK PR #1534 from `policyengine_uk/variables/gov/local_auth
 Follow `policyengine_uk/variables/gov/local_authorities/council_tax_reduction/scheme_encoding_guidance.md`. Work autonomously on branch `codex/ctr-framework`: encode more remaining Council Tax Reduction schemes in source-linked batches, using TDD, source review, focused verification, commits, and pushes. Stop only at a clean pushed checkpoint or a real blocker.
 ```
 
+For Claude/Codex first-pass handoffs, use `policyengine_uk/variables/gov/local_authorities/council_tax_reduction/first_pass_workflow.md`.
+
 ## Current checkpoint
 
 - PR: https://github.com/PolicyEngine/policyengine-uk/pull/1534
