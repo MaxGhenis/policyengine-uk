@@ -39,6 +39,7 @@ Use this file for durable Council Tax Reduction implementation rules. Keep `agen
 - Protected-group schemes: scope disability/benefit tests to the people named in the source. Avoid household-wide aggregation when the source says applicant, partner, or dependant.
 - Non-dependant deduction ordering, gross versus earned income, remunerative-work hours, and one-deduction couple rules.
 - Do not add a 16-hour/remunerative-work gate to non-dependant earnings tables unless the non-dependant section itself says so.
+- For formal schemes, check the capital-disregard schedule as well as the headline capital cutoff. Some schemes exclude capital above a threshold generally but disregard all capital for Income Support / income-based JSA / income-related ESA claimants; lock the result with a passported-over-capital test.
 - Pension-age UC or income-based benefit local-rule carve-outs, including tests that avoid double-counting national pensioner CTR.
 - Default-style formal PDFs often define the council's local scheme in section 1.6/Class D/E as including pension-age applicants on UC or relevant income-based benefits. If present, create a jurisdiction-scoped `*_is_local_scheme` variable and exclude that flag from `england_pensioners`.
 - Source conflicts between live pages, summaries, examples, and adopted scheme PDFs. Document conflicts in `scheme_work_queue.md`.

@@ -32,6 +32,7 @@ Use this when an agent is asked to add one Council Tax Reduction scheme before C
 - Inspect definitions of "pensioner" and "person who is not a pensioner"; implement pension-age UC relevant-period and regulation 60A carve-outs when present.
 - Use UC/DWP-assessed capital for UC cases when the source says so; do not fall back to household savings.
 - Do not let passported income-based benefits bypass capital unless the source says the capital rule is disapplied.
+- For formal schemes, scan the capital-disregard schedule as well as the headline capital-exclusion paragraph. If passported Income Support / income-based JSA / income-related ESA cases get a capital disregard, add an over-capital passported test.
 - Distinguish an actual UC award from `would_claim_uc`.
 - Check whether UC income means UC assessed income, the UC award, a pre-deduction award, or named UC elements. If named UC elements are disregarded, subtract all modelled elements and add a jurisdiction-scoped source-input amount for any missing component; test a case where the disregard changes the income band.
 - Check whether non-dependant deductions reduce eligible liability before the percentage or reduce the final award after.

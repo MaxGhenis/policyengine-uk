@@ -18,8 +18,8 @@ For Claude/Codex first-pass handoffs, use `policyengine_uk/variables/gov/local_a
 - Branch: `codex/ctr-framework`
 - Pull the latest PR branch before continuing; this checkpoint includes Bath and North East Somerset, Rushmoor, Hart, Maldon, Hartlepool, Hertsmere, East Hampshire, Brentwood, West Berkshire, Tendring, St Helens, Tewkesbury, Forest of Dean, Braintree, Castle Point, Rochford, and Sevenoaks.
 - Coverage at this checkpoint: `106` current English working-age billing authorities, plus the national Wales and Scotland CTR schemes.
-- Last focused local verification: `uv run policyengine-core test policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml -n "Sevenoaks"` passed with `16` tests in this worktree.
-- Last full local verification: `uv run policyengine-core test policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml` passed with `986` tests after Braintree review fixes.
+- Last focused local verification: `uv run policyengine-core test policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml -n "Sevenoaks"` passed with `17` tests in this worktree after the passported-capital review fix.
+- Last full local verification: `uv run policyengine-core test policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml` was reported clean with `1033` tests in the Sevenoaks first-pass before the passported-capital review fix; post-fix verification used focused Sevenoaks and Rochford sanity runs.
 - Recent completed schemes: Gloucester, Bath and North East Somerset, Rushmoor, Hart, Maldon, Hartlepool, Hertsmere, East Hampshire, Brentwood, West Berkshire, Tendring, St Helens, Tewkesbury, Forest of Dean, Braintree, Castle Point, Rochford, Sevenoaks.
 
 Before continuing, pull the latest branch and inspect current status:
