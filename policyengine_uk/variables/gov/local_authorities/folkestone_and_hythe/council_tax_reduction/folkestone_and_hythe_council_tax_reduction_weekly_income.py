@@ -109,4 +109,4 @@ class folkestone_and_hythe_council_tax_reduction_weekly_income(Variable):
         )
         non_uc_income = where(passported, 0, non_uc_income)
         annual_income = where(has_uc_award, uc_income, non_uc_income)
-        return (annual_income + tariff_income) / WEEKS_IN_YEAR
+        return annual_income / WEEKS_IN_YEAR + tariff_income

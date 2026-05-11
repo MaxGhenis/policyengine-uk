@@ -37010,6 +37010,34 @@
   output:
     folkestone_and_hythe_council_tax_reduction: 1_800
 
+- name: Folkestone and Hythe tariff income is one pound per week for any part of 250 above 6,000 pounds
+  period: 2026
+  absolute_error_margin: 0.01
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: FOLKESTONE_AND_HYTHE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 6_001
+  output:
+    folkestone_and_hythe_council_tax_reduction_weekly_tariff_income: 1
+
 - name: Folkestone and Hythe applies the 25 pound weekly earnings disregard
   period: 2026
   absolute_error_margin: 0.5

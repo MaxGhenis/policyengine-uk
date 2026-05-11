@@ -33,5 +33,4 @@ class folkestone_and_hythe_council_tax_reduction_weekly_tariff_income(Variable):
             np.ceil(excess_capital / ctr.means_test.tariff_block),
             0,
         )
-        weekly_tariff = blocks * ctr.means_test.tariff_amount
-        return weekly_tariff * WEEKS_IN_YEAR
+        return blocks * ctr.means_test.tariff_amount
