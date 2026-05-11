@@ -340,6 +340,10 @@ def is_rochford(local_authority):
     return local_authority == LocalAuthority.ROCHFORD
 
 
+def is_rother(local_authority):
+    return local_authority == LocalAuthority.ROTHER
+
+
 def is_rushmoor(local_authority):
     return local_authority == LocalAuthority.RUSHMOOR
 
@@ -880,6 +884,10 @@ def is_rochford_working_age(local_authority, country, has_pensioner):
     return (country == Country.ENGLAND) & ~has_pensioner & is_rochford(local_authority)
 
 
+def is_rother_working_age(local_authority, country, has_pensioner):
+    return (country == Country.ENGLAND) & ~has_pensioner & is_rother(local_authority)
+
+
 def is_rushmoor_working_age(local_authority, country, has_pensioner):
     return (country == Country.ENGLAND) & ~has_pensioner & is_rushmoor(local_authority)
 
@@ -1141,6 +1149,7 @@ def is_supported_scheme(local_authority, country, has_pensioner):
         | is_plymouth_working_age(local_authority, country, has_pensioner)
         | is_redbridge_working_age(local_authority, country, has_pensioner)
         | is_rochford_working_age(local_authority, country, has_pensioner)
+        | is_rother_working_age(local_authority, country, has_pensioner)
         | is_rushmoor_working_age(local_authority, country, has_pensioner)
         | is_sefton_working_age(local_authority, country, has_pensioner)
         | is_sevenoaks_working_age(local_authority, country, has_pensioner)

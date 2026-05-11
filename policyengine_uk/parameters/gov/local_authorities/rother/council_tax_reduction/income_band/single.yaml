@@ -1,0 +1,31 @@
+description: Rother weekly income-band Council Tax Reduction rate for single applicants with no children. Schedule 1 paragraph 1 of the adopted 2026/27 scheme sets discount rates 100/60/40/20/0 per cent across the GBP 0.00-124.59, GBP 124.60-190.18, GBP 190.19-255.77, GBP 255.78-321.38 and GBP 321.39+ weekly income bands.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 1.0
+  - threshold:
+      2026-04-01: 124.60
+    amount:
+      2026-04-01: 0.6
+  - threshold:
+      2026-04-01: 190.19
+    amount:
+      2026-04-01: 0.4
+  - threshold:
+      2026-04-01: 255.78
+    amount:
+      2026-04-01: 0.2
+  - threshold:
+      2026-04-01: 321.39
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: Rother weekly income-band CTR rate, single applicant no children
+  reference:
+    - title: Rother District Council - Council Tax Reduction Scheme 2026 (Schedule 1 paragraph 1, single column)
+      href: https://rdcpublic.blob.core.windows.net/website-uploads/2025/03/Rother-Council-Tax-Reduction-Scheme-2025-26.pdf

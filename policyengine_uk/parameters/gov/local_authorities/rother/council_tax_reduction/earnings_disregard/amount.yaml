@@ -1,0 +1,10 @@
+description: Rother Council Tax Reduction weekly earnings disregard. Section 19.1 of the adopted 2026/27 scheme disregards 25 pounds per week from the net earnings of an applicant (or their partner) who is employed in genuine and effective work, irrespective of the applicant's household, with only one disregard per claim.
+values:
+  2026-04-01: 25
+metadata:
+  unit: currency-GBP
+  period: week
+  label: Rother Council Tax Reduction weekly earnings disregard
+  reference:
+    - title: Rother District Council - Council Tax Reduction Scheme 2026 (Section 19.1)
+      href: https://rdcpublic.blob.core.windows.net/website-uploads/2025/03/Rother-Council-Tax-Reduction-Scheme-2025-26.pdf

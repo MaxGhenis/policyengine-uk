@@ -1,0 +1,31 @@
+description: Rother weekly income-band Council Tax Reduction rate for households with two or more children or young persons. Schedule 1 paragraph 1 of the adopted 2026/27 scheme sets discount rates 100/60/40/20/0 per cent across the GBP 0.00-308.24, GBP 308.25-373.82, GBP 373.83-439.43, GBP 439.44-505.02 and GBP 505.03+ weekly income bands. Schedule 1 paragraph 4 caps the dependant count at two.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 1.0
+  - threshold:
+      2026-04-01: 308.25
+    amount:
+      2026-04-01: 0.6
+  - threshold:
+      2026-04-01: 373.83
+    amount:
+      2026-04-01: 0.4
+  - threshold:
+      2026-04-01: 439.44
+    amount:
+      2026-04-01: 0.2
+  - threshold:
+      2026-04-01: 505.03
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: Rother weekly income-band CTR rate, household with 2 or more children
+  reference:
+    - title: Rother District Council - Council Tax Reduction Scheme 2026 (Schedule 1 paragraph 1, 2+ children column)
+      href: https://rdcpublic.blob.core.windows.net/website-uploads/2025/03/Rother-Council-Tax-Reduction-Scheme-2025-26.pdf

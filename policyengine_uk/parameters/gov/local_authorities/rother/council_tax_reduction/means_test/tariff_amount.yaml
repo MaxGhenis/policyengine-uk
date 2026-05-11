@@ -1,0 +1,10 @@
+description: Rother Council Tax Reduction tariff income per block of capital above the disregard threshold. Section 28.2 of the adopted 2026/27 scheme adds 1 pound per week for each complete 250 pounds (and Section 28.3 includes any incomplete remaining block).
+values:
+  2026-04-01: 1
+metadata:
+  unit: currency-GBP
+  period: week
+  label: Rother Council Tax Reduction tariff income per block
+  reference:
+    - title: Rother District Council - Council Tax Reduction Scheme 2026 (Section 28.2)
+      href: https://rdcpublic.blob.core.windows.net/website-uploads/2025/03/Rother-Council-Tax-Reduction-Scheme-2025-26.pdf

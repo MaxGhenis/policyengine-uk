@@ -1,0 +1,10 @@
+description: Rother Council Tax Reduction tariff-income disregard threshold. Section 28.2 of the adopted 2026/27 scheme treats capital above 6,000 pounds as weekly tariff income.
+values:
+  2026-04-01: 6_000
+metadata:
+  unit: currency-GBP
+  period: year
+  label: Rother Council Tax Reduction tariff-income disregard threshold
+  reference:
+    - title: Rother District Council - Council Tax Reduction Scheme 2026 (Section 28.2)
+      href: https://rdcpublic.blob.core.windows.net/website-uploads/2025/03/Rother-Council-Tax-Reduction-Scheme-2025-26.pdf
