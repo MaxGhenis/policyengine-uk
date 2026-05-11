@@ -86,6 +86,7 @@ LOCAL_COUNCIL_TAX_REDUCTION_VARIABLES = [
     "oxford_council_tax_reduction",
     "plymouth_council_tax_reduction",
     "redbridge_council_tax_reduction",
+    "rochford_council_tax_reduction",
     "rushmoor_council_tax_reduction",
     "sefton_council_tax_reduction",
     "somerset_council_tax_reduction",
@@ -230,6 +231,9 @@ class simulated_council_tax_reduction_benunit(Variable):
         plymouth_local_scheme = benunit(
             "plymouth_council_tax_reduction_is_local_scheme", period
         )
+        rochford_local_scheme = benunit(
+            "rochford_council_tax_reduction_is_local_scheme", period
+        )
         rushmoor_local_scheme = benunit(
             "rushmoor_council_tax_reduction_is_local_scheme", period
         )
@@ -307,6 +311,7 @@ class simulated_council_tax_reduction_benunit(Variable):
             & ~mid_suffolk_local_scheme
             & ~north_yorkshire_local_scheme
             & ~plymouth_local_scheme
+            & ~rochford_local_scheme
             & ~rushmoor_local_scheme
             & ~somerset_local_scheme
             & ~slough_local_scheme

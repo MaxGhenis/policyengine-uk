@@ -1,0 +1,10 @@
+description: Rochford Council Tax Support working-age weekly earnings disregard. The council's working-age scheme page states the first 20 pounds of weekly household earnings is ignored when calculating net income for the Schedule 1 band lookup.
+values:
+  2026-04-01: 20
+metadata:
+  unit: currency-GBP
+  period: week
+  label: Rochford Council Tax Support weekly earnings disregard
+  reference:
+    - title: Rochford District Council - Local Council Tax Support for Working Age People
+      href: https://www.rochford.gov.uk/local-council-tax-support-for-working-age-people

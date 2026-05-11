@@ -1,0 +1,10 @@
+description: Rochford Council Tax Support working-age capital limit. The council's working-age scheme page states that "applicants with savings above 6,000 pounds will not qualify", so the boundary is strict above 6,000 pounds (capital at exactly 6,000 remains eligible).
+values:
+  2026-04-01: 6_000
+metadata:
+  unit: currency-GBP
+  period: year
+  label: Rochford Council Tax Support capital limit
+  reference:
+    - title: Rochford District Council - Local Council Tax Support for Working Age People
+      href: https://www.rochford.gov.uk/local-council-tax-support-for-working-age-people

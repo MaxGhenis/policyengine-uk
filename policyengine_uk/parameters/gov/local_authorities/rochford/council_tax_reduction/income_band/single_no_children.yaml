@@ -1,0 +1,27 @@
+description: Rochford weekly income-band CTS rate for single applicants with no children. The council's working-age scheme page sets row A at 75/50/25/0/0/0 per cent across the GBP 0.00-105.00, GBP 105.01-185.00, GBP 185.01-265.00, GBP 265.01-345.00, GBP 345.01-425.00 and GBP 425.01+ weekly net-income bands.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 0.75
+  - threshold:
+      2026-04-01: 105.01
+    amount:
+      2026-04-01: 0.5
+  - threshold:
+      2026-04-01: 185.01
+    amount:
+      2026-04-01: 0.25
+  - threshold:
+      2026-04-01: 265.01
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: Rochford weekly income-band CTS rate, single applicant no children
+  reference:
+    - title: Rochford District Council - Local Council Tax Support for Working Age People (row A)
+      href: https://www.rochford.gov.uk/local-council-tax-support-for-working-age-people

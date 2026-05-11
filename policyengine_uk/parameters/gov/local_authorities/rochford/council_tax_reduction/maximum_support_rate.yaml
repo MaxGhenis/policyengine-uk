@@ -1,0 +1,10 @@
+description: Rochford maximum Council Tax Support rate. The council's working-age scheme page states that working-age applicants must pay at least 25 per cent of their Council Tax charge, so the maximum award is 75 per cent of liability, with no Band cap and no non-dependant deductions.
+values:
+  2026-04-01: 0.75
+metadata:
+  unit: /1
+  period: year
+  label: Rochford Council Tax Support maximum support rate
+  reference:
+    - title: Rochford District Council - Local Council Tax Support for Working Age People
+      href: https://www.rochford.gov.uk/local-council-tax-support-for-working-age-people
