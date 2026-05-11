@@ -32,7 +32,7 @@ Use this when an agent is asked to add one Council Tax Reduction scheme before C
 - Use UC/DWP-assessed capital for UC cases when the source says so; do not fall back to household savings.
 - Do not let passported income-based benefits bypass capital unless the source says the capital rule is disapplied.
 - Distinguish an actual UC award from `would_claim_uc`.
-- Check whether UC income means UC assessed income, the UC award, a pre-deduction award, or named UC elements.
+- Check whether UC income means UC assessed income, the UC award, a pre-deduction award, or named UC elements. If named UC elements are disregarded, subtract all modelled elements and add a jurisdiction-scoped source-input amount for any missing component; test a case where the disregard changes the income band.
 - Check whether non-dependant deductions reduce eligible liability before the percentage or reduce the final award after.
 - For protected groups, verify who counts: claimant, partner, dependants, benefit-unit members, household members, or non-dependants.
 - Match source units and basis exactly: weekly, monthly, annual; gross, net, earned, total.

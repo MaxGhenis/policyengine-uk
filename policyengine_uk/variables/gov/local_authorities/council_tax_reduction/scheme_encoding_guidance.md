@@ -20,6 +20,7 @@ Use this file for durable Council Tax Reduction implementation rules. Keep `agen
 - For protected-group uplifts, test any source-listed benefit names that have easy-to-confuse PolicyEngine variables, such as Armed Forces Independence Payment versus Armed Forces Compensation Scheme.
 - For UC branches, add at least one positive UC-income regression with no source override: include a positive UC award, UC assessed earned or unearned income, and a different legacy CTR applicable income so the test proves the implementation is not using `would_claim_uc` or the UC award alone.
 - If the source has UC maximum-amount, UC income, or UC capital paragraphs, add regressions that would fail under the generic legacy helper.
+- If the source disregards named UC elements, subtract modelled components from the UC award and add a jurisdiction-scoped source-input amount for any missing component; add a regression where the disregarded elements move the claimant across an income-band threshold.
 - For pension-age carve-outs, assert both the jurisdiction variable and `simulated_council_tax_reduction_benunit` so local-rule cases do not double-count the national pensioner scheme.
 - Keep implementation jurisdiction-scoped under `policyengine_uk/parameters/gov/local_authorities/<authority>/council_tax_reduction/` and `policyengine_uk/variables/gov/local_authorities/<authority>/council_tax_reduction/`.
 - Use separate jurisdiction-specific variables even if formulas duplicate another council.
