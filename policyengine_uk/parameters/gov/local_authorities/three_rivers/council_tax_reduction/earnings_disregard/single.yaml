@@ -1,0 +1,10 @@
+description: Three Rivers Council Tax Reduction weekly earnings disregard for single applicants who are in work. The council's working-age scheme page deducts 25 pounds per week from the net earnings of single working applicants.
+values:
+  2026-04-01: 25
+metadata:
+  unit: currency-GBP
+  period: week
+  label: Three Rivers Council Tax Reduction weekly earnings disregard, single applicant
+  reference:
+    - title: Three Rivers District Council - Council Tax Reduction Scheme (earnings disregard, single)
+      href: https://www.threerivers.gov.uk/services/counciltax/ctrs

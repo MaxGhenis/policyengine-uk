@@ -1,0 +1,10 @@
+description: Three Rivers maximum Council Tax Reduction rate. The council's working-age scheme page sets the top Band 1 discount at 100 per cent of council tax liability (capped at the Band D equivalent for the dwelling).
+values:
+  2026-04-01: 1.0
+metadata:
+  unit: /1
+  period: year
+  label: Three Rivers Council Tax Reduction maximum support rate
+  reference:
+    - title: Three Rivers District Council - Council Tax Reduction Scheme (banded discount for working age)
+      href: https://www.threerivers.gov.uk/services/counciltax/ctrs

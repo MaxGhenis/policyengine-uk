@@ -1,0 +1,10 @@
+description: Three Rivers Council Tax Reduction weekly earnings disregard for couples or lone parents who are in work. The council's working-age scheme page deducts 50 pounds per week from the net earnings of working applicants who are part of a couple or are a lone parent.
+values:
+  2026-04-01: 50
+metadata:
+  unit: currency-GBP
+  period: week
+  label: Three Rivers Council Tax Reduction weekly earnings disregard, couple or lone parent
+  reference:
+    - title: Three Rivers District Council - Council Tax Reduction Scheme (earnings disregard, couples and lone parents)
+      href: https://www.threerivers.gov.uk/services/counciltax/ctrs

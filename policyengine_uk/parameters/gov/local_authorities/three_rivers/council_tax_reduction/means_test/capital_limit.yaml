@@ -1,0 +1,10 @@
+description: Three Rivers Council Tax Reduction working-age capital limit. The council's working-age scheme page states that working-age applicants must have "less than 8,000 pounds in capital" to qualify, so the boundary is strict at 8,000 pounds (capital of exactly 8,000 pounds is excluded).
+values:
+  2026-04-01: 8_000
+metadata:
+  unit: currency-GBP
+  period: year
+  label: Three Rivers Council Tax Reduction working-age capital limit
+  reference:
+    - title: Three Rivers District Council - Council Tax Reduction Scheme (capital eligibility)
+      href: https://www.threerivers.gov.uk/services/counciltax/ctrs

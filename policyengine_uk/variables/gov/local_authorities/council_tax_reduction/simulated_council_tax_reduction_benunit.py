@@ -107,6 +107,7 @@ LOCAL_COUNCIL_TAX_REDUCTION_VARIABLES = [
     "tameside_council_tax_reduction",
     "tendring_council_tax_reduction",
     "tewkesbury_council_tax_reduction",
+    "three_rivers_council_tax_reduction",
     "thurrock_council_tax_reduction",
     "wakefield_council_tax_reduction",
     "warrington_council_tax_reduction",

@@ -1,0 +1,10 @@
+description: Three Rivers Council Tax Reduction maximum number of dependants counted for the household-type band lookup. The 2026/27 income band table publishes single / single+1 dependant / single+2+ dependants / couple / couple+1 dependant / couple+2+ dependants rows, so additional dependants beyond two fall in the same band column.
+values:
+  2026-04-01: 2
+metadata:
+  unit: int
+  period: year
+  label: Three Rivers Council Tax Reduction maximum counted dependants
+  reference:
+    - title: Three Rivers District Council - 2026/27 income band table (PNG)
+      href: https://cdn.threerivers.gov.uk/files/2026/04/1c663e60-3fb1-11f1-b2b2-cd0b796690e8-CTR%20income%20bands%2026-27%20%28April%202026%29.png

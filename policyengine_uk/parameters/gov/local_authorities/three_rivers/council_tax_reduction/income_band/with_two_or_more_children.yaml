@@ -1,0 +1,31 @@
+description: Three Rivers weekly income-band Council Tax Reduction rate for households with two or more dependant children or young persons (single or couple). The 2026/27 income band table sets discount rates 100/75/50/25/0 per cent across the GBP 0.00-292.05, GBP 292.06-350.46, GBP 350.47-408.87, GBP 408.88-467.28 and GBP 467.29+ weekly income bands.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 1.0
+  - threshold:
+      2026-04-01: 292.06
+    amount:
+      2026-04-01: 0.75
+  - threshold:
+      2026-04-01: 350.47
+    amount:
+      2026-04-01: 0.5
+  - threshold:
+      2026-04-01: 408.88
+    amount:
+      2026-04-01: 0.25
+  - threshold:
+      2026-04-01: 467.29
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: Three Rivers weekly income-band CTR rate, household with two or more dependants
+  reference:
+    - title: Three Rivers District Council - 2026/27 income band table (Single + 2+ / Couple + 2+ dependants row)
+      href: https://cdn.threerivers.gov.uk/files/2026/04/1c663e60-3fb1-11f1-b2b2-cd0b796690e8-CTR%20income%20bands%2026-27%20%28April%202026%29.png

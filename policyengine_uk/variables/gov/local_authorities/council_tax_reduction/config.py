@@ -408,6 +408,10 @@ def is_tewkesbury(local_authority):
     return local_authority == LocalAuthority.TEWKESBURY
 
 
+def is_three_rivers(local_authority):
+    return local_authority == LocalAuthority.THREE_RIVERS
+
+
 def is_thurrock(local_authority):
     return local_authority == LocalAuthority.THURROCK
 
@@ -974,6 +978,12 @@ def is_tewkesbury_working_age(local_authority, country, has_pensioner):
     )
 
 
+def is_three_rivers_working_age(local_authority, country, has_pensioner):
+    return (
+        (country == Country.ENGLAND) & ~has_pensioner & is_three_rivers(local_authority)
+    )
+
+
 def is_thurrock_working_age(local_authority, country, has_pensioner):
     return (country == Country.ENGLAND) & ~has_pensioner & is_thurrock(local_authority)
 
@@ -1174,6 +1184,7 @@ def is_supported_scheme(local_authority, country, has_pensioner):
         | is_tameside_working_age(local_authority, country, has_pensioner)
         | is_tendring_working_age(local_authority, country, has_pensioner)
         | is_tewkesbury_working_age(local_authority, country, has_pensioner)
+        | is_three_rivers_working_age(local_authority, country, has_pensioner)
         | is_thurrock_working_age(local_authority, country, has_pensioner)
         | is_warrington_working_age(local_authority, country, has_pensioner)
         | is_wakefield_working_age(local_authority, country, has_pensioner)

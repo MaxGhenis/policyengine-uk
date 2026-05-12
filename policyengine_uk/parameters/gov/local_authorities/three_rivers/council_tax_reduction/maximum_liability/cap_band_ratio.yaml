@@ -1,0 +1,10 @@
+description: Three Rivers Council Tax Reduction Band D liability cap ratio. The council's working-age scheme page caps the eligible council tax used in the discount calculation at the Band D equivalent for the dwelling ("the scheme applies to properties in Council Tax Band D; for bands E-H, reductions are calculated as a percentage of equivalent Band D charges"). Band D's English ratio is 1.0.
+values:
+  2026-04-01: 1
+metadata:
+  unit: /1
+  period: year
+  label: Three Rivers Council Tax Reduction Band D liability cap ratio
+  reference:
+    - title: Three Rivers District Council - Council Tax Reduction Scheme (Band D cap)
+      href: https://www.threerivers.gov.uk/services/counciltax/ctrs

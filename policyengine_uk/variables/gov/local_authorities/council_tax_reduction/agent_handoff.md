@@ -16,11 +16,11 @@ For Claude/Codex first-pass handoffs, use `policyengine_uk/variables/gov/local_a
 
 - PR: https://github.com/PolicyEngine/policyengine-uk/pull/1534
 - Branch: `codex/ctr-framework`
-- Pull the latest PR branch before continuing; this checkpoint includes Bath and North East Somerset, Rushmoor, Hart, Maldon, Hartlepool, Hertsmere, East Hampshire, Brentwood, West Berkshire, Tendring, St Helens, Tewkesbury, Forest of Dean, Braintree, Castle Point, Rochford, Sevenoaks, Folkestone and Hythe, Rother, and Wealden.
-- Coverage at this checkpoint: `109` current English working-age billing authorities, plus the national Wales and Scotland CTR schemes.
-- Last focused local verification: `uv run policyengine-core test policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml -n "Wealden" -c policyengine_uk` passed with `19` tests in this worktree after Codex review fixes for childcare and the self-employed minimum income floor.
-- Last full local verification: `uv run policyengine-core test policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml` was reported clean with `1033` tests in the Sevenoaks first-pass; the Folkestone first-pass added `22` tests, the Rother first-pass added `20` tests, and this Wealden pass adds `19` Wealden tests on top of that, verified via focused Wealden and Rother sanity runs.
-- Recent completed schemes: Hart, Maldon, Hartlepool, Hertsmere, East Hampshire, Brentwood, West Berkshire, Tendring, St Helens, Tewkesbury, Forest of Dean, Braintree, Castle Point, Rochford, Sevenoaks, Folkestone and Hythe, Rother, Wealden.
+- Pull the latest PR branch before continuing; this checkpoint includes Bath and North East Somerset, Rushmoor, Hart, Maldon, Hartlepool, Hertsmere, East Hampshire, Brentwood, West Berkshire, Tendring, St Helens, Tewkesbury, Forest of Dean, Braintree, Castle Point, Rochford, Sevenoaks, Folkestone and Hythe, Rother, Wealden, and Three Rivers.
+- Coverage at this checkpoint: `110` current English working-age billing authorities, plus the national Wales and Scotland CTR schemes.
+- Last focused local verification: `uv run policyengine-core test policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml -n "Three Rivers" -c policyengine_uk` passed with `19` tests in this worktree.
+- Last full local verification: `uv run policyengine-core test policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml` was reported clean with `1033` tests in the Sevenoaks first-pass; the Folkestone first-pass added `22` tests, the Rother first-pass added `20` tests, the Wealden pass added `19` Wealden tests, and this Three Rivers first-pass adds `19` Three Rivers tests on top of that, verified via focused Three Rivers and Wealden sanity runs.
+- Recent completed schemes: Maldon, Hartlepool, Hertsmere, East Hampshire, Brentwood, West Berkshire, Tendring, St Helens, Tewkesbury, Forest of Dean, Braintree, Castle Point, Rochford, Sevenoaks, Folkestone and Hythe, Rother, Wealden, Three Rivers.
 
 Before continuing, pull the latest branch and inspect current status:
 
