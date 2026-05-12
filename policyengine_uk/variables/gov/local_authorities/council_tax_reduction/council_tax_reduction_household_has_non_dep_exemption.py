@@ -17,6 +17,13 @@ class council_tax_reduction_household_has_non_dep_exemption(Variable):
         ) & claimant_or_partner
         pip_daily_living = (person("pip_dl", period) > 0) & claimant_or_partner
         dla_care = (person("dla_sc", period) > 0) & claimant_or_partner
+        # Section 48A.4(d) of the prescribed default non-dependant deduction
+        # rules waives the deduction where the applicant or partner receives
+        # an Armed Forces Independence Payment (or would but for hospital
+        # suspension), as a parallel to the AA / DLA-care / PIP-DL trio.
+        # PolicyEngine UK models AFIP through afcs (Armed Forces Compensation
+        # Scheme).
+        afip = (person("afcs", period) > 0) & claimant_or_partner
         return household.any(
-            is_blind | attendance_allowance | pip_daily_living | dla_care
+            is_blind | attendance_allowance | pip_daily_living | dla_care | afip
         )

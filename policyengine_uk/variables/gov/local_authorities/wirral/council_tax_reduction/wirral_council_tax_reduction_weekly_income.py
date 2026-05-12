@@ -97,6 +97,13 @@ class wirral_council_tax_reduction_weekly_income(Variable):
                 ],
             )
         )
+        # Wirral's Schedule 2 does not list Carer's Allowance as a disregarded
+        # benefit (it disregards DLA/PIP/AFIP at paragraph 9, war mobility
+        # supplement at paragraph 11, attendance allowance at paragraph 12,
+        # Child Benefit/Child Maintenance at paragraph 62, but not CA), and
+        # Section 13.1 makes any unlisted income countable. Include
+        # carers_allowance in the non-UC counted benefit income to match the
+        # source.
         benefit_income = benunit("tax_credits", period) + benunit.sum(
             claimant_or_partner
             * add(
@@ -106,6 +113,7 @@ class wirral_council_tax_reduction_weekly_income(Variable):
                     "jsa_contrib",
                     "esa_contrib",
                     "incapacity_benefit",
+                    "carers_allowance",
                 ],
             )
         )

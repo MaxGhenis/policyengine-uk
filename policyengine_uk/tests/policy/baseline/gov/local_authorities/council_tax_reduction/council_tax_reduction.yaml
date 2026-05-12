@@ -41372,3 +41372,86 @@
         savings: 0
   output:
     wirral_council_tax_reduction: 900
+
+- name: Wirral applicant on Armed Forces Independence Payment is exempt from non-dependant deductions (Section 48A.4(d))
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Section 48A.4(d) of the adopted scheme waives all non-dependant
+    # deductions where the applicant or partner is in receipt of an AFIP.
+    # Without the AFIP exemption the 5-pound weekly non-dep deduction
+    # reduces the 1_800 max liability to 1_540 and yields a 770 Band 1
+    # award; with the exemption the household keeps the full Band 1
+    # 50 per cent of 1_800 = 900.
+    people:
+      claimant:
+        age: 35
+        afcs: 4_500
+      non_dep:
+        age: 28
+        employment_income: 15_000
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+      nondep_benunit:
+        members: [non_dep]
+        claims_all_entitled_benefits: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 28
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, non_dep]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    council_tax_reduction: 900
+
+- name: Wirral Carer's Allowance is counted as income because the scheme does not list it as a disregard
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Wirral's Schedule 2 does not name Carer's Allowance among the
+    # disregarded incomes (DLA/PIP/AFIP at paragraph 9, attendance
+    # allowance at paragraph 12, Child Benefit/Child Maintenance at
+    # paragraph 62 etc), so under Section 13.1 it is countable. With
+    # 9_360/52 = 180 per week of CA the single claimant lands in
+    # Band 2 (130.01-182.00) at 40 per cent = 720. Without counting CA
+    # the claimant would be in Band 1 (50 per cent = 900), so this
+    # asserts 720 to confirm CA is indeed counted.
+    people:
+      claimant:
+        age: 35
+        carers_allowance: 9_360
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 720
