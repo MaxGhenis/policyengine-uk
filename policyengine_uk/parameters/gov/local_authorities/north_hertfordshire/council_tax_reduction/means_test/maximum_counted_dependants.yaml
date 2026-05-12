@@ -1,0 +1,10 @@
+description: North Hertfordshire Council Tax Reduction maximum number of dependants counted for the household-type band lookup. Schedule 1 paragraph 4 of the 2026/27 scheme limits any application for reduction to a maximum of three dependant children or young persons.
+values:
+  2026-04-01: 3
+metadata:
+  unit: int
+  period: year
+  label: North Hertfordshire Council Tax Reduction maximum counted dependants
+  reference:
+    - title: North Herts District Council - Council Tax Reduction Scheme 2026/27 (Schedule 1 paragraph 4)
+      href: https://www.north-herts.gov.uk/sites/default/files/2026-03/North%20Herts%20S13A%20202627%20Scheme%20FINAL.pdf

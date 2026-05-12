@@ -1,0 +1,31 @@
+description: North Hertfordshire weekly income-band Council Tax Reduction rate for single applicants with two children. Schedule 1 paragraph 1 of the 2026/27 scheme sets discount rates 100/75/45/25/0 per cent across the GBP 0-250.00, GBP 250.01-317.00, GBP 317.01-380.00, GBP 380.01-444.00 and GBP 444.01+ weekly income bands.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 1.0
+  - threshold:
+      2026-04-01: 250.01
+    amount:
+      2026-04-01: 0.75
+  - threshold:
+      2026-04-01: 317.01
+    amount:
+      2026-04-01: 0.45
+  - threshold:
+      2026-04-01: 380.01
+    amount:
+      2026-04-01: 0.25
+  - threshold:
+      2026-04-01: 444.01
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: North Hertfordshire weekly income-band CTR rate, single applicant with two children
+  reference:
+    - title: North Herts District Council - Council Tax Reduction Scheme 2026/27 (Schedule 1 paragraph 1, Single Person 2 children column)
+      href: https://www.north-herts.gov.uk/sites/default/files/2026-03/North%20Herts%20S13A%20202627%20Scheme%20FINAL.pdf

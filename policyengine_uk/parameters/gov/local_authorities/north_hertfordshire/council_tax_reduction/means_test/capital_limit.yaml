@@ -1,0 +1,10 @@
+description: North Hertfordshire Council Tax Reduction working-age capital limit. Section 26.1 of the 2026/27 scheme sets the prescribed amount at 16,000 pounds; no reduction is granted when the applicant's capital is greater than that level. Schedule 1 paragraph 5 repeats this exclusion. Schedule 3 contains the standard Default Scheme capital disregards but no wholesale capital disregard for applicants on Income Support / income-based JSA / income-related ESA, so passported applicants whose capital exceeds 16,000 pounds are still excluded.
+values:
+  2026-04-01: 16_000
+metadata:
+  unit: currency-GBP
+  period: year
+  label: North Hertfordshire Council Tax Reduction capital limit
+  reference:
+    - title: North Herts District Council - Council Tax Reduction Scheme 2026/27 (Section 26.1, Schedule 1 paragraph 5)
+      href: https://www.north-herts.gov.uk/sites/default/files/2026-03/North%20Herts%20S13A%20202627%20Scheme%20FINAL.pdf

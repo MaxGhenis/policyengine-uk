@@ -312,6 +312,10 @@ def is_norwich(local_authority):
     return local_authority == LocalAuthority.NORWICH
 
 
+def is_north_hertfordshire(local_authority):
+    return local_authority == LocalAuthority.NORTH_HERTFORDSHIRE
+
+
 def is_north_norfolk(local_authority):
     return local_authority == LocalAuthority.NORTH_NORFOLK
 
@@ -852,6 +856,14 @@ def is_norwich_working_age(local_authority, country, has_pensioner):
     return (country == Country.ENGLAND) & ~has_pensioner & is_norwich(local_authority)
 
 
+def is_north_hertfordshire_working_age(local_authority, country, has_pensioner):
+    return (
+        (country == Country.ENGLAND)
+        & ~has_pensioner
+        & is_north_hertfordshire(local_authority)
+    )
+
+
 def is_north_norfolk_working_age(local_authority, country, has_pensioner):
     return (
         (country == Country.ENGLAND)
@@ -1160,6 +1172,7 @@ def is_supported_scheme(local_authority, country, has_pensioner):
         | is_newham_working_age(local_authority, country, has_pensioner)
         | is_oldham_working_age(local_authority, country, has_pensioner)
         | is_norwich_working_age(local_authority, country, has_pensioner)
+        | is_north_hertfordshire_working_age(local_authority, country, has_pensioner)
         | is_north_norfolk_working_age(local_authority, country, has_pensioner)
         | is_north_northamptonshire_working_age(local_authority, country, has_pensioner)
         | is_north_yorkshire_working_age(local_authority, country, has_pensioner)
