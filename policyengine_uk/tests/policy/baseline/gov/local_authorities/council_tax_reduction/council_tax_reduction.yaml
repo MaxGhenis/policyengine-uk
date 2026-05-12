@@ -41455,3 +41455,50 @@
         savings: 0
   output:
     wirral_council_tax_reduction: 720
+
+- name: Wirral non-dependant couple gets a single 5 pound weekly deduction (Section 48A.2)
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Section 48A.2: "In cases where two non-dependants are a member of a
+    # couple, a single deduction shall be made." Two adult non-deps living
+    # as a couple in their own benunit should collapse to a single 5-pound
+    # weekly deduction (260 annual), yielding 0.5 * (1_800 - 260) = 770
+    # rather than two deductions (520 annual, yielding 0.5 * 1_280 = 640).
+    people:
+      claimant:
+        age: 35
+      non_dep_1:
+        age: 28
+        employment_income: 15_000
+      non_dep_2:
+        age: 29
+        employment_income: 12_000
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+      non_dep_couple:
+        members: [non_dep_1, non_dep_2]
+        claims_all_entitled_benefits: false
+        is_single_person: false
+        is_couple: true
+        is_lone_parent: false
+        eldest_adult_age: 29
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, non_dep_1, non_dep_2]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    council_tax_reduction: 770
