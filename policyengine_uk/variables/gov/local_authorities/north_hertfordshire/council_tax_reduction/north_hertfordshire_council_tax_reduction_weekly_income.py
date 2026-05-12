@@ -5,7 +5,7 @@ class north_hertfordshire_council_tax_reduction_weekly_income(Variable):
     value_type = float
     entity = BenUnit
     label = "North Hertfordshire Council Tax Reduction assessed weekly income"
-    documentation = "Weekly assessed income of the claimant and partner used to look up the Schedule 1 banded discount table. Non-UC cases use claimant-and-partner net earnings after income tax, primary Class 1 National Insurance, half occupational pension contributions and the Section 20.2 50 pound weekly earnings disregard (irrespective of household, one per claim), plus source-countable non-earnings income. Schedule 2 disregards Carer's Allowance (paragraph 67), Child Benefit (paragraph 63), DLA/PIP/AFIP (paragraph 9), attendance allowance (paragraph 12), the ESA support component (paragraph 68) and the prescribed disability and war-pension benefits. PolicyEngine UK does not separate the ESA support component from the contributory ESA award, so esa_contrib is currently included in countable income (known approximation). Universal Credit cases use the DWP-assessed UC award (universal_credit_pre_benefit_cap) less the housing-costs element (and any further North Hertfordshire-scoped source-listed disregarded UC element supplied through the source input), plus DWP-assessed UC earned income less the weekly earnings disregard and UC unearned income."
+    documentation = "Weekly assessed income of the claimant and partner used to look up the Schedule 1 banded discount table. Non-UC cases use claimant-and-partner net earnings after income tax, primary Class 1 National Insurance, half occupational pension contributions and the Section 20.2 50 pound weekly earnings disregard (irrespective of household, one per claim), plus source-countable non-earnings income. Schedule 2 disregards Carer's Allowance (paragraph 67), Child Benefit (paragraph 63), DLA/PIP/AFIP (paragraph 9), attendance allowance (paragraph 12), the ESA support component (paragraph 68) and the prescribed disability and war-pension benefits. Schedule 2 paragraph 72 applies a further 50 pound weekly disregard from income where the applicant, their partner or dependant is entitled to Personal Independence Payment or Disability Living Allowance. PolicyEngine UK does not separate the ESA support component from the contributory ESA award, so esa_contrib is currently included in countable income (known approximation). Universal Credit cases use the DWP-assessed UC award (universal_credit_pre_benefit_cap) less the housing-costs element (and any further North Hertfordshire-scoped source-listed disregarded UC element supplied through the source input), plus DWP-assessed UC earned income less the weekly earnings disregard and UC unearned income; the paragraph 72 disability income disregard is applied in both branches."
     definition_period = YEAR
     unit = GBP
     reference = "https://www.north-herts.gov.uk/sites/default/files/2026-03/North%20Herts%20S13A%20202627%20Scheme%20FINAL.pdf"
@@ -104,4 +104,15 @@ class north_hertfordshire_council_tax_reduction_weekly_income(Variable):
         )
         non_uc_income = where(passported, 0, non_uc_income)
         annual_income = where(has_uc_award, uc_income, non_uc_income)
+        # Schedule 2 paragraph 72 applies a further GBP 50 weekly disregard
+        # from income where the applicant, their partner or a dependant is
+        # entitled to PIP or DLA, in addition to the paragraph 9 disregard of
+        # the PIP/DLA payment itself.
+        household_has_pip_or_dla = benunit.any(
+            (person("pip", period) > 0) | (person("dla", period) > 0)
+        )
+        annual_disability_disregard = (
+            household_has_pip_or_dla * ctr.disability_disregard.amount * WEEKS_IN_YEAR
+        )
+        annual_income = max_(0, annual_income - annual_disability_disregard)
         return annual_income / WEEKS_IN_YEAR

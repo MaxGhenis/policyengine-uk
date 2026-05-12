@@ -1,0 +1,10 @@
+description: North Hertfordshire Council Tax Reduction weekly disability income disregard. Schedule 2 paragraph 72 of the 2026/27 scheme applies a further 50 pound disregard from income where the applicant, their partner or dependant is entitled to Personal Independence Payment or Disability Living Allowance, in addition to the paragraph 9 disregard of the PIP/DLA payment itself.
+values:
+  2026-04-01: 50
+metadata:
+  unit: currency-GBP
+  period: week
+  label: North Hertfordshire Council Tax Reduction weekly disability income disregard
+  reference:
+    - title: North Herts District Council - Council Tax Reduction Scheme 2026/27 (Schedule 2 paragraph 72)
+      href: https://www.north-herts.gov.uk/sites/default/files/2026-03/North%20Herts%20S13A%20202627%20Scheme%20FINAL.pdf

@@ -40103,11 +40103,16 @@
 - name: North Hertfordshire disregards Carer's Allowance when looking up the band
   period: 2026
   absolute_error_margin: 0.5
+  # 9_360 / 52 = 180 per week, which would move the claimant from Band 1
+  # (zero weekly income, 100 per cent) to Band 2 (75 per cent, 110.01-193
+  # range) if the disregard were not applied. The assertion of 1_800 (100
+  # per cent of 1_800 council tax) therefore actively exercises Schedule
+  # 2 paragraph 67's Carer's Allowance disregard.
   input:
     people:
       claimant:
         age: 35
-        carers_allowance: 4_000
+        carers_allowance: 9_360
     benunits:
       benunit:
         members: [claimant]
@@ -40433,3 +40438,100 @@
     north_hertfordshire_council_tax_reduction: 0
     simulated_council_tax_reduction_benunit: 1_800
     council_tax_reduction: 1_800
+
+- name: North Hertfordshire Schedule 2 paragraph 72 disregards 50 pounds from income for PIP recipients
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 7_800
+        pip_dl_category: ENHANCED
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: NORTH_HERTFORDSHIRE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    north_hertfordshire_council_tax_reduction: 1_800
+
+- name: North Hertfordshire applies the half-pension-contribution deduction to net earnings
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        employment_income: 11_440
+        pension_contributions: 10_400
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: NORTH_HERTFORDSHIRE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    north_hertfordshire_council_tax_reduction: 1_800
+
+- name: North Hertfordshire dependant cap keeps a 4-child household in the three-child Band 4 at the published 533 pound top
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 27_716
+      child_1:
+        age: 5
+      child_2:
+        age: 8
+      child_3:
+        age: 12
+      child_4:
+        age: 14
+    benunits:
+      benunit:
+        members: [claimant, child_1, child_2, child_3, child_4]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: true
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, child_1, child_2, child_3, child_4]
+        country: ENGLAND
+        local_authority: NORTH_HERTFORDSHIRE
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    north_hertfordshire_council_tax_reduction: 450
