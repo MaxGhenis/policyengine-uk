@@ -16,7 +16,11 @@ class three_rivers_council_tax_reduction_band_rate(Variable):
         weekly_income = benunit(
             "three_rivers_council_tax_reduction_weekly_income", period
         )
-        # Pad slightly so that exactly-on-the-boundary tests fall in the lower band.
+        # Add a tiny epsilon so that float-precision noise from dividing annual
+        # income by `WEEKS_IN_YEAR` does not move a weekly income near a band
+        # boundary into the wrong band. The published bands treat each
+        # threshold as the start of the next band (e.g. `GBP 116.83` starts
+        # Band 2), so this epsilon is a no-op at the exact thresholds.
         weekly_income_for_band = weekly_income + 1e-9
         is_couple = benunit("is_couple", period)
         person = benunit.members
