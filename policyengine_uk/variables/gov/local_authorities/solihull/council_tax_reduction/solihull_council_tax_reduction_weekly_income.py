@@ -5,7 +5,7 @@ class solihull_council_tax_reduction_weekly_income(Variable):
     value_type = float
     entity = BenUnit
     label = "Solihull Council Tax Reduction assessed weekly income"
-    documentation = "Weekly assessed income of the claimant and partner used to look up the Solihull banded discount table. Non-UC cases use claimant-and-partner net earnings (Section 20.3: gross less income tax, primary Class 1 National Insurance, half of any occupational pension contribution and half of any qualifying personal pension contribution, plus the Schedule 4 paragraph 1 earnings disregard of 50 pounds per week with paragraph 2 limiting it to one disregard per applicant). Source-countable non-earnings income is added; Schedule 2 disregards DLA / PIP / AFIP / attendance allowance / war mobility supplement (paragraphs 9-12), Child Benefit / Child Maintenance (paragraph 62), the Employment and Support Allowance support component (paragraph 67) and Carer's Allowance (paragraph 74). Schedule 2 paragraph 75 applies a further 50 pound weekly disregard from income where any of the applicant, their partner or a dependent child is disabled (in receipt of Personal Independence Payment, an Armed Forces Independence Payment or Disability Living Allowance) - a single family-level disregard, not per qualifying member. Universal Credit cases follow Section 12.2: counted income is the DWP-assessed UC award (universal_credit_pre_benefit_cap) less the Section 12.3 listed elements (Housing, Limited Capability for Work / Work-Related Activity, Disabled Child and Carer - modelled here through PolicyEngine UK's uc_housing_costs_element, uc_carer_element and uc_disability_elements aggregate, plus any further source-listed component supplied via the Solihull source input), plus DWP-assessed UC earned income less the same Schedule 4 weekly earnings disregard, plus UC unearned income."
+    documentation = "Weekly assessed income of the claimant and partner used to look up the Solihull banded discount table. Non-UC cases use claimant-and-partner net earnings (Section 20.3: gross less income tax, primary Class 1 National Insurance, half of any occupational pension contribution and half of any qualifying personal pension contribution, plus the Schedule 4 paragraph 1 earnings disregard of 50 pounds per week with paragraph 2 limiting it to one disregard per applicant). Source-countable non-earnings income is added; Schedule 2 disregards DLA / PIP / AFIP / attendance allowance / war mobility supplement (paragraphs 9-12), Child Maintenance (paragraph 47), Child Benefit (paragraph 63), the Employment and Support Allowance support component (paragraph 67) and Carer's Allowance (paragraph 74). Schedule 2 paragraph 75 applies a further 50 pound weekly disregard from income where any of the applicant, their partner or a dependent child is disabled (in receipt of Personal Independence Payment, an Armed Forces Independence Payment or Disability Living Allowance) - a single family-level disregard, not per qualifying member. AFIP is detected via the PolicyEngine UK armed_forces_independence_payment variable (the dedicated AFIP measure) rather than the broader afcs (Armed Forces Compensation Scheme aggregate) so non-AFIP AFCS payments such as Guaranteed Income Payments do not trigger the disregard. Universal Credit cases follow Section 12.2: counted income is the DWP-assessed UC award (universal_credit_pre_benefit_cap) less the Section 12.3 listed elements (Housing, Limited Capability for Work / Work-Related Activity, Disabled Child and Carer - modelled here through PolicyEngine UK's uc_housing_costs_element, uc_carer_element and uc_disability_elements aggregate, plus any further source-listed component supplied via the Solihull source input), plus DWP-assessed UC earned income less the same Schedule 4 weekly earnings disregard. Schedule 2 paragraph 76 disregards 'any income that is deemed by the authority as unearned income' for UC applicants, so UC unearned income (state pension, savings interest etc as deemed by DWP for UC purposes) is excluded from counted CTR income."
     definition_period = YEAR
     unit = GBP
     reference = "https://www.solihull.gov.uk/sites/default/files/2026-02/Council-Tax-Reduction-Scheme-2026-2027.pdf"
@@ -49,11 +49,15 @@ class solihull_council_tax_reduction_weekly_income(Variable):
             0,
             benunit("uc_earned_income", period) - annual_earnings_disregard,
         )
-        uc_income = (
-            countable_uc_award
-            + countable_uc_earned_income
-            + benunit("uc_unearned_income", period)
-        )
+        # Schedule 2 paragraph 76 disregards "any income that is deemed by the
+        # authority as unearned income" for UC applicants. PolicyEngine UK's
+        # uc_unearned_income represents the DWP-assessed UC unearned income
+        # (state pension, savings interest, etc.), which the authority treats
+        # as the unearned-income measure for UC cases. The disregard means UC
+        # counted income consists of only the residual UC award after Section
+        # 12.3 element disregards plus DWP-assessed UC earned income net of
+        # the Schedule 4 weekly disregard.
+        uc_income = countable_uc_award + countable_uc_earned_income
 
         gross_earnings = benunit.sum(
             claimant_or_partner
@@ -118,11 +122,15 @@ class solihull_council_tax_reduction_weekly_income(Variable):
         # Schedule 2 paragraph 75: family-level 50 pound weekly disregard
         # from income where the applicant, their partner OR any dependent
         # child receives PIP / AFIP / DLA. The source wording reads as a
-        # single disregard for the family (not per qualifying member).
+        # single disregard for the family (not per qualifying member). AFIP
+        # is detected through armed_forces_independence_payment (the
+        # PolicyEngine UK AFIP measure) rather than the broader afcs
+        # aggregate, so non-AFIP AFCS payments such as Guaranteed Income
+        # Payments do not trigger the disregard.
         family_disability = benunit.any(
             (person("pip", period) > 0)
             | (person("dla", period) > 0)
-            | (person("afcs", period) > 0)
+            | (person("armed_forces_independence_payment", period) > 0)
         )
         annual_family_disregard = (
             family_disability * ctr.disability_disregard.amount * WEEKS_IN_YEAR

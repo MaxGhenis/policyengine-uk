@@ -42260,3 +42260,128 @@
         savings: 0
   output:
     solihull_council_tax_reduction: 1_530
+
+- name: Solihull Schedule 2 paragraph 76 disregards UC unearned income for UC applicants
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # UC claimant with DWP-assessed UC unearned income of 9_360 (180/wk) and
+    # no UC award (zero or modest). Without paragraph 76 the counted UC income
+    # would include the 180/wk unearned, putting the single claimant in Band 3
+    # (170.01-220) at 50 per cent = 900. With paragraph 76 the unearned income
+    # is disregarded entirely, leaving counted UC income at 0/wk - single
+    # Band 1 (85 per cent = 1_530).
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 1
+        universal_credit_pre_benefit_cap: 1
+        uc_housing_costs_element: 0
+        uc_earned_income: 0
+        uc_unearned_income: 9_360
+        uc_assessable_capital: 0
+        uc_maximum_amount: 1
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 99_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: SOLIHULL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    solihull_council_tax_reduction: 1_530
+
+- name: Solihull applicant on PIP daily living is exempt from the Section 48.6 non-dependant deduction
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Section 48.6 waives all non-dependant deductions where the applicant
+    # would have received a disability premium under the prescribed pensioner
+    # scheme; the shared council_tax_reduction_household_has_non_dep_exemption
+    # helper captures applicant on PIP daily living. Without the exemption
+    # one 10-pound weekly deduction (520 annual) would reduce the Band 1
+    # 85 per cent award of 1_800 from 1_530 to 1_010. The PIP claimant keeps
+    # the full 1_530 award.
+    people:
+      claimant:
+        age: 35
+        pip_dl: 5_000
+      non_dep:
+        age: 28
+        employment_income: 15_000
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+      nondep_benunit:
+        members: [non_dep]
+        claims_all_entitled_benefits: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 28
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, non_dep]
+        country: ENGLAND
+        local_authority: SOLIHULL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    council_tax_reduction: 1_530
+
+- name: Solihull applicant on AFIP triggers the Schedule 2 paragraph 75 family disregard
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Misc income 8_840 / 52 = 170 per week. Without the paragraph 75
+    # disregard the claimant is at the top of single Band 2 (75 per cent =
+    # 1_350). With the AFIP-triggered disregard counted income falls to
+    # 120/wk - single Band 1 (85 per cent = 1_530). Uses
+    # armed_forces_independence_payment (the dedicated AFIP measure)
+    # rather than the broader afcs aggregate.
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 8_840
+        armed_forces_independence_payment: 5_000
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: SOLIHULL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    solihull_council_tax_reduction: 1_530
