@@ -1,0 +1,10 @@
+description: Wirral Schedule 2 paragraph 72 further disregard. Where the applicant or partner is in receipt of Personal Independence Payment, an Armed Forces Independence Payment or Disability Living Allowance, a further 50 pounds per week is disregarded from their income, on top of the paragraph 9 disregard of the DLA/PIP/AFIP payment itself.
+metadata:
+  unit: currency-GBP
+  label: Wirral CTR applicant/partner disability disregard (Schedule 2 paragraph 72)
+  period: week
+  reference:
+    - title: Wirral CTR Scheme 2026/27, Schedule 2 paragraph 72
+      href: https://www.wirral.gov.uk/files/wirral-ctr-s13a-2026-27-scheme.pdf/download?inline
+values:
+  2026-04-01: 50

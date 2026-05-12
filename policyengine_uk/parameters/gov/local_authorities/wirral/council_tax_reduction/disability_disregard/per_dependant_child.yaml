@@ -1,0 +1,10 @@
+description: Wirral Schedule 2 paragraph 73 further disregard. Where the applicant or partner has a dependant child in the household who is in receipt of Personal Independence Payment or Disability Living Allowance, a further 50 pounds per week is disregarded from their income for each qualifying child.
+metadata:
+  unit: currency-GBP
+  label: Wirral CTR per-qualifying-child disability disregard (Schedule 2 paragraph 73)
+  period: week
+  reference:
+    - title: Wirral CTR Scheme 2026/27, Schedule 2 paragraph 73
+      href: https://www.wirral.gov.uk/files/wirral-ctr-s13a-2026-27-scheme.pdf/download?inline
+values:
+  2026-04-01: 50

@@ -1,0 +1,9 @@
+description: Capital cutoff in Wirral's 2026/27 working-age Council Tax Reduction Scheme. Class D paragraph (g) and Schedule 1 paragraph 5 both say "not have capital savings of 6,000 pounds or above" - capital of exactly 6,000 (or more) excludes the applicant, capital below 6,000 is ignored.
+metadata:
+  unit: currency-GBP
+  label: Wirral CTR capital cutoff (greater than or equal excludes)
+  reference:
+    - title: Wirral CTR Scheme 2026/27, Class D paragraph (g) and Schedule 1 paragraph 5
+      href: https://www.wirral.gov.uk/files/wirral-ctr-s13a-2026-27-scheme.pdf/download?inline
+values:
+  2026-04-01: 6_000

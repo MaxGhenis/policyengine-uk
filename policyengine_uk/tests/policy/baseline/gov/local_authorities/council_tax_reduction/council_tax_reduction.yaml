@@ -40535,3 +40535,840 @@
         savings: 0
   output:
     north_hertfordshire_council_tax_reduction: 450
+
+- name: Wirral pension-age claimant routes to the national prescribed pensioner scheme
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 70
+        state_pension: 12_000
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 70
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 0
+
+- name: Wirral working-age single claimant with no income gets the 50 per cent Band 1 award
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 900
+
+- name: Wirral working-age single 130 pounds weekly income stays in Band 1 at 50 per cent
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # 6_760 / 52 = 130.00 per week, exactly at the top of single Band 1.
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 6_760
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 900
+
+- name: Wirral working-age single 131 pounds weekly income drops to Band 2 at 40 per cent
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # 6_812 / 52 = 131 per week, well inside single Band 2 (130.01-182.00).
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 6_812
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 720
+
+- name: Wirral working-age single above the Band 4 ceiling gets no support
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    # 14_924 / 52 = 287 per week, comfortably inside single Band 5 (286.01+).
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 14_924
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 0
+
+- name: Wirral lone parent with one dependent child uses the single plus one dependant column
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # 9_464 / 52 = 182 per week, top of Band 1 for single + 1 dependant.
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 9_464
+      child_1:
+        age: 8
+    benunits:
+      benunit:
+        members: [claimant, child_1]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: false
+        is_couple: false
+        is_lone_parent: true
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, child_1]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 900
+
+- name: Wirral lone parent with two children uses the single plus two-or-more column at Band 3
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # 16_900 / 52 = 325 per week, well inside Band 3 for single + 2 dependants
+    # (286.01-338.00). With a 30 per cent discount on the 1_800 council tax
+    # (band 1 50 per cent of 1_800 - non-dep deduction) the award is 540.
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 16_900
+      child_1:
+        age: 8
+      child_2:
+        age: 6
+    benunits:
+      benunit:
+        members: [claimant, child_1, child_2]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: false
+        is_couple: false
+        is_lone_parent: true
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, child_1, child_2]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 540
+
+- name: Wirral lone parent with three children stays in the two-or-more dependant column at Band 5
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    # 20_332 / 52 = 391 per week, comfortably inside Band 5 (no support) for
+    # single + 2-or-more dependants (Band 5 starts at 390.01). The third child
+    # must NOT shift the household into a higher column - Schedule 1 caps the
+    # column at 2+.
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 20_332
+      child_1:
+        age: 8
+      child_2:
+        age: 6
+      child_3:
+        age: 4
+    benunits:
+      benunit:
+        members: [claimant, child_1, child_2, child_3]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: false
+        is_couple: false
+        is_lone_parent: true
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, child_1, child_2, child_3]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 0
+
+- name: Wirral couple with two children inside Band 4 receives 20 per cent
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # 22_360 / 52 = 430 per week of partner miscellaneous income, inside
+    # Band 4 for couple + 2+ dependants (390.01-442.00). The claimant has no
+    # income of their own; tax_credits is overridden to zero so child-related
+    # tax credits do not push the household past the band boundary.
+    people:
+      claimant:
+        age: 35
+      partner:
+        age: 33
+        miscellaneous_income: 22_360
+      child_1:
+        age: 8
+      child_2:
+        age: 6
+    benunits:
+      benunit:
+        members: [claimant, partner, child_1, child_2]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: false
+        is_couple: true
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        tax_credits: 0
+    households:
+      household:
+        members: [claimant, partner, child_1, child_2]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 360
+
+- name: Wirral capital of 5999 pounds is below the strict cutoff so the claimant remains eligible
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 5_999
+  output:
+    wirral_council_tax_reduction: 900
+
+- name: Wirral capital of exactly 6000 pounds excludes the claimant (Schedule 1 paragraph 5 says 6000 or above)
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 6_000
+  output:
+    wirral_council_tax_reduction: 0
+
+- name: Wirral passported income-based JSA claimant gets Band 1 award even at high gross earnings
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Without passport, miscellaneous income of 14_924 (287/week) would land
+    # in Band 5; with passport (Schedule 1 paragraph 7) the band is forced
+    # to Band 1. jsa_income is overridden directly at benunit level to
+    # bypass the JSA eligibility model and force the passporting flag on.
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 14_924
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        jsa_income: 4_160
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 900
+
+- name: Wirral 20 pound earnings disregard moves a single in-work claimant from Band 2 to Band 1
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Gross 7_644 / 52 = 147/wk. With the 20-pound weekly earnings disregard
+    # net counted is 127/wk - well inside single Band 1 (50 per cent = 900).
+    # Without the disregard the claimant would be in Band 2 (40 per cent = 720).
+    people:
+      claimant:
+        age: 35
+        employment_income: 7_644
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 900
+
+- name: Wirral applies the half-pension-contribution deduction to net earnings
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Employment 12_220 / 52 = 235/wk. Pension contribution 5_200 / 52 = 100/wk.
+    # Section 20.3(b)(iii) deducts half - 50/wk - leaving net earnings of
+    # 185/wk. After the 20-pound Schedule 4 earnings disregard the counted
+    # earnings are 165/wk - inside single Band 2 (130.01-182.00) at 40 per
+    # cent of 1_800 = 720. Without the half-pension rule (no deduction) the
+    # counted net would be 215/wk - single Band 3 (182.01-234) at 30 per cent
+    # = 540. With FULL deduction of pension the counted net would be 115/wk -
+    # single Band 1 = 900. Asserting 720 confirms the contribution is applied
+    # at exactly half.
+    people:
+      claimant:
+        age: 35
+        employment_income: 12_220
+        pension_contributions: 5_200
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 720
+
+- name: Wirral applicant on PIP gets the further 50 pound weekly Schedule 2 paragraph 72 disregard
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Misc income 7_800 / 52 = 150/wk. Without the paragraph 72 disregard the
+    # claimant is in single Band 2 (40 per cent = 720). With the disregard the
+    # counted income falls to 100/wk - inside Band 1 (50 per cent = 900).
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 7_800
+        pip: 5_000
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 900
+
+- name: Wirral dependent child on PIP triggers a further 50 pound Schedule 2 paragraph 73 per-child disregard
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Lone-parent claimant with 9_984 / 52 = 192/wk misc income and one
+    # dependent child receiving DLA. Without paragraph 73 the counted income
+    # is 192/wk - single + 1 Band 2 (40 per cent = 720). With the per-child
+    # 50-pound disregard counted income falls to 142/wk - Band 1 (50 per cent
+    # = 900) for single + 1 dependant.
+    people:
+      claimant:
+        age: 35
+        miscellaneous_income: 9_984
+      child_1:
+        age: 8
+        dla: 4_000
+    benunits:
+      benunit:
+        members: [claimant, child_1]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: false
+        is_couple: false
+        is_lone_parent: true
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, child_1]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 900
+
+- name: Wirral UC claimant disregards the housing element when calculating counted UC income
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # UC award before housing element is 10_400 (200/wk) - enough to push a
+    # single claimant past Band 4 into Band 5 (no support). Section 12.3
+    # disregards the housing element of 5_200 (100/wk), so counted weekly
+    # UC income is 200 - 100 = 100, well inside Band 1 (50 per cent of
+    # 1_800 = 900).
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 10_400
+        universal_credit_pre_benefit_cap: 10_400
+        uc_housing_costs_element: 5_200
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 10_400
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 99_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 900
+
+- name: Wirral UC claimant capital test uses DWP-assessed UC capital not household savings
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    # Household savings 0 but UC-assessed capital 7_000 (>= 6_000) - the UC
+    # capital is the authoritative measure under Section 12.5, so the claimant
+    # is excluded.
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 5_200
+        universal_credit_pre_benefit_cap: 5_200
+        uc_housing_costs_element: 0
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 7_000
+        uc_maximum_amount: 5_200
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 99_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 0
+
+- name: Wirral 5 pound per non-dependant deduction is applied before the band percentage
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Single claimant, no income, with one adult non-dependant - one 5-pound
+    # weekly deduction (260 annual) reduces the 1_800 max liability to 1_540
+    # before the 50 per cent band rate, giving 770 final award.
+    people:
+      claimant:
+        age: 35
+      non_dep:
+        age: 28
+        employment_income: 15_000
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+      nondep_benunit:
+        members: [non_dep]
+        claims_all_entitled_benefits: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 28
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, non_dep]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    council_tax_reduction: 770
+
+- name: Wirral claimant on Attendance Allowance is exempt from non-dependant deductions (Section 48A.4)
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Same setup as the previous test, but the claimant receives AA. Section
+    # 48A.4(b) cancels all non-dependant deductions, so the award returns to
+    # the full Band 1 50 per cent = 900.
+    people:
+      claimant:
+        age: 35
+        attendance_allowance: 4_500
+      non_dep:
+        age: 28
+        employment_income: 15_000
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+      nondep_benunit:
+        members: [non_dep]
+        claims_all_entitled_benefits: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 28
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, non_dep]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    council_tax_reduction: 900
+
+- name: Wirral Band D liability cap limits eligible council tax for a Band F dwelling
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Band F (ratio 13/9) on a 2_600 bill; Section 48.0 caps the eligible
+    # liability at the Band D equivalent (2_600 * 9/13 = 1_800), so the
+    # Band 1 award is 50 per cent of 1_800 = 900.
+    people:
+      claimant:
+        age: 35
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 35
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: F
+        council_tax: 2_600
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 900
+
+- name: Wirral pension-age UC claimant stays on the local working-age banded scheme
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Class D (b) of the Wirral scheme keeps pension-age applicants with a
+    # UC award on the local working-age scheme. Counted UC income is 0 here
+    # after netting the housing element under Section 12.3(d)(i), so the
+    # claimant lands in single Band 1 = 50 per cent of 1_800 = 900.
+    people:
+      claimant:
+        age: 70
+        state_pension: 0
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 5_200
+        universal_credit_pre_benefit_cap: 5_200
+        uc_housing_costs_element: 5_200
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 5_200
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 70
+        benefits_premiums: 0
+        council_tax_reduction_applicable_income: 99_000
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 900
+
+- name: Wirral pension-age UC claimant in the regulation 60A carve-out stays on the prescribed pensioner scheme
+  period: 2026
+  absolute_error_margin: 0.5
+  input:
+    # Section 1.4(2)(b) disregards the UC award where regulation 60A of the
+    # Universal Credit (Transitional Provisions) Regulations 2014 applies, so
+    # the claimant is treated as a pensioner under the prescribed scheme and
+    # the local working-age scheme award is 0.
+    people:
+      claimant:
+        age: 70
+    benunits:
+      benunit:
+        members: [claimant]
+        claims_all_entitled_benefits: true
+        would_claim_uc: true
+        universal_credit: 5_200
+        universal_credit_pre_benefit_cap: 5_200
+        uc_housing_costs_element: 0
+        uc_earned_income: 0
+        uc_unearned_income: 0
+        uc_assessable_capital: 0
+        uc_maximum_amount: 5_200
+        is_single_person: true
+        is_couple: false
+        is_lone_parent: false
+        eldest_adult_age: 70
+        benefits_premiums: 0
+        wirral_council_tax_reduction_uc_regulation_60a_pensioner: true
+    households:
+      household:
+        members: [claimant]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 0
+
+- name: Wirral mixed-age couple with a working-age claimant on the local scheme gets the working-age award
+  period: 2026
+  absolute_error_margin: 1.0
+  input:
+    # Class D (a) "the individual (or partner) must have not attained the
+    # qualifying age for state pension credit" - a working-age claimant with
+    # a pension-age partner is still in the local banded working-age scheme,
+    # not the national prescribed pensioner scheme.
+    people:
+      claimant:
+        age: 35
+      partner:
+        age: 70
+        state_pension: 5_200
+    benunits:
+      benunit:
+        members: [claimant, partner]
+        claims_all_entitled_benefits: true
+        would_claim_uc: false
+        is_single_person: false
+        is_couple: true
+        is_lone_parent: false
+        eldest_adult_age: 70
+        benefits_premiums: 0
+    households:
+      household:
+        members: [claimant, partner]
+        country: ENGLAND
+        local_authority: WIRRAL
+        council_tax_band: D
+        council_tax: 1_800
+        savings: 0
+  output:
+    wirral_council_tax_reduction: 900

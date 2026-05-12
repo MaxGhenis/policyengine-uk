@@ -456,6 +456,10 @@ def is_worthing(local_authority):
     return local_authority == LocalAuthority.WORTHING
 
 
+def is_wirral(local_authority):
+    return local_authority == LocalAuthority.WIRRAL
+
+
 def is_england_pensioner_scheme(country, has_pensioner):
     return (country == Country.ENGLAND) & has_pensioner
 
@@ -1211,11 +1215,16 @@ def is_supported_scheme(local_authority, country, has_pensioner):
         | is_westminster_working_age(local_authority, country, has_pensioner)
         | is_worthing_working_age(local_authority, country, has_pensioner)
         | is_dudley_working_age(local_authority, country, has_pensioner)
+        | is_wirral_working_age(local_authority, country, has_pensioner)
     )
 
 
 def is_dudley_working_age(local_authority, country, has_pensioner):
     return (country == Country.ENGLAND) & ~has_pensioner & is_dudley(local_authority)
+
+
+def is_wirral_working_age(local_authority, country, has_pensioner):
+    return (country == Country.ENGLAND) & ~has_pensioner & is_wirral(local_authority)
 
 
 def english_council_tax_band_ratio(council_tax_band, band_ratios):

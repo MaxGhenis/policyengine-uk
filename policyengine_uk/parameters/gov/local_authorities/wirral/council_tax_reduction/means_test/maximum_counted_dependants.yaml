@@ -1,0 +1,9 @@
+description: Cap on the dependant count when selecting the Wirral 2026/27 income band column. Schedule 1 Table 1 publishes columns for single, single with one dependant, single with 2+ dependants, couple, couple with one dependant and couple with 2+ dependants, so a household with three or more children uses the 2+ column.
+metadata:
+  unit: count
+  label: Wirral CTR maximum counted dependants for band column
+  reference:
+    - title: Wirral CTR Scheme 2026/27, Schedule 1 Table 1
+      href: https://www.wirral.gov.uk/files/wirral-ctr-s13a-2026-27-scheme.pdf/download?inline
+values:
+  2026-04-01: 2

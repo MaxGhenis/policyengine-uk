@@ -1,0 +1,31 @@
+description: Wirral 2026/27 weekly income-band Council Tax Reduction rate for a single applicant with no dependants. Schedule 1 Table 1 sets discount rates 50/40/30/20/0 per cent across the 0.00-130.00, 130.01-182.00, 182.01-234.00, 234.01-286.00 and 286.01+ weekly income bands.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 0.5
+  - threshold:
+      2026-04-01: 130.01
+    amount:
+      2026-04-01: 0.4
+  - threshold:
+      2026-04-01: 182.01
+    amount:
+      2026-04-01: 0.3
+  - threshold:
+      2026-04-01: 234.01
+    amount:
+      2026-04-01: 0.2
+  - threshold:
+      2026-04-01: 286.01
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: Wirral CTR weekly income-band rate, single applicant no dependants
+  reference:
+    - title: Wirral CTR Scheme 2026/27, Schedule 1 Table 1 (Single column)
+      href: https://www.wirral.gov.uk/files/wirral-ctr-s13a-2026-27-scheme.pdf/download?inline

@@ -1,0 +1,9 @@
+description: Wirral 2026/27 maximum eligible Council Tax liability cap. Section 48.0 caps amount A at Band D liability, so for dwellings in Bands E-H the eligible liability is the Band D equivalent calculated using the English Council Tax band ratio table (9/9 for Band D).
+metadata:
+  unit: /1
+  label: Wirral CTR maximum eligible liability cap band ratio
+  reference:
+    - title: Wirral CTR Scheme 2026/27, Section 48.0
+      href: https://www.wirral.gov.uk/files/wirral-ctr-s13a-2026-27-scheme.pdf/download?inline
+values:
+  2026-04-01: 1.0

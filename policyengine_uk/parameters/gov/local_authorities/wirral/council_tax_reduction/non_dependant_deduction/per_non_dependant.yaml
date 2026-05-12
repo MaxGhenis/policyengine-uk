@@ -1,0 +1,10 @@
+description: Wirral 2026/27 weekly non-dependant deduction. Section 48A.1 reduces the maximum Council Tax Reduction by 5 pounds per week (5 * 1/7 per day) for each non-dependant residing in the dwelling, subject to the Section 48A.4 applicant-side exemptions and the Section 48A.5/48A.6 non-dependant-side exemptions, and the Section 48A.2 collapse of a non-dependant couple's deductions into a single deduction.
+metadata:
+  unit: currency-GBP
+  label: Wirral CTR weekly non-dependant deduction
+  period: week
+  reference:
+    - title: Wirral CTR Scheme 2026/27, Section 48A.1
+      href: https://www.wirral.gov.uk/files/wirral-ctr-s13a-2026-27-scheme.pdf/download?inline
+values:
+  2026-04-01: 5

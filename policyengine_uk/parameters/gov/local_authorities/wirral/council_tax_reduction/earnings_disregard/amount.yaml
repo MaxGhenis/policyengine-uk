@@ -1,0 +1,10 @@
+description: Wirral 2026/27 Standard Earnings Disregard. Schedule 4 paragraph 1 grants a single disregard of up to 20 pounds per week for an applicant whose claimant or partner has earnings from employment; paragraph 3 confirms only one disregard applies per application, irrespective of household composition.
+metadata:
+  unit: currency-GBP
+  label: Wirral CTR weekly earnings disregard (one per claim)
+  period: week
+  reference:
+    - title: Wirral CTR Scheme 2026/27, Schedule 4 paragraph 1 (Standard Earnings Disregard)
+      href: https://www.wirral.gov.uk/files/wirral-ctr-s13a-2026-27-scheme.pdf/download?inline
+values:
+  2026-04-01: 20

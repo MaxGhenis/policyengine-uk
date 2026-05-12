@@ -1,0 +1,31 @@
+description: Wirral 2026/27 weekly income-band Council Tax Reduction rate for a couple with one dependant. Schedule 1 Table 1 sets discount rates 50/40/30/20/0 per cent across the 0.00-236.00, 236.01-286.00, 286.01-338.00, 338.01-390.00 and 390.01+ weekly income bands.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 0.5
+  - threshold:
+      2026-04-01: 236.01
+    amount:
+      2026-04-01: 0.4
+  - threshold:
+      2026-04-01: 286.01
+    amount:
+      2026-04-01: 0.3
+  - threshold:
+      2026-04-01: 338.01
+    amount:
+      2026-04-01: 0.2
+  - threshold:
+      2026-04-01: 390.01
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: Wirral CTR weekly income-band rate, couple with one dependant
+  reference:
+    - title: Wirral CTR Scheme 2026/27, Schedule 1 Table 1 (Couple with 1 dependant column)
+      href: https://www.wirral.gov.uk/files/wirral-ctr-s13a-2026-27-scheme.pdf/download?inline

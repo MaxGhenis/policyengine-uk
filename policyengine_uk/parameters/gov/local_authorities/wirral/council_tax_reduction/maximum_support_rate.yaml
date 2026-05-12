@@ -1,0 +1,9 @@
+description: Maximum proportion of council tax that Wirral Metropolitan Borough Council's working-age Council Tax Reduction Scheme covers from 1 April 2026. Section 48.0 of the adopted scheme defines the maximum reduction as 50 per cent of council tax divided by days in the year less any non-dependant deduction.
+metadata:
+  unit: /1
+  label: Wirral maximum Council Tax Reduction rate
+  reference:
+    - title: Wirral Metropolitan Borough Council - Council Tax Reduction Scheme 2026/27 (S13A and Schedule 1A LGFA 1992), section 48.0
+      href: https://www.wirral.gov.uk/files/wirral-ctr-s13a-2026-27-scheme.pdf/download?inline
+values:
+  2026-04-01: 0.5
