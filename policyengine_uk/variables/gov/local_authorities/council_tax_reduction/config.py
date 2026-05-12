@@ -356,6 +356,10 @@ def is_southwark(local_authority):
     return local_authority == LocalAuthority.SOUTHWARK
 
 
+def is_solihull(local_authority):
+    return local_authority == LocalAuthority.SOLIHULL
+
+
 def is_somerset(local_authority):
     return local_authority == LocalAuthority.SOMERSET
 
@@ -1216,6 +1220,7 @@ def is_supported_scheme(local_authority, country, has_pensioner):
         | is_worthing_working_age(local_authority, country, has_pensioner)
         | is_dudley_working_age(local_authority, country, has_pensioner)
         | is_wirral_working_age(local_authority, country, has_pensioner)
+        | is_solihull_working_age(local_authority, country, has_pensioner)
     )
 
 
@@ -1225,6 +1230,10 @@ def is_dudley_working_age(local_authority, country, has_pensioner):
 
 def is_wirral_working_age(local_authority, country, has_pensioner):
     return (country == Country.ENGLAND) & ~has_pensioner & is_wirral(local_authority)
+
+
+def is_solihull_working_age(local_authority, country, has_pensioner):
+    return (country == Country.ENGLAND) & ~has_pensioner & is_solihull(local_authority)
 
 
 def english_council_tax_band_ratio(council_tax_band, band_ratios):

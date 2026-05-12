@@ -1,0 +1,9 @@
+description: Cap on the dependant count when selecting the Solihull 2026/27 income band column. Schedule 1 Table 1 publishes columns for Single, Single with 1 Child, Single with 2+ Children, Couples, Couple with 1 Child and Couple with 2+ Children, so a household with three or more children uses the 2+ column.
+metadata:
+  unit: count
+  label: Solihull CTR maximum counted dependants for band column
+  reference:
+    - title: Solihull CTR Scheme 2026/27, Schedule 1 Table 1
+      href: https://www.solihull.gov.uk/sites/default/files/2026-02/Council-Tax-Reduction-Scheme-2026-2027.pdf
+values:
+  2026-04-01: 2

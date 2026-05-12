@@ -1,0 +1,10 @@
+description: Solihull 2026/27 Standard Earnings Disregard. Schedule 4 paragraph 1 grants a single disregard of up to 50 pounds per week for an applicant whose claimant or partner is in receipt of earnings as an employed person or is self-employed; Schedule 4 paragraph 2 confirms only one disregard applies per applicant and that where the earnings are less than 50 then the full amount shall be disregarded.
+metadata:
+  unit: currency-GBP
+  label: Solihull CTR weekly earnings disregard (one per applicant)
+  period: week
+  reference:
+    - title: Solihull CTR Scheme 2026/27, Schedule 4 paragraphs 1-2 (Standard Earnings Disregard)
+      href: https://www.solihull.gov.uk/sites/default/files/2026-02/Council-Tax-Reduction-Scheme-2026-2027.pdf
+values:
+  2026-04-01: 50

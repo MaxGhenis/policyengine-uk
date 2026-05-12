@@ -119,6 +119,7 @@ LOCAL_COUNCIL_TAX_REDUCTION_VARIABLES = [
     "westmorland_and_furness_council_tax_reduction",
     "westminster_council_tax_reduction",
     "wirral_council_tax_reduction",
+    "solihull_council_tax_reduction",
     "worthing_council_tax_reduction",
 ]
 
@@ -297,6 +298,9 @@ class simulated_council_tax_reduction_benunit(Variable):
         wirral_local_scheme = benunit(
             "wirral_council_tax_reduction_is_local_scheme", period
         )
+        solihull_local_scheme = benunit(
+            "solihull_council_tax_reduction_is_local_scheme", period
+        )
         applicable_amount = benunit("council_tax_reduction_applicable_amount", period)
         applicable_income = benunit("council_tax_reduction_applicable_income", period)
 
@@ -352,6 +356,7 @@ class simulated_council_tax_reduction_benunit(Variable):
             & ~west_northamptonshire_local_scheme
             & ~westmorland_and_furness_local_scheme
             & ~wirral_local_scheme
+            & ~solihull_local_scheme
         )
         wales = is_wales_scheme(country)
         scotland = is_scotland_scheme(country)

@@ -1,0 +1,31 @@
+description: Solihull 2026/27 weekly income-band Council Tax Reduction rate for a couple with one child. Schedule 1 Table 1 sets discount rates 85/75/50/25/0 per cent across the 0.00-240.00, 240.01-290.00, 290.01-340.00, 340.01-390.00 and 390.01+ weekly income bands.
+brackets:
+  - threshold:
+      2026-04-01: 0
+    amount:
+      2026-04-01: 0.85
+  - threshold:
+      2026-04-01: 240.01
+    amount:
+      2026-04-01: 0.75
+  - threshold:
+      2026-04-01: 290.01
+    amount:
+      2026-04-01: 0.5
+  - threshold:
+      2026-04-01: 340.01
+    amount:
+      2026-04-01: 0.25
+  - threshold:
+      2026-04-01: 390.01
+    amount:
+      2026-04-01: 0
+metadata:
+  amount_unit: /1
+  period: week
+  threshold_unit: currency-GBP
+  type: single_amount
+  label: Solihull CTR weekly income-band rate, couple with one child
+  reference:
+    - title: Solihull CTR Scheme 2026/27, Schedule 1 Table 1 (Couple with 1 Child column)
+      href: https://www.solihull.gov.uk/sites/default/files/2026-02/Council-Tax-Reduction-Scheme-2026-2027.pdf

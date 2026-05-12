@@ -1,0 +1,9 @@
+description: Capital cutoff in Solihull's 2026/27 working-age Council Tax Reduction Scheme. Class D paragraph (g) and Schedule 1 paragraph 5 both say "not have capital savings of 16,000 pounds or above" - capital of exactly 16,000 (or more) excludes the applicant, capital below 16,000 is ignored.
+metadata:
+  unit: currency-GBP
+  label: Solihull CTR capital cutoff (greater than or equal excludes)
+  reference:
+    - title: Solihull CTR Scheme 2026/27, Class D paragraph (g) and Schedule 1 paragraph 5
+      href: https://www.solihull.gov.uk/sites/default/files/2026-02/Council-Tax-Reduction-Scheme-2026-2027.pdf
+values:
+  2026-04-01: 16_000

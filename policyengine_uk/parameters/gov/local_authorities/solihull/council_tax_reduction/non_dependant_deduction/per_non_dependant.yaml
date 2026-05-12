@@ -1,0 +1,10 @@
+description: Solihull 2026/27 weekly non-dependant deduction. Section 48.5 reduces the Council Tax Reduction by 10 pounds per week for each non-dependant residing in the household, after the band percentage. Section 48.6 waives all non-dependant deductions where the applicant would have received a disability premium under the prescribed pensioner scheme; the implementation approximates that exemption through the shared council_tax_reduction_household_has_non_dep_exemption helper, which captures applicant or partner in receipt of Attendance Allowance, the care component of Disability Living Allowance, the daily living component of Personal Independence Payment, an Armed Forces Independence Payment or who is registered blind.
+metadata:
+  unit: currency-GBP
+  label: Solihull CTR weekly non-dependant deduction
+  period: week
+  reference:
+    - title: Solihull CTR Scheme 2026/27, Sections 48.5 and 48.6
+      href: https://www.solihull.gov.uk/sites/default/files/2026-02/Council-Tax-Reduction-Scheme-2026-2027.pdf
+values:
+  2026-04-01: 10

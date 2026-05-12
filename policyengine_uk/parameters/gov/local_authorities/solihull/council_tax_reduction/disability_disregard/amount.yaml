@@ -1,0 +1,10 @@
+description: Solihull Schedule 2 paragraph 75 further disregard. Where any of the applicant, their partner or any dependent child(ren) are disabled (in receipt of Personal Independence Payment, an Armed Forces Independence Payment or Disability Living Allowance), a further 50 pounds per week is disregarded from the applicant's income (a single disregard for the family, not per qualifying member).
+metadata:
+  unit: currency-GBP
+  label: Solihull CTR family-level disability disregard (Schedule 2 paragraph 75)
+  period: week
+  reference:
+    - title: Solihull CTR Scheme 2026/27, Schedule 2 paragraph 75
+      href: https://www.solihull.gov.uk/sites/default/files/2026-02/Council-Tax-Reduction-Scheme-2026-2027.pdf
+values:
+  2026-04-01: 50
