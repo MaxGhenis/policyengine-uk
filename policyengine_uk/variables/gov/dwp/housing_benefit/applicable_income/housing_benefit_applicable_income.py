@@ -9,6 +9,7 @@ class housing_benefit_applicable_income(Variable):
     unit = GBP
 
     def formula(benunit, period, parameters):
+        any_over_SP_age = benunit.any(benunit.members("is_SP_age", period))
         BENUNIT_MEANS_TESTED_BENEFITS = [
             "child_benefit",
             "income_support",
@@ -43,23 +44,23 @@ class housing_benefit_applicable_income(Variable):
             # Basic income is already in personal benefits, deduct if needed
             increased_income -= add(benunit, period, ["basic_income"])
         # Reduce increased income by pension contributions and tax
-        pension_contributions = (
-            add(benunit, period, ["pension_contributions"]) * 0.5
-        )
+        pension_contributions = add(benunit, period, ["pension_contributions"]) * 0.5
         TAX_COMPONENTS = ["income_tax", "national_insurance"]
         tax = add(benunit, period, TAX_COMPONENTS)
         increased_income_reduced_by_tax_and_pensions = (
             increased_income - tax - pension_contributions
         )
-        disregard = benunit(
-            "housing_benefit_applicable_income_disregard", period
-        )
+        tariff_income = benunit("housing_benefit_tariff_income", period)
+        disregard = benunit("housing_benefit_applicable_income_disregard", period)
         childcare_element = benunit(
             "housing_benefit_applicable_income_childcare_element", period
         )
-        return max_(
+        applicable_income = max_(
             0,
             increased_income_reduced_by_tax_and_pensions
+            + tariff_income
             - disregard
             - childcare_element,
         )
+        guarantee_credit = any_over_SP_age & (benunit("guarantee_credit", period) > 0)
+        return where(guarantee_credit, 0, applicable_income)
