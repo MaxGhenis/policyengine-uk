@@ -1,5 +1,7 @@
 """Tests for the capital gains realisation response to CGT rate changes."""
 
+import math
+
 import pytest
 
 from policyengine_uk import Microsimulation
@@ -26,11 +28,21 @@ EQUALISED_RATES = {
 }
 
 
-def simulate(elasticity: float | None = None, rates: bool = True) -> Microsimulation:
-    changes = dict(EQUALISED_RATES) if rates else {}
+def simulate(
+    elasticity: float | None = None,
+    retention_elasticity: float | None = None,
+    rates: bool = True,
+    rate_changes: dict | None = None,
+) -> Microsimulation:
+    reform_rates = EQUALISED_RATES if rate_changes is None else rate_changes
+    changes = dict(reform_rates) if rates else {}
     if elasticity is not None:
         changes["gov.simulation.capital_gains_responses.elasticity"] = {
             str(YEAR): elasticity
+        }
+    if retention_elasticity is not None:
+        changes["gov.simulation.capital_gains_responses.retention_elasticity"] = {
+            str(YEAR): retention_elasticity
         }
     if not changes:
         return Microsimulation(situation=SITUATION)
@@ -45,9 +57,12 @@ def test_rate_rise_registers_against_the_baseline():
     Regression test for measuring the baseline against a branch of the reform
     simulation, which reported no rate change for any reform (issue #1319).
     """
-    sim = simulate(elasticity=1.0)
+    sim = simulate(retention_elasticity=1.0)
     mtr_change = sim.calculate("relative_capital_gains_mtr_change", YEAR).values[0]
     retention_change = sim.calculate(
+        "relative_capital_gains_retention_change", YEAR
+    ).values[0]
+    compatibility_change = sim.calculate(
         "relative_capital_gains_retention_rate_change", YEAR
     ).values[0]
 
@@ -55,14 +70,15 @@ def test_rate_rise_registers_against_the_baseline():
     assert retention_change < 0, (
         f"expected a negative log retention change, got {retention_change}"
     )
+    assert compatibility_change == retention_change
 
 
 def test_realisations_fall_when_rates_rise():
     """Gains fall under a rate rise, by more at a larger elasticity."""
     baseline_gains = simulate(rates=False).calculate("capital_gains", YEAR).sum()
 
-    modest = simulate(elasticity=0.5).calculate("capital_gains", YEAR).sum()
-    large = simulate(elasticity=1.0).calculate("capital_gains", YEAR).sum()
+    modest = simulate(retention_elasticity=0.5).calculate("capital_gains", YEAR).sum()
+    large = simulate(retention_elasticity=1.0).calculate("capital_gains", YEAR).sum()
 
     assert modest < baseline_gains
     assert large < modest
@@ -71,18 +87,83 @@ def test_realisations_fall_when_rates_rise():
 def test_revenue_falls_short_of_the_static_estimate():
     """The behavioural response costs revenue relative to a static costing."""
     static = simulate(elasticity=0).calculate("capital_gains_tax", YEAR).sum()
-    dynamic = simulate(elasticity=1.0).calculate("capital_gains_tax", YEAR).sum()
+    dynamic = (
+        simulate(retention_elasticity=1.0).calculate("capital_gains_tax", YEAR).sum()
+    )
 
     assert dynamic < static
     assert dynamic > 0
 
 
-def test_zero_elasticity_leaves_gains_unchanged():
-    """The default elasticity of zero keeps costings static."""
-    sim = simulate(elasticity=0)
+def test_default_elasticities_leave_gains_unchanged():
+    """Both elasticities default to zero, keeping costings static."""
+    sim = simulate()
     response = sim.calculate("capital_gains_behavioural_response", YEAR).sum()
 
     assert response == 0
+
+
+def test_retention_response_matches_hand_calculated_factor():
+    """A unit retention elasticity applies the exact net-of-tax rate ratio."""
+    sim = simulate(retention_elasticity=1.0)
+
+    gains = sim.calculate("capital_gains_before_response", YEAR).values[0]
+    response = sim.calculate("capital_gains_behavioural_response", YEAR).values[0]
+    actual_factor = response / gains
+    expected_factor = math.exp(math.log(1 - 0.45) - math.log(1 - 0.24)) - 1
+
+    assert actual_factor == pytest.approx(expected_factor, abs=1e-6)
+
+
+def test_retention_change_clamps_zero_retention_rate():
+    """A 100% MTR uses the 0.001 floor instead of taking log(0)."""
+    full_rate = {parameter: {str(YEAR): 1.0} for parameter in EQUALISED_RATES}
+    sim = simulate(retention_elasticity=1.0, rate_changes=full_rate)
+
+    retention_change = sim.calculate(
+        "relative_capital_gains_retention_change", YEAR
+    ).values[0]
+    expected_change = math.log(0.001) - math.log(1 - 0.24)
+
+    assert math.isfinite(retention_change)
+    assert retention_change == pytest.approx(expected_change, abs=1e-6)
+
+
+def test_small_rate_change_matches_mtr_elasticity_conversion():
+    """For a small change, e_MTR = -t / (1 - t) when e_retention = 1."""
+    baseline_mtr = 0.24
+    small_rate_rise = {parameter: {str(YEAR): 0.2401} for parameter in EQUALISED_RATES}
+    retention_sim = simulate(
+        retention_elasticity=1.0,
+        rate_changes=small_rate_rise,
+    )
+    mtr_sim = simulate(
+        elasticity=-baseline_mtr / (1 - baseline_mtr),
+        rate_changes=small_rate_rise,
+    )
+
+    retention_response = retention_sim.calculate(
+        "capital_gains_behavioural_response", YEAR
+    ).values[0]
+    mtr_response = mtr_sim.calculate("capital_gains_behavioural_response", YEAR).values[
+        0
+    ]
+
+    assert mtr_response == pytest.approx(retention_response, rel=1e-3)
+
+
+def test_both_elasticities_raise():
+    """The two conventions cannot be activated for the same period."""
+    sim = simulate(elasticity=-0.5, retention_elasticity=1.0)
+
+    with pytest.raises(
+        ValueError,
+        match=(
+            r"gov\.simulation\.capital_gains_responses\.elasticity and "
+            r"gov\.simulation\.capital_gains_responses\.retention_elasticity"
+        ),
+    ):
+        sim.calculate("capital_gains_behavioural_response", YEAR)
 
 
 def test_no_reform_produces_no_response():
@@ -91,7 +172,9 @@ def test_no_reform_produces_no_response():
         situation=SITUATION,
         scenario=Scenario(
             parameter_changes={
-                "gov.simulation.capital_gains_responses.elasticity": {str(YEAR): 1.0}
+                "gov.simulation.capital_gains_responses.retention_elasticity": {
+                    str(YEAR): 1.0
+                }
             }
         ),
     )
@@ -106,12 +189,33 @@ def test_measurement_leaves_the_response_variable_active():
     Object identity, not formula presence: a neutralised wrapper still
     carries a formula, so the old assertion could not see the damage.
     """
-    sim = simulate(elasticity=1.0)
+    sim = simulate(retention_elasticity=1.0)
     before = sim.tax_benefit_system.variables["capital_gains_behavioural_response"]
-    sim.calculate("relative_capital_gains_mtr_change", YEAR)
+    sim.calculate("relative_capital_gains_retention_change", YEAR)
     after = sim.tax_benefit_system.variables["capital_gains_behavioural_response"]
 
     assert after is before
+    assert not after.is_neutralized
+
+
+def test_response_is_deterministic_across_recalculation():
+    """Repeated MTR measurement is idempotent and leaves the response live."""
+    sim = simulate(retention_elasticity=1.0)
+    live_variable = sim.tax_benefit_system.variables[
+        "capital_gains_behavioural_response"
+    ]
+
+    first = sim.calculate("capital_gains_behavioural_response", YEAR).values.copy()
+    sim.delete_arrays("capital_gains_behavioural_response", YEAR)
+    sim.delete_arrays("relative_capital_gains_retention_change", YEAR)
+    second = sim.calculate("capital_gains_behavioural_response", YEAR).values.copy()
+    response_variable = sim.tax_benefit_system.variables[
+        "capital_gains_behavioural_response"
+    ]
+
+    assert second == pytest.approx(first)
+    assert response_variable is live_variable
+    assert not response_variable.is_neutralized
 
 
 def test_pre_created_measurement_branch_cannot_poison_the_system():
@@ -119,7 +223,7 @@ def test_pre_created_measurement_branch_cannot_poison_the_system():
     system, and get_branch returns it without honouring clone_system — so
     neutralising there would disable the response for every later
     recalculation. The measurement must sidestep the name instead."""
-    sim = simulate(elasticity=1.0)
+    sim = simulate(retention_elasticity=1.0)
     sim.get_branch("cgr_measurement")
     before = sim.tax_benefit_system.variables["capital_gains_behavioural_response"]
 
@@ -153,7 +257,9 @@ def test_two_gainers_in_one_household_respond_symmetrically():
         scenario=Scenario(
             parameter_changes={
                 **EQUALISED_RATES,
-                "gov.simulation.capital_gains_responses.elasticity": {str(YEAR): 1.0},
+                "gov.simulation.capital_gains_responses.retention_elasticity": {
+                    str(YEAR): 1.0
+                },
             }
         ),
     )
