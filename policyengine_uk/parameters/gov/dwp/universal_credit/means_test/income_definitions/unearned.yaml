@@ -27,6 +27,7 @@ values:
   - esa_contrib
   - maternity_allowance
   - iidb
+  - state_pension
   - private_pension_income
   - uc_tariff_income
   - savings_interest_income
@@ -39,6 +40,7 @@ values:
   - esa_contrib
   - maternity_allowance
   - iidb
+  - state_pension
   - private_pension_income
   - uc_tariff_income
   - savings_interest_income
