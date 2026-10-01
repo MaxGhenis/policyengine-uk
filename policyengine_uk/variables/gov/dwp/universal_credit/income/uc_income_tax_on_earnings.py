@@ -53,27 +53,18 @@ class uc_income_tax_on_earnings(Variable):
         if bi.include_in_means_tests and bi.include_in_taxable_income:
             earnings_components.append("basic_income")
         earnings = add(person, period, earnings_components)
-        # earned_taxable_income is non-savings, non-property income after
-        # allowances. The part of it above earnings belongs to the person's
-        # other non-savings income.
-        non_savings_non_property_income = person("adjusted_net_income", period) - add(
-            person,
-            period,
-            [
-                "taxable_savings_interest_income",
-                "taxable_dividend_income",
-                "taxable_property_income",
-            ],
-        )
-        other_income = max_(0, non_savings_non_property_income - earnings)
-        taxable_earnings = max_(
-            0, person("earned_taxable_income", period) - other_income
-        )
+        # SENSITIVITY VARIANT (rule C, not for merge): earnings are the TOP
+        # slice of non-savings, non-property income.
+        earned_taxable = person("earned_taxable_income", period)
+        taxable_earnings = min_(earned_taxable, max_(0, earnings))
         rates = p.gov.hmrc.income_tax.rates
+        scottish = person("pays_scottish_income_tax", period)
         tax = where(
-            person("pays_scottish_income_tax", period),
-            rates.scotland.rates.calc(taxable_earnings),
-            rates.uk.calc(taxable_earnings),
+            scottish,
+            rates.scotland.rates.calc(earned_taxable)
+            - rates.scotland.rates.calc(earned_taxable - taxable_earnings),
+            rates.uk.calc(earned_taxable)
+            - rates.uk.calc(earned_taxable - taxable_earnings),
         )
         # Tax reductions (for example the married couple's allowance) can
         # leave total income tax below the tax on the earnings slice; never
