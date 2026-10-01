@@ -33,9 +33,11 @@ class uc_individual_earned_income(Variable):
             person,
             period,
             [
+                # SCRATCH (not for merge): the pre-#1942 deductions, all of
+                # the person's income tax and NI, applied per person.
                 "pension_contributions",
-                "uc_income_tax_on_earnings",
-                "uc_national_insurance_on_earnings",
+                "income_tax",
+                "national_insurance",
             ],
         )
         return max_(0, gross_earnings - deductions)
