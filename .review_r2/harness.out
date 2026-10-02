@@ -1,0 +1,15 @@
+child_head_gap15 [10, 70, 55] [np.False_, np.True_, np.True_]
+child_head_rev_gap15 [10, 55, 70] [np.False_, np.True_, np.True_]
+child_head_gap19 [10, 70, 51] [np.False_, np.True_, np.True_]
+child_head_rev_gap19 [10, 51, 70] [np.False_, np.True_, np.True_]
+child_head_gap20 [10, 70, 50] [np.False_, np.True_, np.False_]
+child_head_rev_gap20 [10, 50, 70] [np.False_, np.False_, np.True_]
+child_head_gap25 [10, 70, 45] [np.False_, np.True_, np.False_]
+child_head_rev_gap25 [10, 45, 70] [np.False_, np.False_, np.True_]
+child_head_gap40 [10, 70, 30] [np.False_, np.True_, np.False_]
+child_head_rev_gap40 [10, 30, 70] [np.False_, np.False_, np.True_]
+nohead_gap19 [51, 70] [np.True_, np.True_]
+nohead_gap20 [50, 70] [np.False_, np.True_]
+nohead_gap25 [45, 70] [np.False_, np.True_]
+families by kind: {'arbitrary': 1500, 'younger_head': 2556, 'child_head': 5, 'child_head_rev': 5, 'nohead': 3, 'valid': 800}
+model-vs-reference mismatches: 0

@@ -1,0 +1,110 @@
+VERDICT: REQUEST_CHANGES
+
+Re-review of PolicyEngine/policyengine-uk#2082 at head d8fc7444f (delta 04482030a..d8fc7444f),
+stacked on #2040 (head c18c836a9, unchanged). The code and tests are correct: all six round-1
+findings are resolved in the code, and a seeded model-vs-reference run over 4,869 families found no
+mismatch. Changes are requested only for claims. A dataset that ships in the current policyengine.py
+bundle has no role column, and the changelog, a test comment and the PR body's Sequencing section say
+or imply otherwise. Separately, the PR-body draft still cites the failed CI run as "in progress".
+
+Round-1 findings
+1. [P1] Wide-gap fixtures: RESOLVED. lifetime_isa_capital.yaml (70/45) and
+   is_pension_credit_eligible.yaml Case 4 (79/54) supply is_claimant_or_partner for both partners and
+   assert [true, true]; capital 7,500 and eligibility false are kept. The comments correctly name the
+   claimant as the eldest (no head is given). Local: 66/66 pass across the three touched YAML files.
+   CI run 37053456372 (head d8fc7444f): Lint and smoke imports pass; its Test job was still
+   queued at the end of this review, so the full suite is unconfirmed.
+2. [P2] Obsolete valid-family invariant: RESOLVED. Membership is checked against the reference, and
+   an independent count rule is added: adults - wide_gap, where wide_gap = an unflagged two-adult unit
+   whose head is 20+ years older. The round-1 counterexample (head 50, other 25, childless) now
+   expects 1, which the model gives. Module invariant 2 is restated. The new deterministic test covers
+   both head orders, inferred and with supplied roles. An extra seeded run of 800 valid families (not
+   Hypothesis's 25 derandomized examples) satisfied the count rule.
+3. [P2 doc] Claimant qualification: RESOLVED. The docstring now reads "whose elder is the claimant (the
+   head, or the eldest adult when no adult head is given)". I checked it against the model: every one
+   of the 2,556 unflagged pairs aged 20-90 with the younger as explicit head stays a couple. With a
+   child head or no head flag, the claimant is the eldest adult and a gap of 20+ splits the couple
+   (gaps 15/19 keep it). The differential comment, the new YAML case (head 50, elder 70) and PR-body
+   lines 40/78 are all qualified.
+4. [P3] Reference under-16 parent: RESOLVED. The reference now requires is_parent with age >= 16,
+   which matches production (is_parent & ~(age < hbai.dependent_child.age_limit = 16)). The regression
+   asserts reference agreement.
+5. [P3 rollout] PARTIALLY RESOLVED; superseded by new finding A. Verified: policyengine.py main
+   6a9c878 manifest pins policyengine-uk==2.102.3 with default_dataset enhanced_frs_2024_25 @
+   policyengine-uk-data 1.56.16. Verified: versioning.yaml publishes to PyPI on any push to main
+   touching changelog.d/**. Not resolved: round 1 asked to verify populace_uk_2023's role column. The
+   response says it "is only a test fixture label", which is false (see A).
+6. [P3 evidence] Tie-break: RESOLVED by documentation (RESULTS.md lines 35-37).
+
+New findings
+A. [P2, blocking: claims and ship plan] populace_uk_2023 ships in the bundle without roles, and this
+   PR changes its results.
+   - The overlay is a real, selectable dataset. policyengine.py main 6a9c878
+     src/policyengine/data/bundle/manifest.json:225-251 defines dataset_overlays.uk.populace_uk_2023
+     (repo policyengine/populace-uk-private, revision
+     populace-uk-2023-dd68c73-4aa4b14-20260619T023711Z, sha256 f17306cc...).
+     provenance/manifest.py:270-312 (_apply_dataset_overlays, called at :328) merges it into the resolvable datasets
+     as a non-default dataset; only the default can't be overridden.
+   - The pinned artifact has no role column. The cached HF blob's filename is the manifest's
+     sha256, f17306cc..., so it is the exact pinned file. Its person table has 103 columns, including
+     is_parent, is_benunit_head, age and person_benunit_id, but no is_claimant_or_partner. Neither
+     policyengine-uk nor policyengine.py derives the role on load (grep of both).
+   - Impact (aggregate only, from those columns, no simulation): of 28.8m weighted households, 640
+     benefit units are unflagged childless pairs both aged 20+ and 20+ years apart, with the elder as
+     head or no head flag. That is about 25k weighted households. main/#2040 read these as couples;
+     this PR reads each as a single claimant. A further 440 such units (about 30k) have the younger as
+     head and keep the couple.
+   - uk-data#524 doesn't touch this dataset, so d842's "ship with uk-data#524" doesn't cover it.
+   - Required:
+     (i) Correct changelog.d/2039-unflagged-gap.changed.md:1 ("Survey datasets supply
+     is_claimant_or_partner, so the presumption only applies to inputs without it"). This text is
+     published to CHANGELOG.md on merge.
+     (ii) Correct the test comment at test_child_and_adult_definitions_properties.py:925-926.
+     Scope both to datasets that supply the role (uk-data#524's enhanced FRS), and say the
+     presumption applies to datasets without it, including populace_uk_2023 at its pinned revision.
+     (iii) Add populace_uk_2023 and the measured count to the PR body's Sequencing section.
+     (iv) Queue a Max decision: either populace-uk supplies is_claimant_or_partner before the
+     release that carries this PR, or the change for populace_uk_2023 users is accepted. d842 was
+     ruled on the premise that survey data supplies roles.
+   - Optionally also scope "policyengine-uk-data supplies ..." (:940), since #524 is unmerged.
+B. [P3, must fix before posting] The PR-body draft (PR_BODY_peuk.r1.md:97, and the live body :93)
+   still says "run 37032029861 (in progress)". That run finished at 04482030a with the two fixture
+   failures. Round 1 asked for this fix. Replace it with run 37053456372 and its actual conclusion
+   once the Test job completes.
+
+Nonblocking nits
+N1. childless_couple_20_years_apart (:910-915) uses abs(gap), so the differential exempts
+    younger-head wide-gap couples. Module invariant 1 now says only couples whose claimant is
+    20+ years older change. Requiring the head to be the elder would make the property enforce the
+    stated invariant exactly (it holds: younger heads never trigger the any-age term). Today the
+    deterministic test, the YAML case and this review's harness cover it.
+N2. The PR body's mutation counts ("5 YAML cases and 5 properties") come from the 31-case/13-property
+    revision. The new deterministic test would also kill the no-any-age mutant. Label the revision
+    or rerun.
+N3. test_wide_gap_couples_by_head_order_and_with_supplied_roles asserts inferred[:4] of 8 people.
+    The duplicated families add nothing to the inferred check: assert all 8 or drop the duplicates.
+    The assert_array_equal against the reference in the valid-family loop repeats assert_structure.
+    Both are harmless.
+
+Other claims checked
+- PR body: "the formula's syntax tree is identical without docstrings" since dfc53a895. VERIFIED by an
+  AST comparison with docstrings stripped (True). Parameters are unchanged in the delta.
+- git diff --check 04482030a d8fc7444f: clean.
+
+Commands (Python = ~/PolicyEngine/_worktrees/pe-uk-cp-main-snap/.venv/bin/python 3.13.9,
+PYTHONPATH = this workspace; policyengine_uk resolves to the workspace)
+- git diff 04482030a d8fc7444f; git diff --stat c18c836a9 d8fc7444f; git diff --check
+- policyengine_core.scripts.policyengine_command test on benefit_unit_structure.yaml,
+  lifetime_isa_capital.yaml and is_pension_credit_eligible.yaml: 66 passed in 207.88s. The process
+  then hung in interpreter finalization and I killed it after the summary printed.
+- pytest test_child_and_adult_definitions_properties.py -k "valid_family_partition or
+  wide_gap_couples or parent_marked_under_16 or frs_shaped_units or supplied_claimant or
+  unflagged_adult_pairs": 6 passed, 9 deselected.
+- .review_r2/harness.py, one Simulation over 4,869 seeded families: 1,500 arbitrary units with 0/1/2
+  heads, 2,556 younger-head pairs, child-head and no-head units, and 800 valid families. 0
+  model-vs-reference mismatches; all invariant asserts pass (.review_r2/harness.out).
+- .review_r2/populace_count.py: aggregate column-level counts on the pinned overlay. No records are
+  printed and counts under 10 would be suppressed.
+- gh run view 37053456372; gh pr view 2082/2040; gh api for the policyengine.py manifest;
+  policyengine.py origin/main provenance/manifest.py; cos decisions (d842, d833).
+- Not run: full local suite, microsimulation, dataset build.
