@@ -77,15 +77,17 @@ class uc_income_tax_on_earnings(Variable):
         income_in_base = person("adjusted_net_income", period) - add(
             person, period, excluded_incomes
         )
-        other_income = max_(0, income_in_base - earnings)
-        taxable_earnings = max_(
-            0, person("earned_taxable_income", period) - other_income
-        )
+        # SENSITIVITY VARIANT (rule C, not for merge): earnings are the TOP
+        # slice of the base.
+        earned_taxable = person("earned_taxable_income", period)
+        taxable_earnings = min_(earned_taxable, max_(0, earnings))
         rates = income_tax.rates
         tax = where(
             person("pays_scottish_income_tax", period),
-            rates.scotland.rates.calc(taxable_earnings),
-            rates.uk.calc(taxable_earnings),
+            rates.scotland.rates.calc(earned_taxable)
+            - rates.scotland.rates.calc(earned_taxable - taxable_earnings),
+            rates.uk.calc(earned_taxable)
+            - rates.uk.calc(earned_taxable - taxable_earnings),
         )
         # Tax reductions (for example the married couple's allowance) come
         # off the tax on earnings first, as allowances do. So the deduction
