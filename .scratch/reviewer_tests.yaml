@@ -1,0 +1,118 @@
+# Reviewer's cases for the winter fuel payment charge (branch eeb4698a8).
+# Expected values are worked from the law, not from the model.
+
+- name: R-A Step 6 tax reductions do not offset the charge (ITA 2007 s.23 Steps 6-7)
+  # Step 5: (36,000 - 12,570) x 20% = 4,686. Step 6: reductions of 10,000
+  # reduce it to 0 (s.26-29: not below nil). Step 7 adds the charge, 200.
+  period: 2025
+  input:
+    people:
+      pensioner:
+        age: 70
+        private_pension_income: 36_000
+        other_tax_credits: 10_000
+    households:
+      household:
+        members: [pensioner]
+        country: ENGLAND
+  output:
+    income_tax_before_winter_fuel_payment_charge: [0]
+    winter_fuel_payment_charge: [200]
+    income_tax: [200]
+
+- name: R-B ISA interest is not total income (ITTOIA 2005 s.694; ITA 2007 s.23 Step 1)
+  # Pension 34,000 plus 2,000 of ISA interest. The ISA interest is exempt, so
+  # it is not an amount on which the person is charged to income tax: total
+  # income is 34,000, which does not exceed 35,000. No charge.
+  period: 2025
+  input:
+    people:
+      pensioner:
+        age: 70
+        private_pension_income: 34_000
+        savings_interest_income: 2_000
+        individual_savings_account_interest_income: 2_000
+    households:
+      household:
+        members: [pensioner]
+        country: ENGLAND
+  output:
+    taxable_savings_interest_income: [0]
+    winter_fuel_payment_charge: [0]
+
+- name: R-C Other taxable investment income is total income (ITA 2007 s.23 Step 1)
+  # Pension 34,000 plus 2,000 of taxable interest the model holds in
+  # other_investment_income (it taxes it: taxable_savings_interest_income).
+  # Total income 36,000 exceeds 35,000: charged 200.
+  period: 2025
+  input:
+    people:
+      pensioner:
+        age: 70
+        private_pension_income: 34_000
+        other_investment_income: 2_000
+    households:
+      household:
+        members: [pensioner]
+        country: ENGLAND
+  output:
+    taxable_savings_interest_income: [2_000]
+    winter_fuel_payment_charge: [200]
+
+- name: R-D PAWHP counts in HBAI household net income
+  # SSI 2024/351 reg 10(5)(a) as substituted by SSI 2025/282: 203.40. No
+  # other income (Pension Credit and State Pension pinned at nil).
+  period: 2025
+  absolute_error_margin: 0.01
+  input:
+    people:
+      pensioner:
+        age: 70
+        state_pension: 0
+    benunits:
+      unit:
+        members: [pensioner]
+        pension_credit: 0
+    households:
+      household:
+        members: [pensioner]
+        country: SCOTLAND
+        council_tax: 0
+  output:
+    pawhp: 203.40
+    hbai_household_net_income: 203.40
+
+- name: R-E the charge is in household_tax and household_net_income
+  # As 'the charge is added to income tax': income tax 7,486 + charge 200 =
+  # 7,686, plus the 2025-26 TV licence fee of 174.50 = 7,860.50; net income
+  # 50,000 + 200 - 7,860.50 = 42,339.50.
+  period: 2025
+  absolute_error_margin: 0.1
+  input:
+    people:
+      pensioner:
+        age: 70
+        private_pension_income: 50_000
+    households:
+      household:
+        members: [pensioner]
+        country: ENGLAND
+  output:
+    income_tax: [7_686]
+    household_tax: 7_860.50
+    household_net_income: 42_339.50
+
+- name: R-F no charge at baseline in 2024 on a person paid through tax credits
+  # SI 2024/869 reg 2(2)(b)(ii): a tax credit award of at least 26 entitled a
+  # person to the 2024 payment. Tax credits are not a relevant benefit for the
+  # charge, so only commencement (FA 2026 Sch 10 para 5) keeps it at nil.
+  period: 2024
+  input:
+    age: 70
+    country: ENGLAND
+    total_income: 50_000
+    pension_credit: 0
+    tax_credits: 1_000
+  output:
+    winter_fuel_payment: 200
+    winter_fuel_payment_charge: 0

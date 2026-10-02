@@ -1,0 +1,46 @@
+policyengine_uk/dynamics/participation.py:341:    household_net_income = sim.calculate("household_net_income", year, map_to="person")
+policyengine_uk/dynamics/participation.py:373:                "household_net_income", year, map_to="person"
+policyengine_uk/dynamics/participation.py:390:                "household_net_income", year, map_to="person"
+policyengine_uk/reforms/cps/marriage_tax_reforms.py:178:                originally_split_income_branch.calculate("income_tax", period)
+policyengine_uk/reforms/cps/marriage_tax_reforms.py:191:                split_income_branch.calculate("income_tax", period)
+policyengine_uk/reforms/policyengine/disable_simulated_benefits.py:36:                    "winter_fuel_allowance",
+policyengine_uk/variables/contrib/labour/attends_private_school.py:56:            person("income_tax", period) + person("national_insurance", period)
+policyengine_uk/variables/contrib/labour/attends_private_school.py:61:            + household("household_benefits", period)
+policyengine_uk/variables/contrib/policyengine/pre_budget_change_household_tax.py:16:    "income_tax",
+policyengine_uk/variables/household/post_tax_income.py:12:    subtracts = ["income_tax", "national_insurance"]
+policyengine_uk/variables/household/marginal_tax_rate.py:38:            household_net_income = person.household("household_net_income", period)
+policyengine_uk/variables/household/marginal_tax_rate.py:40:                "household_net_income", period
+policyengine_uk/variables/household/income/household_benefits.py:36:    "winter_fuel_allowance",
+policyengine_uk/variables/household/income/household_benefits.py:37:    "pawhp",
+policyengine_uk/variables/household/income/equiv_household_net_income.py:14:        income = household("household_net_income", period)
+policyengine_uk/variables/household/income/household_net_income.py:13:        "household_benefits",
+policyengine_uk/variables/household/income/household_net_income.py:16:        "household_tax",
+policyengine_uk/variables/household/income/hbai_household_net_income.py:47:    "winter_fuel_allowance",
+policyengine_uk/variables/household/income/hbai_household_net_income.py:48:    "pawhp",
+policyengine_uk/variables/household/income/hbai_household_net_income.py:59:    "income_tax",
+policyengine_uk/variables/household/income/hbai_benefits.py:37:        "winter_fuel_allowance",
+policyengine_uk/variables/household/income/hbai_benefits.py:38:        "pawhp",
+policyengine_uk/variables/household/income/household_net_income_ahc.py:13:        "household_benefits",
+policyengine_uk/variables/household/income/household_net_income_ahc.py:16:        "household_tax",
+policyengine_uk/variables/household/income/real_household_net_income.py:14:        net_income = household("household_net_income", period)
+policyengine_uk/variables/household/income/household_gross_income.py:18:            ["household_market_income", "household_benefits"],
+policyengine_uk/variables/household/marginal_tax_rate_wrt_employer_cost.py:26:        baseline_net = person.household("household_net_income", period)
+policyengine_uk/variables/household/marginal_tax_rate_wrt_employer_cost.py:45:            new_net = alt_person.household("household_net_income", period)
+policyengine_uk/variables/gov/gov_tax.py:20:    "income_tax",
+policyengine_uk/variables/gov/social_security_scotland/pawhp.py:17:    adds = ["pension_age_winter_heating_payment"]
+policyengine_uk/variables/gov/gov_balance.py:11:    adds = ["gov_tax"]
+policyengine_uk/variables/gov/gov_balance.py:12:    subtracts = ["gov_spending"]
+policyengine_uk/variables/gov/simulation/labour_supply_response/relative_income_change.py:25:        baseline_net_income = baseline_person.household("household_net_income", period)
+policyengine_uk/variables/gov/simulation/labour_supply_response/relative_income_change.py:26:        net_income = measurement_person.household("household_net_income", period)
+policyengine_uk/variables/gov/dwp/winter_fuel_allowance.py:18:    adds = ["winter_fuel_payment"]
+policyengine_uk/variables/gov/hmrc/tax_modelling.py:11:    adds = ["tax"]
+policyengine_uk/variables/gov/hmrc/capital_gains_tax/marginal_tax_rate_on_capital_gains.py:40:            household_net_income = person.household("household_net_income", period)
+policyengine_uk/variables/gov/hmrc/capital_gains_tax/marginal_tax_rate_on_capital_gains.py:42:                "household_net_income", period
+policyengine_uk/variables/gov/hmrc/tax.py:11:    adds = ["income_tax", "national_insurance"]
+policyengine_uk/variables/gov/hmrc/household_tax.py:20:    "income_tax",
+policyengine_uk/variables/gov/hmrc/income_tax/allowances/capped_mcad.py:12:        capping_value = add(person, period, ["income_tax_pre_charges", "CB_HITC"])
+policyengine_uk/variables/gov/hmrc/income_tax/charges/winter_fuel_payment_charge.py:7:    "winter_fuel_payment",
+policyengine_uk/variables/gov/hmrc/income_tax/charges/winter_fuel_payment_charge.py:8:    "pension_age_winter_heating_payment",
+policyengine_uk/variables/gov/hmrc/benunit_tax.py:11:    adds = ["tax"]
+policyengine_uk/variables/gov/gov_spending.py:35:    "winter_fuel_allowance",
+policyengine_uk/variables/gov/gov_spending.py:36:    "pawhp",

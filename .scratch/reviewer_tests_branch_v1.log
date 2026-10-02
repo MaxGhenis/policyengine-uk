@@ -1,0 +1,32 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.9, pytest-8.4.1, pluggy-1.6.0
+rootdir: /Users/maxghenis/.subfleet/worktrees/20261002-083533-wfp-charge-review-r1
+configfile: pyproject.toml
+plugins: anyio-4.9.0, hypothesis-6.168.2, cov-6.2.1
+collected 6 items
+
+.scratch/reviewer_tests.yaml .FFFF.
+
+=================================== FAILURES ===================================
+_________________________________ test session _________________________________
+/Users/maxghenis/.subfleet/worktrees/20261002-083533-wfp-charge-review-r1/.scratch/reviewer_tests.yaml:
+  Test 'R-B ISA interest is not total income (ITTOIA 2005 s.694; ITA 2007 s.23 Step 1)':
+    winter_fuel_payment_charge@2025: [200.] differs from [0.] with an absolute margin [200.] > 0.001
+_________________________________ test session _________________________________
+/Users/maxghenis/.subfleet/worktrees/20261002-083533-wfp-charge-review-r1/.scratch/reviewer_tests.yaml:
+  Test 'R-C Other taxable investment income is total income (ITA 2007 s.23 Step 1)':
+    winter_fuel_payment_charge@2025: [0.] differs from [200.] with an absolute margin [200.] > 0.001
+_________________________________ test session _________________________________
+/Users/maxghenis/.subfleet/worktrees/20261002-083533-wfp-charge-review-r1/.scratch/reviewer_tests.yaml:
+  Test 'R-D PAWHP counts in HBAI household net income':
+    hbai_household_net_income@2025: [11739.601] differs from 203.39999389648438 with an absolute margin [11536.2] > 0.01
+_________________________________ test session _________________________________
+/Users/maxghenis/.subfleet/worktrees/20261002-083533-wfp-charge-review-r1/.scratch/reviewer_tests.yaml:
+  Test 'R-E the charge is in household_tax, gov_tax and household_net_income':
+    household_tax@2025: [7860.545] differs from 7686.0 with an absolute margin [174.54492] > 0.001
+=========================== short test summary info ============================
+FAILED .scratch/reviewer_tests.yaml::
+FAILED .scratch/reviewer_tests.yaml::
+FAILED .scratch/reviewer_tests.yaml::
+FAILED .scratch/reviewer_tests.yaml::
+=================== 4 failed, 2 passed in 569.00s (0:09:29) ====================
