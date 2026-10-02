@@ -32,23 +32,13 @@ class uc_individual_earned_income(Variable):
         # The deductions are the person's own and come off only their own
         # earnings, so one partner's tax, NI or pension contributions never
         # reduce the other partner's earned income.
+        # SCRATCH (not for merge): the pre-#1942 deductions, all of the
+        # person's income tax and NI and all pension contributions, applied
+        # per person.
         gross_earnings = person("uc_mif_capped_earned_income", period)
-        # Contributions paid after the person reaches 75 are not relievable
-        # (Finance Act 2004 s. 188(3)(a)).
-        age_limit = parameters(
-            period
-        ).gov.hmrc.pensions.pension_contributions_relief_age_limit
-        relievable_pension_contributions = person("pension_contributions", period) * (
-            person("age", period) < age_limit
-        )
-        tax_and_national_insurance = add(
+        deductions = add(
             person,
             period,
-            ["uc_income_tax_on_earnings", "uc_national_insurance_on_earnings"],
+            ["pension_contributions", "income_tax", "national_insurance"],
         )
-        return max_(
-            0,
-            gross_earnings
-            - relievable_pension_contributions
-            - tax_and_national_insurance,
-        )
+        return max_(0, gross_earnings - deductions)
