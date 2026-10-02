@@ -46,13 +46,25 @@ class has_mixed_age_couple_pension_credit_saving(Variable):
             )
             > 0
         )
-        pension_age_hb = pension_age_member_hb & ~reported(
-            [
-                "income_support_reported",
-                "jsa_income_reported",
-                "esa_income_reported",
-            ]
+        # Reg 5 asks whether the claimant or partner is on one of these
+        # awards, so only their reports count: another member of the benefit
+        # unit claims in their own right.
+        couple_reports_income_related_benefit = (
+            benunit.sum(
+                add(
+                    person,
+                    period,
+                    [
+                        "income_support_reported",
+                        "jsa_income_reported",
+                        "esa_income_reported",
+                    ],
+                )
+                * person("is_claimant_or_partner", period)
+            )
+            > 0
         )
+        pension_age_hb = pension_age_member_hb & ~couple_reports_income_related_benefit
         # Art. 4(2) ends the saving once the couple is entitled to neither
         # benefit, which Universal Credit entitlement implies (TP Regs 2014
         # reg 5(1)(d)).
