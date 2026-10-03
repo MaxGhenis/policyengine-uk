@@ -23,6 +23,7 @@ values:
   # part of the claimant's home is reg. 15(5)(i) income, less the Schedule IV
   # para. 9 disregard.
   - legacy_benefits_home_letting_income
+  - property_income
   - pension_credit_deemed_income
   - esa_contrib
   - jsa_contrib

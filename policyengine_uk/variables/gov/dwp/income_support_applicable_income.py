@@ -40,6 +40,7 @@ class income_support_applicable_income(Variable):
             "employment_income",
             "self_employment_income",
             "private_pension_income",
+            "property_income",
             "legacy_benefits_home_letting_income",
         ]
         bi = parameters(period).gov.contrib.ubi_center.basic_income

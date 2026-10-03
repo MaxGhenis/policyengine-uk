@@ -83,6 +83,7 @@ class council_tax_reduction_applicable_income(Variable):
             "employment_income",
             "self_employment_income",
             "private_pension_income",
+            "property_income",
         ]
         bi = parameters(period).gov.contrib.ubi_center.basic_income
         benefits = add_for_members(
@@ -139,7 +140,7 @@ class council_tax_reduction_applicable_income(Variable):
         # people under pension age add their own.
         income_under_general_rules = max_(
             0, increased_income - tax - pension_contributions
-        ) + benunit("council_tax_reduction_tariff_income", period)
+        )  # SCRATCH: no national tariff income
         # SI 2012/2885 Sch 1 para 13, WSI 2013/3029 Sch 1 para 7 and SSI
         # 2012/319 reg 24: a guarantee credit recipient's whole income is
         # disregarded. Para 14, para 8 and reg 25: in savings-credit-only cases
