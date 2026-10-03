@@ -19,7 +19,14 @@ class claims_universal_credit(Variable):
     )
 
     def formula(benunit, period, parameters):
-        claims_at_closure = benunit("legacy_benefits_closed", period) & benunit(
-            "would_claim_uc_at_legacy_closure", period
+        # The working-age Housing Benefit abolition (SI 2025/1148 art. 7)
+        # also prompts a claim; unlike a migration notice it ends no other
+        # award for a family that does not claim.
+        hb_abolished = (
+            (add(benunit, period, ["housing_benefit_reported"]) > 0)
+            & (benunit("housing_benefit_payable_share", period) < 1)
+            & ~benunit("meets_pension_credit_age_conditions", period)
         )
+        closed = benunit("legacy_benefits_closed", period) | hb_abolished
+        claims_at_closure = closed & benunit("would_claim_uc_at_legacy_closure", period)
         return benunit("would_claim_uc", period) | claims_at_closure

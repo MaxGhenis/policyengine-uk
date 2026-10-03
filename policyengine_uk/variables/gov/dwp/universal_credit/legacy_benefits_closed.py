@@ -39,20 +39,11 @@ class legacy_benefits_closed(Variable):
             not dwp.income_support.active
         )
         jsa_income_closed = reports("jsa_income_reported") & (not dwp.JSA.income.active)
-        # Working-age Housing Benefit awards end during 2026-27 (SI 2025/1148
-        # art. 7; NI SR 2025/176 art. 7); a family whose award is no longer
-        # payable for the whole year moves in that year.
-        housing_benefit_closed = reports("housing_benefit_reported") & (
-            benunit("housing_benefit_payable_share", period) < 1
-        )
         # The transitional rules terminating legacy awards on a Universal
         # Credit claim do not apply to a claimant, or both joint claimants,
         # over the qualifying age for State Pension Credit (SI 2014/1230
         # reg 8(2B)); those families move to Pension Credit instead.
         pension_route = benunit("meets_pension_credit_age_conditions", period)
         return (
-            tax_credits_closed
-            | income_support_closed
-            | jsa_income_closed
-            | housing_benefit_closed
+            tax_credits_closed | income_support_closed | jsa_income_closed
         ) & ~pension_route
