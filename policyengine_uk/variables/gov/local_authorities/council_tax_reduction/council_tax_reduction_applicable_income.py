@@ -83,6 +83,7 @@ class council_tax_reduction_applicable_income(Variable):
             "employment_income",
             "self_employment_income",
             "private_pension_income",
+            "property_income",
         ]
         bi = parameters(period).gov.contrib.ubi_center.basic_income
         benefits = add_for_members(
