@@ -54,35 +54,9 @@ class legacy_means_test_income_tax(Variable):
     ]
 
     def formula(person, period, parameters):
-        p = parameters(period).gov.hmrc.income_tax
-        # Step 4 tax on the income the means tests count, and on the income
-        # they treat as capital.
-        counted = person("earned_income_tax", period)
-        capital = add(
-            person,
-            period,
-            ["savings_income_tax", "dividend_income_tax", "property_income_tax"],
-        )
-        before_reductions = counted + capital
-        # Step 7 charges: everything income tax adds beyond the Step 4 tax.
-        charges = max_(
-            0, add(person, period, p.income_tax_additions) - before_reductions
-        )
-        # Step 6 reductions, shared in proportion to the Step 4 tax.
-        reductions = min_(
-            add(person, period, p.income_tax_subtractions), before_reductions
-        )
-        capital_share = np.divide(
-            capital,
-            before_reductions,
-            out=np.zeros_like(capital, dtype=float),
-            where=before_reductions > 0,
-        )
-        capital_after_reductions = capital - reductions * capital_share
-        # Starting from income tax keeps any supplied income_tax value: the
-        # result is the tax on counted income less its share of reductions
-        # whenever income tax is calculated.
+        # SCRATCH decomposition variant: income tax less the listed components.
         return max_(
             0,
-            person("income_tax", period) - capital_after_reductions - charges,
+            person("income_tax", period)
+            - add(person, period, ['property_income_tax', 'savings_income_tax']),
         )
