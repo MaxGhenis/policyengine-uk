@@ -13,7 +13,8 @@ class housing_benefit_eligible(Variable):
         "the new-claim route at any age, including alongside Universal Credit, "
         "and preserves existing awards. Other families keep Housing Benefit "
         "only while they continue an existing award (reported Housing "
-        "Benefit) and do not claim Universal Credit. Unprotected working-age "
+        "Benefit), do not claim Universal Credit and have not been moved off "
+        "a closed legacy benefit (legacy_benefits_closed). Unprotected working-age "
         "awards ended on 1 July 2026 in Great Britain and 1 October 2026 in "
         "Northern Ireland, so from then only families with a member over State "
         "Pension age or the accommodation input continue one. Other unmodelled "
@@ -25,7 +26,9 @@ class housing_benefit_eligible(Variable):
     definition_period = YEAR
     reference = (
         "https://www.legislation.gov.uk/uksi/2014/1230/regulation/6A",
+        "https://www.legislation.gov.uk/ukpga/2002/16/section/4",
         "https://www.legislation.gov.uk/uksi/2014/1230/regulation/8",
+        "https://www.legislation.gov.uk/uksi/2014/1230/regulation/46",
         "https://www.legislation.gov.uk/uksi/2019/37/article/4",
         "https://www.legislation.gov.uk/uksi/2025/1148/article/7",
         "https://www.legislation.gov.uk/nisr/2025/176/article/7",
@@ -39,28 +42,24 @@ class housing_benefit_eligible(Variable):
         # Apart from the accommodation exception, new claims are barred
         # except where the claimant, and any partner,
         # has reached the qualifying age for State Pension Credit
-        # (SI 2014/1230 reg 6A(4); NI: SR 2016/226 reg 4A(4)). This is the
-        # same claimant-and-partner set is_uc_eligible and
-        # is_pension_credit_eligible use, so a pensioner with an 18 or 19 year
-        # old dependant can claim Housing Benefit and not Universal Credit;
-        # change the three together.
-        claimant_or_partner = person("is_claimant_or_partner", period)
-        count = benunit.sum(claimant_or_partner)
-        pension_age = (count > 0) & (benunit.sum(claimant_or_partner & sp_age) == count)
-        # Working-age and mixed-age families (since 15 May 2019) claim
-        # Universal Credit instead. They keep an existing award until they
-        # claim it (reg 8(2A)), so this route also rules out receiving
-        # Universal Credit. For mixed-age couples the reported award stands
-        # in for the SI 2019/37 art. 4 saving (reg 6A(5)). Working-age awards
-        # outside specified or temporary accommodation were abolished from
-        # 1 July 2026 in Great Britain (SI 2025/1148 art. 7) and 1 October
-        # 2026 in Northern Ireland (SR 2025/176 art. 7); a family with no
-        # member over State Pension age continues one only for the part of
-        # the year before that date (housing_benefit_payable_share).
+        # (SI 2014/1230 reg 6A(4); NI: SR 2016/226 reg 4A(4)), or the claim
+        # is made by the older member of a mixed-age couple that keeps the
+        # SI 2019/37 art. 4 saving (reg 6A(5); NI reg 4A(5)).
+        pension_age = benunit("meets_pension_credit_age_conditions", period)
+        # Working-age families claim Universal Credit instead. They keep an
+        # existing award until they claim it (reg 8(2A)), so this route also
+        # rules out receiving Universal Credit. Working-age awards outside
+        # specified or temporary accommodation were abolished from 1 July
+        # 2026 in Great Britain (SI 2025/1148 art. 7) and 1 October 2026 in
+        # Northern Ireland (SR 2025/176 art. 7) (housing_benefit_payable_share).
         already_claiming = add(benunit, period, ["housing_benefit_reported"]) > 0
-        claiming_uc = benunit("would_claim_uc", period)
+        claiming_uc = benunit("claims_universal_credit", period)
+        # Once a legacy benefit of the family's has closed, DWP's migration
+        # notice ends this award even if the family does not claim Universal
+        # Credit (reg 46(1)(a), (2)).
+        migrated = benunit("legacy_benefits_closed", period)
         still_payable = benunit("housing_benefit_payable_share", period) > 0
-        continuing_award = already_claiming & ~claiming_uc & still_payable
+        continuing_award = already_claiming & ~claiming_uc & ~migrated & still_payable
         # Reg 6A(2) permits new accommodation claims irrespective of UC;
         # reg 8(3) preserves accommodation HB when UC is claimed.
         # NI equivalents: SR 2016/226 regs 4A(2) and 6(3).
