@@ -1,0 +1,14 @@
+diff -ru -x __pycache__ policyengine_uk/variables/gov/dwp/universal_credit/legacy_benefits_closed.py review/mut/m1/policyengine_uk/variables/gov/dwp/universal_credit/legacy_benefits_closed.py
+--- policyengine_uk/variables/gov/dwp/universal_credit/legacy_benefits_closed.py	2026-10-03 22:41:55
++++ review/mut/m1/policyengine_uk/variables/gov/dwp/universal_credit/legacy_benefits_closed.py	2026-10-03 23:34:17
+@@ -47,9 +47,7 @@
+         # 2019/167 art. 3A(1)). Every other tax credit family, including a
+         # pension-age one on Working Tax Credit (SI 2014/1230 reg 60A), got a
+         # Universal Credit migration notice (reg 44).
+-        pension_credit_route = on_pension_credit | (
+-            pension_age_route & ~reports("working_tax_credit_reported")
+-        )
++        pension_credit_route = on_pension_credit | pension_age_route
+         tax_credits_closed = (
+             reports("child_tax_credit_reported", "working_tax_credit_reported")
+             & (not dwp.tax_credits.active)

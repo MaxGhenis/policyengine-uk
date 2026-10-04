@@ -1,0 +1,24 @@
+diff -ru -x __pycache__ policyengine_uk/variables/gov/dwp/pension_credit/left_pension_route_at_legacy_closure.py review/mut/fix/policyengine_uk/variables/gov/dwp/pension_credit/left_pension_route_at_legacy_closure.py
+--- policyengine_uk/variables/gov/dwp/pension_credit/left_pension_route_at_legacy_closure.py	2026-10-03 22:41:55
++++ review/mut/fix/policyengine_uk/variables/gov/dwp/pension_credit/left_pension_route_at_legacy_closure.py	2026-10-03 23:34:17
+@@ -26,7 +26,4 @@
+         moved = benunit("legacy_benefits_closed", period) & benunit(
+             "meets_pension_credit_age_conditions", period
+         )
+-        return moved & (
+-            benunit("claims_uc_at_legacy_closure", period)
+-            | benunit("is_mixed_age_couple", period)
+-        )
++        return moved & benunit("claims_uc_at_legacy_closure", period)
+diff -ru -x __pycache__ policyengine_uk/variables/gov/dwp/universal_credit/housing_costs_element/non_dep_deduction/uc_non_dependants_counted.py review/mut/fix/policyengine_uk/variables/gov/dwp/universal_credit/housing_costs_element/non_dep_deduction/uc_non_dependants_counted.py
+--- policyengine_uk/variables/gov/dwp/universal_credit/housing_costs_element/non_dep_deduction/uc_non_dependants_counted.py	2026-10-03 22:41:55
++++ review/mut/fix/policyengine_uk/variables/gov/dwp/universal_credit/housing_costs_element/non_dep_deduction/uc_non_dependants_counted.py	2026-10-03 23:34:17
+@@ -28,7 +28,7 @@
+         claims = (
+             liable_family
+             & benunit("is_uc_eligible", period)
+-            & benunit("would_claim_uc", period)
++            & benunit("claims_universal_credit", period)
+         )
+         head_family = benunit.any(person("is_household_head", period))
+         # Order the claims: the household head's family first, then the

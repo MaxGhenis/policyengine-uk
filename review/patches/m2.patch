@@ -1,0 +1,11 @@
+diff -ru -x __pycache__ policyengine_uk/variables/gov/dwp/universal_credit/is_uc_eligible.py review/mut/m2/policyengine_uk/variables/gov/dwp/universal_credit/is_uc_eligible.py
+--- policyengine_uk/variables/gov/dwp/universal_credit/is_uc_eligible.py	2026-10-03 22:41:55
++++ review/mut/m2/policyengine_uk/variables/gov/dwp/universal_credit/is_uc_eligible.py	2026-10-03 23:34:17
+@@ -53,6 +53,6 @@
+         )
+         reg_60a = on_working_tax_credit & benunit.any(claimant & meets_minimum_age)
+         route = (has_qualifying_claimant & ~pension_credit_route) | (
+-            closure_claim & (has_qualifying_claimant | reg_60a)
++            closure_claim & has_qualifying_claimant
+         )
+         return route & (capital <= limit)

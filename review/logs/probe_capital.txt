@@ -1,0 +1,24 @@
+
+### K1 single 70 on WTC+HB, savings 20k, closure True (2025)
+  legacy_benefits_closed = [True]
+  claims_universal_credit = [True]
+  left_pension_route_at_legacy_closure = [True]
+  uc_assessable_capital = [20000.0]
+  is_uc_eligible = [False]
+  universal_credit = [0.0]
+  housing_benefit_eligible = [False]
+  housing_benefit = [0.0]
+  is_pension_credit_eligible = [False]
+  pension_credit = [0.0]
+
+### K1 single 70 on WTC+HB, savings 20k, closure False (2025)
+  legacy_benefits_closed = [True]
+  claims_universal_credit = [False]
+  left_pension_route_at_legacy_closure = [False]
+  uc_assessable_capital = [20000.0]
+  is_uc_eligible = [False]
+  universal_credit = [0.0]
+  housing_benefit_eligible = [True]
+  housing_benefit = [6000.0]
+  is_pension_credit_eligible = [True]
+  pension_credit = [10496.2001953125]

@@ -1,0 +1,186 @@
+===== uksi_2019_167_article_3A.xml
+Tax credit closure notice 
+ 3A 
+ 1 The Secretary of State (or, in Northern Ireland, the Department) may, at any time, issue a notice (“a tax credit closure notice”) to— 
+ a a person who is entitled to an award of child tax credit, but not an award of working tax credit, and is— 
+ i a single person who has reached the qualifying age; 
+ ii a member of a couple both members of which have reached that age; or 
+ iii a member of a protected mixed-age couple; or 
+ b a person who is entitled to both an award of a tax credit and an award of state pension credit, 
+informing the person that their tax credit award is to end by a specified day (“the deadline day”). 
+ 2 The tax credit closure notice may contain such other information as the Secretary of State or the Department considers appropriate. 
+ 3 The deadline day must not, subject to paragraphs (4) and (4A) , be within the period of three months beginning with the day on which the tax credit closure notice is issued. 
+ 4 The deadline day may be within such shorter period as the Secretary of State or the Department considers appropriate where— 
+ a the person is entitled to an award of state pension credit when the tax credit closure notice is issued; or 
+ b the tax credit closure notice is issued after cancellation of a previous tax credit closure notice or after cancellation of a migration notice issued to that person. 
+ 4A Where the tax credit closure notice is issued on or after 27th January 2025 and before 6th April 2025, the deadline day may be 6th April 2025. 
+ 5 If the tax credit award is to joint claimants the Secretary of State or the Department must issue a tax credit closure notice to each claimant. 
+ 6 The Secretary of State or the Department may determine that the deadline day should be changed to a later day either— 
+ a on the Secretary of State’s or the Department’s own initiative; or 
+ b if the notified person requests such a change before the deadline day, 
+if there is a good reason to do so. 
+ 7 Where the Secretary of State or the Department changes the deadline day in accordance with paragraph (6) they must inform the notified person or persons of the new deadline day. 
+ 8 The Secretary of State or the Department may cancel a tax credit closure notice issued to any person— 
+ a if it has been issued in error; 
+ b in any other circumstances where the Secretary State or the Department considers it necessary to do so in the interests of the person, or any class of person, or to safeguard the efficient administration of state pension credit. 
+ 9 In a case referred to in paragraph (8)(a) the Secretary of State or the Department may, instead of cancelling the tax credit closure notice, treat that notice as if it were a migration notice issued to that person and as if the deadline day in the tax credit closure notice were the deadline day in a migration notice. 
+ 10 In this article— 
+“ the Department ” means the Department for Communities in Northern Ireland; 
+“ protected mixed-age couple ” means a mixed-age couple to whom article 4 (savings) of the Welfare Reform Act 2012 (Commencement No. 31 and Savings and Transitional Provisions and Commencement No. 21 and 23 and Transitional and Transitory Provisions (Amendment)) Order 2019 or article 4 (savings) of the Welfare Reform (Northern Ireland) Order 2015 (Commencement No. 13 and Savings and Transitional Provisions and Commencement No. 8 and Transitional and Transitory Provisions (Amendment)) Order 2019 applies, 
+and the reference in paragraph (1) to a person who is entitled to a tax credit includes a person who is treated as being so entitled by virtue of regulation 11(1) (ongoing awards of tax credits) of the Universal Credit (Transitional Provisions) Regulations 2014 or regulation 9(1) (ongoing awards of tax credits) of the Universal Credit (Transitional Provisions) Regulations (Northern Ireland) 2016. 
+
+===== uksi_2014_1230_regulation_60A.xml
+
+ PART 4 MANAGED MIGRATION TO UNIVERSAL CREDIT 
+Miscellaneous 
+Waiver of upper age limit for claimants migrated from tax credits 
+ 60A 
+ 1 Where a qualifying claim is made by— 
+ a a single claimant who, at the time the migration notice is issued— 
+ i has reached the qualifying age for state pension credit; 
+ ii is entitled to an award of working tax credit; and 
+ iii is not entitled to an award of state pension credit; or 
+ b joint claimants both of whom satisfy the criteria in sub-paragraph (a)(i) to (iii) at the time the migration notice is issued, 
+then, subject to paragraphs (2) and (3), the condition in section 4(1)(b) of the Act (claimant has not reached the qualifying age for state pension credit) is not to apply for the purposes of determining entitlement to universal credit in respect of the qualifying claim or any award made in respect of that claim. 
+ 2 The reference in paragraph (1) to a person who is entitled to an award of working tax credit includes a person who meets the entitlement conditions for both that credit and child tax credit. 
+ 3 Paragraph (1) ceases to apply in respect of an award of universal credit mentioned in paragraph (1) in an assessment period in which— 
+ a a transitional element or transitional capital disregard would cease to apply by virtue of regulation 56 (circumstances in which transitional protection ceases) or regulation 57 (application of transitional protection to a subsequent award); or 
+ b a person who is entitled to an award of universal credit by virtue of paragraph (1) makes a claim for state pension credit. 
+
+===== uksi_2014_1230_regulation_8.xml
+
+ PART 2 TRANSITION TO UNIVERSAL CREDIT 
+CHAPTER 2 ENTITLEMENT TO OTHER BENEFITS 
+Termination of awards of certain existing benefits: other claimants 
+8 
+1 This regulation applies where— 
+a a claim for universal credit (other than a claim which is treated, in accordance with regulation 9(8) of the Claims and Payments Regulations, as having been made) is made , whether or not subsequently withdrawn ; ... 
+ b . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+2 Where this regulation applies, all awards of ...a tax credit to which the claimant (or, in the case of joint claimants, either of them) is entitled on the date on which the claim is made are to terminate, by virtue of this regulation— 
+a on the day before the first date on which the claimant is entitled to universal credit in connection with the claim; or 
+b if the claimant is not entitled to universal credit, on the day before the first date on which he or she would have been so entitled, if all of the basic and financial conditions applicable to the claimant had been met. 
+ 2A Subject to paragraph (3), where this regulation applies, an award of income support or housing benefit to which the claimant is entitled on the day mentioned in paragraph (2)(a) or (b) terminates on the last day of the period of two weeks beginning with the day after that day (whether or not the person is also entitled to an award of ... a tax credit). 
+ 2B This regulation does not apply in the case of a single claimant who has reached the qualifying age for state pension credit or in the case of joint claimants who have both reached the qualifying age for state pension credit. 
+3 An award of housing benefit to which a claimant is entitled in respect of specified accommodation or temporary accommodation does not terminate by virtue of this regulation. 
+4 Where this regulation applies and the claimant (or, in the case of joint claimants, either of them) is treated by regulation 11 as being entitled to a tax credit— 
+a the claimant (or, as the case may be, the relevant claimant) is to be treated, for the purposes of the 2002 Act and this regulation, as having made a claim for the tax credit in question for the current tax year; and 
+b if the claimant (or the relevant claimant) is entitled on the date on which the claim for universal credit was made to an award of a tax credit which is made in respect of a claim which is treated as having been made by virtue of sub-paragraph (a), that award is to terminate, by virtue of this regulation— 
+i on the day before the first date on which the claimant is entitled to universal credit; or 
+ii if the claimant is not entitled to universal credit, on the day before the first date on which he or she would have been so entitled, if all of the basic and financial conditions applicable to the claimant had been met. 
+5 Where an award terminates by virtue of this regulation, any legislative provision under which the award terminates on a later date does not apply. 
+
+===== uksi_2014_1230_regulation_46.xml
+
+ PART 4 MANAGED MIGRATION TO UNIVERSAL CREDIT 
+The Migration Process 
+Termination of existing benefits if no claim before the deadline 
+ 46 
+ 1 Where a notified person has not made a claim for universal credit on or before the deadline day, all awards of any existing benefits to which the person is entitled terminate— 
+ a in the case of housing benefit, income support, income-based jobseeker’s allowance or income-related employment and support allowance, on the last day of the period of two weeks beginning with the deadline day; and 
+ b in the case of a tax credit , on the day before the deadline day. 
+ 2 An award of housing benefit to which a claimant is entitled in respect of specified accommodation or temporary accommodation does not terminate by virtue of this regulation. 
+ 3 Where paragraph (1) applies and the notified person makes a claim for universal credit— 
+ a after the deadline day; and 
+ b on or before the final deadline specified in paragraph (4), 
+then, notwithstanding anything in regulation 26 of the Claims and Payments Regulations (time within which a claim for universal credit is to be made) as modified by regulation 15 of these Regulations, the award is to commence on the deadline day. 
+ 4 The final deadline is the day that would be the last day of the first assessment period in relation to an award commencing on the deadline day. 
+ 5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+===== uksi_2019_37_article_4.xml
+Savings 
+4 
+1 Subject to paragraph (2), the 2002 Act shall have effect as though section 4(1A) (exclusion of mixed-age couples from state pension credit) had not come into force in relation to a member of a mixed-age couple who, on the day before the appointed day and as part of that couple, is entitled to— 
+a state pension credit; 
+b housing benefit; or 
+c state pension credit and housing benefit. 
+2 The savings in the sub-paragraphs of paragraph (1) shall cease to have effect in relation to the member of the mixed-age couple referred to on any day after the appointed day when that person is not entitled to either state pension credit or housing benefit as part of the same mixed-age couple. 
+ 3 Nothing in regulation 6A (restriction on claims for housing benefit, income support or a tax credit) of the Transitional Regulations prevents a claim for housing benefit by a member of a mixed-age couple referred to in paragraph (1) where— 
+ a they have been issued with a migration notice; 
+ b they make the claim for housing benefit within three months beginning with— 
+ i in the case of a person who became entitled to universal credit by claiming before the final deadline, the day after their award of universal credit terminates; or 
+ ii in the case of a person who did not claim universal credit, or claimed before the final deadline but was not entitled, the day after their award of housing benefit terminates; and 
+ c they meet the conditions for entitlement to housing benefit on that day. 
+ 4 Where a person mentioned in sub-paragraph (b)(i) of paragraph (3) claims— 
+ a housing benefit; or 
+ b state pension credit (whether or not they also claim housing benefit), 
+within three months beginning with the day mentioned in that sub-paragraph, any days on which they were entitled to universal credit are to be disregarded for the purposes of paragraph (2). 
+ 5 In this article “ Transitional Regulations ” means the Universal Credit (Transitional Provisions) Regulations 2014 and “ final deadline ” and “ migration notice ” have the same meaning as in those Regulations. 
+
+===== uksi_2014_1230_regulation_44.xml
+
+ PART 4 MANAGED MIGRATION TO UNIVERSAL CREDIT 
+The Migration Process 
+Migration notice 
+ 44 
+ 1 The Secretary of State may, at any time, issue a notice (“a migration notice”) to a person who is entitled to an award of an existing benefit— 
+ a informing the person that all awards of any existing benefits to which they are entitled are to terminate and that they will need to make a claim for universal credit; and 
+ b specifying a day (“the deadline day”) by which a claim for universal credit must be made. 
+ 2 The migration notice may contain such other information as the Secretary of State considers appropriate. 
+ 3 Subject to paragraphs (3A) , (3B) and (3E) , the deadline day must not be within the period of three months beginning with the day on which the migration notice is issued. 
+ 3A ... Where a migration notice is issued after cancellation of a previous migration notice or after cancellation of a tax credit closure notice the deadline day may be within such shorter period as the Secretary of State considers appropriate. 
+ 3B Where a migration notice is— 
+ a issued to a person who is entitled to an award of a tax credit; and 
+ b issued on or after 27th January 2025 and before 6th April 2025, 
+the deadline day may be 6th April 2025. 
+ 3C Paragraph (3E) applies where— 
+ a a migration notice is issued to a claimant who is entitled to an award of income-based jobseeker’s allowance, income-related employment and support allowance or income support, and 
+ b the deadline day specified in the notice would be after the appointed day for section 33(1)(a), (b) or (c) of the Act to come into force in relation to the award. 
+ 3D Paragraph (3E) also applies where— 
+ a a migration notice is issued to a claimant who is entitled to an award of housing benefit but not to an award of a benefit to which paragraph (3C)(a) refers, and 
+ b the deadline day specified in the notice would be after the appointed day for section 33(1)(d) of the Act to come into force in relation to the award. 
+ 3E Where this paragraph applies, the deadline day may be the appointed day. 
+ 3F In paragraphs (3C) and (3D), the ‘appointed day’ in relation to an award is a day specified in an order made under section 150(3) of the Act which is not dependent on the making of a claim for universal credit, ignoring any provision in the order that has the effect that the appointed day does not apply when the day that would otherwise be the appointed day falls within a run-on period. 
+ 3G In paragraph (3F)— 
+ a a reference to a claim for universal credit includes a reference to an award of universal credit made without a claim where an order under section 150(3) of the Act provides for that award to result in the appointment of a day for the coming into force of section 33(1)(a) or (b) in relation to the case of the award, and 
+ b ‘run-on period’ means the two-week period mentioned in regulation 8(2A) or 46(1)(a) or in regulation 5(1) of the Universal Credit (Managed Migration Pilot and Miscellaneous Amendments) Regulations 2019. 
+ 4 If the person who is entitled to an award of an existing benefit is, for the purposes of that award, a member of a couple or a member of a polygamous marriage, the Secretary of State must also issue the migration notice to the other member (or members). 
+ 5 The Secretary of State may cancel a migration notice issued to any person— 
+ a if it has been issued in error; or 
+ b . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+ c in any other circumstances where the Secretary State considers it necessary to do so in the interests of the person, or any class of person, or to safeguard the efficient administration of universal credit. 
+ 5A In a case referred to in paragraph (5)(a) the Secretary of State may, instead of cancelling the migration notice, treat that notice as if it were a tax credit closure notice issued to that person and may treat the deadline day in the migration notice as if it were the deadline day in a tax credit closure notice. 
+ 6 A “notified person” is a person to whom a migration notice has been issued. 
+
+===== uksi_2014_1230_regulation_6A.xml
+
+ PART 2 TRANSITION TO UNIVERSAL CREDIT 
+CHAPTER 2 ENTITLEMENT TO OTHER BENEFITS 
+Restriction on claims for housing benefit, income support or a tax credit 
+ 6A 
+ 1 Except as provided by paragraphs (2) to (5) a person may not make a claim for housing benefit, income support, or a tax credit. 
+ 2 Paragraph (1) does not apply to a claim for housing benefit in respect of specified accommodation or temporary accommodation. 
+ 3 Paragraph (1) does not apply to a claim for housing benefit that is made during the last assessment period of an award of universal credit, where the claimant reaches the qualifying age for state pension credit and paragraph 26 of Schedule 1 to the Decisions and Appeals Regulations applies, in respect of entitlement arising from the date the claimant reaches that age. 
+ 4 Paragraph (1) does not apply to a claim for housing benefit by a single person who has reached the qualifying age for state pension credit, or a member of a State Pension Credit Act couple where both members have reached that age or a member of a polygamous marriage where all members have reached that age. 
+ 5 Paragraph (1) does not apply to a claim for housing benefit where— 
+ a the claim is made by a member of a State Pension Credit Act couple who has reached the qualifying age for state pension credit and the other member has not reached that age; and 
+ b one of the savings in the sub-paragraphs of article 4(1) of the Welfare Reform Act 2012 (Commencement No. 31 and Savings and Transitional Provisions and Commencement No. 21 and 23 and Transitional and Transitory Provisions (Amendment)) Order 2019 applies and the saving has not ceased to have effect under article 4(2) of that Order. 
+ 6 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+ 7 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+ 8 For the purposes of this regulation— 
+ a “polygamous marriage” has the same meaning as in regulation 3(5) of the Universal Credit Regulations; 
+ b “State Pension Credit Act couple” means a couple as defined in section 17(1) of the State Pension Credit Act 2002, 
+... 
+ 9 Despite anything in ... the Tax Credits (Claims and Notifications) Regulations 2002, a person may not make, or be treated as making, a claim for a tax credit in respect of the whole, or any part, of the tax year beginning on 6th April 2025 or any subsequent tax year. 
+
+===== uksi_2014_1230_regulation_5.xml
+
+ PART 2 TRANSITION TO UNIVERSAL CREDIT 
+CHAPTER 2 ENTITLEMENT TO OTHER BENEFITS 
+Exclusion of entitlement to certain benefits 
+5 
+1 Except as provided in paragraph (2), a claimant is not entitled to— 
+a income support; 
+b housing benefit; 
+c a tax credit; or 
+d state pension credit ... , 
+in respect of any period when the claimant is entitled to universal credit . 
+2 Entitlement to universal credit does not preclude the claimant from entitlement— 
+ a to housing benefit in respect of specified accommodation or temporary accommodation; 
+ ab to housing benefit or income support where regulation 8(2A) or 46(1) applies; ... 
+b during the first assessment period for universal credit, where the claimant is a new claimant partner, to— 
+i income support, where an award to which the new claimant partner is entitled terminates, in accordance with regulation 7(4), after the first date of entitlement to universal credit; 
+ii housing benefit, where regulation 7(5)(b) or (c) applies and an award of housing benefit to which the new claimant partner is entitled terminates after the first date of entitlement to universal credit; ... 
+iii a tax credit, where an award to which the new claimant partner is entitled terminates, in accordance with the 2002 Act, after the first date of entitlement to universal credit ; or 
+ iv state pension credit, where an award to which the new claimant partner is entitled terminates after the first date of entitlement to universal credit; or 
+ c during the last assessment period for universal credit, where the claimant reaches the qualifying age for state pension credit and paragraph 26 of Schedule 1 to the Decisions and Appeals Regulations applies, to housing benefit or state pension credit from the date the claimant reaches that age 
+
