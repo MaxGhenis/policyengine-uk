@@ -1,0 +1,5906 @@
+{
+ "rows": [
+  {
+   "file": "policyengine_uk/tests/policy/baseline/consumption/rent/benunit_is_rent_liable.yaml",
+   "index": 1,
+   "name": "Not liable",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/policyengine/employer_ni/employer_ni_fixed_employer_cost_change.yaml",
+   "index": 3,
+   "name": "High income baseline scenario returns zero",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/child_qualifying_young_person.yaml",
+   "index": 1,
+   "name": "Qualifying young person aged 19 requires education or training entry before the limit",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/child_qualifying_young_person.yaml",
+   "index": 7,
+   "name": "Child Tax Credit and Pension Credit exclude looked-after children",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/esa_income/esa_income_capital.yaml",
+   "index": 1,
+   "name": "Income-related ESA has no tariff income at the lower capital threshold",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/esa_income/esa_income_capital.yaml",
+   "index": 7,
+   "name": "Income-related ESA does not dilute household capital across multiple claiming benunits",
+   "uc_only_benunits": 2,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income.yaml",
+   "index": 0,
+   "name": "Capped at 0",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_childcare_element.yaml",
+   "index": 1,
+   "name": "Two child, capped",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_childcare_element.yaml",
+   "index": 7,
+   "name": "Blind young person aged 16 counts",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 1,
+   "name": "Single person earning \u00a33 a week has all \u00a33 disregarded",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 7,
+   "name": "Lone parent earning \u00a3100 a week has \u00a325 disregarded",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 13,
+   "name": "Net earnings just above \u00a35 plus \u00a317.10 a week get the additional disregard",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 19,
+   "name": "Lone parent working 16 hours whose net earnings are a penny below \u00a325 plus \u00a317.10 keeps only \u00a325",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 25,
+   "name": "Working-age claimant on Income Support has all earnings disregarded",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_net_earnings.yaml",
+   "index": 1,
+   "name": "Half of pension contributions is deducted",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_net_earnings.yaml",
+   "index": 7,
+   "name": "Statutory maternity pay is earnings",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/meets_housing_benefit_additional_earnings_disregard_conditions.yaml",
+   "index": 2,
+   "name": "Couple where only the partner aged 24 works 30 hours does not",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/meets_housing_benefit_additional_earnings_disregard_conditions.yaml",
+   "index": 8,
+   "name": "Disabled partner not working and other partner working 16 hours does not",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/entitlement/housing_benefit_entitlement.yaml",
+   "index": 3,
+   "name": "Fully reduceed rent",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/entitlement/housing_benefit_lha_order.yaml",
+   "index": 5,
+   "name": "Income below the applicable amount gets the LHA in full",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_capital.yaml",
+   "index": 0,
+   "name": "Working-age Housing Benefit remains eligible at the upper capital limit",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_capital.yaml",
+   "index": 6,
+   "name": "Mixed benunits split household Housing Benefit capital by claimant and partner share",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_earnings_disregards.yaml",
+   "index": 0,
+   "name": "Pensioner without earnings has no disregard against their State Pension",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_eligible.yaml",
+   "index": 3,
+   "name": "Not eligible",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_income_related_benefit_passport.yaml",
+   "index": 5,
+   "name": "Mixed-age couple whose younger member is on income-related ESA is passported",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_meals_deduction.yaml",
+   "index": 4,
+   "name": "On the LHA route the cap rent is the gross rent, meals included",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_pension_age_claims.yaml",
+   "index": 2,
+   "name": "New pension-age claim is tapered at 65% above the applicable amount",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_pension_age_claims.yaml",
+   "index": 8,
+   "name": "Mixed-age couple with a continuing award keeps HB and gets no UC",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_savings_credit_only.yaml",
+   "index": 2,
+   "name": "Case 3, savings credit only couple with a non-dependant, the 16,000 limit applies to the Pension Credit capital.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_universal_credit_passport.yaml",
+   "index": 0,
+   "name": "Single claimant on Universal Credit has earnings, income and capital disregarded and gets maximum Housing Benefit",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": false,
+   "outputs_move_with_limb": [
+    "housing_benefit@2025#None",
+    "housing_benefit_applicable_income@2025#None",
+    "housing_benefit_applicable_income_disregard@2025#None",
+    "housing_benefit_assessable_capital@2025#None",
+    "housing_benefit_entitlement@2025#None",
+    "housing_benefit_on_passporting_benefit@2025#None",
+    "housing_benefit_pre_benefit_cap@2025#None",
+    "housing_benefit_tariff_income@2025#None"
+   ],
+   "masked": {
+    "disregard": [
+     "housing_benefit@2025#None",
+     "housing_benefit_applicable_income@2025#None",
+     "housing_benefit_applicable_income_disregard@2025#None",
+     "housing_benefit_entitlement@2025#None",
+     "housing_benefit_pre_benefit_cap@2025#None"
+    ],
+    "income": [
+     "housing_benefit@2025#None",
+     "housing_benefit_applicable_income@2025#None",
+     "housing_benefit_entitlement@2025#None",
+     "housing_benefit_pre_benefit_cap@2025#None"
+    ],
+    "capital": [
+     "housing_benefit@2025#None",
+     "housing_benefit_applicable_income@2025#None",
+     "housing_benefit_assessable_capital@2025#None",
+     "housing_benefit_entitlement@2025#None",
+     "housing_benefit_pre_benefit_cap@2025#None",
+     "housing_benefit_tariff_income@2025#None"
+    ]
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [
+     "housing_benefit@2025#None",
+     "housing_benefit_applicable_income@2025#None",
+     "housing_benefit_applicable_income_disregard@2025#None",
+     "housing_benefit_entitlement@2025#None",
+     "housing_benefit_pre_benefit_cap@2025#None"
+    ],
+    "income": [
+     "housing_benefit@2025#None",
+     "housing_benefit_applicable_income@2025#None",
+     "housing_benefit_entitlement@2025#None",
+     "housing_benefit_pre_benefit_cap@2025#None"
+    ],
+    "capital": [
+     "housing_benefit@2025#None",
+     "housing_benefit_applicable_income@2025#None",
+     "housing_benefit_assessable_capital@2025#None",
+     "housing_benefit_entitlement@2025#None",
+     "housing_benefit_pre_benefit_cap@2025#None",
+     "housing_benefit_tariff_income@2025#None"
+    ]
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_universal_credit_passport.yaml",
+   "index": 6,
+   "name": "Mixed-age couple on Universal Credit is assessed under the working-age regulations with its income disregarded",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": false,
+   "outputs_move_with_limb": [
+    "housing_benefit_applicable_income@2025#None",
+    "housing_benefit_applicable_income_disregard@2025#None",
+    "housing_benefit_assessable_capital@2025#None",
+    "housing_benefit_on_passporting_benefit@2025#None"
+   ],
+   "masked": {
+    "disregard": [
+     "housing_benefit_applicable_income@2025#None",
+     "housing_benefit_applicable_income_disregard@2025#None"
+    ],
+    "income": [
+     "housing_benefit_applicable_income@2025#None"
+    ],
+    "capital": [
+     "housing_benefit_applicable_income@2025#None",
+     "housing_benefit_assessable_capital@2025#None"
+    ]
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [
+     "housing_benefit_applicable_income@2025#None",
+     "housing_benefit_applicable_income_disregard@2025#None"
+    ],
+    "income": [
+     "housing_benefit_applicable_income@2025#None"
+    ],
+    "capital": [
+     "housing_benefit_applicable_income@2025#None",
+     "housing_benefit_assessable_capital@2025#None"
+    ]
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/non_dep_deduction/housing_benefit_individual_non_dep_deduction_eligible.yaml",
+   "index": 2,
+   "name": "Rent ineligible",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/pension_age_premiums.yaml",
+   "index": 1,
+   "name": "Same claimant just below the boundary is passported to maximum HB",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/would_claim_housing_benefit.yaml",
+   "index": 2,
+   "name": "Ineligible",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/income_support/income_support_capital.yaml",
+   "index": 4,
+   "name": "Income Support remains eligible at the upper capital limit",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/income_support/legacy_capital.yaml",
+   "index": 0,
+   "name": "Income Support capital allocation includes a claimant aged 17",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/income_support/legacy_family_definitions.yaml",
+   "index": 3,
+   "name": "IS 17-year-old outside education or training is not a legacy young person",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/income_support/legacy_family_definitions.yaml",
+   "index": 9,
+   "name": "IS single claimant aged 25 uses older allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/income_support/legacy_premiums.yaml",
+   "index": 5,
+   "name": "Disabled lone parent with a young person keeps single legacy premiums",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/income_support/legacy_youngest_child.yaml",
+   "index": 3,
+   "name": "IS claimant with under-18 partner is not a lone parent",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/income_support_post_migration.yaml",
+   "index": 5,
+   "name": "Contribution-based JSA remains active after income-based JSA ends",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/is_severely_disabled_for_benefits.yaml",
+   "index": 5,
+   "name": "Attendance Allowance at the lower rate is not severe",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/is_severely_disabled_for_benefits.yaml",
+   "index": 11,
+   "name": "Attendance Allowance amount with no category, just below the 2024 threshold, is not severe",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/is_severely_disabled_for_benefits.yaml",
+   "index": 17,
+   "name": "An AFCS payment adds no WTC severe disability element",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/jsa_income/jsa_income_capital.yaml",
+   "index": 2,
+   "name": "Income-based JSA tariff income rounds incomplete capital steps up",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/jsa_income/jsa_income_capital.yaml",
+   "index": 8,
+   "name": "Income-based JSA capital test disregards private pension wealth",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/rent_of_sharers_boarders_and_lodgers.yaml",
+   "index": 2,
+   "name": "A family not marked as a sharer has no share of the rent",
+   "uc_only_benunits": 2,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/severe_disability_premium.yaml",
+   "index": 1,
+   "name": "Attendance Allowance at the higher rate qualifies",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/severe_disability_premium.yaml",
+   "index": 7,
+   "name": "PIP mobility component alone does not qualify",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/severe_disability_premium.yaml",
+   "index": 13,
+   "name": "Couple where only one partner qualifies get nothing",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/severe_disability_premium.yaml",
+   "index": 19,
+   "name": "A qualifying young person does not make a couple both qualify",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/severe_disability_premium.yaml",
+   "index": 25,
+   "name": "A carer benefit paid to a young person in the family bars a single claimant",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/severe_disability_premium.yaml",
+   "index": 31,
+   "name": "People in other households are not non-dependants",
+   "uc_only_benunits": 2,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/severe_disability_premium.yaml",
+   "index": 37,
+   "name": "The legacy premium and the Pension Credit addition read the same carer attribution",
+   "uc_only_benunits": 2,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/tax_credits.yaml",
+   "index": 0,
+   "name": "Applicable income from earnings",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/tax_credits.yaml",
+   "index": 6,
+   "name": "60-year-old only needs to meet the lower hours requirement (16)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/tax_credits_claimants_and_children.yaml",
+   "index": 0,
+   "name": "A couple with an 18-year-old QYP and a 10-year-old needs 24 hours, not 16",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/tax_credits_claimants_and_children.yaml",
+   "index": 6,
+   "name": "Childcare element counts children until the September after their 15th birthday",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/uc_legacy_mutual_exclusion.yaml",
+   "index": 1,
+   "name": "HB eligibility holds when benunit is not claiming Universal Credit",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/child_element/disability/limited_work_ability/uc_LCWRA_element.yaml",
+   "index": 1,
+   "name": "2026 LCWRA baseline amount uses the standard new-claimant rate.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/child_element/uc_child_element.yaml",
+   "index": 0,
+   "name": "Child elements are summed",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/childcare_element/uc_childcare_work_condition.yaml",
+   "index": 2,
+   "name": "Head of household, child in work - ineligible",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/childcare_element/uc_childcare_work_condition.yaml",
+   "index": 8,
+   "name": "Working claimant aged 17 satisfies the childcare work condition",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/childcare_element/uc_childcare_work_condition_reg_32.yaml",
+   "index": 4,
+   "name": "Reg. 32(1)(b)(iii) - a partner temporarily absent from the claimant's household",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/childcare_element/uc_childcare_work_condition_reg_32.yaml",
+   "index": 10,
+   "name": "Reg. 32(2)(b) - a single claimant receiving statutory sick pay",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/childcare_element/uc_childcare_work_condition_reg_32.yaml",
+   "index": 16,
+   "name": "Reg. 32(1)(a)-(b) - a claimant with an offer of paid work and a partner on maternity allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/childcare_element/uc_childcare_work_condition_reg_32.yaml",
+   "index": 22,
+   "name": "Reg. 32(1) - three flagged claimants, one in paid work and two unable to provide childcare",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/claimant_child_element.yaml",
+   "index": 0,
+   "name": "Case 1, an explicitly identified young claimant is not their own child.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/housing_costs_element/non_dep_deduction/uc_individual_non_dep_deduction.yaml",
+   "index": 1,
+   "name": "Exempt, no deduction",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/housing_costs_element/non_dep_deduction/uc_non_dep_deduction_exempt.yaml",
+   "index": 2,
+   "name": "Exempt - carers",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/housing_costs_element/uc_housing_costs_element.yaml",
+   "index": 0,
+   "name": "No housing costs, no element",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/housing_costs_element/uc_housing_costs_element.yaml",
+   "index": 6,
+   "name": "Rented privately, non-dependent deductions exceed housing costs",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/income_floor/uc_MIF_applies.yaml",
+   "index": 2,
+   "name": "Both employment and self-employment income (MIF applies)",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_earned_income.yaml",
+   "index": 3,
+   "name": "Work allowance comes off combined earnings after each person's deductions",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_earnings_deductions.yaml",
+   "index": 5,
+   "name": "Voluntary Class 3 NI is not deducted",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_earnings_deductions.yaml",
+   "index": 11,
+   "name": "The pension annual allowance charge is not deducted, even with a tax reduction",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_income_from_capital.yaml",
+   "index": 3,
+   "name": "Rent from a lodger in the home does not reduce the award",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_income_reduction.yaml",
+   "index": 2,
+   "name": "Uncapped at max amount",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_state_pension.yaml",
+   "index": 4,
+   "name": "Same couple with the same amount of private pension instead gets the same UC",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_unearned_benefits.yaml",
+   "index": 5,
+   "name": "Couple renting from the council, contributory ESA reduces UC pound for pound",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_unearned_benefits.yaml",
+   "index": 11,
+   "name": "Same carer in England gets Carer's Allowance and the same UC",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_unearned_income.yaml",
+   "index": 0,
+   "name": "Listed sources are summed and interest and dividends are not",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_unearned_income.yaml",
+   "index": 12,
+   "name": "Dividend income is not unearned income with reported capital",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/is_UC_eligible.yaml",
+   "index": 3,
+   "name": "Claimant meeting the age conditions is ineligible above the upper capital limit",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/is_UC_eligible.yaml",
+   "index": 9,
+   "name": "Multi-benunit proxy capital is weighted by claimants in each benunit",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/is_UC_eligible.yaml",
+   "index": 15,
+   "name": "Main residence value is excluded from Universal Credit capital",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/is_uc_claimant.yaml",
+   "index": 4,
+   "name": "Case 5, the head of a young person's own benefit unit is a claimant.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/limited_capability_for_WRA.yaml",
+   "index": 1,
+   "name": "Disabled",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/meets_uc_minimum_age_condition.yaml",
+   "index": 5,
+   "name": "A 15 year old parent remains below the reduced minimum age",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/meets_uc_minimum_age_condition.yaml",
+   "index": 11,
+   "name": "Mixed age couple retains eligibility through its younger claimant",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/uc_assessable_capital.yaml",
+   "index": 2,
+   "name": "Under-18 and older claimants receive equal unreported capital shares.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/uc_deductions.yaml",
+   "index": 2,
+   "name": "The Fair Repayment Rate caps the same latent demand at 15% in 2025",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/work_allowance/is_uc_work_allowance_eligible.yaml",
+   "index": 0,
+   "name": "Child present",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/work_allowance/is_uc_work_allowance_eligible.yaml",
+   "index": 6,
+   "name": "Case 7, a looked-after child does not create a work allowance.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/general.yaml",
+   "index": 4,
+   "name": "Family structure",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/income/minimum_wage.yaml",
+   "index": 0,
+   "name": "Minimum wage for a person over 25",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/income/minimum_wage.yaml",
+   "index": 6,
+   "name": "Minimum wage for a person aged 21 uses the 2026-27 rate",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/income/minimum_wage.yaml",
+   "index": 12,
+   "name": "2023-24 apprenticeship rate",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dcms/bbc/tv-licence/tv_licence.yaml",
+   "index": 3,
+   "name": "TV Licence half price - eligible for blind discount but not aged.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dcms/bbc/tv_licence_discount.yaml",
+   "index": 4,
+   "name": "Eligible for both aged and blind discounts.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/adult_dependants_grant/adult_dependants_grant.yaml",
+   "index": 5,
+   "name": "Adult Dependants' Grant is incompatible with Postgraduate Loan support",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/bursary_fund_16_to_19/bursary_fund_16_to_19.yaml",
+   "index": 0,
+   "name": "16 to 19 Bursary Fund pays actual costs for care leavers below the cap",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/bursary_fund_16_to_19/bursary_fund_16_to_19.yaml",
+   "index": 6,
+   "name": "16 to 19 Bursary Fund does not use a parent UC claim for the disability route",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/bursary_fund_16_to_19/bursary_fund_16_to_19.yaml",
+   "index": 12,
+   "name": "16 to 19 Bursary Fund only applies in England",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/care_to_learn/care_to_learn.yaml",
+   "index": 5,
+   "name": "Two eligible young parents - the child's costs are paid once",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/care_to_learn/care_to_learn_eligible.yaml",
+   "index": 3,
+   "name": "Care to Learn - Higher education",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/care_to_learn/care_to_learn_eligible.yaml",
+   "index": 9,
+   "name": "Care to Learn - A 17-year-old parent with a baby",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/childcare_grant/childcare_grant.yaml",
+   "index": 4,
+   "name": "Childcare Grant permits children under 17 with special educational needs",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/childcare_grant/childcare_grant.yaml",
+   "index": 10,
+   "name": "Childcare Grant excludes part-time students by default",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/disabled_students_allowance/disabled_students_allowance.yaml",
+   "index": 2,
+   "name": "Disabled Students' Allowance excludes equivalent support from another scheme",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement.yaml",
+   "index": 3,
+   "name": "Eligible for mixed hours - Family with multiple children",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement.yaml",
+   "index": 9,
+   "name": "Benefit unit maximum hours cap applied",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement_eligible.yaml",
+   "index": 0,
+   "name": "Eligible - Lives in England with all conditions met",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement_eligible.yaml",
+   "index": 6,
+   "name": "Not eligible - a 17-year-old parent must meet the income test",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement_eligible.yaml",
+   "index": 12,
+   "name": "Eligible - a two-year-old in 2024",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement_income_condition.yaml",
+   "index": 1,
+   "name": "Age 20 meeting 18-20 yearly threshold",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement_income_condition.yaml",
+   "index": 7,
+   "name": "Income \u00a34 a year below the reg 18 minimum does not meet the requirement",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement_work_condition.yaml",
+   "index": 3,
+   "name": "One parent working, the other the carer on a UC award with the carer element - both meet the condition",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement_work_condition.yaml",
+   "index": 9,
+   "name": "One parent working, the other on PIP only - the other does not meet the condition",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement_work_condition.yaml",
+   "index": 15,
+   "name": "2022, partner on Carer's Allowance with adjusted net income above \u00a3100,000 - does not meet the condition",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/extended_childcare_entitlement/is_child_receiving_extended_childcare.yaml",
+   "index": 0,
+   "name": "Child age 2 with positive entitlement - eligible",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/maintenance_loans/maintenance_loan.yaml",
+   "index": 0,
+   "name": "Full-time maintenance loan - away from home outside London at full rate",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/maintenance_loans/maintenance_loan.yaml",
+   "index": 6,
+   "name": "Maintenance loan - not in higher education",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/maintenance_loans/maintenance_loan.yaml",
+   "index": 12,
+   "name": "Maintenance loan household income proxy includes younger sponsor adults",
+   "uc_only_benunits": 2,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/parents_learning_allowance/parents_learning_allowance.yaml",
+   "index": 1,
+   "name": "Parents' Learning Allowance still pays the maximum just below the cutoff",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/parents_learning_allowance/parents_learning_allowance.yaml",
+   "index": 7,
+   "name": "Parents' Learning Allowance counts an 18-year-old dependant at school",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/targeted_childcare_entitlement/is_child_receiving_targeted_childcare.yaml",
+   "index": 5,
+   "name": "Child age 2.9 with positive entitlement - eligible",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/targeted_childcare_entitlement/meets_tax_credit_criteria_for_targeted_childcare_entitlement.yaml",
+   "index": 2,
+   "name": "Tax credit criteria are inactive from 2026",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.yaml",
+   "index": 2,
+   "name": "Child aged 3 (not eligible by age, but has targeting)",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement_eligible.yaml",
+   "index": 2,
+   "name": "Working Tax Credit run-on qualifies after the 2018 amendment",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/travel_grant/travel_grant.yaml",
+   "index": 2,
+   "name": "Travel Grant is nil when expenses do not exceed the initial contribution",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/universal_childcare_entitlement/is_child_receiving_universal_childcare.yaml",
+   "index": 2,
+   "name": "Child age 3 with zero entitlement - ineligible",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement.yaml",
+   "index": 2,
+   "name": "Child aged 4 is eligible (person-level)",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement.yaml",
+   "index": 8,
+   "name": "Child using fewer hours than maximum entitlement",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement_eligible.yaml",
+   "index": 2,
+   "name": "Child aged 3 in Wales is not eligible",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dft/person_bus_fare_spending.yaml",
+   "index": 3,
+   "name": "A household with no fare spending allocates nothing",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dft/vehicle_excise_duty/car_vehicle_excise_duty.yaml",
+   "index": 5,
+   "name": "2001 to 2017 CO2 bands",
+   "uc_only_benunits": 14,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dft/vehicle_excise_duty/car_vehicle_excise_duty.yaml",
+   "index": 11,
+   "name": "Zero emission cars in old graduated schedule pay band B",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dft/vehicle_excise_duty/car_vehicle_excise_duty.yaml",
+   "index": 17,
+   "name": "Alternative fuel discount in 2024 across schedules",
+   "uc_only_benunits": 3,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/basic_state_pension.yaml",
+   "index": 0,
+   "name": "Basic state pension calculation with normal parameters",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/benefit_cap.yaml",
+   "index": 2,
+   "name": "Single claimant aged 17 does not count as their own child outside London.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/benefit_cap.yaml",
+   "index": 8,
+   "name": "Parent of a 17-year-old qualifying student keeps the family cap.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/benefit_cap.yaml",
+   "index": 14,
+   "name": "A 16-year-old outside education keeps the family cap (UC reg 5(1)(a) window)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/benefit_cap/benefit_cap_pension_age.yaml",
+   "index": 5,
+   "name": "A working-age couple on Universal Credit is capped, as before",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/carers_allowance_overlapping_benefits.yaml",
+   "index": 15,
+   "name": "Case 16, Carer's Allowance supplied as an input is treated as an entitlement.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/housing_benefit_on_passporting_benefit.yaml",
+   "index": 2,
+   "name": "Income Support alone, without Universal Credit",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/housing_benefit_on_passporting_benefit.yaml",
+   "index": 8,
+   "name": "Wales in 2018-19 has the limb",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": false,
+   "outputs_move_with_limb": [
+    "housing_benefit_on_passporting_benefit@2018#None"
+   ],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/in_receipt_of_income_support_jsa_ib_or_esa_ir.yaml",
+   "index": 2,
+   "name": "Income-based JSA alone",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/is_SP_age.yaml",
+   "index": 1,
+   "name": "A 65-year-old is under State Pension age in 2025-26",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/is_SP_age.yaml",
+   "index": 7,
+   "name": "A fractional age is the exact age on 6 October (66 years and 3 months, born 6 July 1960)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/is_SP_age.yaml",
+   "index": 13,
+   "name": "Class 1 employee NI applies to a 66-year-old below State Pension age in 2027-28",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/lifetime_isa_capital.yaml",
+   "index": 4,
+   "name": "In 2021-22 the withdrawal charge is 25% again",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/lifetime_isa_capital.yaml",
+   "index": 10,
+   "name": "Reported Universal Credit capital overrides the holder's Lifetime ISA",
+   "uc_only_benunits": 2,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/lifetime_isa_capital.yaml",
+   "index": 16,
+   "name": "Pension Credit counts a younger partner's Lifetime ISA after the charge",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/lifetime_isa_capital.yaml",
+   "index": 22,
+   "name": "A pensioner's Pension Credit does not count a dependent young person's Lifetime ISA",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/means_test_income_members.yaml",
+   "index": 4,
+   "name": "The same claimant alone",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/new_state_pension.yaml",
+   "index": 3,
+   "name": "Additional State Pension captures SERPS/S2P for BASIC retirees",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/claimant_partner_income_and_carers.yaml",
+   "index": 2,
+   "name": "Pension Credit excludes an 18-year-old qualifying young person's income",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/guarantee_credit/carer_and_severe_disability_additions.yaml",
+   "index": 9,
+   "name": "Both partners qualify and carer benefits are paid for both",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/guarantee_credit/is_guarantee_credit_eligible.yaml",
+   "index": 0,
+   "name": "Income under the minimum guarantee confers eligibility.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/guarantee_credit/severe_disability_claimant_partner.yaml",
+   "index": 3,
+   "name": "A dependant's disability benefit alone does not qualify the claimant.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/guarantee_credit/severe_disability_residence_and_carers.yaml",
+   "index": 5,
+   "name": "An 18-year-old qualifying young person in the claimant's benefit unit is ignored",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/guarantee_credit/severe_disability_residence_and_carers.yaml",
+   "index": 11,
+   "name": "A couple who both qualify get one rate when another household member receives Carer's Allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/guarantee_credit/severe_disability_residence_and_carers.yaml",
+   "index": 17,
+   "name": "The addition carries into the minimum guarantee",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/guarantee_credit/severe_disability_residence_and_carers.yaml",
+   "index": 23,
+   "name": "Two carers in the household cover two benefit units",
+   "uc_only_benunits": 2,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/guarantee_credit/severe_disability_residence_and_carers.yaml",
+   "index": 29,
+   "name": "When two benefit units' eldest members are the same age, the one whose eldest member comes first in person order takes a carer",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/is_pension_credit_eligible.yaml",
+   "index": 0,
+   "name": "Case 1, single adult below State Pension age is ineligible.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/is_pension_credit_eligible.yaml",
+   "index": 6,
+   "name": "An explicitly identified under-18 partner must meet Pension Credit age conditions.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/is_pension_credit_eligible.yaml",
+   "index": 12,
+   "name": "Case 6, child-only benefit unit is ineligible.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/mixed_age_couples.yaml",
+   "index": 5,
+   "name": "The saving input can be switched off despite reported Pension Credit",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/mixed_age_couples.yaml",
+   "index": 11,
+   "name": "Working-age couple is unaffected by the saving input",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/mixed_age_couples.yaml",
+   "index": 17,
+   "name": "A mixed-age couple with an 18 year old dependant in education can keep the saving",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/mixed_age_couples.yaml",
+   "index": 23,
+   "name": "Before the exclusion, a grandparent's Universal Credit does not move the couple onto it",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/pension_credit_deemed_income.yaml",
+   "index": 1,
+   "name": "Pension Credit rounds the first capital step up.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/pension_credit_earnings.yaml",
+   "index": 0,
+   "name": "Person with only employment income",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/pension_credit_income.yaml",
+   "index": 1,
+   "name": "Interest and dividends are not counted directly in Pension Credit income.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/pension_credit_reported_capital.yaml",
+   "index": 1,
+   "name": "Reported capital replaces the household proxy.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/pension_credit_reported_capital.yaml",
+   "index": 7,
+   "name": "Another unit's reported capital leaves an unreported unit's household proxy unchanged.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/savings_credit/is_savings_credit_eligible.yaml",
+   "index": 4,
+   "name": "No pre-cutoff year SPA member and income above threshold (couple), ineligible",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/savings_credit/meets_savings_credit_age_requirement.yaml",
+   "index": 4,
+   "name": "Woman born 6 April 1950 reached State Pension age on 6 May 2010 and is 65 in 2015",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/savings_credit/meets_savings_credit_age_requirement.yaml",
+   "index": 10,
+   "name": "Man aged 75 in 2025, born 1950, reached State Pension age at 65 in 2015",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/state_pension_age.yaml",
+   "index": 2,
+   "name": "Woman born 6 April 1951 attains it on 6 May 2012 (table 1)",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/state_pension_age.yaml",
+   "index": 8,
+   "name": "Woman born 6 December 1953 attains it on 6 March 2019 (table 2)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/state_pension_age.yaml",
+   "index": 14,
+   "name": "Person born 6 April 1960 attains it at 66 years and 1 month (rule 7, table 3)",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/state_pension_age.yaml",
+   "index": 20,
+   "name": "Person born 6 March 1961 attains it at 67 (rule 8)",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/winter_fuel_allowance.yaml",
+   "index": 4,
+   "name": "Pensioner with pension credit gets WFA regardless of income test",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/alcohol_duty/alcohol_duty.yaml",
+   "index": 4,
+   "name": "Draught relief stops at 8.5 percent",
+   "uc_only_benunits": 2,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/alcohol_duty/alcohol_duty.yaml",
+   "index": 10,
+   "name": "Wine transitional 12.5 percent treatment ends February 2025",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/capital_gains_tax/capital_gains_tax.yaml",
+   "index": 1,
+   "name": "Capital gains below annual exempt amount",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/capital_gains_tax/capital_gains_tax.yaml",
+   "index": 7,
+   "name": "High capital gains, low income",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/capital_gains_tax/capital_gains_tax.yaml",
+   "index": 13,
+   "name": "Case 14, personal pension contributions extend the basic rate band for capital gains.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/capital_gains_tax/capital_gains_tax_components.yaml",
+   "index": 2,
+   "name": "BADR gains 2024 pay 10% whatever the band.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/capital_gains_tax/capital_gains_tax_components.yaml",
+   "index": 8,
+   "name": "Carried interest 2025 pays a flat 32%.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/capital_gains_tax/capital_gains_tax_components.yaml",
+   "index": 14,
+   "name": "A net loss pays nothing whatever the schedule inputs say.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/capital_gains_tax/marginal_tax_rate_on_capital_gains.yaml",
+   "index": 4,
+   "name": "Main rate at 2^28 of gains.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/capital_gains_tax/marginal_tax_rate_on_capital_gains.yaml",
+   "index": 10,
+   "name": "Below \u00a31m of gains the step is still \u00a31,000, at \u00a3999k.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/child_benefit/child_benefit.yaml",
+   "index": 1,
+   "name": "Respective amounts ignored when non-claimant",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/child_benefit/would_claim_child_benefit.yaml",
+   "index": 0,
+   "name": "Claims all entitled benefits overrides takeup",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/excise_integration.yaml",
+   "index": 0,
+   "name": "Excise duties enter household and government taxes exactly once",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/fuel_duty/petrol_and_diesel_schedule.yaml",
+   "index": 4,
+   "name": "Fuel duty for 2029-30",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/fuel_duty/road_fuel_gases.yaml",
+   "index": 3,
+   "name": "Fiscal 2026 includes the January and March 2027 gas rate increases",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/adjusted_net_income.yaml",
+   "index": 2,
+   "name": "Only employment income",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances.yaml",
+   "index": 0,
+   "name": "Personal Allowance default",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances.yaml",
+   "index": 6,
+   "name": "Trading allowance full deduction",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances.yaml",
+   "index": 12,
+   "name": "Savings allowance at higher rate",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/gift_aid.yaml",
+   "index": 0,
+   "name": "Higher rate taxpayer gets 40% relief",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/is_allowance_eligible.yaml",
+   "index": 1,
+   "name": "Blind Person's Allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/is_allowance_eligible.yaml",
+   "index": 7,
+   "name": "Savings Allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/meets_marriage_allowance_income_conditions.yaml",
+   "index": 3,
+   "name": "Below-PA earner (band NONE) is eligible for Marriage Allowance (regression for",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/personal_allowance.yaml",
+   "index": 3,
+   "name": "PA taper rounds remaining allowance up",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/personal_allowance.yaml",
+   "index": 9,
+   "name": "Gift Aid fully restores PA from zero",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/received_allowances/received_allowances.yaml",
+   "index": 1,
+   "name": "Received allowances with medium income",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/received_allowances/received_allowances_dividend_income.yaml",
+   "index": 2,
+   "name": "Dividend income greater than remaining allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/received_allowances/received_allowances_earned_income.yaml",
+   "index": 2,
+   "name": "Earned income greater than allowances",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/received_allowances/received_allowances_savings_income.yaml",
+   "index": 2,
+   "name": "Savings income greater than remaining allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/trading_allowance_deduction.yaml",
+   "index": 2,
+   "name": "Profit equal to the allowance, receipts unknown, is fully relieved",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/trading_allowance_deduction.yaml",
+   "index": 8,
+   "name": "The allowance replaces capital allowances as well as expenses",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/savings_income/taxable_savings_interest_income.yaml",
+   "index": 1,
+   "name": "Savings interest income fully covered by tax-free allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/savings_income/taxable_savings_interest_income.yaml",
+   "index": 7,
+   "name": "High values for both inputs",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_dividend_income.yaml",
+   "index": 4,
+   "name": "Dividend income with no deficiency relief",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_employment_income.yaml",
+   "index": 1,
+   "name": "Deductions from employment stay positive",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 0,
+   "name": "Trading loss relief",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 12,
+   "name": "Pre-net self-employment income can override trading allowance deduction",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/charges/child_benefit_hitc.yaml",
+   "index": 0,
+   "name": "No Child Benefit, no charge",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/dividend_income_tax.yaml",
+   "index": 1,
+   "name": "2026 dividend tax uses the frozen additional-rate threshold.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/reliefs/loss_relief.yaml",
+   "index": 2,
+   "name": "Previous year trading loss only",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/reliefs/loss_relief.yaml",
+   "index": 8,
+   "name": "Small previous year loss, large current year loss",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/class_1/ni_class_1_employer.yaml",
+   "index": 5,
+   "name": "Earnings below the secondary threshold over state pension age",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/class_1/ni_class_1_secondary_liable.yaml",
+   "index": 1,
+   "name": "Aged 16 is liable for secondary Class 1",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/class_2/ni_class_2.yaml",
+   "index": 0,
+   "name": "NI Class 2 - under LPL.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/class_4/ni_class_4_profits.yaml",
+   "index": 0,
+   "name": "Capital allowances reduce Class 4 profits",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/class_4/ni_class_4_profits.yaml",
+   "index": 6,
+   "name": "A loss is set only against trade profits, and the rest carried forward",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/class_4/ni_class_4_profits.yaml",
+   "index": 12,
+   "name": "An unrelieved loss runs down over the following years",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/national_insurance.yaml",
+   "index": 0,
+   "name": "National Insurance sums non-employer-side contributions.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/ni_threshold_freeze.yaml",
+   "index": 3,
+   "name": "2027-28 Class 4 at the lower profits limit",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/ni_threshold_freeze.yaml",
+   "index": 9,
+   "name": "2030-31 Class 4 at the lower profits limit",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/pensions/pension_contributions.yaml",
+   "index": 4,
+   "name": "High contribution amounts",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/pensions/pension_contributions_for_annual_allowance.yaml",
+   "index": 2,
+   "name": "Personal contributions only",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/pensions/pension_contributions_relief.yaml",
+   "index": 1,
+   "name": "Pension relief excessive",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/pensions/personal_pension_contributions_tax.yaml",
+   "index": 1,
+   "name": "Employee-only contributions exceeding AA",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/stamp_duty/stamp_duty_land_tax.yaml",
+   "index": 1,
+   "name": "\u00a3105k first-time buyer",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/stamp_duty/stamp_duty_land_tax.yaml",
+   "index": 7,
+   "name": "\u00a33.5m second home",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/student_loans/student_loan_interest_rate.yaml",
+   "index": 5,
+   "name": "No loan returns zero interest rate",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/student_loans/student_loan_interest_rate.yaml",
+   "index": 11,
+   "name": "Postgraduate - Repayment above threshold at 6% rate",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/student_loans/student_loan_repayment.yaml",
+   "index": 5,
+   "name": "Has student loan - false",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/student_loans/student_loan_repayment.yaml",
+   "index": 11,
+   "name": "Student loan repayment is capped by outstanding balance",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/is_child_receiving_tax_free_childcare.yaml",
+   "index": 1,
+   "name": "Child under 12 with zero TFC amount - ineligible",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare.yaml",
+   "index": 0,
+   "name": "Eligible standard child - below cap",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare.yaml",
+   "index": 6,
+   "name": "Small childcare expense",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare.yaml",
+   "index": 12,
+   "name": "One eligible declaration period quarters the top-up below the cap",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare.yaml",
+   "index": 18,
+   "name": "Routing no spending through the account gives no top-up",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_age_child_condition.yaml",
+   "index": 0,
+   "name": "Under standard age limit - eligible",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_eligibility.yaml",
+   "index": 2,
+   "name": "Fails income condition only",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_eligible_declaration_periods.yaml",
+   "index": 0,
+   "name": "Eligible benefit unit defaults to all declaration periods",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_income_condition.yaml",
+   "index": 3,
+   "name": "Under threshold for age 22 - ineligible",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_income_condition.yaml",
+   "index": 9,
+   "name": "A non-working partner on Carer's Allowance whose partner works meets the income requirement",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_program_eligible.yaml",
+   "index": 0,
+   "name": "Eligible - does NOT receive any of these benefits",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_qualifying_child.yaml",
+   "index": 0,
+   "name": "Age-eligible non-parent child is qualifying",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_treated_as_in_work.yaml",
+   "index": 2,
+   "name": "Person on adoption leave is treated as in work",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_treated_as_in_work.yaml",
+   "index": 8,
+   "name": "Person with no work or temporary absence condition is not treated as in work",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_work_condition.yaml",
+   "index": 5,
+   "name": "Single working adult - eligible",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_work_condition.yaml",
+   "index": 11,
+   "name": "Couple one working one on qualifying parenting leave - eligible",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_work_condition.yaml",
+   "index": 17,
+   "name": "A working 17-year-old lone parent meets the work condition",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_work_condition.yaml",
+   "index": 23,
+   "name": "Couple one working one on Carer Support Payment in 2025 - eligible under reg 13(1)(b)(vii)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_work_condition.yaml",
+   "index": 29,
+   "name": "Couple one working, the family on income-related ESA only - ineligible",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tax_free_childcare/tax_free_childcare_work_condition.yaml",
+   "index": 35,
+   "name": "Working partner supplied as receiving Carer's Allowance excludes the other under reg 13(3)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tobacco_duty/tobacco_duty.yaml",
+   "index": 5,
+   "name": "Fiscal 2025 includes Budget day increase",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/tobacco_duty/tobacco_duty.yaml",
+   "index": 11,
+   "name": "Default price is the published ONS 2024 average",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml",
+   "index": 5,
+   "name": "Merton working-age claimant above capital limit gets no local support",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml",
+   "index": 11,
+   "name": "Kingston upon Thames working-age claimant above capital limit gets no local support",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml",
+   "index": 17,
+   "name": "Newham working-age claimant above capital limit gets no local support",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml",
+   "index": 23,
+   "name": "Westminster working-age claimant above capital limit gets no local support",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml",
+   "index": 29,
+   "name": "Oxford applies the 75 percent band above 480 weekly income",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction.yaml",
+   "index": 35,
+   "name": "Oxford does not exempt working-age income-based benefit non-dependants",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction_pension_credit.yaml",
+   "index": 5,
+   "name": "Capital limit still applies to a pensioner entitled to guarantee credit who does not claim it",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction_pension_credit.yaml",
+   "index": 11,
+   "name": "Wales working-age earner, not eligible for Pension Credit, keeps the taper",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction_pension_credit.yaml",
+   "index": 17,
+   "name": "Capital of exactly 16,000 is within the limit for a pensioner without Pension Credit",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction_pensioner.yaml",
+   "index": 2,
+   "name": "An English mixed-age couple on income-based JSA is not a pensioner couple",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction_pensioner.yaml",
+   "index": 8,
+   "name": "A Welsh mixed-age couple on Universal Credit is not a pensioner couple",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction_pensioner_earnings_disregard.yaml",
+   "index": 3,
+   "name": "England pensioner couple has 10 a week disregarded",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction_pensioner_earnings_disregard.yaml",
+   "index": 9,
+   "name": "Net earnings a penny short of the disregards and 17.10 fail the earnings test",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction_pensioner_earnings_disregard.yaml",
+   "index": 15,
+   "name": "Scotland pensioner working 30 hours is back to 5 plus 17.10 in 2021",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/joint_liability.yaml",
+   "index": 0,
+   "name": "Three sharers and a non-dependant in Wales",
+   "uc_only_benunits": 4,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/joint_liability.yaml",
+   "index": 6,
+   "name": "An excluded student sharer is not counted and does not claim",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/legacy_claimant_non_dep_exemption.yaml",
+   "index": 0,
+   "name": "Dependent young person PIP does not exempt the claimant household",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/scottish_government/funded_early_learning_childcare.yaml",
+   "index": 2,
+   "name": "Scottish 4-year-old is eligible",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/social_security_scotland/carer_support_payment_overlapping_benefits.yaml",
+   "index": 2,
+   "name": "Case 3, State Pension equal to Carer Support Payment gives \u00a30 (reg 16(2)(b)).",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/social_security_scotland/scottish_child_payment.yaml",
+   "index": 4,
+   "name": "No SCP in Wales",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/social_security_scotland/scottish_child_payment.yaml",
+   "index": 10,
+   "name": "SCP with 2025 amount (\u00a327.15/week)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/social_security_scotland/scottish_child_payment.yaml",
+   "index": 16,
+   "name": "WTC no longer qualifies from 2025",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/social_security_scotland/two_child_limit_payment.yaml",
+   "index": 1,
+   "name": "Payment in Scotland in 2025",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/social_security_scotland/two_child_limit_payment.yaml",
+   "index": 7,
+   "name": "No payment in Northern Ireland",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/treasury/cost_of_living_support/cost_of_living_support_payment.yaml",
+   "index": 3,
+   "name": "2024 Cost-of-Living Payments withdrawn",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/wra/land_transaction_tax/land_transaction_tax.yaml",
+   "index": 1,
+   "name": "Residential property - medium value in LTT holiday",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/cliff_evaluated.yaml",
+   "index": 0,
+   "name": "Children are not cliff-evaluated",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/demographic/benefit_unit_structure.yaml",
+   "index": 12,
+   "name": "Three unrelated adults form one couple plus a non-dependant",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/demographic/benefit_unit_structure.yaml",
+   "index": 18,
+   "name": "The 16-year gap below a flagged parent is a boundary",
+   "uc_only_benunits": 2,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/demographic/benefit_unit_structure.yaml",
+   "index": 24,
+   "name": "A flagged lone parent with an adult child and a younger child is read as a couple",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/demographic/equivalisation.yaml",
+   "index": 4,
+   "name": "Equivalisation factor \u2014 couple with one young and one older child",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/demographic/is_cared_for_by_carer_benefit_recipient.yaml",
+   "index": 0,
+   "name": "Attendance Allowance, DLA care at the middle rate, PIP daily living and AFIP make a person severely disabled for Carer's Allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/demographic/is_cared_for_by_carer_benefit_recipient.yaml",
+   "index": 6,
+   "name": "One carer for two severely disabled partners cares for the first in person order",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/demographic/is_cared_for_by_carer_benefit_recipient.yaml",
+   "index": 12,
+   "name": "One carer's award is for one person, in the benefit unit with the eldest member",
+   "uc_only_benunits": 3,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/demographic/is_parent.yaml",
+   "index": 1,
+   "name": "is_parent can be provided as an input",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/marginal_tax_rate.yaml",
+   "index": 2,
+   "name": "Additional rate at \u00a31bn of earnings, which the \u00a31,000 step read as 45.6%.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/marginal_tax_rate_wrt_employer_cost.yaml",
+   "index": 2,
+   "name": "Single employee at \u00a3561m of earnings, which the \u00a31,000 step read as 55.3%.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/poverty/poverty_threshold_ahc.yaml",
+   "index": 1,
+   "name": "A single adult on 5,000 of earnings is below the AHC absolute line",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/poverty/poverty_threshold_bhc.yaml",
+   "index": 2,
+   "name": "FYE 2021 (2020) keeps the FYE 2011 BHC reference",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/wealth/household_land_value.yaml",
+   "index": 3,
+   "name": "Scotland household",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/wealth/net_wealth.yaml",
+   "index": 0,
+   "name": "Net wealth subtracts mortgage, consumer and student-loan debt",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/wealth/vehicle.yaml",
+   "index": 1,
+   "name": "Household with one vehicle owns a vehicle",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/integration/income.yaml",
+   "index": 6,
+   "name": "Property income uses post-allowance rate bands.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/nov_2025_budget/income_tax_freeze.yaml",
+   "index": 2,
+   "name": "Personal allowance frozen at 12570 in 2030-31",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/nov_2025_budget/income_tax_freeze.yaml",
+   "index": 8,
+   "name": "Income at 125141 pays additional rate in 2028-29",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  }
+ ],
+ "skipped": [
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/disability_basic_income/disability_basic_income.yaml",
+   "index": 4,
+   "name": "Disability basic income for UC LCWRA recipient"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/labour/private_school_vat.yaml",
+   "index": 0,
+   "name": "Returns 0 when no children"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/policyengine/employer_ni/employer_ni_fixed_employer_cost_change.yaml",
+   "index": 9,
+   "name": "Different incidence rate baseline returns zero"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/legacy_claimant_relationships.yaml",
+   "index": 1,
+   "name": "Couple with qualifying young person uses one couple allowance"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_property_income.yaml",
+   "index": 4,
+   "name": "Property income with no allowance"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 6,
+   "name": "Self-employment income partially offset by deductions"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxed_dividend_income.yaml",
+   "index": 5,
+   "name": "Very high dividend income"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employee.yaml",
+   "index": 3,
+   "name": "Employee NI charge at 2% additional rate for high earner above UEL"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employer.yaml",
+   "index": 0,
+   "name": "No employer NI charge when salary sacrifice below \u00a32,000 cap"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employer.yaml",
+   "index": 6,
+   "name": "Employer NI charge for low earner with high pension contribution"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/cps/marriage_tax_reforms.yaml",
+   "index": 2,
+   "name": "Expanded MA \u2014 explicit Marriage Allowance take-up input drives the reform"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/basic_income/basic_income.yaml",
+   "index": 3,
+   "name": "Basic income included in taxable income."
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/hbai_council_tax_lvt.yaml",
+   "index": 0,
+   "name": "Abolishing council tax increases HBAI household net income"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/two_child_limit/age_exemption.yaml",
+   "index": 2,
+   "name": "No exemption when no child is under the threshold age"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/two_child_limit/ctc_age_exemption.yaml",
+   "index": 2,
+   "name": "No exemption when all children above age threshold"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 2,
+   "name": "Enable income test - pensioner over threshold gets no WFA"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 8,
+   "name": "Northern Ireland pensioner unaffected by England/Wales income test"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/scp_baby_bonus/scottish_child_payment_baby_bonus.yaml",
+   "index": 1,
+   "name": "SCP baby bonus - child over 1 gets standard rate (2028)"
+  }
+ ],
+ "errors": [
+  {
+   "file": "policyengine_uk/tests/policy/baseline/demographic/household.yaml",
+   "index": 1,
+   "name": "Country from region - Scotland",
+   "error": "ValueError(\"could not convert string to float: 'SCOTLAND'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/care.yaml",
+   "index": 2,
+   "name": "Three carers in a benefit unit stay at the couple rate (regression for",
+   "error": "ValueError(\"could not convert string to float: '37.5 * 52'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/LHA_claimant_composition.yaml",
+   "index": 2,
+   "name": "Single renter immediately below the shared rate age threshold",
+   "error": "ValueError(\"could not convert string to float: 'A'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/LHA_claimant_composition.yaml",
+   "index": 8,
+   "name": "A 17-year-old student in another family is also the household head's non-dependant",
+   "error": "ValueError(\"could not convert string to float: 'C'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/LHA_claimant_composition.yaml",
+   "index": 14,
+   "name": "A 16-year-old renter without a disability benefit gets the shared rate",
+   "error": "ValueError(\"could not convert string to float: 'A'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_applicable_amount.yaml",
+   "index": 0,
+   "name": "Single person, older amount",
+   "error": "ValueError(\"could not convert string to float: '90.5 * 52'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/non_dep_deduction/household_benefits_individual_non_dep_deduction.yaml",
+   "index": 0,
+   "name": "Reduced rent without LHA",
+   "error": "ValueError(\"could not convert string to float: '19.3 * 52'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/pension_age_premiums.yaml",
+   "index": 7,
+   "name": "A dependent child does not withhold the pensioner's severe disability premium",
+   "error": "ValueError(\"could not convert string to float: '86.05 * 52'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/pension_age_severe_disability_conditions.yaml",
+   "index": 2,
+   "name": "A qualifying pensioner with a blind non-qualifying partner gets one HB and CTR rate",
+   "error": "ValueError(\"could not convert string to float: '86.05 * 52'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/rent_of_sharers_boarders_and_lodgers.yaml",
+   "index": 8,
+   "name": "A sharer aged 40 gets the UC one-bedroom rate and the HB shared rate",
+   "error": "ValueError(\"could not convert string to float: 'B'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/rent_of_sharers_boarders_and_lodgers.yaml",
+   "index": 14,
+   "name": "A lodger with exclusive use of two rooms can rebut the shared presumption",
+   "error": "ValueError(\"could not convert string to float: 'C'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/severe_disability_premium_commencement.yaml",
+   "index": 4,
+   "name": "NI PIP does not qualify in model year 2014, unlike GB",
+   "error": "ParameterNotFoundError(\"The parameter 'gov.dwp.carers_allowance[rate]' was not found in the 2014-01-01 tax and benefit system.\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/childcare_element/uc_childcare_element.yaml",
+   "index": 2,
+   "name": "Childcare for one child over limit",
+   "error": "ValueError(\"could not convert string to float: '646.35 * 12'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/claimant_relationships.yaml",
+   "index": 2,
+   "name": "Case 3, genuine couple with an older qualifying child remains a couple.",
+   "error": "ValueError(\"could not convert string to float: 'COUPLE_OLD'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_tariff_income.yaml",
+   "index": 2,
+   "name": "Tariff income applies through the upper capital limit",
+   "error": "ValueError(\"could not convert string to float: '40 * 4.35 * 12'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_unearned_income.yaml",
+   "index": 6,
+   "name": "Dividend income is not unearned income without share capital in the data",
+   "error": "ValueError(\"could not convert string to float: '4.35 * 12'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/standard_allowance/uc_standard_allowance_claimant_type.yaml",
+   "index": 2,
+   "name": "Couple under 25",
+   "error": "ValueError(\"could not convert string to float: 'COUPLE_YOUNG'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/income/minimum_wage_category.yaml",
+   "index": 5,
+   "name": "Aged over 25",
+   "error": "ValueError(\"could not convert string to float: 'OVER_24'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/tax/income_tax/scottish_rates.yaml",
+   "index": 0,
+   "name": "Scottish intermediate rate recognised",
+   "error": "ValueError(\"could not convert string to float: 'STARTER'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dfe/maintenance_loans/maintenance_loan.yaml",
+   "index": 18,
+   "name": "Maintenance loan proxy does not treat older renters as parents",
+   "error": "ValueError(\"could not convert string to float: 'AWAY_IN_LONDON'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/carers_allowance_overlapping_benefits.yaml",
+   "index": 3,
+   "name": "Case 4, State Pension above the allowance leaves underlying entitlement and the carer addition.",
+   "error": "ValueError(\"could not convert string to float: '86.45 * 52'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/carers_allowance_overlapping_benefits.yaml",
+   "index": 9,
+   "name": "Case 10, annual netting of contributory ESA reduces the allowance.",
+   "error": "ValueError(\"could not convert string to float: '86.45 * 52 - 3_000'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/carers_allowance_overlapping_benefits.yaml",
+   "index": 21,
+   "name": "Case 22, a nil allowance gives a carer premium but no UC non-dependant carer exemption.",
+   "error": "ValueError(\"could not convert string to float: '48.15 * 52'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/claimant_partner_rates.yaml",
+   "index": 0,
+   "name": "Single pensioner with a qualifying young person receives single rates and Savings Credit.",
+   "error": "ValueError(\"could not convert string to float: 'SINGLE'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/guarantee_credit/carer_and_severe_disability_additions.yaml",
+   "index": 3,
+   "name": "Severe disability addition is not withheld by a non-claiming carer",
+   "error": "ValueError(\"could not convert string to float: '2 * 67.3 * 52'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/pension_credit_carer_income.yaml",
+   "index": 5,
+   "name": "Carer's Allowance is Savings Credit qualifying income",
+   "error": "ValueError(\"could not convert string to float: '(10_000 + 86.45 * 52 - 12_570) * 0.2'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/state_pension_type.yaml",
+   "index": 1,
+   "name": "Male reaching SPA after NSP activation (age 70 in 2025, born 1955) gets NEW",
+   "error": "ValueError(\"could not convert string to float: 'NEW'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/state_pension_type.yaml",
+   "index": 7,
+   "name": "Woman born 5 April 1953 reached State Pension age on 6 March 2016, so gets BASIC",
+   "error": "ValueError(\"could not convert string to float: 'BASIC'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/marriage_allowance.yaml",
+   "index": 4,
+   "name": "An 18-year-old dependant's unused allowance does not transfer to a parent",
+   "error": "ValueError(\"could not convert string to float: 'MARRIED'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/class_1/ni_class_1_employee_primary.yaml",
+   "index": 0,
+   "name": "\u00a320k income has NI Class 1 liability",
+   "error": "ValueError(\"could not convert string to float: '(20_000 - 12_570) * 0.12'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction_carer_support_payment.yaml",
+   "index": 5,
+   "name": "Carer Support Payment counts in 2025, before the Scottish Carer Supplement",
+   "error": "ValueError(\"could not convert string to float: '83.30 * 52'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/local_authorities/council_tax_reduction/council_tax_reduction_carer_support_payment.yaml",
+   "index": 11,
+   "name": "An English pensioner carer's Council Tax Reduction is unchanged",
+   "error": "ValueError(\"could not convert string to float: '86.45 * 52'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/social_security_scotland/carer_support_payment_overlapping_benefits.yaml",
+   "index": 8,
+   "name": "Case 9, partial CSP gives the UC non-dependant carer exemption.",
+   "error": "ValueError(\"could not convert string to float: '86.45 * 52 - 1_000'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/demographic/benefit_unit_structure.yaml",
+   "index": 0,
+   "name": "Lone parent with an 18-year-old at school is a lone parent, not a couple",
+   "error": "ValueError(\"could not convert string to float: 'WORKING_AGE_ADULT'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/demographic/benefit_unit_structure.yaml",
+   "index": 6,
+   "name": "A 19-year-old in higher education is an adult",
+   "error": "ValueError(\"could not convert string to float: 'WORKING_AGE_ADULT'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/integration/income.yaml",
+   "index": 0,
+   "name": "Earned income is taxed correctly",
+   "error": "ValueError(\"could not convert string to float: 'HIGHER'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/nov_2025_budget/income_source_tax_rates.yaml",
+   "index": 1,
+   "name": "Dividend tax at higher rate - 2025 (pre-reform)",
+   "error": "ValueError(\"could not convert string to float: '1000 * 0.3375'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/nov_2025_budget/income_source_tax_rates.yaml",
+   "index": 7,
+   "name": "Savings tax at higher rate - 2028 (post-reform)",
+   "error": "ValueError(\"could not convert string to float: '1500 * 0.42'\")"
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/nov_2025_budget/income_source_tax_rates.yaml",
+   "index": 13,
+   "name": "Property tax at additional rate - 2028 (post-reform)",
+   "error": "ValueError(\"could not convert string to float: '1000 * 0.47'\")"
+  }
+ ]
+}

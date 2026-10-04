@@ -1,0 +1,83 @@
+{
+ "rows": [
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income.yaml",
+   "index": 0,
+   "name": "Capped at 0",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [
+     "housing_benefit_applicable_income@2025#None"
+    ],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [
+     "housing_benefit_applicable_income@2025#None"
+    ],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income.yaml",
+   "index": 1,
+   "name": "Baseline inputs",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income.yaml",
+   "index": 2,
+   "name": "Pension contributions halved",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income.yaml",
+   "index": 3,
+   "name": "Added Tax and income",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income.yaml",
+   "index": 4,
+   "name": "Pension contributions capped at 0",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [
+     "housing_benefit_applicable_income@2025#None"
+    ],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [
+     "housing_benefit_applicable_income@2025#None"
+    ],
+    "capital": []
+   }
+  }
+ ],
+ "skipped": [],
+ "errors": []
+}

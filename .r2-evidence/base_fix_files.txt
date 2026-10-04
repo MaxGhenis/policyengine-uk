@@ -1,0 +1,8 @@
+policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income.yaml
+policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml
+policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_net_earnings.yaml
+policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_capital.yaml
+policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_eligible.yaml
+policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/legacy_capital.yaml
+policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/legacy_claimant_relationships.yaml
+policyengine_uk/tests/policy/baseline/gov/dwp/lifetime_isa_capital.yaml

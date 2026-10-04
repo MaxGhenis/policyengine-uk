@@ -1,0 +1,48 @@
+{
+ "earnings_3000_uc_housing_zero": {
+  "orders_run": 35,
+  "orders_ok": 35,
+  "errors": [],
+  "disagreements": [],
+  "values": {
+   "housing_benefit": 6145.28125,
+   "universal_credit": 3773.7216796875,
+   "benefit_cap_reduction": 8055.3984375,
+   "household_net_income": 20225.4453125,
+   "housing_benefit_on_passporting_benefit": 1.0,
+   "is_uc_entitled": 1.0,
+   "universal_credit_pre_benefit_cap": 11829.1201171875,
+   "housing_benefit_applicable_income": 0.0,
+   "housing_benefit_assessable_capital": 0.0,
+   "housing_benefit_applicable_income_disregard": 3000.0,
+   "housing_benefit_entitlement": 14200.6796875,
+   "housing_benefit_pre_benefit_cap": 14200.6796875,
+   "benefit_cap": 22020.0,
+   "uc_housing_costs_element": 0.0
+  },
+  "cap_subtracted_from_hb_and_uc": 16110.796875
+ },
+ "earnings_3000_uc_housing_zero_savings_12000": {
+  "orders_run": 35,
+  "orders_ok": 35,
+  "errors": [],
+  "disagreements": [],
+  "values": {
+   "housing_benefit": 7398.080078125,
+   "universal_credit": 3773.720703125,
+   "benefit_cap_reduction": 6802.599609375,
+   "household_net_income": 21478.244140625,
+   "housing_benefit_on_passporting_benefit": 1.0,
+   "is_uc_entitled": 1.0,
+   "universal_credit_pre_benefit_cap": 10576.3203125,
+   "housing_benefit_applicable_income": 0.0,
+   "housing_benefit_assessable_capital": 0.0,
+   "housing_benefit_applicable_income_disregard": 3000.0,
+   "housing_benefit_entitlement": 14200.6796875,
+   "housing_benefit_pre_benefit_cap": 14200.6796875,
+   "benefit_cap": 22020.0,
+   "uc_housing_costs_element": 0.0
+  },
+  "cap_subtracted_from_hb_and_uc": 13605.19921875
+ }
+}

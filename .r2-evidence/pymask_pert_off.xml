@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="15" skipped="2" tests="156" time="12385.211" timestamp="2026-10-04T09:54:44.961743-04:00" hostname="MacBook-Pro-1111.local"><testcase classname="policyengine_uk.tests.test_abolish_benefit_cap_scenario.TestAbolishBenefitCapScenario" name="test_removes_benefit_cap_reduction" time="67.271" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_bhc_deflator_matches_the_one_dwp_used[2022]" time="0.092" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_rounded_monthly_average_is_hbais_annual_deflator[2023-ahc]" time="0.024" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_rounded_monthly_average_is_hbais_annual_deflator[2024-bhc]" time="0.002" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_rounded_monthly_average_is_hbais_annual_deflator[2024-ahc]" time="0.004" /><testcase classname="policyengine_uk.tests.test_benefit_cap_and_ctr_pension_age_properties" name="test_benefit_cap_and_ctr_pension_age_invariants" time="909.371" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_back_cast_matches_hbai_deflators[2021-bhc]" time="0.110" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_bhc_deflator_matches_the_one_dwp_used[2023]" time="0.122" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_back_cast_matches_hbai_deflators[2021-ahc]" time="0.015" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_back_cast_matches_hbai_deflators[2022-bhc]" time="0.169" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_bhc_deflator_matches_the_one_dwp_used[2024]" time="0.152" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_headline_cpi_would_not_match_the_bhc_deflator" time="0.032" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_back_cast_matches_hbai_deflators[2022-ahc]" time="0.037" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_back_cast_matches_hbai_deflators[2023-bhc]" time="0.096" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_switch_year_is_fye_2022[bhc]" time="0.281" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_back_cast_matches_hbai_deflators[2023-ahc]" time="0.007" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_carer_income_properties" name="test_council_tax_reduction_and_housing_benefit_assess_the_same_carer_income" time="467.524"><failure message="AssertionError: ({'adults': [{'age': 25, 'employment_income': 0.0}], 'by_hours': False, 'carer': 0, 'council_tax': 500.0, ...}, array(...      , 34910.3203125 ,&#10;         31314.        , 36510.3203125 , 32914.        , 38110.3203125 ,&#10;         34514.        ]))&#10;assert False&#10; +  where False = &lt;function allclose at 0x1093c1c70&gt;(array([ 5273.17  ,  7273.17  ,  2777.7695,  9273.17  ,  4777.7695,\n       11273.17  ,  6777.7695, 13273.17  ,  8777.77...09  , 30491.77  ,\n       35688.09  , 32091.77  , 37288.09  , 33691.77  , 38888.09  ,\n       35291.77  ], dtype=float32), array([ 4495.39990234,  6495.39990234,  2000.        ,  8495.40039062,\n        4000.        , 10495.40039062,  6000.  ...       , 34910.3203125 ,\n       31314.        , 36510.3203125 , 32914.        , 38110.3203125 ,\n       34514.        ]), atol=0.05)&#10; +    where &lt;function allclose at 0x1093c1c70&gt; = np.allclose&#10;Failing test case: test_council_tax_reduction_and_housing_benefit_assess_the_same_carer_income(&#10;    families=[{'pension_age': False,&#10;      'adults': [{'age': 25, 'employment_income': 0.0}],&#10;      'carer': 0,&#10;      'by_hours': False,&#10;      'country': 'ENGLAND',&#10;      'council_tax': 500.0}],&#10;)">@PROPERTY_SETTINGS
+&gt;   @given(st.lists(family(countries=tuple(REGIONS)), min_size=1, max_size=3))
+                   ^^^
+
+policyengine_uk/tests/test_council_tax_reduction_carer_income_properties.py:355: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+families = [{'adults': [{'age': 25, 'employment_income': 0.0}], 'by_hours': False, 'carer': 0, 'council_tax': 500.0, ...}]
+
+    @PROPERTY_SETTINGS
+    @given(st.lists(family(countries=tuple(REGIONS)), min_size=1, max_size=3))
+    def test_council_tax_reduction_and_housing_benefit_assess_the_same_carer_income(
+        families,
+    ):
+        g = grid(families)
+        for i, fam in enumerate(families):
+            carer_benefit = (
+                g["carers_allowance_pre_overlap"][i]
+                + g["carer_support_payment_pre_overlap"][i]
+            )
+            assert np.all(carer_benefit[:, 0] &gt; 0), fam
+            # Housing Benefit counts Carer Support Payment after any
+            # overlapping-benefit reduction; Council Tax Reduction, for now,
+            # before it.
+            removed_by_overlap = (
+                g["carer_support_payment_pre_overlap"][i] - g["carer_support_payment"][i]
+            )
+            ctr_income = g["council_tax_reduction_applicable_income"][i]
+            hb_income = g["housing_benefit_applicable_income"][i]
+            # Guarantee Credit passports pension-age Housing Benefit to nil
+            # income; the zero floors must not bind.
+            passported = fam["pension_age"] &amp; (g["guarantee_credit"][i] &gt; 0)
+            compared = (
+                ~passported &amp; g["general_rules"][i] &amp; (hb_income &gt; 0) &amp; (ctr_income &gt; 0)
+            )
+            assert compared.any(), fam
+            hb_before_adjustments = (
+                hb_income
+                + g["housing_benefit_applicable_income_disregard"][i]
+                + g["housing_benefit_applicable_income_childcare_element"][i]
+                - g["housing_benefit_tariff_income"][i]
+            )
+            ctr_less_overlap = ctr_income - removed_by_overlap
+&gt;           assert np.allclose(
+                hb_before_adjustments[compared], ctr_less_overlap[compared], atol=0.05
+            ), (fam, hb_before_adjustments[compared], ctr_less_overlap[compared])
+E           AssertionError: ({'adults': [{'age': 25, 'employment_income': 0.0}], 'by_hours': False, 'carer': 0, 'council_tax': 500.0, ...}, array(...      , 34910.3203125 ,
+E                    31314.        , 36510.3203125 , 32914.        , 38110.3203125 ,
+E                    34514.        ]))
+E           assert False
+E            +  where False = &lt;function allclose at 0x1093c1c70&gt;(array([ 5273.17  ,  7273.17  ,  2777.7695,  9273.17  ,  4777.7695,\n       11273.17  ,  6777.7695, 13273.17  ,  8777.77...09  , 30491.77  ,\n       35688.09  , 32091.77  , 37288.09  , 33691.77  , 38888.09  ,\n       35291.77  ], dtype=float32), array([ 4495.39990234,  6495.39990234,  2000.        ,  8495.40039062,\n        4000.        , 10495.40039062,  6000.  ...       , 34910.3203125 ,\n       31314.        , 36510.3203125 , 32914.        , 38110.3203125 ,\n       34514.        ]), atol=0.05)
+E            +    where &lt;function allclose at 0x1093c1c70&gt; = np.allclose
+E           Failing test case: test_council_tax_reduction_and_housing_benefit_assess_the_same_carer_income(
+E               families=[{'pension_age': False,
+E                 'adults': [{'age': 25, 'employment_income': 0.0}],
+E                 'carer': 0,
+E                 'by_hours': False,
+E                 'country': 'ENGLAND',
+E                 'council_tax': 500.0}],
+E           )
+
+policyengine_uk/tests/test_council_tax_reduction_carer_income_properties.py:388: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_switch_year_is_fye_2022[ahc]" time="0.019" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_lines_uprate_with_cpi_from_fye_2025" time="3.570" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_ahc_line_is_positive_and_below_bhc_line" time="0.822" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_absolute_poverty_flags_follow_the_line" time="778.803" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_fye_2025_line_is_60_percent_of_the_published_median[bhc]" time="0.228" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_fye_2025_line_is_60_percent_of_the_published_median[ahc]" time="0.004" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_ahc_and_bhc_lines_come_from_the_same_publication" time="0.003" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_rounded_monthly_average_is_hbais_annual_deflator[2021-bhc]" time="0.086" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_rounded_monthly_average_is_hbais_annual_deflator[2021-ahc]" time="0.015" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_rounded_monthly_average_is_hbais_annual_deflator[2022-bhc]" time="0.004" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_rounded_monthly_average_is_hbais_annual_deflator[2022-ahc]" time="0.004" /><testcase classname="policyengine_uk.tests.test_absolute_poverty_reference_year" name="test_rounded_monthly_average_is_hbais_annual_deflator[2023-bhc]" time="0.004" /><testcase classname="policyengine_uk.tests.test_household_benefits_properties" name="test_household_benefits_sums_each_benefit_once" time="394.658" /><testcase classname="policyengine_uk.tests.test_household_benefits_properties" name="test_benefit_uprating_applies_to_each_benefit_once" time="475.364" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_carer_income_properties" name="test_council_tax_reduction_income_on_the_pension_credit_routes" time="315.830" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pension_credit_properties" name="test_freeze_keeps_guarantee_credit_receipt_when_the_reform_removes_it" time="59.342" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pension_credit_properties" name="test_awards_follow_the_pension_credit_routes" time="499.615" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pensioner_earnings_disregard_properties" name="test_disregard_is_bounded_and_only_for_pension_age_families_in_great_britain" time="174.775" /><testcase classname="policyengine_uk.tests.test_benefit_cap_and_ctr_pension_age_properties" name="test_a_pension_age_partner_never_exempts_a_uc_award" time="1150.315" /><testcase classname="policyengine_uk.tests.test_household_benefits_properties" name="test_contributory_jsa_raises_household_benefits_one_for_one" time="611.619" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pensioner_earnings_disregard_properties" name="test_disregard_is_the_statutory_weekly_sum_in_every_year" time="113.044" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pensioner_earnings_disregard_properties" name="test_parameters_hold_the_statutory_sums_without_uprating" time="2.617" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pensioner_earnings_disregard_properties" name="test_disregard_is_non_decreasing_in_earnings" time="300.059" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pension_credit_properties" name="test_savings_credit_only_awards_use_the_pension_credit_assessment" time="397.694" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pensioner_earnings_disregard_properties" name="test_disregard_lowers_income_by_no_more_than_earnings_and_never_cuts_ctr" time="488.511" /><testcase classname="policyengine_uk.tests.test_household_income_decile" name="test_household_income_decile_caps_at_ten" time="0.003" /><testcase classname="policyengine_uk.tests.test_household_income_decile" name="test_household_income_decile_keeps_negative_incomes_outside_deciles" time="0.148" /><testcase classname="policyengine_uk.tests.test_household_income_decile" name="test_pre_budget_change_income_decile_domain_is_negative_or_one_to_ten" time="0.076" /><testcase classname="policyengine_uk.tests.test_housing_benefit_earnings_disregard_properties" name="test_disregard_is_bounded_by_net_earnings_and_the_statutory_maximum" time="504.213"><failure message="AssertionError: {'adults': [{'age': 24, 'disabled': False, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}], 'childcare': 0.0, 'children': [0, 1], 'shape': 'lone_parent'}&#10;assert np.float64(13.130000114440918) &lt;= (np.float64(0.0) + 0.01)&#10; +  where np.float64(0.0) = min(np.float64(0.0), 2189.2000000000003)&#10;Failing test case: test_disregard_is_bounded_by_net_earnings_and_the_statutory_maximum(&#10;    units=[{'shape': 'lone_parent',&#10;      'adults': [{'age': 24,&#10;        'employment_income': 0.0,&#10;        'weekly_hours': 0.0,&#10;        'disabled': False,&#10;        'pension_contributions': 0.0}],&#10;      'children': [0, 1],&#10;      'childcare': 0.0}],&#10;)">@PROPERTY_SETTINGS
+&gt;   @given(st.lists(families(), min_size=1, max_size=30))
+                   ^^^
+
+policyengine_uk/tests/test_housing_benefit_earnings_disregard_properties.py:184: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+units = [{'adults': [{'age': 24, 'disabled': False, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}], 'childcare': 0.0, 'children': [0, 1], 'shape': 'lone_parent'}]
+
+    @PROPERTY_SETTINGS
+    @given(st.lists(families(), min_size=1, max_size=30))
+    def test_disregard_is_bounded_by_net_earnings_and_the_statutory_maximum(units):
+        values = calculate(units)
+        disregard = values["housing_benefit_applicable_income_disregard"]
+        net = values["housing_benefit_net_earnings"]
+        for i, unit in enumerate(units):
+            assert disregard[i] &gt;= 0, unit
+&gt;           assert disregard[i] &lt;= min(net[i], MAX_ANNUAL) + 0.01, unit
+E           AssertionError: {'adults': [{'age': 24, 'disabled': False, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}], 'childcare': 0.0, 'children': [0, 1], 'shape': 'lone_parent'}
+E           assert np.float64(13.130000114440918) &lt;= (np.float64(0.0) + 0.01)
+E            +  where np.float64(0.0) = min(np.float64(0.0), 2189.2000000000003)
+E           Failing test case: test_disregard_is_bounded_by_net_earnings_and_the_statutory_maximum(
+E               units=[{'shape': 'lone_parent',
+E                 'adults': [{'age': 24,
+E                   'employment_income': 0.0,
+E                   'weekly_hours': 0.0,
+E                   'disabled': False,
+E                   'pension_contributions': 0.0}],
+E                 'children': [0, 1],
+E                 'childcare': 0.0}],
+E           )
+
+policyengine_uk/tests/test_housing_benefit_earnings_disregard_properties.py:191: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pension_credit_properties" name="test_guarantee_credit_recipients_ctr_is_invariant_to_state_pension" time="1203.033" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pensioner_earnings_disregard_properties" name="test_differential_against_the_housing_benefit_pension_age_disregard" time="583.441"><failure message="ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)">+ Exception Group Traceback (most recent call last):
+  |   File "/private/tmp/uk2133r2/pert_off/policyengine_uk/tests/test_council_tax_reduction_pensioner_earnings_disregard_properties.py", line 265, in test_differential_against_the_housing_benefit_pension_age_disregard
+  |     @given(
+  |     
+  |   File "/Users/maxghenis/.subfleet/worktrees/20261004-091830-uk-2133-review-r2/.venv/lib/python3.13/site-packages/hypothesis/core.py", line 2295, in wrapped_test
+  |     raise the_error_hypothesis_found
+  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/private/tmp/uk2133r2/pert_off/policyengine_uk/tests/test_council_tax_reduction_pensioner_earnings_disregard_properties.py", line 289, in test_differential_against_the_housing_benefit_pension_age_disregard
+    |     assert abs(value - expected) &lt; 0.01, (unit, year)
+    | AssertionError: ({'adults': [{'age': 86, 'disabled': True, 'employment_income': 0.0, 'state_pension': 0.0, ...}], 'children': [], 'nation': 'ENGLAND', 'shape': 'single'}, 2020)
+    | assert np.float64(13.130000114440918) &lt; 0.01
+    |  +  where np.float64(13.130000114440918) = abs((np.float64(13.130000114440918) - np.float64(0.0)))
+    | Failing test case: test_differential_against_the_housing_benefit_pension_age_disregard(
+    |     units=[{'shape': 'single',
+    |       'nation': 'ENGLAND',
+    |       'adults': [{'age': 86,
+    |         'employment_income': 0.0,
+    |         'weekly_hours': 0.0,
+    |         'disabled': True,
+    |         'state_pension': 0.0}],
+    |       'children': []}],
+    |     year=2020,
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "/private/tmp/uk2133r2/pert_off/policyengine_uk/tests/test_council_tax_reduction_pensioner_earnings_disregard_properties.py", line 291, in test_differential_against_the_housing_benefit_pension_age_disregard
+    |     assert abs(ctr[i] - hb[i]) &lt; 0.01, (unit, year)
+    | AssertionError: ({'adults': [{'age': 86, 'disabled': True, 'employment_income': 0.0, 'state_pension': 0.0, ...}], 'children': [], 'nation': 'ENGLAND', 'shape': 'single'}, 2019)
+    | assert np.float64(13.130000114440918) &lt; 0.01
+    |  +  where np.float64(13.130000114440918) = abs((np.float64(0.0) - np.float64(13.130000114440918)))
+    | Failing test case: test_differential_against_the_housing_benefit_pension_age_disregard(
+    |     units=[{'shape': 'single',
+    |       'nation': 'ENGLAND',
+    |       'adults': [{'age': 86,
+    |         'employment_income': 0.0,
+    |         'weekly_hours': 0.0,
+    |         'disabled': True,
+    |         'state_pension': 0.0}],
+    |       'children': []}],
+    |     year=2019,
+    | )
+    +------------------------------------</failure></testcase><testcase classname="policyengine_uk.tests.test_housing_benefit_earnings_disregard_properties" name="test_disregard_is_non_decreasing_in_earnings" time="570.448" /><testcase classname="policyengine_uk.tests.test_carer_support_payment" name="test_scottish_carers_allowance_remains_in_place_for_2024" time="33.480" /><testcase classname="policyengine_uk.tests.test_carer_support_payment" name="test_scottish_carers_move_to_csp_in_2025" time="22.977" /><testcase classname="policyengine_uk.tests.test_carer_support_payment" name="test_csp_counts_for_pension_credit_carer_additions" time="19.260" /><testcase classname="policyengine_uk.tests.test_carer_support_payment" name="test_partner_csp_for_caring_gives_couple_severe_disability_single_rate_or_nil" time="59.122" /><testcase classname="policyengine_uk.tests.test_carer_support_payment" name="test_csp_counts_for_uc_non_dep_exemption_and_housing_benefit_income" time="36.297"><failure message="assert np.float32(14248.24) == np.float32(4318.47)&#10; +  where np.float32(4318.47) = max(0, (np.float32(4331.6) - np.float32(13.13)))">def test_csp_counts_for_uc_non_dep_exemption_and_housing_benefit_income():
+        situation = _situation(YEAR_2025)
+        # Not claiming Universal Credit: on it, the whole of the Housing Benefit
+        # income would be disregarded (SI 2006/213 Sch 5 para 4).
+        situation["benunits"]["benunit"]["would_claim_uc"] = {YEAR_2025: False}
+        sim = Simulation(situation=situation)
+    
+        csp_amount = sim.calculate("carer_support_payment", YEAR_2025)[0]
+        hb_disregard = sim.calculate(
+            "housing_benefit_applicable_income_disregard", YEAR_2025
+        )[0]
+        hb_income = sim.calculate("housing_benefit_applicable_income", YEAR_2025)[0]
+    
+        assert sim.calculate("uc_non_dep_deduction_exempt", YEAR_2025)[0]
+&gt;       assert hb_income == max(0, csp_amount - hb_disregard)
+E       assert np.float32(14248.24) == np.float32(4318.47)
+E        +  where np.float32(4318.47) = max(0, (np.float32(4331.6) - np.float32(13.13)))
+
+policyengine_uk/tests/test_carer_support_payment.py:142: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_council_tax_reduction_carer_income_properties" name="test_council_tax_reduction_income_counts_the_carer_support_payment_component" time="509.378" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pensioner_earnings_disregard_properties" name="test_housing_benefit_disregard_is_the_statutory_weekly_sum_in_every_year" time="472.344"><failure message="AssertionError: ({'adults': [{'age': 35, 'disabled': False, 'employment_income': 20000.000000000004, 'state_pension': 0.0, ...}], 'children': [0, 0], 'nation': 'ENGLAND', 'shape': 'lone_parent'}, 2015)&#10;assert np.float64(13.1300048828125) &lt; 0.01&#10; +  where np.float64(13.1300048828125) = abs((np.float64(1313.1300048828125) - (25 * 52)))&#10;Failing test case: test_housing_benefit_disregard_is_the_statutory_weekly_sum_in_every_year(&#10;    units=[{'shape': 'lone_parent',&#10;      'nation': 'ENGLAND',&#10;      'adults': [{'age': 35,&#10;        'employment_income': 20000.000000000004,&#10;        'weekly_hours': 15.0,&#10;        'disabled': False,&#10;        'state_pension': 0.0}],&#10;      'children': [0, 0]}],&#10;    year=2015,&#10;)">@PROPERTY_SETTINGS
+&gt;   @given(
+            
+        st.lists(
+            families(earnings=st.floats(20_000, 40_000)),
+            min_size=1,
+            max_size=30,
+        ),
+        st.integers(2015, 2030),
+    )
+
+policyengine_uk/tests/test_council_tax_reduction_pensioner_earnings_disregard_properties.py:295: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+units = [{'adults': [{'age': 35, 'disabled': False, 'employment_income': 20000.000000000004, 'state_pension': 0.0, ...}], 'children': [0, 0], 'nation': 'ENGLAND', 'shape': 'lone_parent'}]
+year = 2015
+
+    @PROPERTY_SETTINGS
+    @given(
+        st.lists(
+            families(earnings=st.floats(20_000, 40_000)),
+            min_size=1,
+            max_size=30,
+        ),
+        st.integers(2015, 2030),
+    )
+    def test_housing_benefit_disregard_is_the_statutory_weekly_sum_in_every_year(
+        units, year
+    ):
+        values = calculate(units, year=year, no_income_related_benefits=True)
+        disregard = values["housing_benefit_applicable_income_disregard"]
+        conditions = values[
+            "meets_housing_benefit_additional_earnings_disregard_conditions"
+        ].astype(bool)
+        for i, unit in enumerate(units):
+            weekly = WEEKLY[unit["shape"]]
+            if conditions[i]:
+                weekly += 37.1 if year == 2020 else 17.1
+&gt;           assert abs(disregard[i] - weekly * WEEKS) &lt; 0.01, (unit, year)
+E           AssertionError: ({'adults': [{'age': 35, 'disabled': False, 'employment_income': 20000.000000000004, 'state_pension': 0.0, ...}], 'children': [0, 0], 'nation': 'ENGLAND', 'shape': 'lone_parent'}, 2015)
+E           assert np.float64(13.1300048828125) &lt; 0.01
+E            +  where np.float64(13.1300048828125) = abs((np.float64(1313.1300048828125) - (25 * 52)))
+E           Failing test case: test_housing_benefit_disregard_is_the_statutory_weekly_sum_in_every_year(
+E               units=[{'shape': 'lone_parent',
+E                 'nation': 'ENGLAND',
+E                 'adults': [{'age': 35,
+E                   'employment_income': 20000.000000000004,
+E                   'weekly_hours': 15.0,
+E                   'disabled': False,
+E                   'state_pension': 0.0}],
+E                 'children': [0, 0]}],
+E               year=2015,
+E           )
+
+policyengine_uk/tests/test_council_tax_reduction_pensioner_earnings_disregard_properties.py:315: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_housing_benefit_earnings_disregard_properties" name="test_weekly_amounts_are_frozen_from_2015_to_2030" time="1.322" /><testcase classname="policyengine_uk.tests.test_housing_benefit_earnings_disregard_properties" name="test_disregard_lowers_applicable_income_by_no_more_than_earnings" time="386.241"><failure message="AssertionError: {'adults': [{'age': 18, 'disabled': False, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}, {'age': 18, '...se, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}], 'childcare': 0.0, 'children': [], 'shape': 'couple'}&#10;assert (np.float32(9929.77) - np.float64(9916.6396484375)) &lt;= (0.0 + 0.01)&#10; +  where 0.0 = gross_earnings({'adults': [{'age': 18, 'disabled': False, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}, {'age': 18, '...se, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}], 'childcare': 0.0, 'children': [], 'shape': 'couple'})&#10;Failing test case: test_disregard_lowers_applicable_income_by_no_more_than_earnings(&#10;    units=[{'shape': 'couple',&#10;      'adults': [{'age': 18,&#10;        'employment_income': 0.0,&#10;        'weekly_hours': 0.0,&#10;        'disabled': False,&#10;        'pension_contributions': 0.0},&#10;       {'age': 18,&#10;        'employment_income': 0.0,&#10;        'weekly_hours': 0.0,&#10;        'disabled': False,&#10;        'pension_contributions': 0.0}],&#10;      'children': [],&#10;      'childcare': 0.0}],&#10;)">@PROPERTY_SETTINGS
+&gt;   @given(st.lists(families(), min_size=1, max_size=30))
+                   ^^^
+
+policyengine_uk/tests/test_housing_benefit_earnings_disregard_properties.py:222: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+units = [{'adults': [{'age': 18, 'disabled': False, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}, {'age': 18, ...e, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}], 'childcare': 0.0, 'children': [], 'shape': 'couple'}]
+
+    @PROPERTY_SETTINGS
+    @given(st.lists(families(), min_size=1, max_size=30))
+    def test_disregard_lowers_applicable_income_by_no_more_than_earnings(units):
+        values = calculate(units)
+        sim = Simulation(situation=situation(units))
+        sim.set_input(
+            "housing_benefit_applicable_income_disregard", YEAR, np.zeros(len(units))
+        )
+        without = np.asarray(sim.calculate("housing_benefit_applicable_income", YEAR))
+        with_disregard = values["housing_benefit_applicable_income"]
+        for i, unit in enumerate(units):
+            assert with_disregard[i] &lt;= without[i] + 0.01, unit
+&gt;           assert without[i] - with_disregard[i] &lt;= gross_earnings(unit) + 0.01, unit
+E           AssertionError: {'adults': [{'age': 18, 'disabled': False, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}, {'age': 18, '...se, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}], 'childcare': 0.0, 'children': [], 'shape': 'couple'}
+E           assert (np.float32(9929.77) - np.float64(9916.6396484375)) &lt;= (0.0 + 0.01)
+E            +  where 0.0 = gross_earnings({'adults': [{'age': 18, 'disabled': False, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}, {'age': 18, '...se, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}], 'childcare': 0.0, 'children': [], 'shape': 'couple'})
+E           Failing test case: test_disregard_lowers_applicable_income_by_no_more_than_earnings(
+E               units=[{'shape': 'couple',
+E                 'adults': [{'age': 18,
+E                   'employment_income': 0.0,
+E                   'weekly_hours': 0.0,
+E                   'disabled': False,
+E                   'pension_contributions': 0.0},
+E                  {'age': 18,
+E                   'employment_income': 0.0,
+E                   'weekly_hours': 0.0,
+E                   'disabled': False,
+E                   'pension_contributions': 0.0}],
+E                 'children': [],
+E                 'childcare': 0.0}],
+E           )
+
+policyengine_uk/tests/test_housing_benefit_earnings_disregard_properties.py:233: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_council_tax_reduction_carer_income_properties" name="test_council_tax_reduction_income_ignores_the_scottish_carer_supplement" time="789.774" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pension_credit_properties" name="test_guarantee_credit_recipients_ctr_is_invariant_to_savings" time="684.710" /><testcase classname="policyengine_uk.tests.test_housing_benefit_income_related_benefit_passport_properties" name="test_receipt_never_lowers_pre_cap_housing_benefit" time="211.900" /><testcase classname="policyengine_uk.tests.test_housing_benefit_earnings_disregard_properties" name="test_pension_age_and_working_age_schedules_agree" time="222.359" /><testcase classname="policyengine_uk.tests.test_housing_benefit_income_related_benefit_passport_properties" name="test_passported_social_tenant_gets_the_rent_at_any_age" time="418.757" /><testcase classname="policyengine_uk.tests.test_housing_benefit_earnings_disregard_properties" name="test_differential_against_the_old_flat_formula" time="494.135"><failure message="ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)">+ Exception Group Traceback (most recent call last):
+  |   File "/private/tmp/uk2133r2/pert_off/policyengine_uk/tests/test_housing_benefit_earnings_disregard_properties.py", line 254, in test_differential_against_the_old_flat_formula
+  |     @given(st.lists(families(), min_size=1, max_size=30))
+  |                    ^^^
+  |   File "/Users/maxghenis/.subfleet/worktrees/20261004-091830-uk-2133-review-r2/.venv/lib/python3.13/site-packages/hypothesis/core.py", line 2295, in wrapped_test
+  |     raise the_error_hypothesis_found
+  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/private/tmp/uk2133r2/pert_off/policyengine_uk/tests/test_housing_benefit_earnings_disregard_properties.py", line 276, in test_differential_against_the_old_flat_formula
+    |     assert abs(disregard[i] - old) &lt; 0.01, unit
+    | AssertionError: {'adults': [{'age': 59, 'disabled': False, 'employment_income': 46906.020913158674, 'pension_contributions': 1848.4755147618985, ...}], 'childcare': 0.01, 'children': [7, 10], 'shape': 'lone_parent'}
+    | assert np.float64(13.1300048828125) &lt; 0.01
+    |  +  where np.float64(13.1300048828125) = abs((np.float64(1313.1300048828125) - 1300.0))
+    | Failing test case: test_differential_against_the_old_flat_formula(
+    |     units=[{'shape': 'couple_with_children',
+    |       'adults': [{'age': 25,
+    |         'employment_income': 2815.592144313158,
+    |         'weekly_hours': 41.05799791911846,
+    |         'disabled': True,
+    |         'pension_contributions': 899.182853146146},
+    |        {'age': 24,
+    |         'employment_income': 0.0,
+    |         'weekly_hours': 0.0,
+    |         'disabled': False,
+    |         'pension_contributions': 1589.5798579850448}],
+    |       'children': [2],
+    |       'childcare': 0.0},
+    |      {'shape': 'lone_parent',
+    |       'adults': [{'age': 59,
+    |         'employment_income': 46906.020913158674,
+    |         'weekly_hours': 3.777006791819094,
+    |         'disabled': False,
+    |         'pension_contributions': 1848.4755147618985}],
+    |       'children': [7, 10],
+    |       'childcare': 0.01},
+    |      {'shape': 'couple',
+    |       'adults': [{'age': 24,
+    |         'employment_income': 1021.2302164851103,
+    |         'weekly_hours': 30.0,
+    |         'disabled': False,
+    |         'pension_contributions': 0.0},
+    |        {'age': 25,
+    |         'employment_income': 1025.7454183387297,
+    |         'weekly_hours': 42.93331621232516,
+    |         'disabled': True,
+    |         'pension_contributions': 0.0}],
+    |       'children': [],
+    |       'childcare': 0.0},
+    |      {'shape': 'couple_with_children',
+    |       'adults': [{'age': 25,
+    |         'employment_income': 40341.5949720535,
+    |         'weekly_hours': 29.0,
+    |         'disabled': True,
+    |         'pension_contributions': 1516.1755330862118},
+    |        {'age': 25,
+    |         'employment_income': 0.0,
+    |         'weekly_hours': 46.499441890726786,
+    |         'disabled': False,
+    |         'pension_contributions': 6.3444031004730514e-27}],
+    |       'children': [0],
+    |       'childcare': 0.0},
+    |      {'shape': 'couple',
+    |       'adults': [{'age': 18,
+    |         'employment_income': 0.0,
+    |         'weekly_hours': 16.0,
+    |         'disabled': True,
+    |         'pension_contributions': 0.0},
+    |        {'age': 46,
+    |         'employment_income': 702.9013519938269,
+    |         'weekly_hours': 30.0,
+    |         'disabled': False,
+    |         'pension_contributions': 1848.3802345799174}],
+    |       'children': [],
+    |       'childcare': 0.0}],
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "/private/tmp/uk2133r2/pert_off/policyengine_uk/tests/test_housing_benefit_earnings_disregard_properties.py", line 269, in test_differential_against_the_old_flat_formula
+    |     assert disregard[i] == 0 &lt; old, unit
+    | AssertionError: {'adults': [{'age': 41, 'disabled': False, 'employment_income': 0.0, 'pension_contributions': 0.0, ...}], 'childcare': 0.0, 'children': [0, 2], 'shape': 'lone_parent'}
+    | assert np.float64(13.130000114440918) == 0
+    | Failing test case: test_differential_against_the_old_flat_formula(
+    |     units=[{'shape': 'lone_parent',
+    |       'adults': [{'age': 41,
+    |         'employment_income': 0.0,
+    |         'weekly_hours': 0.0,
+    |         'disabled': False,
+    |         'pension_contributions': 0.0}],
+    |       'children': [0, 2],
+    |       'childcare': 0.0}],
+    | )
+    +------------------------------------</failure></testcase><testcase classname="policyengine_uk.tests.test_housing_benefit_pension_age_properties" name="test_pension_age_housing_benefit_is_non_increasing_in_income" time="766.877" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pension_credit_properties" name="test_not_claiming_pension_credit_never_raises_a_recipients_ctr" time="985.358" /><testcase classname="policyengine_uk.tests.test_housing_benefit_income_related_benefit_passport_properties" name="test_contributory_jsa_and_esa_are_not_a_passport" time="453.972"><failure message="assert False&#10; +  where False = &lt;function allclose at 0x106d02170&gt;(array([50000.], dtype=float32), array([0.]), atol=0.01)&#10; +    where &lt;function allclose at 0x106d02170&gt; = np.allclose&#10;Failing test case: test_contributory_jsa_and_esa_are_not_a_passport(&#10;    units=[{'shape': 'couple_with_children',&#10;      'adults': [{'age': 18,&#10;        'employment_income': 0.0,&#10;        'private_pension_income': 0.0,&#10;        'state_pension': 0.0},&#10;       {'age': 18,&#10;        'employment_income': 0.0,&#10;        'private_pension_income': 0.0,&#10;        'state_pension': 0.0}],&#10;      'children': [0],&#10;      'tenure': 'RENT_FROM_COUNCIL',&#10;      'rent': 0.0,&#10;      'savings': 0.0,&#10;      'awards': {'income_support': 0.0, 'jsa_income': 0.0, 'esa_income': 0.0},&#10;      'non_dependant_earnings': None}],&#10;    amount=1.0,&#10;)">@PROPERTY_SETTINGS
+&gt;   @given(
+            
+        st.lists(families(non_dependants=False), min_size=1, max_size=20),
+        st.floats(1, 12_000, allow_nan=False),
+    )
+
+policyengine_uk/tests/test_housing_benefit_income_related_benefit_passport_properties.py:280: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+units = [{'adults': [{'age': 18, 'employment_income': 0.0, 'private_pension_income': 0.0, 'state_pension': 0.0}, {'age': 18, '...: {'esa_income': 0.0, 'income_support': 0.0, 'jsa_income': 0.0}, 'children': [0], 'non_dependant_earnings': None, ...}]
+amount = 1.0
+
+    @PROPERTY_SETTINGS
+    @given(
+        st.lists(families(non_dependants=False), min_size=1, max_size=20),
+        st.floats(1, 12_000, allow_nan=False),
+    )
+    def test_contributory_jsa_and_esa_are_not_a_passport(units, amount):
+        no_awards = [{b: 0.0 for b in BENEFITS} for _ in units]
+        contributory = situation(units, awards=no_awards)
+        for name, person in contributory["people"].items():
+            # The first adult of each family is its claimant.
+            if name.startswith("a") and name.endswith("_0"):
+                person["jsa_contrib"] = {YEAR: amount}
+                person["esa_contrib"] = {YEAR: amount}
+        # A pension-age family can still have its capital disregarded through the
+        # Guarantee Credit passport, so hold that at nil to isolate this one.
+        for name, benunit in contributory["benunits"].items():
+            if name.startswith("b"):
+                benunit["guarantee_credit"] = {YEAR: 0.0}
+        sim = Simulation(situation=contributory)
+        on_benefit = np.asarray(
+            sim.calculate("in_receipt_of_income_support_jsa_ib_or_esa_ir", YEAR)
+        )
+        assert not on_benefit.any()
+        capital = np.asarray(sim.calculate("housing_benefit_assessable_capital", YEAR))
+        savings = np.array([unit["savings"] for unit in units])
+        # With neither passport the family's savings count as its capital (no
+        # non-dependants here, so no household apportionment).
+&gt;       assert np.allclose(capital, savings, atol=0.01)
+E       assert False
+E        +  where False = &lt;function allclose at 0x106d02170&gt;(array([50000.], dtype=float32), array([0.]), atol=0.01)
+E        +    where &lt;function allclose at 0x106d02170&gt; = np.allclose
+E       Failing test case: test_contributory_jsa_and_esa_are_not_a_passport(
+E           units=[{'shape': 'couple_with_children',
+E             'adults': [{'age': 18,
+E               'employment_income': 0.0,
+E               'private_pension_income': 0.0,
+E               'state_pension': 0.0},
+E              {'age': 18,
+E               'employment_income': 0.0,
+E               'private_pension_income': 0.0,
+E               'state_pension': 0.0}],
+E             'children': [0],
+E             'tenure': 'RENT_FROM_COUNCIL',
+E             'rent': 0.0,
+E             'savings': 0.0,
+E             'awards': {'income_support': 0.0, 'jsa_income': 0.0, 'esa_income': 0.0},
+E             'non_dependant_earnings': None}],
+E           amount=1.0,
+E       )
+
+policyengine_uk/tests/test_housing_benefit_income_related_benefit_passport_properties.py:306: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_housing_benefit_earnings_disregard_properties" name="test_income_support_disregards_all_earnings_at_any_age" time="194.095" /><testcase classname="policyengine_uk.tests.test_housing_benefit_earnings_disregard_properties" name="test_additional_disregard_history" time="1.325" /><testcase classname="policyengine_uk.tests.test_housing_benefit_income_related_benefit_passport_properties" name="test_receipt_passport_and_maximum" time="269.117" /><testcase classname="policyengine_uk.tests.test_housing_benefit_lha_order_properties" name="test_bounds_closed_form_and_differential" time="842.561" /><testcase classname="policyengine_uk.tests.test_housing_benefit_income_related_benefit_passport_properties" name="test_passported_entitlement_ignores_income_and_capital" time="443.554" /><testcase classname="policyengine_uk.tests.test_housing_benefit_savings_credit_only_properties" name="test_net_income_rises_with_private_pension_on_savings_credit_only" time="586.409" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pension_credit_properties" name="test_savings_credit_only_award_counts_the_frozen_savings_credit" time="110.701" /><testcase classname="policyengine_uk.tests.test_lha_freeze" name="test_frozen_rates_hold_at_the_last_unfrozen_year" time="155.204" /><testcase classname="policyengine_uk.tests.test_council_tax_reduction_pension_credit_properties" name="test_freeze_keeps_savings_credit_only_receipt_when_the_reform_adds_guarantee_credit" time="155.618" /><testcase classname="policyengine_uk.tests.test_lha_freeze" name="test_the_2020_freeze_holds_at_the_2020_reset" time="202.148" /><testcase classname="policyengine_uk.tests.test_lha_uc_maximum" name="test_uc_ceiling_is_the_statutory_monthly_maximum[D-2160.02]" time="63.884" /><testcase classname="policyengine_uk.tests.test_lha_uc_maximum" name="test_uc_ceiling_is_the_statutory_monthly_maximum[E-3060.0]" time="31.925" /><testcase classname="policyengine_uk.tests.test_housing_benefit_savings_credit_only_properties" name="test_net_income_does_not_fall_where_savings_credit_ends" time="825.734" /><testcase classname="policyengine_uk.tests.test_housing_benefit_lha_order_properties" name="test_monotonicity" time="869.485" /><testcase classname="policyengine_uk.tests.test_lha_uc_maximum" name="test_uc_covers_rent_below_the_ceiling" time="66.279" /><testcase classname="policyengine_uk.tests.test_lha_uc_maximum" name="test_a_rate_below_the_ceiling_is_not_raised_to_it" time="110.774" /><testcase classname="policyengine_uk.tests.test_lha_freeze" name="test_the_2024_reset_raises_rates_above_the_2020_freeze" time="77.124" /><testcase classname="policyengine_uk.tests.test_lha_freeze" name="test_a_reset_year_is_not_treated_as_a_hold" time="115.010" /><testcase classname="policyengine_uk.tests.test_lha_uc_maximum" name="test_housing_benefit_keeps_the_weekly_maximum" time="33.322" /><testcase classname="policyengine_uk.tests.test_lha_uc_maximum" name="test_the_monthly_maximum_does_not_apply_before_it_existed" time="58.775" /><testcase classname="policyengine_uk.tests.test_lha_uc_maximum" name="test_the_monthly_maximum_applies_from_2020" time="54.277" /><testcase classname="policyengine_uk.tests.test_lha_freeze" name="test_frozen_years_hold_the_reset_level_for_an_uncapped_area" time="234.100" /><testcase classname="policyengine_uk.tests.test_lifetime_isa_capital" name="test_lifetime_isa_balances_uprate_with_the_other_financial_stocks" time="0.222" /><testcase classname="policyengine_uk.tests.test_lifetime_isa_capital" name="test_emptying_a_person_sources_list_disregards_the_lifetime_isa_there_only" time="160.117"><failure message="assert np.float32(58500.0) == 8500">def test_emptying_a_person_sources_list_disregards_the_lifetime_isa_there_only():
+        # The Treasury Committee's proposal to disregard Lifetime ISAs in Universal
+        # Credit is a change to one list; the other means tests keep counting them.
+        reform = {
+            "gov.dwp.universal_credit.means_test.capital.person_sources": {
+                "2025-01-01.2100-12-31": []
+            }
+        }
+        # Not claiming Universal Credit: on it, the whole of the Housing Benefit
+        # capital would be disregarded (SI 2006/213 Sch 6 para 5).
+        holder = {
+            **LIFETIME_ISA_HOLDER,
+            "benunits": {
+                "benunit": {"members": ["person"], "would_claim_uc": {"2025": False}}
+            },
+        }
+        baseline = Simulation(situation=holder)
+        reformed = Simulation(situation=holder, reform=reform)
+    
+        assert baseline.calculate("uc_assessable_capital", 2025)[0] == 8_500
+        assert reformed.calculate("uc_assessable_capital", 2025)[0] == 1_000
+&gt;       assert reformed.calculate("housing_benefit_assessable_capital", 2025)[0] == 8_500
+E       assert np.float32(58500.0) == 8500
+
+policyengine_uk/tests/test_lifetime_isa_capital.py:86: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_lifetime_isa_capital" name="test_lifetime_isa_capital_is_not_prorated_monthly" time="89.264" /><testcase classname="policyengine_uk.tests.test_lha_uc_maximum" name="test_uc_ceiling_is_the_statutory_monthly_maximum[B-1439.97]" time="74.192" /><testcase classname="policyengine_uk.tests.test_means_test_income_properties" name="test_income_of_non_claimants_never_counts" time="1733.573" /><testcase classname="policyengine_uk.tests.test_lha_uc_maximum" name="test_uc_ceiling_is_the_statutory_monthly_maximum[C-1793.98]" time="75.415" /><testcase classname="policyengine_uk.tests.test_pension_age_severe_disability_premium_properties" name="test_pension_age_applicable_amounts_cover_the_minimum_guarantee" time="791.263" /><testcase classname="policyengine_uk.tests.test_housing_benefit_savings_credit_only_properties" name="test_income_follows_the_route_for_the_award" time="579.648"><failure message="assert False&#10; +  where False = &lt;function allclose at 0x107262570&gt;(array([14148.855, 14277.256, 14397.256, 14517.256, 14637.256, 14757.256,\n       14877.256, 14997.256, 15117.256, 15237.256, 15357.256],\n      dtype=float32), array([13371.0860033 , 13499.48602772, 13619.48602772, 13739.48596668,\n       13859.48596668, 13979.4859972 , 14099.4859972 , 14219.4859972 ,\n       14339.48598194, 14459.48598194, 14579.48598957]), atol=0.01)&#10; +    where &lt;function allclose at 0x107262570&gt; = np.allclose&#10;Failing test case: test_income_follows_the_route_for_the_award(&#10;    families=[{'adults': [{'age': 80,&#10;        'disability': {},&#10;        'blind': False,&#10;        'state_pension': 0.0}],&#10;      'country': 'ENGLAND',&#10;      'rent': 3000.0,&#10;      'council_tax': 500.0,&#10;      'savings': 0.0}],&#10;)">@PROPERTY_SETTINGS
+&gt;   @given(st.lists(family(), min_size=1, max_size=4))
+                   ^^^
+
+policyengine_uk/tests/test_housing_benefit_savings_credit_only_properties.py:251: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+families = [{'adults': [{'age': 80, 'blind': False, 'disability': {}, 'state_pension': 0.0}], 'council_tax': 500.0, 'country': 'ENGLAND', 'rent': 3000.0, ...}]
+
+    @PROPERTY_SETTINGS
+    @given(st.lists(family(), min_size=1, max_size=4))
+    def test_income_follows_the_route_for_the_award(families):
+        g = grid(families)
+        savings = np.array([fam["savings"] for fam in families])[:, None]
+        capital_income = deemed_income(savings)
+        pensions_after_tax = (
+            g["state_pension"] + g["private_pension_income"] - g["income_tax"]
+        )
+        disregard = g["housing_benefit_applicable_income_disregard"]
+        sc_only = g["savings_credit_only"]
+        gc_paid = g["guarantee_credit_paid"]
+        other = ~sc_only &amp; ~gc_paid
+        income = g["housing_benefit_applicable_income"]
+        capital = np.broadcast_to(savings, income.shape)
+        capital_income = np.broadcast_to(capital_income, income.shape)
+    
+        # Savings credit only: the Secretary of State's income (pensions after
+        # tax plus deemed income on savings) plus the savings credit paid.
+        pension_credit_income = pensions_after_tax + capital_income
+        expected = np.maximum(0, pension_credit_income + g["pension_credit"] - disregard)
+&gt;       assert np.allclose(income[sc_only], expected[sc_only], atol=0.01)
+E       assert False
+E        +  where False = &lt;function allclose at 0x107262570&gt;(array([14148.855, 14277.256, 14397.256, 14517.256, 14637.256, 14757.256,\n       14877.256, 14997.256, 15117.256, 15237.256, 15357.256],\n      dtype=float32), array([13371.0860033 , 13499.48602772, 13619.48602772, 13739.48596668,\n       13859.48596668, 13979.4859972 , 14099.4859972 , 14219.4859972 ,\n       14339.48598194, 14459.48598194, 14579.48598957]), atol=0.01)
+E        +    where &lt;function allclose at 0x107262570&gt; = np.allclose
+E       Failing test case: test_income_follows_the_route_for_the_award(
+E           families=[{'adults': [{'age': 80,
+E               'disability': {},
+E               'blind': False,
+E               'state_pension': 0.0}],
+E             'country': 'ENGLAND',
+E             'rent': 3000.0,
+E             'council_tax': 500.0,
+E             'savings': 0.0}],
+E       )
+
+policyengine_uk/tests/test_housing_benefit_savings_credit_only_properties.py:271: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_housing_benefit_lha_order_properties" name="test_end_to_end_pension_age_housing_benefit" time="578.076" /><testcase classname="policyengine_uk.tests.test_housing_benefit_savings_credit_only_properties" name="test_attendance_allowance_case_no_longer_loses_net_income" time="80.914"><failure message="assert 777.7759376144422 &lt; 0.01&#10; +  where 777.7759376144422 = abs(((19839.8359375 + 13.130000114440918) - 19075.19))">def test_attendance_allowance_case_no_longer_loses_net_income():
+        # The counterexample that found the gap: single, aged 88, blind, on
+        # Attendance Allowance at the higher rate, State Pension 11,609.88.
+        def calculate(private_pension):
+            simulation = Simulation(
+                situation=single_pensioner(
+                    age={YEAR: 88},
+                    is_blind={YEAR: True},
+                    aa_category={YEAR: "HIGHER"},
+                    state_pension={YEAR: 11_609.88},
+                    private_pension_income={YEAR: private_pension},
+                )
+            )
+            return {
+                variable: float(simulation.calculate(variable, YEAR).sum())
+                for variable in [
+                    "savings_credit",
+                    "housing_benefit_applicable_income",
+                    "housing_benefit_applicable_income_disregard",
+                    "housing_benefit",
+                    "household_net_income",
+                    "tv_licence",
+                ]
+            }
+    
+        before, after = calculate(9_000), calculate(9_500)
+        # 400 more after income tax; savings credit falls by 0.4 x 183.22 to nil.
+        assert abs(before["savings_credit"] - 73.29) &lt; 0.01
+        assert after["savings_credit"] == 0
+        # 19,001.90 of Pension Credit income + 73.29 of savings credit, less the
+        # earnings disregard, which applies on both routes.
+&gt;       assert (
+            abs(
+                before["housing_benefit_applicable_income"]
+                + before["housing_benefit_applicable_income_disregard"]
+                - 19_075.19
+            )
+            &lt; 0.01
+        )
+E       assert 777.7759376144422 &lt; 0.01
+E        +  where 777.7759376144422 = abs(((19839.8359375 + 13.130000114440918) - 19075.19))
+
+policyengine_uk/tests/test_housing_benefit_savings_credit_only_properties.py:336: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_housing_benefit_pension_age_properties" name="test_new_claims_follow_the_pension_age_route" time="551.879" /><testcase classname="policyengine_uk.tests.test_pension_age_severe_disability_premium_properties" name="test_net_income_does_not_fall_where_guarantee_credit_ends" time="706.982"><failure message="AssertionError: ({'adults': [{'age': 92, 'blind': True, 'disability': {}, 'state_pension': 0.0}], 'council_tax': 0.0, 'rent': 3982.068...vings': 0.0}, 'private pension 12000 -&gt; 12500', 'net income change -3682.07', 'HB 3982.07 -&gt; 0.00', 'CTR 0.00 -&gt; 0.00')&#10;assert np.float32(-3682.0693) &gt;= -0.01&#10;Failing test case: test_net_income_does_not_fall_where_guarantee_credit_ends(&#10;    families=[{'adults': [{'age': 92,&#10;        'disability': {},&#10;        'blind': True,&#10;        'state_pension': 0.0}],&#10;      'rent': 3982.0685315373107,&#10;      'council_tax': 0.0,&#10;      'savings': 0.0}],&#10;)&#10;Explanation:&#10;    These lines were always and only run by failing test cases:&#10;        /private/tmp/uk2133r2/pert_off/policyengine_uk/tests/test_pension_age_severe_disability_premium_properties.py:182&#10;        /private/tmp/uk2133r2/pert_off/policyengine_uk/tests/test_pension_age_severe_disability_premium_properties.py:189">@PROPERTY_SETTINGS
+&gt;   @given(st.lists(standalone_family(), min_size=1, max_size=4))
+                   ^^^
+
+policyengine_uk/tests/test_pension_age_severe_disability_premium_properties.py:172: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+families = [{'adults': [{'age': 92, 'blind': True, 'disability': {}, 'state_pension': 0.0}], 'council_tax': 0.0, 'rent': 3982.0685315373107, 'savings': 0.0}]
+
+    @PROPERTY_SETTINGS
+    @given(st.lists(standalone_family(), min_size=1, max_size=4))
+    def test_net_income_does_not_fall_where_guarantee_credit_ends(families):
+        g = grid(families)
+        net = g["household_net_income"] + g["tv_licence"]
+        step = np.diff(net, axis=1)
+        gc = g["guarantee_credit"]
+        ends = (gc[:, :-1] &gt; 0) &amp; (gc[:, 1:] &lt;= 0)
+        for i, fam in enumerate(families):
+            for k in np.flatnonzero(ends[i]):
+&gt;               assert step[i, k] &gt;= -0.01, (
+                    fam,
+                    f"private pension {PENSIONS[k]} -&gt; {PENSIONS[k + 1]}",
+                    f"net income change {step[i, k]:.2f}",
+                    f"HB {g['housing_benefit'][i, k]:.2f} -&gt; "
+                    f"{g['housing_benefit'][i, k + 1]:.2f}",
+                    f"CTR {g['council_tax_benefit'][i, k]:.2f} -&gt; "
+                    f"{g['council_tax_benefit'][i, k + 1]:.2f}",
+                )
+E               AssertionError: ({'adults': [{'age': 92, 'blind': True, 'disability': {}, 'state_pension': 0.0}], 'council_tax': 0.0, 'rent': 3982.068...vings': 0.0}, 'private pension 12000 -&gt; 12500', 'net income change -3682.07', 'HB 3982.07 -&gt; 0.00', 'CTR 0.00 -&gt; 0.00')
+E               assert np.float32(-3682.0693) &gt;= -0.01
+E               Failing test case: test_net_income_does_not_fall_where_guarantee_credit_ends(
+E                   families=[{'adults': [{'age': 92,
+E                       'disability': {},
+E                       'blind': True,
+E                       'state_pension': 0.0}],
+E                     'rent': 3982.0685315373107,
+E                     'council_tax': 0.0,
+E                     'savings': 0.0}],
+E               )
+E               Explanation:
+E                   These lines were always and only run by failing test cases:
+E                       /private/tmp/uk2133r2/pert_off/policyengine_uk/tests/test_pension_age_severe_disability_premium_properties.py:182
+E                       /private/tmp/uk2133r2/pert_off/policyengine_uk/tests/test_pension_age_severe_disability_premium_properties.py:189
+
+policyengine_uk/tests/test_pension_age_severe_disability_premium_properties.py:181: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_housing_benefit_savings_credit_only_properties" name="test_savings_credit_only_award_counts_the_frozen_savings_credit" time="184.977"><failure message="assert np.float32(777.7656) &lt; 0.01&#10; +  where np.float32(777.7656) = abs((np.float32(14410.386) - 13632.62))">def test_savings_credit_only_award_counts_the_frozen_savings_credit():
+        # A savings credit rate rise raises the reform's savings credit from
+        # 718.62 to 1,029.89, but the Pension Credit freeze keeps paying the
+        # baseline 718.62, and that is the savings credit payable.
+        data = single_pensioner(
+            age={YEAR: 80},
+            state_pension={YEAR: 11_000},
+            private_pension_income={YEAR: 2_000},
+        )
+        data["benunits"]["benunit"]["housing_benefit_applicable_income_disregard"] = {
+            YEAR: 0
+        }
+        period = f"{YEAR}-01-01.{YEAR}-12-31"
+        rate_rise = {"gov.dwp.pension_credit.savings_credit.rate.phase_in": {period: 0.8}}
+        frozen = Simulation(
+            situation=data,
+            reform={**rate_rise, "gov.contrib.freeze_pension_credit": {period: True}},
+        )
+        unfrozen = Simulation(situation=data, reform=rate_rise)
+        assert abs(frozen.calculate("savings_credit", YEAR)[0] - 1_029.89) &lt; 0.01
+        assert abs(frozen.calculate("pension_credit", YEAR)[0] - 718.62) &lt; 0.01
+        assert frozen.calculate("in_receipt_of_savings_credit_only", YEAR)[0]
+        # 12,914 of Pension Credit income + 718.62 paid.
+        frozen_income = frozen.calculate("housing_benefit_applicable_income", YEAR)[0]
+&gt;       assert abs(frozen_income - 13_632.62) &lt; 0.01
+E       assert np.float32(777.7656) &lt; 0.01
+E        +  where np.float32(777.7656) = abs((np.float32(14410.386) - 13632.62))
+
+policyengine_uk/tests/test_housing_benefit_savings_credit_only_properties.py:379: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_housing_benefit_savings_credit_only_properties" name="test_private_pension_rise_on_savings_credit_only_raises_net_income" time="113.763"><failure message="assert 78.0 &lt; 0.01&#10; +  where 78.0 = abs((0.0 + 78))">def test_private_pension_rise_on_savings_credit_only_raises_net_income():
+        # The property's shrunk counterexample on main: single, aged 80, no State
+        # Pension, council rent 3,000, private pension 13,500 -&gt; 13,750. The award
+        # is savings credit only at both ends, so the TV licence is free at both.
+        def calculate(private_pension):
+            data = single_pensioner(
+                age={YEAR: 80},
+                state_pension={YEAR: 0},
+                private_pension_income={YEAR: private_pension},
+            )
+            data["households"]["household"]["rent"] = {YEAR: 3_000}
+            data["households"]["household"]["council_tax"] = {YEAR: 500}
+            simulation = Simulation(situation=data)
+            return {
+                variable: float(simulation.calculate(variable, YEAR).sum())
+                for variable in [
+                    "savings_credit",
+                    "housing_benefit",
+                    "council_tax_benefit",
+                    "household_net_income",
+                    "tv_licence",
+                ]
+            }
+    
+        before, after = calculate(13_500), calculate(13_750)
+        change = {variable: after[variable] - before[variable] for variable in before}
+        # 250 more, 200 after basic-rate income tax; savings credit -0.4 x 200.
+        assert abs(change["savings_credit"] + 80) &lt; 0.01
+        # Housing Benefit -0.65 x (200 - 80); main took -0.65 x 200 = -130.
+&gt;       assert abs(change["housing_benefit"] + 78) &lt; 0.01
+E       assert 78.0 &lt; 0.01
+E        +  where 78.0 = abs((0.0 + 78))
+
+policyengine_uk/tests/test_housing_benefit_savings_credit_only_properties.py:414: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_lha_freeze" name="test_lha_freeze_changes_lha_rate_and_housing_benefit_entitlement" time="200.112" /><testcase classname="policyengine_uk.tests.test_pension_credit_carer_income_properties" name="test_scottish_carer_supplement_is_not_means_tested_income" time="1297.364" /><testcase classname="policyengine_uk.tests.test_housing_benefit_pension_age_properties" name="test_dataset_take_up_stays_anchored_to_reported_claims" time="472.401" /><testcase classname="policyengine_uk.tests.test_pension_age_severe_disability_premium_properties" name="test_premiums_follow_the_pension_age_and_working_age_schedules" time="459.439" /><testcase classname="policyengine_uk.tests.test_mixed_age_couple_properties" name="test_mixed_age_couple_invariants" time="4473.653" /><testcase classname="policyengine_uk.tests.test_housing_benefit_pension_age_properties" name="test_would_claim_uc_does_not_affect_pension_age_housing_benefit" time="519.413" /><testcase classname="policyengine_uk.tests.test_pension_credit_carer_income_properties" name="test_pension_credit_and_housing_benefit_assess_the_same_carer_income" time="306.497" /><testcase classname="policyengine_uk.tests.test_pension_credit_carer_income_properties" name="test_net_income_does_not_fall_where_guarantee_credit_ends_for_carers" time="20.971"><failure message="AssertionError: ({'adults': [{'age': 80, 'state_pension': 15000}], 'by_hours': False, 'carer': 0, 'carer_state_pension': 4400, ...}, 'private pension 11000 -&gt; 11500', 'net income change -5832.28', 'HB 6000.00 -&gt; 0.00', 'CTR 1500.00 -&gt; 1458.62')&#10;assert np.float32(-5832.2773) &gt;= -0.01&#10;Failing explicit example: test_net_income_does_not_fall_where_guarantee_credit_ends_for_carers(&#10;    families=[{'adults': [{'age': 80, 'state_pension': 15000}],&#10;      'carer': 0,&#10;      'carer_state_pension': 4400,&#10;      'by_hours': False,&#10;      'country': 'SCOTLAND',&#10;      'rent': 6000,&#10;      'council_tax': 1500,&#10;      'savings': 0}],&#10;)">@PROPERTY_SETTINGS
+&gt;   @given(st.lists(family(), min_size=1, max_size=4))
+                   ^^^
+
+policyengine_uk/tests/test_pension_credit_carer_income_properties.py:241: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Users/maxghenis/.subfleet/worktrees/20261004-091830-uk-2133-review-r2/.venv/lib/python3.13/site-packages/hypothesis/core.py:1691: in _raise_to_user
+    raise the_error_hypothesis_found
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+families = [{'adults': [{'age': 80, 'state_pension': 15000}], 'by_hours': False, 'carer': 0, 'carer_state_pension': 4400, ...}]
+
+    @PROPERTY_SETTINGS
+    @given(st.lists(family(), min_size=1, max_size=4))
+    @example([PARTIALLY_OVERLAPPED_SCOTTISH_CARER])
+    def test_net_income_does_not_fall_where_guarantee_credit_ends_for_carers(families):
+        g = grid(families)
+        net = g["household_net_income"] + g["tv_licence"]
+        step = np.diff(net, axis=1)
+        gc = g["guarantee_credit"]
+        ends = (gc[:, :-1] &gt; 0) &amp; (gc[:, 1:] &lt;= 0)
+        for i, fam in enumerate(families):
+            assert_carer_benefit_paid(g, i, fam)
+            for k in np.flatnonzero(ends[i]):
+&gt;               assert step[i, k] &gt;= -0.01, (
+                    fam,
+                    f"private pension {PENSIONS[k]} -&gt; {PENSIONS[k + 1]}",
+                    f"net income change {step[i, k]:.2f}",
+                    f"HB {g['housing_benefit'][i, k]:.2f} -&gt; "
+                    f"{g['housing_benefit'][i, k + 1]:.2f}",
+                    f"CTR {g['council_tax_benefit'][i, k]:.2f} -&gt; "
+                    f"{g['council_tax_benefit'][i, k + 1]:.2f}",
+                )
+E               AssertionError: ({'adults': [{'age': 80, 'state_pension': 15000}], 'by_hours': False, 'carer': 0, 'carer_state_pension': 4400, ...}, 'private pension 11000 -&gt; 11500', 'net income change -5832.28', 'HB 6000.00 -&gt; 0.00', 'CTR 1500.00 -&gt; 1458.62')
+E               assert np.float32(-5832.2773) &gt;= -0.01
+E               Failing explicit example: test_net_income_does_not_fall_where_guarantee_credit_ends_for_carers(
+E                   families=[{'adults': [{'age': 80, 'state_pension': 15000}],
+E                     'carer': 0,
+E                     'carer_state_pension': 4400,
+E                     'by_hours': False,
+E                     'country': 'SCOTLAND',
+E                     'rent': 6000,
+E                     'council_tax': 1500,
+E                     'savings': 0}],
+E               )
+
+policyengine_uk/tests/test_pension_credit_carer_income_properties.py:252: AssertionError</failure></testcase><testcase classname="policyengine_uk.tests.test_uc_deductions.TestSplitmixUniform" name="test_uniform_on_unit_interval" time="0.285" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestSplitmixUniform" name="test_salts_give_independent_streams" time="0.091" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestCalculatorMode" name="test_no_deductions_by_default" time="17.095" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestCalculatorMode" name="test_draws_default_to_one" time="20.251" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestReformLevers" name="test_raising_the_cap_restores_pre_frr_deductions" time="44.741" /><testcase classname="policyengine_uk.tests.test_rent_of_sharers_boarders_and_lodgers_properties" name="test_rent_is_monotone_in_household_rent" time="500.588" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestReformLevers" name="test_abolishing_a_type_scales_by_its_amount_share" time="69.514" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestReformLevers" name="test_protected_floor_limits_combined_reductions" time="83.008" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestReformLevers" name="test_zeroing_a_type_mean_does_not_crash" time="48.093" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestReformLevers" name="test_protected_floor_inactive_when_reductions_stay_above_it" time="104.097" /><testcase classname="policyengine_uk.tests.test_relative_poverty_median" name="test_bhc_flag_uses_the_median_over_individuals" time="0.002" /><testcase classname="policyengine_uk.tests.test_relative_poverty_median" name="test_ahc_flag_uses_the_median_over_individuals" time="0.069" /><testcase classname="policyengine_uk.tests.test_relative_poverty_median" name="test_household_size_alone_does_not_move_the_line_when_everyone_is_equal" time="0.002" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestReformLevers" name="test_zeroing_every_type_share_leaves_a_valid_enum_array" time="63.607" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestReformLevers" name="test_abolishing_all_types_removes_deductions" time="30.919" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestReformLevers" name="test_protected_floor_binds_on_the_above_cap_excess" time="45.606" /><testcase classname="policyengine_uk.tests.test_uc_earnings_deductions_properties" name="test_unearned_income_never_changes_earned_income" time="963.041" /><testcase classname="policyengine_uk.tests.test_uc_earnings_deductions_properties" name="test_uc_is_non_increasing_in_unearned_income" time="947.099" /><testcase classname="policyengine_uk.tests.test_rent_of_sharers_boarders_and_lodgers_properties" name="test_no_op_without_sharers_boarders_or_lodgers" time="590.424" /><testcase classname="policyengine_uk.tests.test_uc_deductions.TestSplitmixUniform" name="test_deterministic" time="0.002" /><testcase classname="policyengine_uk.tests.test_uc_income_from_capital_properties" name="test_capital_yield_is_counted_once_as_tariff_income" time="397.130" /><testcase classname="policyengine_uk.tests.test_uc_earnings_deductions_properties" name="test_fix_only_removes_deductions" time="1081.495" /><testcase classname="policyengine_uk.tests.test_uc_earnings_deductions_properties" name="test_deductions_equal_tax_and_ni_on_earnings_alone" time="834.800" /><testcase classname="policyengine_uk.tests.test_uc_income_from_capital_properties" name="test_interest_dividends_and_rent_do_not_enter_the_means_test" time="779.570" /><testcase classname="policyengine_uk.tests.test_uc_income_from_capital_properties" name="test_uc_is_non_increasing_in_capital" time="471.251" /><testcase classname="policyengine_uk.tests.test_uc_income_from_capital_properties" name="test_tax_on_dividends_does_not_raise_a_working_familys_award" time="21.009" /><testcase classname="policyengine_uk.tests.test_uc_state_pension_properties" name="test_uc_is_non_increasing_in_state_pension" time="406.327" /><testcase classname="policyengine_uk.tests.test_uc_income_from_capital_properties" name="test_interest_dividends_and_rent_leave_the_award_unchanged" time="469.982" /><testcase classname="policyengine_uk.tests.test_uc_income_from_capital_properties" name="test_tax_on_dividends_does_not_remove_the_benefit_cap_earnings_exception" time="44.109"><skipped type="pytest.xfail" message="PolicyEngine/policyengine-uk#1986: the benefit cap earnings exception nets tax on all of a person's income off their earnings" /></testcase><testcase classname="policyengine_uk.tests.test_uc_state_pension_properties" name="test_property_income_is_excluded_while_state_pension_counts" time="919.009" /><testcase classname="policyengine_uk.tests.test_uc_state_pension_properties" name="test_uc_falls_pound_for_pound_in_state_pension" time="590.088" /><testcase classname="policyengine_uk.tests.test_uc_state_pension_properties" name="test_state_pension_counts_like_private_pension" time="574.233" /><testcase classname="policyengine_uk.tests.test_uc_state_pension_properties" name="test_state_pension_does_not_change_partners_marriage_allowance" time="35.540"><skipped type="pytest.xfail" message="PolicyEngine/policyengine-uk#1947: Marriage Allowance is booked on the recipient as the transferor's unused personal allowance, so the transferor's State Pension raises the recipient's tax on earnings" /></testcase><testcase classname="policyengine_uk.tests.test_uc_unearned_benefits_properties" name="test_uc_is_non_increasing_in_carer_support_payment" time="282.816" /><testcase classname="policyengine_uk.tests.test_uc_unearned_benefits_properties" name="test_uc_is_non_increasing_in_each_benefit" time="286.158" /><testcase classname="policyengine_uk.tests.test_uc_unearned_benefits_properties" name="test_uc_falls_pound_for_pound_in_each_benefit" time="165.767" /><testcase classname="policyengine_uk.tests.test_uc_state_pension_properties" name="test_tax_on_state_pension_does_not_reduce_partners_earned_income" time="6.454" /><testcase classname="policyengine_uk.tests.test_uc_unearned_benefits_properties" name="test_carer_support_payment_counts_like_capped_private_pension" time="184.596" /><testcase classname="policyengine_uk.tests.test_uc_unearned_benefits_properties" name="test_uc_falls_pound_for_pound_in_counted_carer_support_payment" time="230.896" /><testcase classname="policyengine_uk.tests.test_uc_unearned_benefits_properties" name="test_each_benefit_counts_like_private_pension" time="213.404" /><testcase classname="policyengine_uk.tests.test_rent_of_sharers_boarders_and_lodgers_properties" name="test_conservation_bounds_and_tenure" time="145.834" /><testcase classname="policyengine_uk.tests.test_uc_unearned_benefits_properties" name="test_carer_support_payment_above_the_cap_does_not_change_uc" time="22.058" /><testcase classname="policyengine_uk.tests.test_rent_of_sharers_boarders_and_lodgers_properties" name="test_non_dependants" time="138.434" /><testcase classname="policyengine_uk.tests.test_rent_of_sharers_boarders_and_lodgers_properties" name="test_lha_categories" time="181.267" /><testcase classname="policyengine_uk.tests.test_rent_of_sharers_boarders_and_lodgers_properties" name="test_meals_and_council_tax" time="145.273" /></testsuite></testsuites>

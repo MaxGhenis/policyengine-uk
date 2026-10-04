@@ -1,0 +1,102 @@
+{
+ "rows": [
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_eligible.yaml",
+   "index": 0,
+   "name": "Social housing eligible",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_eligible.yaml",
+   "index": 1,
+   "name": "LHA eligible",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_eligible.yaml",
+   "index": 2,
+   "name": "Not already enrolled",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/housing_benefit_eligible.yaml",
+   "index": 3,
+   "name": "Not eligible",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  }
+ ],
+ "skipped": [],
+ "errors": []
+}

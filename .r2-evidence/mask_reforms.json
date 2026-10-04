@@ -1,0 +1,1915 @@
+{
+ "rows": [
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/disability_basic_income/disability_basic_income.yaml",
+   "index": 1,
+   "name": "Disability basic income for DLA recipient",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/disability_basic_income/disability_basic_income.yaml",
+   "index": 2,
+   "name": "Disability basic income for PIP daily living recipient",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/disability_basic_income/disability_basic_income.yaml",
+   "index": 3,
+   "name": "Disability basic income for PIP mobility recipient",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/disability_basic_income/disability_basic_income.yaml",
+   "index": 4,
+   "name": "Disability basic income for UC LCWRA recipient",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/disability_basic_income/disability_basic_income.yaml",
+   "index": 5,
+   "name": "Disability basic income excludes LCWRA flag without UC receipt",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/disability_basic_income/disability_basic_income.yaml",
+   "index": 6,
+   "name": "Disability basic income non-recipient gets nothing",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/disability_basic_income/disability_basic_income.yaml",
+   "index": 7,
+   "name": "Disability basic income multiple eligibilities do not stack",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/labour/attends_private_school.yaml",
+   "index": 0,
+   "name": "Attends private school returns False when attendance rate is 0%",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/labour/private_school_vat.yaml",
+   "index": 0,
+   "name": "Returns 0 when no children",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/labour/private_school_vat.yaml",
+   "index": 1,
+   "name": "Returns correctly with one child",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/labour/private_school_vat.yaml",
+   "index": 2,
+   "name": "Returns correct value with 2+ children",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/policyengine/employer_ni/employer_ni_fixed_employer_cost_change.yaml",
+   "index": 2,
+   "name": "Zero employee incidence returns zero",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/policyengine/employer_ni/employer_ni_fixed_employer_cost_change.yaml",
+   "index": 8,
+   "name": "Pension contribution exemption disabled baseline returns zero",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/policyengine/employer_ni/employer_ni_fixed_employer_cost_change.yaml",
+   "index": 9,
+   "name": "Different incidence rate baseline returns zero",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/ubi_center/basic_income/bi_maximum.yaml",
+   "index": 0,
+   "name": "\u00a3100 per person.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/contrib/ubi_center/basic_income/bi_maximum.yaml",
+   "index": 1,
+   "name": "\u00a390 per adult, \u00a350 per child, plus \u00a310 for everyone. Adult.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/child_qualifying_young_person.yaml",
+   "index": 4,
+   "name": "Child age limit parameters are programme-specific",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/legacy_claimant_relationships.yaml",
+   "index": 0,
+   "name": "Lone parent with qualifying young person uses lone-parent rates",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/legacy_claimant_relationships.yaml",
+   "index": 1,
+   "name": "Couple with qualifying young person uses one couple allowance",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/legacy_claimant_relationships.yaml",
+   "index": 2,
+   "name": "Under-18 single claimant uses single rates",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/legacy_claimant_relationships.yaml",
+   "index": 3,
+   "name": "Couple with under-18 partner uses couple rates",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/legacy_claimant_relationships.yaml",
+   "index": 4,
+   "name": "Lone under-18 parent uses younger lone-parent allowance",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/legacy_claimant_relationships.yaml",
+   "index": 5,
+   "name": "Two under-18 claimants use younger couple allowance",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/universal_credit/income/uc_earnings_deductions.yaml",
+   "index": 13,
+   "name": "A reform exempting pensions from income tax leaves the tax on earnings unchanged",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/basic_state_pension.yaml",
+   "index": 3,
+   "name": "Basic state pension should be zero when maximum is zero",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/new_state_pension.yaml",
+   "index": 6,
+   "name": "New State Pension is zero when max is zero",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/dwp/pension_credit/claimant_partner_income_and_carers.yaml",
+   "index": 4,
+   "name": "Pension Credit means-tested basic income is restricted to the claimant and partner",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/council_tax/high_value_council_tax_surcharge.yaml",
+   "index": 0,
+   "name": "High value council tax surcharge starts in 2028",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/council_tax/high_value_council_tax_surcharge.yaml",
+   "index": 1,
+   "name": "High value council tax surcharge applies in England and flows into aggregates",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/council_tax/high_value_council_tax_surcharge.yaml",
+   "index": 2,
+   "name": "High value council tax surcharge is uprated from 2029",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/council_tax/high_value_council_tax_surcharge.yaml",
+   "index": 3,
+   "name": "High value council tax surcharge only applies in England",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/council_tax/high_value_council_tax_surcharge.yaml",
+   "index": 4,
+   "name": "Abolishing council tax also drops the high-value surcharge from aggregates",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/adjusted_net_income.yaml",
+   "index": 6,
+   "name": "With basic income included",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/adjusted_net_income.yaml",
+   "index": 7,
+   "name": "Only basic income",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/is_allowance_eligible.yaml",
+   "index": 5,
+   "name": "Trading Allowance Deduction",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/allowances/is_allowance_eligible.yaml",
+   "index": 6,
+   "name": "Property Allowance Deduction",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_property_income.yaml",
+   "index": 0,
+   "name": "No property income or allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_property_income.yaml",
+   "index": 1,
+   "name": "Property income fully covered by allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_property_income.yaml",
+   "index": 2,
+   "name": "Property income partially taxable",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_property_income.yaml",
+   "index": 3,
+   "name": "High property income with standard allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_property_income.yaml",
+   "index": 4,
+   "name": "Property income with no allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_property_income.yaml",
+   "index": 5,
+   "name": "Very low positive property income",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_property_income.yaml",
+   "index": 6,
+   "name": "Property allowance exceeds income",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_property_income.yaml",
+   "index": 7,
+   "name": "High values for both income and allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_property_income.yaml",
+   "index": 8,
+   "name": "Decimal values",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 3,
+   "name": "No self-employment income or deductions",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 4,
+   "name": "Self-employment income with no deductions",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 5,
+   "name": "Self-employment income fully offset by deductions",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 6,
+   "name": "Self-employment income partially offset by deductions",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 7,
+   "name": "High self-employment income with some deductions",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 8,
+   "name": "Low self-employment income with low deductions",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 9,
+   "name": "Deductions exceed self-employment income",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 10,
+   "name": "Very high values",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxable_self_employment_income.yaml",
+   "index": 11,
+   "name": "Decimal values",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxed_dividend_income.yaml",
+   "index": 0,
+   "name": "No dividend income",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxed_dividend_income.yaml",
+   "index": 1,
+   "name": "Dividend income below allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxed_dividend_income.yaml",
+   "index": 2,
+   "name": "Dividend income equal to allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxed_dividend_income.yaml",
+   "index": 3,
+   "name": "Dividend income slightly above allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxed_dividend_income.yaml",
+   "index": 4,
+   "name": "High dividend income",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxed_dividend_income.yaml",
+   "index": 5,
+   "name": "Very high dividend income",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxed_dividend_income.yaml",
+   "index": 6,
+   "name": "Dividend income with zero allowance",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxed_dividend_income.yaml",
+   "index": 7,
+   "name": "Decimal values",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxed_dividend_income.yaml",
+   "index": 8,
+   "name": "Allowance higher than income",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/income_tax/bases/taxed_dividend_income.yaml",
+   "index": 9,
+   "name": "Very small positive difference",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employee.yaml",
+   "index": 0,
+   "name": "No employee NI charge when salary sacrifice below \u00a32,000 cap",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employee.yaml",
+   "index": 1,
+   "name": "Employee NI charge at 8% main rate for moderate earner above cap",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employee.yaml",
+   "index": 2,
+   "name": "Employee NI charge at 8% main rate for earner just below UEL",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employee.yaml",
+   "index": 3,
+   "name": "Employee NI charge at 2% additional rate for high earner above UEL",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employee.yaml",
+   "index": 4,
+   "name": "Employee NI charge at 2% for earner well above UEL",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employee.yaml",
+   "index": 5,
+   "name": "No employee NI charge when exactly at cap",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employee.yaml",
+   "index": 6,
+   "name": "Employee NI charge for small excess over cap",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employee.yaml",
+   "index": 7,
+   "name": "Employee NI on full redirected excess",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employee.yaml",
+   "index": 8,
+   "name": "Broad-base haircut reduces all workers employment income",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employer.yaml",
+   "index": 0,
+   "name": "No employer NI charge when salary sacrifice below \u00a32,000 cap",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employer.yaml",
+   "index": 1,
+   "name": "Employer NI charge at 15% for moderate earner above cap",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employer.yaml",
+   "index": 2,
+   "name": "Employer NI charge at 15% for high earner with large excess",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employer.yaml",
+   "index": 3,
+   "name": "Employer NI charge for large salary sacrifice",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employer.yaml",
+   "index": 4,
+   "name": "No employer NI charge when exactly at cap",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employer.yaml",
+   "index": 5,
+   "name": "Employer NI charge for small excess over cap",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employer.yaml",
+   "index": 6,
+   "name": "Employer NI charge for low earner with high pension contribution",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/gov/hmrc/national_insurance/salary_sacrifice_pension_ni_employer.yaml",
+   "index": 7,
+   "name": "Employer NI on full redirected excess",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/cliff_evaluated.yaml",
+   "index": 3,
+   "name": "Nobody is cliff-evaluated when no adults are simulated",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/cliff_evaluated.yaml",
+   "index": 4,
+   "name": "Raising the simulated adult count evaluates more adults but no children",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/household/income/household_benefits.yaml",
+   "index": 2,
+   "name": "The benefit uprating reform uprates contributory JSA once",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/integration/income.yaml",
+   "index": 2,
+   "name": "Dividends taxed at the marginal rates",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/cps/marriage_tax_reforms.yaml",
+   "index": 0,
+   "name": "Expanded MA \u2014 single higher-rate earner still has no Marriage Allowance",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/cps/marriage_tax_reforms.yaml",
+   "index": 1,
+   "name": "Expanded MA \u2014 married higher-rate earner gets Marriage Allowance from low-earner spouse",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/cps/marriage_tax_reforms.yaml",
+   "index": 2,
+   "name": "Expanded MA \u2014 explicit Marriage Allowance take-up input drives the reform",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/cps/marriage_tax_reforms.yaml",
+   "index": 3,
+   "name": "Marriage-neutral IT \u2014 single person's adjusted net income is unchanged by the reform",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/cps/marriage_tax_reforms.yaml",
+   "index": 4,
+   "name": "Marriage-neutral IT \u2014 married couple splits unequal income",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/cps/marriage_tax_reforms.yaml",
+   "index": 5,
+   "name": "Expanded MA \u2014 explicit no-claim input suppresses the reform even with full take-up rate",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/cps/marriage_tax_reforms.yaml",
+   "index": 6,
+   "name": "Marriage-neutral income tax \u2014 a dependant's income stays out of the couple's split",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/basic_income/basic_income.yaml",
+   "index": 1,
+   "name": "Basic income for all age groups.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/basic_income/basic_income.yaml",
+   "index": 2,
+   "name": "Basic income with phase-out and CB withdrawal",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/basic_income/basic_income.yaml",
+   "index": 3,
+   "name": "Basic income included in taxable income.",
+   "uc_only_benunits": 0,
+   "passes_head": null
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/basic_income/basic_income.yaml",
+   "index": 4,
+   "name": "Basic income not included in means tests.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/basic_income/basic_income.yaml",
+   "index": 5,
+   "name": "Basic income included in means tests.",
+   "uc_only_benunits": 1,
+   "passes_head": null,
+   "passes_limb_off": null,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/basic_income/bi_maximum.yaml",
+   "index": 0,
+   "name": "Minimum child age functions correctly when adult is non zero.",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/basic_income/phase_out.yaml",
+   "index": 0,
+   "name": "Individual and household phase-outs together",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/energy_price_cap_subsidy.yaml",
+   "index": 0,
+   "name": "Energy price cap freeze for the last quarter in 2022.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/hbai_council_tax_lvt.yaml",
+   "index": 0,
+   "name": "Abolishing council tax increases HBAI household net income",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/hbai_council_tax_lvt.yaml",
+   "index": 2,
+   "name": "LVT reduces HBAI household net income",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/hbai_council_tax_lvt.yaml",
+   "index": 3,
+   "name": "Abolish council tax and add LVT together affect HBAI income",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/two_child_limit/age_exemption.yaml",
+   "index": 1,
+   "name": "With the exemption the third and fourth children get the child element",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/two_child_limit/age_exemption.yaml",
+   "index": 2,
+   "name": "No exemption when no child is under the threshold age",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/two_child_limit/age_exemption.yaml",
+   "index": 4,
+   "name": "The exemption keeps the higher amount for a first child born before April 2017",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/two_child_limit/age_exemption.yaml",
+   "index": 5,
+   "name": "An unused exemption does not remove the higher first-child amount",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/two_child_limit/ctc_age_exemption.yaml",
+   "index": 1,
+   "name": "With age exemption, all children get CTC when any child is below threshold",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/two_child_limit/ctc_age_exemption.yaml",
+   "index": 2,
+   "name": "No exemption when all children above age threshold",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/two_child_limit/ctc_age_exemption.yaml",
+   "index": 4,
+   "name": "Shows increased CTC after applying age exemption reform",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/wealth_tax.yaml",
+   "index": 0,
+   "name": "1% wealth tax with exemption.",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 1,
+   "name": "Enable income test - pensioner under threshold gets WFA despite no benefits",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 2,
+   "name": "Enable income test - pensioner over threshold gets no WFA",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 3,
+   "name": "Enable income test - pensioner exactly at threshold gets no WFA",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 4,
+   "name": "Enable income test - pensioner \u00a31 under threshold gets WFA",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 5,
+   "name": "Higher rate WFA for 80+ under threshold",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 6,
+   "name": "Wales pensioner under threshold gets WFA",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 7,
+   "name": "Scotland pensioner unaffected by England/Wales income test",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 8,
+   "name": "Northern Ireland pensioner unaffected by England/Wales income test",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 9,
+   "name": "Income test provides alternative to benefits requirement",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 10,
+   "name": "Test different income threshold - \u00a330k threshold",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/parametric/winter_fuel_allowance/taxable_income_test.yaml",
+   "index": 11,
+   "name": "Test different income threshold - \u00a330k threshold exceeded",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/scp_baby_bonus/scottish_child_payment_baby_bonus.yaml",
+   "index": 0,
+   "name": "SCP baby bonus for child under 1 (2028)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/scp_baby_bonus/scottish_child_payment_baby_bonus.yaml",
+   "index": 1,
+   "name": "SCP baby bonus - child over 1 gets standard rate (2028)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/scp_baby_bonus/scottish_child_payment_baby_bonus.yaml",
+   "index": 2,
+   "name": "SCP baby bonus - mixed ages (2028)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/scp_baby_bonus/scottish_child_payment_baby_bonus.yaml",
+   "index": 3,
+   "name": "SCP baby bonus - not in Scotland (2028)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/reforms/scp_baby_bonus/scottish_child_payment_baby_bonus.yaml",
+   "index": 4,
+   "name": "SCP baby bonus not switched on - standard rate (2025)",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   }
+  }
+ ],
+ "skipped": [],
+ "errors": []
+}

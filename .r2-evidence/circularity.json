@@ -1,0 +1,71 @@
+{
+ "no_earnings_uc_housing_computed": {
+  "orders_run": 35,
+  "orders_ok": 35,
+  "errors": [],
+  "disagreements": [],
+  "values": {
+   "housing_benefit": 0.0,
+   "universal_credit": 3773.72265625,
+   "benefit_cap_reduction": 22256.078125,
+   "household_net_income": 11080.1650390625,
+   "housing_benefit_on_passporting_benefit": 1.0,
+   "is_uc_entitled": 1.0,
+   "universal_credit_pre_benefit_cap": 26029.80078125,
+   "housing_benefit_applicable_income": 0.0,
+   "housing_benefit_assessable_capital": 0.0,
+   "housing_benefit_applicable_income_disregard": 0.0,
+   "housing_benefit_entitlement": 14200.6796875,
+   "housing_benefit_pre_benefit_cap": 14200.6796875,
+   "benefit_cap": 22020.0,
+   "uc_housing_costs_element": 14200.6796875
+  },
+  "cap_subtracted_from_hb_and_uc": 36456.7578125
+ },
+ "earnings_3000_uc_housing_computed": {
+  "orders_run": 35,
+  "orders_ok": 35,
+  "errors": [],
+  "disagreements": [],
+  "values": {
+   "housing_benefit": 0.0,
+   "universal_credit": 3773.72265625,
+   "benefit_cap_reduction": 22256.078125,
+   "household_net_income": 14080.1650390625,
+   "housing_benefit_on_passporting_benefit": 1.0,
+   "is_uc_entitled": 1.0,
+   "universal_credit_pre_benefit_cap": 26029.80078125,
+   "housing_benefit_applicable_income": 0.0,
+   "housing_benefit_assessable_capital": 0.0,
+   "housing_benefit_applicable_income_disregard": 3000.0,
+   "housing_benefit_entitlement": 14200.6796875,
+   "housing_benefit_pre_benefit_cap": 14200.6796875,
+   "benefit_cap": 22020.0,
+   "uc_housing_costs_element": 14200.6796875
+  },
+  "cap_subtracted_from_hb_and_uc": 36456.7578125
+ },
+ "earnings_3000_uc_housing_zero_savings_20000": {
+  "orders_run": 35,
+  "orders_ok": 35,
+  "errors": [],
+  "disagreements": [],
+  "values": {
+   "housing_benefit": 11684.1923828125,
+   "universal_credit": 0.0,
+   "benefit_cap_reduction": 0.0,
+   "household_net_income": 21990.634765625,
+   "housing_benefit_on_passporting_benefit": 0.0,
+   "is_uc_entitled": 0.0,
+   "universal_credit_pre_benefit_cap": 0.0,
+   "housing_benefit_applicable_income": 8657.599609375,
+   "housing_benefit_assessable_capital": 20000.0,
+   "housing_benefit_applicable_income_disregard": 1300.0,
+   "housing_benefit_entitlement": 11684.1923828125,
+   "housing_benefit_pre_benefit_cap": 11684.1923828125,
+   "benefit_cap": 22020.0,
+   "uc_housing_costs_element": 0.0
+  },
+  "cap_subtracted_from_hb_and_uc": 0.0
+ }
+}

@@ -1,0 +1,363 @@
+{
+ "rows": [
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 0,
+   "name": "Pensioner with only a State Pension has no earnings to disregard",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 1,
+   "name": "Single person earning \u00a33 a week has all \u00a33 disregarded",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 2,
+   "name": "Single person earning \u00a3100 a week has \u00a35 disregarded in 2026",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 3,
+   "name": "Single person earning \u00a3100 a week still has \u00a35 disregarded in 2030",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 4,
+   "name": "Couple has \u00a310 disregarded from its combined earnings",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 5,
+   "name": "Couple earning \u00a33 and \u00a34 a week has the combined \u00a37 disregarded",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 6,
+   "name": "Lone parent earning \u00a320 a week has all \u00a320 disregarded",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 7,
+   "name": "Lone parent earning \u00a3100 a week has \u00a325 disregarded",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 8,
+   "name": "Worker aged 30 working 30 hours adds the \u00a317.10 additional disregard",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 9,
+   "name": "Worker aged exactly 25 working exactly 30 hours meets the condition",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 10,
+   "name": "Worker aged 24 working 30 hours without children has no additional disregard",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 11,
+   "name": "Worker aged 30 working 29 hours has no additional disregard",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 12,
+   "name": "Net earnings just below \u00a35 plus \u00a317.10 a week miss the additional disregard",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 13,
+   "name": "Net earnings just above \u00a35 plus \u00a317.10 a week get the additional disregard",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 14,
+   "name": "Net earnings exactly equal to \u00a35 plus \u00a317.10 a week get the additional disregard",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 15,
+   "name": "Net earnings a penny below \u00a35 plus \u00a317.10 a week miss the additional disregard",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 16,
+   "name": "Lone parent working 16 hours adds the additional disregard",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 17,
+   "name": "Lone parent working 16 hours whose earnings do not cover \u00a325 plus \u00a317.10 keeps only \u00a325",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 18,
+   "name": "Lone parent working 16 hours whose net earnings exactly equal \u00a325 plus \u00a317.10 gets the additional disregard",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 19,
+   "name": "Lone parent working 16 hours whose net earnings are a penny below \u00a325 plus \u00a317.10 keeps only \u00a325",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 20,
+   "name": "Childcare charges count against the additional disregard's earnings test",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 21,
+   "name": "Lone parent whose earnings cover the disregards and childcare gets the additional disregard",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 22,
+   "name": "Couple with a child and one member working 16 hours adds the additional disregard",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 23,
+   "name": "Childless couple each working 16 hours does not meet the 30 hour condition",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 24,
+   "name": "Disabled single person working 20 hours gets \u00a35 plus the additional disregard (model limitation; the law gives \u00a320 plus it)",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 25,
+   "name": "Working-age claimant on Income Support has all earnings disregarded",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 26,
+   "name": "Pension-age claimant whose partner is on income-related ESA has all earnings disregarded",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 27,
+   "name": "A child's earnings are not the claimant's earnings",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 28,
+   "name": "An 18-year-old young person's earnings and hours are not the claimant's",
+   "uc_only_benunits": 1,
+   "passes_head": true,
+   "passes_limb_off": true,
+   "outputs_move_with_limb": [],
+   "masked": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   },
+   "detected_on": {
+    "disregard": [],
+    "income": [],
+    "capital": []
+   },
+   "detected_off": {
+    "disregard": [
+     "housing_benefit_applicable_income_disregard@2026#None"
+    ],
+    "income": [],
+    "capital": []
+   }
+  },
+  {
+   "file": "policyengine_uk/tests/policy/baseline/finance/benefit/family/housing_benefit/applicable_income/housing_benefit_applicable_income_disregard.yaml",
+   "index": 29,
+   "name": "The coronavirus modification raised the additional disregard to \u00a337.10 in 2020-21",
+   "uc_only_benunits": 0,
+   "passes_head": true
+  }
+ ],
+ "skipped": [],
+ "errors": []
+}
