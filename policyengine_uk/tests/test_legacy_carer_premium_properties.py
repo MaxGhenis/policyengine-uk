@@ -8,7 +8,9 @@ pays it "in respect of each person who satisfied the condition". Two people
 caring for the same severely disabled person cannot both be entitled (SSCBA
 s.70(7ZA); SSI 2023/302 reg 5(3)). The Income Support carer route (Sch 1B
 para 4, reg 4ZA, SSCBA s.124(1)(e)) likewise needs the claimant to be the
-carer, and a couple choose which of them claims.
+carer. No new claims for Income Support can be made (UC (TP) Regs 2014 reg
+6A(1)), so the claimant is the one of the couple with the existing award; in
+these families that is the first adult, who alone reports Income Support.
 
 Invariants, for any family of a claimant, an optional partner and up to three
 dependent children or qualifying young persons:
@@ -26,7 +28,9 @@ dependent children or qualifying young persons:
   the model's other kind of award);
 - supplying "same person" never raises the premium and caps it at one amount;
 - caring by the claimant or partner never removes Income Support eligibility
-  or lowers the premium, and below pension age it always opens the IS route.
+  or lowers the premium; caring by the one with the award always opens the
+  IS route below pension age, and caring by the other never changes
+  eligibility.
 
 Adults are 18 to 85, so pension-age families are covered. No adult under 20
 is 16 or more years younger than the other adult, whom the model would then
@@ -212,9 +216,11 @@ def test_claimant_or_partner_caring_never_removes_is_eligibility(drawn, data):
     units = [family for family, _ in drawn]
     adults = [n for _, n in drawn]
     # Make one of the claimant and partner a carer with a reported award.
+    carers = []
     with_caring = []
     for family, n in zip(units, adults):
         who = data.draw(st.integers(0, n - 1))
+        carers.append(who)
         with_caring.append(
             [
                 {**member, **CARING} if j == who else member
@@ -229,7 +235,10 @@ def test_claimant_or_partner_caring_never_removes_is_eligibility(drawn, data):
     k = len(units)
     for i in range(k):
         assert eligible[k + i] >= eligible[i], units[i]
-        if not sp_age[offsets[k + i] : offsets[k + i + 1]].any():
+        if carers[i] != 0:
+            # The partner has no award, so cannot be the claimant.
+            assert eligible[k + i] == eligible[i], units[i]
+        elif not sp_age[offsets[k + i] : offsets[k + i + 1]].any():
             assert eligible[k + i], units[i]
         assert premium[k + i] >= premium[i] - 0.01, units[i]
 
