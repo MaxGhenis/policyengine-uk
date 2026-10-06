@@ -1,4 +1,4 @@
-description: Minimum Universal Credit payable after deductions, per assessment period. Schedule 6, paragraph 3(1)(a) of SI 2013/380 provides that deductions must not reduce the amount payable to the claimant below one penny.
+description: Minimum Universal Credit payable after deductions, per assessment period. Schedule 6, paragraph 3(1)(a) of SI 2013/380 provides that third party deductions must not reduce the amount payable to the claimant below one penny, and regulation 11(7) of SI 2013/384 sets the same limit for recovering overpayments by deduction from Universal Credit.
 values:
   2015-04-01: 0.01
 metadata:
@@ -8,3 +8,5 @@ metadata:
   reference:
     - title: SI 2013/380, Schedule 6, paragraph 3(1)(a) (deductions must leave at least one penny payable)
       href: https://www.legislation.gov.uk/uksi/2013/380/schedule/6/paragraph/3
+    - title: SI 2013/384, regulation 11(7) (recovery of overpayments by deduction from Universal Credit must leave at least one penny)
+      href: https://www.legislation.gov.uk/uksi/2013/384/regulation/11

@@ -13,10 +13,13 @@ class universal_credit(Variable):
         uc_max_entitlement = benunit("universal_credit_pre_benefit_cap", period)
         # Both components are already limited by the protected minimum floor
         # (zero, and so inactive, under current law): uc_deductions takes its
-        # share of the floor allowance first and uc_benefit_cap_reduction
+        # share of the floor allowance first and uc_benefit_cap_reduction_after_floor
         # takes what is left. Subtracting them separately, rather than
         # limiting their sum here, keeps the reported components summing to
         # the reduction actually applied.
-        benefit_cap_reduction = benunit("uc_benefit_cap_reduction", period)
+        benefit_cap_reduction = benunit("uc_benefit_cap_reduction_after_floor", period)
         deductions = benunit("uc_deductions", period)
-        return max_(uc_max_entitlement - benefit_cap_reduction - deductions, 0)
+        # Sum the components before subtracting: with no floor this is the
+        # same floating-point operation as before, so current-law results
+        # stay bit-identical.
+        return max_(uc_max_entitlement - (benefit_cap_reduction + deductions), 0)

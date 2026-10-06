@@ -108,8 +108,7 @@
         members: person
   output:
     # Schedule 6, paragraph 3(1)(a) of SI 2013/380: the award cannot be
-    # deducted below one
-    # penny per assessment period (12p per year).
+    # deducted below one penny per assessment period (12p per year).
     uc_deductions: 499.88
     universal_credit: 0.12
 

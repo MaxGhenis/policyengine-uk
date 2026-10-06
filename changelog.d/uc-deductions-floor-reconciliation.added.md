@@ -1,0 +1,1 @@
+- Added `uc_benefit_cap_reduction_after_floor`, the benefit cap reduction applied to a Universal Credit award after the protected floor and never more than the award left after deductions, leaving `benefit_cap_reduction` gross for Housing Benefit.
