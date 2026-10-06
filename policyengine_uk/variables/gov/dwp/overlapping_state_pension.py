@@ -38,4 +38,4 @@ class overlapping_state_pension(Variable):
             out=np.zeros_like(components, dtype=float),
             where=components > 0,
         )
-        return state_pension * (1 - old_system * additional_share)
+        return state_pension * (1 - additional_share)
