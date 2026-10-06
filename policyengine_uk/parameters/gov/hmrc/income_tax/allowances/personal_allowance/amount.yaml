@@ -10,6 +10,8 @@ values:
     value: 12_570
     metadata:
       reference:
+        - title: "Finance Act 2026 s. 10 (amending Finance Act 2021 s. 5)"
+          href: https://www.legislation.gov.uk/ukpga/2026/11/section/10
         - title: OBR Economic and Fiscal Outlook November 2025
           href: https://obr.uk/efo/economic-and-fiscal-outlook-november-2025/
 metadata:

@@ -7,7 +7,18 @@ values:
   2019-04-06: 962
   2020-04-06: 962
   2021-04-06: 966.73
-  2027-04-06: 966.73
+  2030-04-06:
+    value: 966.73
+    metadata:
+      reference:
+        - title: "Budget 2025 policy costings, p. 40 (UEL and UPL maintained at GBP 50,270 until April 2031)"
+          href: https://assets.publishing.service.gov.uk/media/692872fd2a37784b16ecf676/Budget_2025-Policy_Costings.pdf#page=40
+        - title: "Budget 2025, para. 4.111"
+          href: https://assets.publishing.service.gov.uk/media/6929b353345e31ab14ecf735/E03444720_Budget_2025_Web_Accessible.pdf#page=113
+        - title: "HMRC policy paper: maintaining Income Tax and equivalent NICs thresholds until 5 April 2031"
+          href: https://www.gov.uk/government/publications/maintaining-income-tax-and-equivalent-national-insurance-contributions-thresholds-until-5-april-2031/income-tax-maintaining-the-personal-allowance-and-the-basic-rate-limit-for-income-tax-and-equivalent-national-insurance-contributions-thresholds-unt
+        - title: "Social Security (Contributions) Regulations 2001 reg. 10(b) and 11(2A) (2026-27 values)"
+          href: https://www.legislation.gov.uk/uksi/2001/1004/regulation/10
 metadata:
   label: NI upper earnings limit
   unit: currency-GBP
