@@ -1,3 +1,356 @@
+## [2.104.1] - 2026-10-01
+
+### Fixed
+
+- Count contributory Employment and Support Allowance, Maternity Allowance, industrial injuries benefit and (from 19 November 2023) Scottish Carer Support Payment as Universal Credit unearned income, as UC Regs 2013 reg. 66(1)(b)(ii), (viii), (ix) and (iiia) require. Carer Support Payment counts only its carer support payment component (not the Scottish Carer Supplement) and only up to a year of Carer's Allowance.
+
+
+## [2.104.0] - 2026-10-01
+
+### Added
+
+- - Added a capital gains realisation elasticity for gains qualifying for Business Asset Disposal Relief: while `gov.simulation.capital_gains_responses.separate_badr_elasticity` is on, those gains respond with `badr_elasticity` (1.4, the OBR's assumption for BADR gains) and the person's other gains with the main elasticity, both to the same share-weighted rate change. The switch is off by default, so existing results don't move.
+
+### Fixed
+
+- - Fixed marginal tax rates losing precision at large values: `marginal_tax_rate_on_capital_gains`, `marginal_tax_rate`, `marginal_tax_rate_wrt_employer_cost` and the labour supply derivative now add £1,000 or 0.1% of the value, whichever is larger, and divide by the step as stored in float32. A fixed £1,000 step had read the 24% main rate of capital gains tax as 24.8% at £185m of gains and 23.2% at £561m, and anywhere from -2.4% to 48.8% above £1bn, which fed straight into the capital gains realisation response. Below £1m the step is still £1,000, so readings there move only where float32 rounds the £1,000 step, and then by less than 0.01 percentage points.
+
+
+## [2.103.0] - 2026-10-01
+
+### Added
+
+- - Added the Lifetime ISA holdings that microcosm datasets carry (`lifetime_isa_balance`, `has_lifetime_isa`, `household_lifetime_isa_balance`) and the Lifetime ISA withdrawal-charge parameters. Universal Credit, Housing Benefit, Income Support, income-based JSA, income-related ESA and Pension Credit now count a Lifetime ISA at its surrender value (75% of the balance under 60, the whole balance from 60) as capital of the holder's own benefit unit when the holder is its claimant or partner, and not before the Lifetime ISA existed (6 April 2017). Datasets without the columns are unaffected.
+
+
+## [2.102.6] - 2026-09-30
+
+### Fixed
+
+- Charge secondary (employer) Class 1 National Insurance on employees over state pension age. SSCBA 1992 s.6(3) ends only primary (employee) contributions at pensionable age.
+
+
+## [2.102.5] - 2026-09-30
+
+### Fixed
+
+- Let families in which every adult is over State Pension age make new Housing Benefit claims, as SI 2014/1230 reg 6A(4) allows. They no longer need a reported claim, and `would_claim_uc` no longer blocks them because Universal Credit is not available to them. Household calculations previously paid pension-age renters no Housing Benefit, and pension-age families in the Enhanced FRS who report Housing Benefit lost it whenever they drew `would_claim_uc`. Working-age and mixed-age families keep the existing continuing-award rule.
+
+
+## [2.102.4] - 2026-09-30
+
+### Changed
+
+- - Require policyengine-core 3.32.9 or later, which sends `HUGGING_FACE_TOKEN` to public but gated Hugging Face repos such as policyengine-uk-data-private, and stop exporting `HF_TOKEN` in CI, the workaround that release makes unnecessary.
+
+
+## [2.102.3] - 2026-09-28
+
+### Changed
+
+- - Rebase the absolute poverty line to HBAI's FYE 2025 reference year from FYE 2022 onward, as DWP has reported it since March 2026: 431.69 BHC / 373.89 AHC a week at FYE 2025. On the enhanced FRS in 2026-27, absolute poverty rises by about 4 points overall and about 7 points for children after housing costs.
+
+
+## [2.102.2] - 2026-09-27
+
+### Fixed
+
+- - Fixed Class 4 National Insurance deducting employee Class 1 contributions from trading profits; Class 4 is now charged on the full profits, as SSCBA 1992 Schedule 2 requires, with the regulation 100 annual maximum still limiting combined liability.
+
+
+## [2.102.1] - 2026-09-27
+
+### Fixed
+
+- - Fixed Class 4 National Insurance dropping the additional-rate band above the Upper Profits Limit when uprated thresholds are not round numbers. The regulation 100 annual maximum no longer leaves its Case 1 choice to float32 rounding. It applies only when primary Class 1 contributions (or, before 6 April 2024, Class 2 contributions) are also payable, and it ignores Class 2 from 6 April 2024 as SI 2024/377 requires. It also no longer returns NaN when a reform sets the main Class 4 rate to zero.
+
+
+## [2.102.0] - 2026-09-25
+
+### Added
+
+- - Added household alcohol duty with strength bands, draught relief, and fiscal-year weighting.
+- - Added household tobacco duty with cigarette minimum duty and fiscal-year weighting.
+- - Added car vehicle excise duty using registration dates, emissions, fuel type, engine size and list price.
+- - Added LPG and natural road fuel gas to fuel duty, including the 2026-27 staged increases.
+  - Documented the gas-rate projection limits and different year bases in aggregate tax results.
+
+
+## [2.101.0] - 2026-09-25
+
+### Added
+
+- Added `net_wealth` (total wealth net of mortgage, consumer, and student loan debt) and the `mortgage_debt` and `consumer_debt` household inputs. Unlike gross `total_wealth`, net wealth can be negative when a household's debts exceed its assets.
+
+
+## [2.100.1] - 2026-09-23
+
+### Fixed
+
+- Stop projecting `domestic_energy_consumption`, `electricity_consumption` and `gas_consumption`. The data build calibrates them to NEED mean kWh at Ofgem Q2 2026 unit rates, so the stored values already carry FY26/27 price levels and projecting from the data year re-applied price changes that were already included. This reverses the direction of the fix in #1860, which resolved the #1859 inconsistency by uprating electricity and gas to match the aggregate rather than by removing all three. Modelled energy spending in projected years falls by about 8%.
+
+
+## [2.100.0] - 2026-09-22
+
+### Added
+
+- - Add the six April 2023 unitary authorities (Cumberland, North Northamptonshire, North Yorkshire, Somerset, West Northamptonshire, Westmorland and Furness) to the `LocalAuthority` enum, so a dataset on the April 2023 local authority roster can supply `local_authority` for every household.
+
+
+## [2.99.2] - 2026-09-21
+
+### Fixed
+
+- - Fixed `in_relative_poverty_bhc` and `in_relative_poverty_ahc` to take the 60% line from the median over individuals (household weight times household size), as DWP's HBAI series does, instead of the median over households. This is a definition change, not a data change, and it moves measured relative poverty: on the enhanced FRS 2024/25 (version 1.57.3) the BHC flag goes from 18.3% to 19.7% of individuals at 2024 and from 17.4% to 19.3% at 2026, the AHC flag from 22.3% to 23.7% and from 21.0% to 23.3%. Also corrected the BHC flag's label, added `poverty_threshold_ahc` as the AHC twin of `poverty_threshold_bhc` and documented the absolute-versus-relative pair on each flag; the absolute flags are unchanged.
+
+
+## [2.99.1] - 2026-09-18
+
+No significant changes.
+
+
+## [2.99.0] - 2026-09-18
+
+### Added
+
+- - Add three person-level inputs, `capital_gains_badr`, `capital_gains_residential_property` and `capital_gains_carried_interest`, as components of `capital_gains`, and charge each at its own schedule in `capital_gains_tax`: new parameters `gov.hmrc.cgt.badr.rate` and `.lifetime_limit`, `gov.hmrc.cgt.residential_property.{basic,higher,additional}_rate` and `gov.hmrc.cgt.carried_interest.{basic,higher,additional}_rate`. The annual exempt amount goes to the highest-rate schedule first, relief gains take the unused basic rate band before other gains (TCGA 1992 s. 1I(4)-(6)), and the remaining band goes where it saves most. With the inputs absent or zero the liability is unchanged. A reform that changes only `gov.hmrc.cgt.{basic,higher,additional}_rate` no longer reaches residential property, carried interest or relief gains; to tax every gain at income tax rates, set the `residential_property` and `carried_interest` rates too and set `gov.hmrc.cgt.badr.lifetime_limit` to zero.
+
+### Fixed
+
+- - Open dataset H5 files read-only when loading. huggingface_hub 1.32.0 stores cached downloads as read-only blobs, and the default append mode refused them, so every dataset-backed simulation failed with a PermissionError.
+
+
+## [2.98.0] - 2026-09-16
+
+### Added
+
+- - Add `would_claim_carers_allowance` (person) and `would_claim_uc_childcare` (benefit unit) take-up inputs, both defaulting to true, and recognise 35 or more weekly care hours in `is_carer_for_benefits` so a dataset can qualify carers for the Universal Credit carer element and the legacy carer premiums from reported hours without paying Carer's Allowance to every carer.
+
+
+## [2.97.2] - 2026-09-10
+
+### Fixed
+
+- - Removed the Scottish Child Payment baby bonus from the baseline. The £40/week rate for under-1s was announced in the Scottish Budget 2026-27 but is not in legislation (SSI 2026/170 reg 8 sets a single flat rate with no under-1 tier), so from 2027 an eligible under-1 in Scotland was scored £2,080.00 against the statutory £1,500.20, overstating household net income by £579.80. It is now off in the baseline and only applies when a reform sets `gov.contrib.scotland.scottish_child_payment.in_effect`.
+
+
+## [2.97.1] - 2026-09-10
+
+### Fixed
+
+- - Fixed the lagged CPI and lagged average earnings series ending at a hardcoded 2029, which froze lagged average earnings at its 2028 growth rate and left the index around 14% low by 2039.
+
+
+## [2.97.0] - 2026-09-08
+
+### Added
+
+- - Added the is_uc_claimant input to identify Universal Credit claimants and partners from recorded benefit-unit relationships.
+
+### Fixed
+
+- - Fixed Universal Credit claimant classification and work allowances for families with qualifying young people, and excluded claimants from their own ordinary and disability child elements and two-child-limit counts.
+
+
+## [2.96.1] - 2026-09-07
+
+### Changed
+
+- - Updated the private rent index to the ONS Price Index of Private Rents, which runs to July 2026 and raises Local Housing Allowance rates from 2024.
+
+
+## [2.96.0] - 2026-09-06
+
+### Added
+
+- - Added the national maximum Local Housing Allowance, which caps the Broad Rental Market Area percentile and binds in central London.
+
+### Fixed
+
+- - Fixed frozen LHA rates being re-based to the first year of the freeze rather than held at the level last determined, and read the percentile and national maximum at that determination year so a later change cannot move a frozen rate.
+- - Fixed the Universal Credit housing costs element using the weekly Housing Benefit maximum LHA annualised by 52, rather than the statutory monthly maximum.
+
+
+## [2.95.0] - 2026-09-01
+
+### Removed
+
+- - Removed the obsolete UK release action that silently attempted to run deleted downstream dependency-update scripts.
+
+
+## [2.94.0] - 2026-08-30
+
+### Changed
+
+- - Added shared AI contributor instructions that route tool-specific guidance into common engineering documentation.
+
+### Removed
+
+- - Removed Python 3.9 and 3.10 support; supported versions are now Python 3.11–3.14.
+
+
+## [2.93.1] - 2026-08-28
+
+### Fixed
+
+- Place earnings quintiles against thresholds taken from the observed earnings distribution of working adults, rather than ranking the whole population on actual earnings. Ranking everyone, children included, left the bottom two quintiles entirely without earners, placed every potential labour-market entrant at the steep end of the OBR Table A1 elasticities, and left those quintiles with no employed donors — so `impute_wages_for_nonworkers` returned a wage of zero for them, which silently bars entry into employment. Wage donors are now grouped by sex and age band, which also breaks the circular dependency between the two functions.
+
+  Non-workers are placed on the quintile table at full-time-equivalent income. This is an assumption beyond the cited sources, and it is material: unscaled 18.8-hour placement moves entrants to quintile 1 and roughly doubles the elasticity they draw. Documented in the module with the bound and how to reproduce it.
+
+
+## [2.93.0] - 2026-08-28
+
+### Added
+
+- - Add `tax_free_childcare_spend_routed_share`, a per-child input for the share of childcare spending paid through a Tax-Free Childcare account. Only routed spending attracts the top-up, and `childcare_expenses` is annual. The share is measured across the eligible period, not the whole year, because `tax_free_childcare` already prorates annual spending by the eligible fraction and a whole-year share would discount the same months twice. Defaults to 1 — a neutral all-spend-routed assumption rather than a statutory requirement — and is clipped to 0-1, so no household calculation changes. The dataset build may supply an HMRC-derived account-activity duration proxy rather than an observed routed-expenditure share; see policyengine-uk-data.
+
+
+## [2.92.2] - 2026-08-28
+
+### Fixed
+
+- - Apply the Tax-Free Childcare rate to the total paid to the provider rather than grossing it up as if it were the parent's deposit. The parameter is 20% of household and government contributions combined, and its reference is the section of the Childcare Payments Act that defines the gross-side rate, so dividing by `(1 - rate)` applied deposit-side arithmetic to a gross-side rate. Modelled spending on the Enhanced FRS falls 14.5%, less than the 20% the rate change implies, because the per-child cap binds for many recipients. Also pro-rate the top-up by the share of the year a family is eligible rather than only its cap, which changes nothing on a built dataset today because `tax_free_childcare_eligible_declaration_periods` is binary by construction.
+
+
+## [2.92.1] - 2026-08-28
+
+No significant changes.
+
+
+## [2.92.0] - 2026-08-26
+
+### Added
+
+- Added `private_pension_wealth` (Household, imputed from the Wealth and Assets Survey) as an explicit capital disregard: it is not a capital source in any means test, `corporate_wealth` no longer describes private pensions, `total_wealth` includes it, and a new `corporate_sector_wealth` (corporate plus private pension wealth) is the allocation key for shareholding, corporate land value and the employer NI capital response so those keys do not move when the data splits pension wealth out of corporate wealth (policyengine-uk-data#452).
+
+
+## [2.91.0] - 2026-08-17
+
+### Added
+
+- - Added an auxiliary capital gains realisation elasticity with respect to the marginal tax rate, alongside the existing retention-rate elasticity.
+
+
+## [2.90.3] - 2026-08-14
+
+### Changed
+
+- UC deductions documentation: promote the aggregate caveat - reform aggregates (poverty counts, floor-reform costs) run roughly 40% low because the model's UC caseload falls short of administrative counts (policyengine-uk-data#452 tracks the calibration fix; #450 tracks moving deduction imputation to the dataset build); per-household statistics are the validated, quotable layer. Also note the rate distribution is national (regional factors scale incidence only, so regional composition differences are not modeled) and that annual per-household amounts are upper bounds for spell-limited deduction types.
+
+
+## [2.90.2] - 2026-08-13
+
+No significant changes.
+
+
+## [2.90.1] - 2026-08-12
+
+No significant changes.
+
+
+## [2.90.0] - 2026-08-12
+
+### Added
+
+- Universal Credit deductions: latent deduction demand assigned from DWP deductions statistics (incidence by region, rate distribution, type combinations), the deductions cap including the 2025 Fair Repayment Rate, last resort deductions exempt from the cap, reform switches to abolish advance, third party or government debt deductions, and a protected minimum floor lever limiting combined deductions and benefit cap reductions (JRF-style floor reforms). Per-household statistics are validated against the DWP deductions statistics; weighted aggregates (deducting households, total deducted, the cost of floor reforms) run low in proportion to the model's UC caseload shortfall (policyengine-uk-data#452) and should not be quoted without that caveat - see the deductions validation page in the documentation for the limitations that bound reform estimates.
+
+
+## [2.89.4] - 2026-07-27
+
+### Fixed
+
+- Lower Northern Ireland's regional land intensity from 0.673 to 0.44, interpolating from price-similar regions consistently with Scotland and Wales.
+
+
+## [2.89.3] - 2026-07-23
+
+No significant changes.
+
+
+## [2.89.2] - 2026-06-18
+
+No significant changes.
+
+
+## [2.89.1] - 2026-06-17
+
+No significant changes.
+
+
+## [2.89.0] - 2026-06-11
+
+### Added
+
+- - Added direct `gs://` dataset loading for UK simulations, including support for GCS generations and PolicyEngine data-version metadata.
+
+
+## [2.88.65] - 2026-06-07
+
+No significant changes.
+
+
+## [2.88.64] - 2026-06-07
+
+No significant changes.
+
+
+## [2.88.63] - 2026-06-07
+
+No significant changes.
+
+
+## [2.88.62] - 2026-06-07
+
+No significant changes.
+
+
+## [2.88.61] - 2026-06-07
+
+No significant changes.
+
+
+## [2.88.60] - 2026-06-07
+
+No significant changes.
+
+
+## [2.88.59] - 2026-06-06
+
+No significant changes.
+
+
+## [2.88.58] - 2026-06-06
+
+No significant changes.
+
+
+## [2.88.57] - 2026-06-06
+
+No significant changes.
+
+
+## [2.88.56] - 2026-06-06
+
+No significant changes.
+
+
+## [2.88.55] - 2026-06-06
+
+No significant changes.
+
+
+## [2.88.54] - 2026-06-06
+
+No significant changes.
+
+
+## [2.88.53] - 2026-06-05
+
+### Fixed
+
+- - Fixed Carer Support Payment and Scottish Carer Supplement 2026 parameter dates.
+
+
 ## [2.88.52] - 2026-06-05
 
 No significant changes.

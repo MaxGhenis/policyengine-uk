@@ -16,6 +16,8 @@ from policyengine_core.simulations import Simulation as CoreSimulation
 from policyengine_core.tools.hugging_face import download_huggingface_dataset
 from policyengine_core.tracers import FullTracer, SimpleTracer
 
+from policyengine_uk.utils.parameters import uk_fiscal_year_period
+
 # PolicyEngine UK imports
 from policyengine_uk.data.dataset_schema import (
     UKMultiYearDataset,
@@ -26,6 +28,7 @@ from policyengine_uk.data.economic_assumptions import (
     extend_single_year_dataset,
     reset_growthfactor_uprating,
 )
+from policyengine_uk.data.dataset_sources import materialize_gcs_dataset_url
 from policyengine_uk.utils.dependencies import get_variable_dependencies
 from policyengine_uk.reforms import create_structural_reforms_from_parameters
 from policyengine_uk.parameters.gov.simulation.labour_supply_responses.aliases import (
@@ -114,7 +117,7 @@ class Simulation(CoreSimulation):
             ]
         ] = None,
         trace: bool = False,
-        reform: Union[Dict, Type[Reform]] = None,
+        reform: Dict | Type[Reform] = None,
     ):
         """Initialize a UK simulation.
 
@@ -235,10 +238,12 @@ class Simulation(CoreSimulation):
                 canonical_parameter
             )
             if isinstance(changes[parameter], dict):
-                # Time-period specific changes
+                # Time-period specific changes. A bare year names the UK
+                # fiscal year, so the override covers 6 April to 5 April and
+                # survives fiscal-year conversion at full strength.
                 for time_period in changes[parameter]:
                     p.update(
-                        period=time_period,
+                        period=uk_fiscal_year_period(time_period),
                         value=changes[parameter][time_period],
                     )
             else:
@@ -274,11 +279,19 @@ class Simulation(CoreSimulation):
         if dataset_source.startswith("hf://"):
             self.build_from_url(dataset_source)
             return
+        if dataset_source.startswith("gs://"):
+            if dataset_source in _url_dataset_cache:
+                multi_year_dataset = _url_dataset_cache[dataset_source]
+                self.build_from_multi_year_dataset(multi_year_dataset)
+                self.dataset = multi_year_dataset
+                return
+            dataset_file = materialize_gcs_dataset_url(dataset_source)
+            self.build_from_file(dataset_file, cache_key=dataset_source)
+            return
         if "://" in dataset_source:
             raise ValueError(
-                "Only HuggingFace dataset URLs are supported directly by "
-                "policyengine-uk. Download or materialize other dataset "
-                "sources to a local file path before passing them to Simulation."
+                "Only HuggingFace, Google Cloud Storage, and local dataset "
+                "sources are supported by policyengine-uk."
             )
         self.build_from_file(dataset_source)
 
