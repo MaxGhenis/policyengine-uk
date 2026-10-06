@@ -1,3 +1,7 @@
+# IMPACT STEP A1 (scratch, not committed): the three gates read only the
+# claimant and partner, keeping the old benefit-unit-wide combination:
+# no claimant or partner over state pension age, no claimant or partner
+# income-related ESA, a claimant or partner reports Income Support.
 from policyengine_uk.model_api import *
 
 
@@ -5,41 +9,12 @@ class income_support_eligible(Variable):
     value_type = bool
     entity = BenUnit
     label = "Whether eligible for Income Support"
-    documentation = (
-        "SSCBA 1992 s.124(1) sets the conditions for the claimant and, for "
-        "some of them, the claimant's partner. A couple choose which of them "
-        "claims (Claims and Payments Regs 1987 reg 4(3)), so the benefit unit "
-        "is eligible when either the claimant or the partner could claim: "
-        "they are under the qualifying age for State Pension Credit, fall "
-        "within a prescribed category (a carer, or a lone parent of a young "
-        "child) and are not entitled to Employment and Support Allowance. "
-        "Neither of them may be entitled to income-related ESA, "
-        "and one of them must already have an award, because new claims are "
-        "closed. Other members of the benefit unit, such as a non-dependent "
-        "adult, do not affect eligibility."
-    )
     definition_period = YEAR
-    reference = (
-        "https://www.legislation.gov.uk/ukpga/1992/4/section/124",
-        "https://www.legislation.gov.uk/uksi/1987/1967/regulation/4ZA",
-        "https://www.legislation.gov.uk/uksi/1987/1967/schedule/1B",
-        "https://www.legislation.gov.uk/uksi/1987/1968/regulation/4",
-        "https://www.legislation.gov.uk/uksi/2014/1230/regulation/6A",
-    )
 
     def formula(benunit, period, parameters):
         IS = parameters(period).gov.dwp.income_support
         person = benunit.members
-        # SSCBA s.124(1) names the claimant and, in paras (c), (f), (g) and
-        # (h), the other member of a couple. A couple choose which of them
-        # claims (Claims and Payments Regs 1987 reg 4(3)), so either of them
-        # can be the claimant; nobody else in the benefit unit is named.
-        claimant_or_partner = person("is_claimant_or_partner", period)
-        # s.124(1)(e), reg 4ZA and Sch 1B: the claimant falls within a
-        # prescribed category. Para 1 is a lone parent responsible for a child
-        # under 5; Schedule 1B para 1 says "under 5", and the model retains
-        # the existing inclusive comparison pending a separate decision on
-        # the annual-age model. Para 4 is a carer.
+        cp = person("is_claimant_or_partner", period)
         youngest_child_5_or_under = (
             benunit("youngest_child_age_for_legacy_benefits", period)
             <= IS.eligibility.lone_parent_youngest_child_age_limit
@@ -47,54 +22,21 @@ class income_support_eligible(Variable):
         lone_parent_with_young_child = (
             benunit("is_lone_parent", period) & youngest_child_5_or_under
         )
-        prescribed_category = person("is_carer_for_benefits", period) | benunit.project(
-            lone_parent_with_young_child
-        )
-        # s.124(1)(aa): the claimant has not attained the qualifying age for
-        # State Pension Credit, which is state pension age (SPCA 2002 s.1(6)).
-        # A partner over that age does not bar the claim; s.124(1)(g) bars it
-        # only if the partner is entitled to State Pension Credit, which a
-        # mixed-age couple cannot be (SPCA 2002 s.4(1A); the SI 2019/37
-        # art. 4 savings are not modelled, as in is_pension_credit_eligible).
-        under_qualifying_age = ~person("is_SP_age", period)
-        # s.124(1)(h): the claimant is not entitled to an employment and
-        # support allowance of either kind ...
-        no_contributory_esa = person("esa_contrib", period) <= 0
-        could_claim = (
-            claimant_or_partner
-            & prescribed_category
-            & under_qualifying_age
-            & no_contributory_esa
-        )
-        # ... and the other member of a couple is not entitled to an
-        # income-related allowance. An income-related allowance covers the
-        # couple, so it bars Income Support whichever of them has it. This is
-        # esa_income restricted to the claimant's and partner's reported
-        # awards, with the same capital screen. An award entered directly as
-        # esa_income, with no reported awards, is taken to be theirs.
-        reported_income_related_esa = benunit.sum(
-            person("esa_income_reported", period) * claimant_or_partner
-        )
+        cp_cares = benunit.any(cp & person("is_carer_for_benefits", period))
+        none_SP_age = ~benunit.any(cp & person("is_SP_age", period))
+        reported = benunit.sum(person("esa_income_reported", period) * cp)
         income_related_esa = where(
             add(benunit, period, ["esa_income_reported"]) > 0,
             benunit("esa_income_eligible", period)
-            & (
-                reported_income_related_esa
-                > benunit("esa_income_tariff_income", period)
-            ),
+            & (reported > benunit("esa_income_tariff_income", period)),
             benunit("esa_income", period) > 0,
         )
-        # No new claims for Income Support can be made (Universal Credit
-        # (Transitional Provisions) Regs 2014 reg 6A(1)), so the claimant or
-        # partner must already have an award.
-        already_claiming = (
-            benunit.sum(person("income_support_reported", period) * claimant_or_partner)
-            > 0
-        )
+        already = benunit.sum(person("income_support_reported", period) * cp) > 0
         capital = benunit("income_support_assessable_capital", period)
         return (
-            benunit.any(could_claim)
+            (cp_cares | lone_parent_with_young_child)
+            & none_SP_age
             & ~income_related_esa
-            & already_claiming
+            & already
             & (capital <= IS.means_test.capital.limit)
         )
