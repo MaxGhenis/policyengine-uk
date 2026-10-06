@@ -1,3 +1,5 @@
+# IMPACT STEP A2 (scratch, not committed): final formula without the
+# claimant's contributory-ESA limb of s.124(1)(h).
 from policyengine_uk.model_api import *
 
 
@@ -11,9 +13,9 @@ class income_support_eligible(Variable):
         "claims (Claims and Payments Regs 1987 reg 4(3)), so the benefit unit "
         "is eligible when either the claimant or the partner could claim: "
         "they are under the qualifying age for State Pension Credit, fall "
-        "within a prescribed category (a carer, or a lone parent of a young "
-        "child) and are not entitled to Employment and Support Allowance. "
-        "Neither of them may be entitled to income-related ESA, "
+        "within a prescribed category (a carer, or a lone parent of a child "
+        "under five) and are not entitled to Employment and Support "
+        "Allowance. Neither of them may be entitled to income-related ESA, "
         "and one of them must already have an award, because new claims are "
         "closed. Other members of the benefit unit, such as a non-dependent "
         "adult, do not affect eligibility."
@@ -59,7 +61,7 @@ class income_support_eligible(Variable):
         under_qualifying_age = ~person("is_SP_age", period)
         # s.124(1)(h): the claimant is not entitled to an employment and
         # support allowance of either kind ...
-        no_contributory_esa = person("esa_contrib", period) <= 0
+        no_contributory_esa = True  # IMPACT STEP A2: limb omitted
         could_claim = (
             claimant_or_partner
             & prescribed_category
