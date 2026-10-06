@@ -107,8 +107,6 @@ class income_support_eligible(Variable):
             & under_qualifying_age
             & no_contributory_esa
             & no_contributory_jsa
-            & ~works_as_claimant
-            & ~other_member_works
         )
         # ... and the other member of a couple is not entitled to an
         # income-related allowance. An income-related allowance covers the
