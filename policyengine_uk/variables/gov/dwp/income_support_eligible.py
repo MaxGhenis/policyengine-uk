@@ -106,7 +106,6 @@ class income_support_eligible(Variable):
             & prescribed_category
             & under_qualifying_age
             & no_contributory_esa
-            & no_contributory_jsa
             & ~works_as_claimant
             & ~other_member_works
         )
@@ -141,6 +140,5 @@ class income_support_eligible(Variable):
         return (
             benunit.any(claimant)
             & ~income_related_esa
-            & ~income_based_jsa
             & (capital <= IS.means_test.capital.limit)
         )
