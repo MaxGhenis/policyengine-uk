@@ -44,9 +44,7 @@ class housing_benefit_applicable_income_disregard(Variable):
         # "Equal or exceed", compared in pence: net earnings are float32, so
         # exactly £1,149.20 is held as £1,149.19995, and an exact comparison
         # with the total fails at equality.
-        covers_additional = np.round(net_earnings.astype(float), 2) >= np.round(
-            (standard + childcare + additional_amount).astype(float), 2
-        )
+        covers_additional = net_earnings >= standard + childcare + additional_amount
         additional = where(
             benunit(
                 "meets_housing_benefit_additional_earnings_disregard_conditions", period
