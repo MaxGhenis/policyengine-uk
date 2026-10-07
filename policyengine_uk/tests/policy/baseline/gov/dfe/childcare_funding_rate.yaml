@@ -1,0 +1,108 @@
+# Each entitlement valued at DfE's national average hourly funding rate for the
+# year: 2024-25 technical note Table 4, 2025-26 and 2026-27 technical notes
+# Table 6. Simulation year 2025 is the 2025-26 financial year. 570 hours a year
+# is 15 a week for 38 weeks; 1,140 is 30.
+
+- name: Universal hours for a 3-year-old in 2024-25 at £5.88
+  period: 2024
+  absolute_error_margin: 0.01
+  input:
+    people:
+      child:
+        age: 3
+        universal_childcare_entitlement_eligible: true
+  output:
+    universal_childcare_entitlement: 3_351.60  # 570 * 5.88
+
+- name: Universal hours for a 3-year-old in 2025-26 at £6.12
+  period: 2025
+  absolute_error_margin: 0.01
+  input:
+    people:
+      child:
+        age: 3
+        universal_childcare_entitlement_eligible: true
+  output:
+    universal_childcare_entitlement: 3_488.40  # 570 * 6.12
+
+- name: Universal hours for a 4-year-old in 2026-27 at £6.61
+  period: 2026
+  absolute_error_margin: 0.01
+  input:
+    people:
+      child:
+        age: 4
+        universal_childcare_entitlement_eligible: true
+  output:
+    universal_childcare_entitlement: 3_767.70  # 570 * 6.61
+
+- name: Early learning for 2-year-olds in 2025-26 at £8.53
+  period: 2025
+  absolute_error_margin: 0.01
+  input:
+    people:
+      child:
+        age: 2
+    benunits:
+      benunit:
+        members: [child]
+        targeted_childcare_entitlement_eligible: true
+  output:
+    targeted_childcare_entitlement: 4_862.10  # 570 * 8.53
+
+- name: Early learning for 2-year-olds in 2026-27 at £8.90
+  period: 2026
+  absolute_error_margin: 0.01
+  input:
+    people:
+      child:
+        age: 2
+    benunits:
+      benunit:
+        members: [child]
+        targeted_childcare_entitlement_eligible: true
+  output:
+    targeted_childcare_entitlement: 5_073.00  # 570 * 8.90
+
+- name: Working parent hours for a 1-year-old in 2025-26 at £11.54 (15 hours before September 2025)
+  period: 2025
+  absolute_error_margin: 0.01
+  input:
+    people:
+      child:
+        age: 1
+    benunits:
+      benunit:
+        members: [child]
+        extended_childcare_entitlement_eligible: true
+  output:
+    extended_childcare_entitlement: 6_577.80  # 570 * 11.54
+
+- name: Working parent hours for a 1-year-old in 2026-27 at £12.04
+  period: 2026
+  absolute_error_margin: 0.01
+  input:
+    people:
+      child:
+        age: 1
+    benunits:
+      benunit:
+        members: [child]
+        extended_childcare_entitlement_eligible: true
+  output:
+    extended_childcare_entitlement: 13_725.60  # 1,140 * 12.04
+
+- name: Working parent hours for a 2-year-old in 2026-27 at £8.90
+  period: 2026
+  absolute_error_margin: 0.01
+  input:
+    people:
+      child:
+        age: 2
+    benunits:
+      benunit:
+        members: [child]
+        extended_childcare_entitlement_eligible: true
+        targeted_childcare_entitlement_eligible: false
+  output:
+    extended_childcare_entitlement: 10_146.00  # 1,140 * 8.90
