@@ -281,8 +281,12 @@ def _exclusion_in_ignored_hatch_toml(root: Path) -> None:
     # hatchling merges hatch.toml into the build configuration.
     with (root / ".git" / "info" / "exclude").open("a") as file:
         file.write("hatch.toml\n")
+    # Its [build] table replaces pyproject's [tool.hatch.build], so restate
+    # the package.
     (root / "hatch.toml").write_text(
-        '[build.targets.wheel]\nexclude = ["policyengine_uk/parameters/rate.yaml"]\n'
+        "[build.targets.wheel]\n"
+        'packages = ["policyengine_uk"]\n'
+        'exclude = ["policyengine_uk/parameters/rate.yaml"]\n'
     )
 
 
