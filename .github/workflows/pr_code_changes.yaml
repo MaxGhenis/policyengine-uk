@@ -78,8 +78,14 @@ jobs:
         run: pip3 install wheel setuptools pytest==5.4.3
       - name: Build package
         run: make
+      - name: Build a wheel from the sdist
+        # make builds the release wheel from the checkout. Check the sdist
+        # still builds the same package, as building the wheel from it once did.
+        run: uv build --wheel --out-dir "$RUNNER_TEMP/from-sdist" dist/*.tar.gz
       - name: Check the wheel records this commit
-        run: python .github/check_release_build.py dist "$(git rev-parse HEAD)"
+        run: >-
+          python .github/check_release_build.py dist "$(git rev-parse HEAD)"
+          "$RUNNER_TEMP/from-sdist"
   Lint:
     runs-on: ubuntu-latest
     steps:

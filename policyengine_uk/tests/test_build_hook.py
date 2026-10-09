@@ -107,15 +107,14 @@ def _project_version(root: Path) -> str:
     return WheelBuilder(str(root)).metadata.version
 
 
-def _included_paths(root: Path) -> list[str]:
-    return [
-        included_file.relative_path
-        for included_file in WheelBuilder(str(root)).recurse_included_files()
-    ]
+def _wheel_input_paths(root: Path) -> list[str]:
+    paths, reason = hatch_build.wheel_input_paths(WheelBuilder(str(root)))
+    assert paths is not None, reason
+    return paths
 
 
 def _find_build_commit(root: Path) -> tuple[str | None, str]:
-    return hatch_build.find_build_commit(root, _included_paths(root), build_metadata)
+    return hatch_build.find_build_commit(root, _wheel_input_paths(root), build_metadata)
 
 
 def _build_wheel(root: Path, out: Path, version: str = "standard") -> Path:
@@ -234,6 +233,37 @@ def _skip_worktree_then_deleted(root: Path) -> None:
     (root / "policyengine_uk" / "__init__.py").unlink()
 
 
+def _ignored_license_backup(root: Path) -> None:
+    # hatchling packages every root file matching its default license globs
+    # (LICEN[CS]E* and others), whether or not git ignores it; .gitignore
+    # ignores editor backups (*~).
+    (root / "LICENSE~").write_text("old licence\n")
+
+
+def _crlf_hidden_by_autocrlf(root: Path) -> None:
+    _git(root, "config", "core.autocrlf", "true")
+    rate = root / "policyengine_uk" / "parameters" / "rate.yaml"
+    rate.write_bytes(rate.read_bytes().replace(b"\n", b"\r\n"))
+    # As a Windows checkout has it: the index is current, so status is clean.
+    _git(root, "add", "policyengine_uk/parameters/rate.yaml")
+
+
+def _exec_bit_hidden_by_file_mode(root: Path) -> None:
+    _git(root, "config", "core.fileMode", "false")
+    rate = root / "policyengine_uk" / "parameters" / "rate.yaml"
+    rate.chmod(rate.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+
+
+def _content_hidden_by_clean_filter(root: Path) -> None:
+    with (root / ".git" / "info" / "attributes").open("a") as file:
+        file.write("*.yaml filter=hide\n")
+    _git(root, "config", "filter.hide.clean", "sed -e '/^# local/d'")
+    rate = root / "policyengine_uk" / "parameters" / "rate.yaml"
+    rate.write_text(rate.read_text() + "# local change\n")
+    # The cleaned content equals HEAD's, so once staged, status is clean.
+    _git(root, "add", "policyengine_uk/parameters/rate.yaml")
+
+
 DIRTY_TREES = {
     "modified tracked file": _modify_tracked,
     "staged change": _stage_change,
@@ -249,6 +279,10 @@ DIRTY_TREES = {
     ),
     "assume-unchanged file modified": _assume_unchanged_then_modified,
     "skip-worktree file deleted": _skip_worktree_then_deleted,
+    "ignored licence backup": _ignored_license_backup,
+    "CRLF hidden by core.autocrlf": _crlf_hidden_by_autocrlf,
+    "exec bit hidden by core.fileMode": _exec_bit_hidden_by_file_mode,
+    "content hidden by a clean filter": _content_hidden_by_clean_filter,
 }
 
 
@@ -286,7 +320,7 @@ def test_records_nothing_for_committed_symlink(project):
     git_sha, reason = _find_build_commit(root)
 
     assert git_sha is None
-    assert "symlink" in reason
+    assert "not a regular tracked file" in reason
 
 
 def test_records_nothing_without_git_directory(project):
@@ -375,6 +409,22 @@ def test_records_nothing_when_git_times_out(project, monkeypatch):
 
     assert _find_build_commit(root)[0] is None
     assert timeouts and all(timeout is not None for timeout in timeouts)
+
+
+def test_records_nothing_when_git_hashes_fewer_files(project, monkeypatch):
+    # Every input must be compared; a short answer must not skip the rest.
+    root, _ = project
+    real_run = hatch_build.subprocess.run
+
+    def truncated_hash_object(args, **kwargs):
+        result = real_run(args, **kwargs)
+        if "hash-object" in args:
+            result.stdout = result.stdout.splitlines(keepends=True)[0]
+        return result
+
+    monkeypatch.setattr(hatch_build.subprocess, "run", truncated_hash_object)
+
+    assert _find_build_commit(root) == (None, "git hash-object failed")
 
 
 def test_build_metadata_loads_with_the_standard_library_only(tmp_path):
