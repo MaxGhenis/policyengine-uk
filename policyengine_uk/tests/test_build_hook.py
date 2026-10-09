@@ -17,6 +17,7 @@ import stat
 import subprocess
 import sys
 import tarfile
+import threading
 import venv
 import zipfile
 
@@ -778,6 +779,25 @@ def test_git_sha_ignores_recorded_build_commit_of_another_copy(tmp_path, monkeyp
     package_root = _install(tmp_path / "site-packages")
 
     assert _get_git_sha(package_root) is None
+
+
+@pytest.mark.skipif(not hasattr(os, "mkfifo"), reason="needs named pipes")
+def test_git_sha_does_not_block_on_fifo_build_info(tmp_path):
+    package_root = _install(tmp_path / "site-packages")
+    build_info = next((tmp_path / "site-packages").glob("*.dist-info")) / BUILD_INFO
+    build_info.parent.mkdir(parents=True)
+    os.mkfifo(build_info)
+    result = {}
+    lookup = threading.Thread(
+        target=lambda: result.update(sha=_get_git_sha(package_root)), daemon=True
+    )
+    lookup.start()
+    lookup.join(timeout=30)
+    if lookup.is_alive():
+        # Release the blocked reader so the thread can finish.
+        os.close(os.open(build_info, os.O_WRONLY | os.O_NONBLOCK))
+    assert not lookup.is_alive()
+    assert result["sha"] is None
 
 
 def test_git_sha_ignores_build_info_in_a_source_tree(tmp_path):
