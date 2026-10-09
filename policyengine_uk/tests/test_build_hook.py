@@ -386,6 +386,37 @@ def test_ignores_git_environment_overrides(project, tmp_path, monkeypatch):
     assert _find_build_commit(root) == (head, "")
 
 
+@pytest.mark.parametrize(
+    ("key", "value", "change"),
+    [
+        ("core.autocrlf", "true", "crlf"),
+        ("core.fileMode", "false", "exec bit"),
+    ],
+)
+def test_environment_git_config_cannot_hide_changes(
+    project, monkeypatch, key, value, change
+):
+    # The hook keeps git's configuration variables (GIT_CONFIG_COUNT and
+    # friends) so an environment-supplied safe.directory works. Config from
+    # there must not make a changed file pass as HEAD's either.
+    root, _ = project
+    monkeypatch.setenv("GIT_CONFIG_COUNT", "1")
+    monkeypatch.setenv("GIT_CONFIG_KEY_0", key)
+    monkeypatch.setenv("GIT_CONFIG_VALUE_0", value)
+    rate = root / "policyengine_uk" / "parameters" / "rate.yaml"
+    if change == "crlf":
+        rate.write_bytes(rate.read_bytes().replace(b"\n", b"\r\n"))
+        _git(root, "add", "policyengine_uk/parameters/rate.yaml")
+    else:
+        rate.chmod(rate.stat().st_mode | stat.S_IXUSR)
+    assert _git(root, "status", "--porcelain") == ""
+
+    git_sha, reason = _find_build_commit(root)
+
+    assert git_sha is None
+    assert "differs from HEAD" in reason
+
+
 def test_records_nothing_without_git_executable(project, monkeypatch):
     root, _ = project
 
