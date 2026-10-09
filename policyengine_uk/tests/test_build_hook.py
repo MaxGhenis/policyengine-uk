@@ -657,29 +657,38 @@ def test_build_info_name_matches_the_reader():
     assert hatch_build.BUILD_INFO_NAME == build_metadata.BUILD_INFO_NAME
 
 
+def _fail_hook_git(monkeypatch, error):
+    """Make only the hook's own git calls fail; build_metadata's still run."""
+    calls = []
+    real_run = hatch_build.subprocess.run
+
+    def run(args, **kwargs):
+        if "--no-replace-objects" in args:
+            calls.append(kwargs.get("timeout"))
+            raise error(args, kwargs)
+        return real_run(args, **kwargs)
+
+    monkeypatch.setattr(hatch_build.subprocess, "run", run)
+    return calls
+
+
 def test_records_nothing_without_git_executable(project, monkeypatch):
     root, _ = project
+    calls = _fail_hook_git(monkeypatch, lambda args, kwargs: FileNotFoundError("git"))
 
-    def missing_git(*args, **kwargs):
-        raise FileNotFoundError("git")
-
-    monkeypatch.setattr(hatch_build.subprocess, "run", missing_git)
-
-    assert _find_build_commit(root)[0] is None
+    assert _find_build_commit(root) == (None, "git status failed")
+    assert calls
 
 
 def test_records_nothing_when_git_times_out(project, monkeypatch):
     root, _ = project
-    timeouts = []
+    calls = _fail_hook_git(
+        monkeypatch,
+        lambda args, kwargs: subprocess.TimeoutExpired(args, kwargs.get("timeout")),
+    )
 
-    def slow_git(args, **kwargs):
-        timeouts.append(kwargs.get("timeout"))
-        raise subprocess.TimeoutExpired(args, kwargs.get("timeout"))
-
-    monkeypatch.setattr(hatch_build.subprocess, "run", slow_git)
-
-    assert _find_build_commit(root)[0] is None
-    assert timeouts and all(timeout is not None for timeout in timeouts)
+    assert _find_build_commit(root) == (None, "git status failed")
+    assert calls and all(timeout is not None for timeout in calls)
 
 
 def test_records_nothing_when_git_hashes_fewer_files(project, monkeypatch):
@@ -696,6 +705,169 @@ def test_records_nothing_when_git_hashes_fewer_files(project, monkeypatch):
     monkeypatch.setattr(hatch_build.subprocess, "run", truncated_hash_object)
 
     assert _find_build_commit(root) == (None, "git hash-object failed")
+
+
+def test_index_must_equal_heads_tree_whatever_git_status_says(project, monkeypatch):
+    # A stale cache-tree or commit-graph can make status describe another
+    # tree. Stage other content, leave the working file matching the index,
+    # and make status blind: only the index-to-HEAD comparison is left.
+    root, _ = project
+    _modify_tracked(root)
+    _git(root, "add", "-A")
+    real_git_output = hatch_build._git_output
+
+    def blind_status(build_metadata, root, *args):
+        if "status" in args:
+            return b""
+        return real_git_output(build_metadata, root, *args)
+
+    monkeypatch.setattr(hatch_build, "_git_output", blind_status)
+
+    assert _find_build_commit(root) == (None, "the index differs from HEAD's tree")
+
+
+@pytest.mark.skipif(os.name == "nt", reason="needs POSIX file modes")
+def test_records_nothing_for_a_setgid_input(project):
+    # The wheel keeps the bit; git does not track it.
+    root, _ = project
+    rate = root / "policyengine_uk" / "parameters" / "rate.yaml"
+    try:
+        rate.chmod(rate.stat().st_mode | stat.S_ISGID)
+    except OSError:
+        pytest.skip("cannot set the setgid bit here")
+    if not rate.stat().st_mode & stat.S_ISGID:
+        pytest.skip("the file system dropped the setgid bit")
+
+    git_sha, reason = _find_build_commit(root)
+
+    assert git_sha is None
+    assert "setuid, setgid or sticky" in reason
+
+
+def test_records_nothing_when_git_cannot_compare_a_tracked_file(project):
+    # Policy, beside the content checks: if git does not compare every
+    # tracked file with the working tree, the tree is not vouched for, even
+    # where the wheel never reads the hidden file.
+    root, _ = project
+    (root / "notes.txt").write_text("notes\n")
+    _commit(root, "notes")
+    _git(root, "update-index", "--assume-unchanged", "notes.txt")
+    (root / "notes.txt").write_text("changed\n")
+    assert _git(root, "status", "--porcelain") == ""
+
+    git_sha, reason = _find_build_commit(root)
+
+    assert git_sha is None
+    assert "notes.txt" in reason and "assume-unchanged" in reason
+
+
+def test_hash_object_batches_stay_under_the_command_line_budget():
+    paths = [
+        f"policyengine_uk/parameters/{index:05d}/rate.yaml" for index in range(3000)
+    ]
+
+    batches = list(hatch_build._batches(paths))
+
+    assert [path for batch in batches for path in batch] == paths
+    assert len(batches) > 1
+    assert all(
+        sum(len(path) + 1 for path in batch) <= hatch_build.HASH_OBJECT_BATCH_CHARACTERS
+        for batch in batches
+    )
+
+
+def test_records_head_with_a_committed_hatch_toml(project):
+    # The HEAD tree carries hatch.toml's contents; an empty copy would select
+    # other files and refuse a clean checkout.
+    root, _ = project
+    (root / "hatch.toml").write_text(
+        "[build.targets.wheel]\n"
+        'packages = ["policyengine_uk"]\n'
+        'exclude = ["policyengine_uk/parameters/rate.yaml"]\n'
+        "[build.targets.wheel.hooks.custom]\n"
+        'path = "hatch_build.py"\n'
+    )
+    head = _commit(root, "hatch.toml")
+
+    assert _find_build_commit(root) == (head, "")
+
+
+def test_selection_must_match_heads_exactly(project):
+    # An extra input that HEAD's tree would not select is refused too.
+    root, _ = project
+    builder = WheelBuilder(str(root))
+    paths = _wheel_input_paths(root)
+
+    assert hatch_build.head_selection_difference(builder, paths, build_metadata) == ""
+    assert hatch_build.head_selection_difference(
+        builder, [*paths, "extra.txt"], build_metadata
+    )
+
+
+def _set_wheel_option(root: Path, line: str) -> None:
+    pyproject = root / "pyproject.toml"
+    pyproject.write_text(
+        pyproject.read_text().replace(
+            'packages = ["policyengine_uk"]',
+            f'packages = ["policyengine_uk"]\n{line}',
+            1,
+        )
+    )
+
+
+def test_records_nothing_for_a_non_reproducible_wheel(project):
+    root, _ = project
+    _set_wheel_option(root, "reproducible = false")
+    _commit(root, "not reproducible")
+
+    assert _find_build_commit(root) == (None, "the wheel build is not reproducible")
+
+
+def test_records_nothing_for_dynamic_metadata(project):
+    root, _ = project
+    version = _project_version(root)
+    pyproject = root / "pyproject.toml"
+    pyproject.write_text(
+        pyproject.read_text().replace(
+            f'version = "{version}"', 'dynamic = ["version"]', 1
+        )
+        + '\n[tool.hatch.version]\npath = "policyengine_uk/__init__.py"\n'
+    )
+    (root / "policyengine_uk" / "__init__.py").write_text(
+        f'__version__ = "{version}"\n'
+    )
+    _commit(root, "dynamic version")
+
+    assert _find_build_commit(root) == (None, "the project declares dynamic metadata")
+
+
+def test_records_nothing_for_metadata_hooks(project):
+    root, _ = project
+    pyproject = root / "pyproject.toml"
+    pyproject.write_text(
+        pyproject.read_text()
+        + '\n[tool.hatch.metadata.hooks.custom]\npath = "metadata_hook.py"\n'
+    )
+    (root / "metadata_hook.py").write_text(
+        "from hatchling.metadata.plugin.interface import MetadataHookInterface\n\n\n"
+        "class Hook(MetadataHookInterface):\n"
+        "    def update(self, metadata):\n"
+        "        pass\n"
+    )
+    _commit(root, "metadata hook")
+
+    assert _find_build_commit(root) == (None, "the project configures metadata hooks")
+
+
+def test_records_nothing_when_the_temporary_directory_is_inside(project, monkeypatch):
+    # The record would be packaged from there.
+    root, _ = project
+    monkeypatch.setattr(hatch_build.tempfile, "tempdir", str(root / "scratch"))
+
+    assert _find_build_commit(root) == (
+        None,
+        "the temporary directory is inside the project",
+    )
 
 
 def test_build_metadata_loads_with_the_standard_library_only(tmp_path):
@@ -755,7 +927,9 @@ def test_wheel_from_dirty_tree_records_nothing(project, tmp_path):
     assert _wheel_build_info(_build_wheel(root, tmp_path / "dist")) is None
 
 
-def _initialize_hook(root: Path, out: Path, version: str) -> dict:
+def _initialize_hook(
+    root: Path, out: Path, version: str, build_hooks: tuple = ("custom",)
+) -> dict:
     builder = WheelBuilder(str(root))
     hook = hatch_build.BuildInfoHook(
         str(root),
@@ -766,7 +940,8 @@ def _initialize_hook(root: Path, out: Path, version: str) -> dict:
         "wheel",
         builder.app,
     )
-    build_data = {"extra_metadata": {}}
+    # hatchling names the hooks of this build before any initialize runs.
+    build_data = {"extra_metadata": {}, "build_hooks": build_hooks}
     hook.initialize(version, build_data)
     recorded = {
         target: json.loads(Path(source).read_text())
@@ -782,6 +957,31 @@ def test_hook_records_head_for_a_standard_wheel(project, tmp_path):
     assert _initialize_hook(root, tmp_path, "standard") == {
         "build_info.json": {"git_sha": head, "version": _project_version(root)}
     }
+
+
+def test_hook_records_nothing_beside_another_build_hook(project, tmp_path):
+    # Another hook could add files or metadata this one never checks.
+    root, _ = project
+
+    assert _initialize_hook(root, tmp_path, "standard", ("custom", "other")) == {}
+
+
+def test_hook_removes_its_directory_even_if_the_build_fails(
+    project, tmp_path, monkeypatch
+):
+    # finalize does not run when a build fails after initialize.
+    root, _ = project
+    registered = []
+    monkeypatch.setattr(
+        hatch_build.atexit, "register", lambda *args: registered.append(args)
+    )
+
+    _initialize_hook(root, tmp_path, "standard")
+
+    assert len(registered) == 1
+    function, directory, ignore_errors = registered[0]
+    assert function is hatch_build.shutil.rmtree and ignore_errors is True
+    assert Path(directory).name.startswith("policyengine-uk-build-info-")
 
 
 def test_hook_records_nothing_for_an_editable_wheel(project, tmp_path):

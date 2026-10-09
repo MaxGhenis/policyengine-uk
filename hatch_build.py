@@ -28,9 +28,16 @@ Every other build records nothing:
   for example because a tracked directory is unreadable or an ignored
   symlink aliases it;
 - builds where a dependency uses context formatting (``{env:...}``), which
-  makes the metadata depend on the build machine;
+  makes the metadata depend on the build machine, or where the project
+  declares dynamic metadata, metadata hooks, another build hook, or a
+  non-reproducible wheel;
+- builds where the index differs from HEAD's tree entry by entry, which a
+  stale cache-tree or commit-graph can hide from status;
 - builds where Python runs this hook from a cached ``.pyc`` that differs
-  from ``hatch_build.py``;
+  from ``hatch_build.py`` and contains this check. Code that cannot check
+  itself, such as a hand-placed unchecked-hash ``.pyc`` of other code, is
+  out of reach: whoever can write ``__pycache__`` can run anything in the
+  build;
 - Python before 3.11, where ``build_metadata.py`` cannot import ``tomllib``,
   and hatchling versions without the APIs this hook uses.
 
@@ -79,8 +86,9 @@ UNCHECKED_WHEEL_OPTIONS = (
 REGULAR_FILE_MODES = {b"100644": False, b"100755": True}
 # Generous for `git status` on a large tree; a hung git records nothing.
 GIT_TIMEOUT_SECONDS = 60
-# Paths per `git hash-object` call, well under any argument-length limit.
-HASH_OBJECT_BATCH = 500
+# Characters of paths per `git hash-object` call, under Windows' 32,767
+# character command-line limit with room for the rest of the command.
+HASH_OBJECT_BATCH_CHARACTERS = 24_000
 # Every git call ignores replacement refs, which would make status and the
 # index describe another commit's tree while HEAD still names this one, and
 # git's caches, which can hide a deleted file from status.
@@ -90,6 +98,8 @@ GIT_OPTIONS = (
     "core.fsmonitor=false",
     "-c",
     "core.untrackedCache=false",
+    "-c",
+    "core.commitGraph=false",
 )
 
 
@@ -102,10 +112,13 @@ class BuildInfoHook(BuildHookInterface):
             return
         # Provenance must never stop a build, so any failure records nothing.
         try:
-            if hook_code_matches_source(globals()):
-                git_sha, reason = build_commit(self.build_config.builder)
-            else:
+            if not hook_code_matches_source(globals()):
                 git_sha, reason = None, "hatch_build.py runs from a stale .pyc"
+            elif tuple(build_data.get("build_hooks", ())) != (self.PLUGIN_NAME,):
+                # Another hook could add files or metadata this one never sees.
+                git_sha, reason = None, "another build hook runs"
+            else:
+                git_sha, reason = build_commit(self.build_config.builder)
             if git_sha is not None:
                 build_info_path = self._write_build_info(git_sha)
                 build_data["extra_metadata"][build_info_path] = BUILD_INFO_NAME
@@ -183,6 +196,11 @@ def hook_code_matches_source(module_globals: dict[str, Any]) -> bool:
 def build_commit(builder: Any) -> tuple[str | None, str]:
     """Return ``(HEAD, "")`` if ``builder`` builds exactly HEAD, else ``(None, reason)``."""
     root = Path(builder.root)
+    # The record and the HEAD tree go in the temporary directory, which
+    # hatchling would package if it sat inside the project.
+    temporary = Path(tempfile.gettempdir()).resolve()
+    if temporary == root.resolve() or root.resolve() in temporary.parents:
+        return None, "the temporary directory is inside the project"
     paths, reason = wheel_input_paths(builder)
     if paths is None:
         return None, reason
@@ -219,6 +237,15 @@ def wheel_input_paths(builder: Any) -> tuple[list[str] | None, str]:
             return None, f"the wheel target sets {option.replace('_', '-')}"
     root = os.path.abspath(builder.root)
     core = builder.metadata.core
+    # Dynamic fields and metadata hooks compute metadata outside the files
+    # checked here, and a non-reproducible build stamps file times and
+    # modes from the checkout.
+    if core.dynamic:
+        return None, "the project declares dynamic metadata"
+    if builder.metadata.hatch.metadata.hooks:
+        return None, "the project configures metadata hooks"
+    if not builder.config.reproducible:
+        return None, "the wheel build is not reproducible"
     # hatchling formats {env:...}, {root} and {home} fields in dependency
     # strings, so the metadata would depend on the build machine.
     optional = core.config.get("optional-dependencies") or {}
@@ -319,6 +346,21 @@ def find_build_commit(
                 is_file = False
             if not is_file:
                 return None, f"tracked file {os.fsdecode(path)!r} is missing"
+    # Status trusts the index's cache-tree and the commit-graph, which a
+    # stale or crafted file can make describe another tree. Compare the index
+    # with HEAD's tree entry by entry.
+    tree = _git_output(
+        build_metadata, root, "ls-tree", "-r", "-z", "--full-tree", "HEAD"
+    )
+    if tree is None:
+        return None, "git ls-tree failed"
+    head_entries = {}
+    for entry in filter(None, tree.split(b"\0")):
+        description, _, path = entry.partition(b"\t")
+        mode, _, object_id = description.split(b" ")
+        head_entries[path] = (mode, object_id)
+    if head_entries != committed:
+        return None, "the index differs from HEAD's tree"
     inputs = sorted({os.fsencode(Path(path).as_posix()) for path in paths})
     for path in inputs:
         # Git and hatchling ignore files differently: hatchling reads only
@@ -337,15 +379,9 @@ def find_build_commit(
     # Paths go on the command line: --stdin-paths strips a trailing carriage
     # return and unquotes a leading double quote, so it can hash another file.
     object_ids = []
-    for start in range(0, len(inputs), HASH_OBJECT_BATCH):
-        batch = inputs[start : start + HASH_OBJECT_BATCH]
+    for batch in _batches([os.fsdecode(path) for path in inputs]):
         hashed = _git_output(
-            build_metadata,
-            root,
-            "hash-object",
-            "--no-filters",
-            "--",
-            *(os.fsdecode(path) for path in batch),
+            build_metadata, root, "hash-object", "--no-filters", "--", *batch
         )
         object_ids.extend(hashed.split() if hashed is not None else [])
     if len(object_ids) != len(inputs):
@@ -358,6 +394,10 @@ def find_build_commit(
             st_mode = os.stat(root / os.fsdecode(path)).st_mode
         except OSError:
             return None, f"{os.fsdecode(path)!r} cannot be read"
+        # The wheel keeps setuid, setgid and sticky bits, which git does not
+        # track.
+        if st_mode & 0o7000:
+            return None, f"{os.fsdecode(path)!r} has a setuid, setgid or sticky bit"
         # hatchling marks a file executable when its owner may execute it.
         if bool(st_mode & 0o100) != REGULAR_FILE_MODES[mode]:
             return (
@@ -417,6 +457,20 @@ def head_selection_difference(
     if sorted(head_paths) != sorted(paths):
         return "the build selects other files than HEAD's tree gives"
     return ""
+
+
+def _batches(paths: list[str]) -> Iterable[list[str]]:
+    """Split ``paths`` so no batch's total length exceeds the command-line budget."""
+    batch: list[str] = []
+    length = 0
+    for path in paths:
+        if batch and length + len(path) + 1 > HASH_OBJECT_BATCH_CHARACTERS:
+            yield batch
+            batch, length = [], 0
+        batch.append(path)
+        length += len(path) + 1
+    if batch:
+        yield batch
 
 
 def _git_output(build_metadata: ModuleType, root: Path, *args: str) -> bytes | None:
