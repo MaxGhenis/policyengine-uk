@@ -11,6 +11,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import stat
 import subprocess
@@ -498,12 +499,23 @@ def test_build_writes_nothing_into_the_source_tree(project, tmp_path, monkeypatc
     # hatchling loads its own copy of hatch_build.py, which shares the
     # tempfile module.
     monkeypatch.setattr(hatch_build.tempfile, "mkdtemp", recording_mkdtemp)
+    # Write bytecode as CI does, whatever PYTHONDONTWRITEBYTECODE says here.
+    monkeypatch.setattr(sys, "dont_write_bytecode", False)
 
     wheel = _build_wheel(root, tmp_path / "dist")
+    after = _tree_snapshot(root)
+    added = sorted(set(after) - set(before))
 
     assert _wheel_build_info(wheel) is not None
-    assert _tree_snapshot(root) == before
-    assert _git(root, "status", "--porcelain", "--ignored") == ""
+    assert {path: after[path] for path in before} == before
+    # The only new file is Python's (gitignored) cache of hatch_build.py
+    # itself, from hatchling importing it. Loading build_metadata leaves
+    # nothing in the package.
+    assert len(added) <= 1
+    assert all(
+        re.fullmatch(r"__pycache__/hatch_build\.[^/]+\.pyc", path) for path in added
+    )
+    assert _git(root, "status", "--porcelain") == ""
     assert temporary and not any(Path(path).exists() for path in temporary)
 
 

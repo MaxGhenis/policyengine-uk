@@ -30,6 +30,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 from types import ModuleType
 from typing import Any
@@ -103,7 +104,13 @@ def load_build_metadata(root: Path) -> ModuleType:
         root / BUILD_METADATA_PATH,
     )
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    # Leave no __pycache__ in the package directory being built.
+    dont_write_bytecode = sys.dont_write_bytecode
+    sys.dont_write_bytecode = True
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        sys.dont_write_bytecode = dont_write_bytecode
     return module
 
 
