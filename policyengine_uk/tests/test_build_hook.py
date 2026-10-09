@@ -7,6 +7,7 @@ repositories. Each project uses this repository's pyproject.toml,
 .gitignore, hatch_build.py and build_metadata.py.
 """
 
+import contextlib
 import importlib.util
 import json
 import os
@@ -936,9 +937,13 @@ def test_git_sha_does_not_block_on_fifo_build_info(tmp_path):
     # finish late and pass.
     timed_out = lookup.is_alive()
     if timed_out:
-        os.close(os.open(build_info, os.O_WRONLY | os.O_NONBLOCK))
+        # A lookup stuck elsewhere leaves no reader to release (ENXIO); the
+        # timeout assertion below reports it.
+        with contextlib.suppress(OSError):
+            os.close(os.open(build_info, os.O_WRONLY | os.O_NONBLOCK))
         lookup.join(timeout=5)
     assert not timed_out
+    # A lookup that raised leaves no result, so this fails with KeyError.
     assert result["sha"] is None
 
 
