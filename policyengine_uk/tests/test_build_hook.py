@@ -223,6 +223,17 @@ def _ignored_by_committed_nested_gitignore(root: Path) -> None:
     (root / "policyengine_uk" / "settings.local").write_text("secret\n")
 
 
+def _assume_unchanged_then_modified(root: Path) -> None:
+    _git(root, "update-index", "--assume-unchanged", "policyengine_uk/__init__.py")
+    (root / "policyengine_uk" / "__init__.py").write_text("x = 1\n")
+
+
+def _skip_worktree_then_deleted(root: Path) -> None:
+    # What a sparse checkout that leaves out a package file looks like.
+    _git(root, "update-index", "--skip-worktree", "policyengine_uk/__init__.py")
+    (root / "policyengine_uk" / "__init__.py").unlink()
+
+
 DIRTY_TREES = {
     "modified tracked file": _modify_tracked,
     "staged change": _stage_change,
@@ -236,6 +247,8 @@ DIRTY_TREES = {
     "package file ignored by a nested .gitignore": (
         _ignored_by_committed_nested_gitignore
     ),
+    "assume-unchanged file modified": _assume_unchanged_then_modified,
+    "skip-worktree file deleted": _skip_worktree_then_deleted,
 }
 
 
@@ -258,6 +271,22 @@ def test_records_nothing_after_mode_change(project):
     rate.chmod(rate.stat().st_mode | stat.S_IXUSR)
 
     assert _find_build_commit(root)[0] is None
+
+
+@pytest.mark.skipif(os.name == "nt", reason="needs symlinks")
+def test_records_nothing_for_committed_symlink(project):
+    # The wheel would contain the target's bytes, which are outside the
+    # commit and can change without changing it.
+    root, _ = project
+    outside = root.parent / "outside.yaml"
+    outside.write_text("values: {}\n")
+    (root / "policyengine_uk" / "linked.yaml").symlink_to(outside)
+    _commit(root, "add symlink")
+
+    git_sha, reason = _find_build_commit(root)
+
+    assert git_sha is None
+    assert "symlink" in reason
 
 
 def test_records_nothing_without_git_directory(project):

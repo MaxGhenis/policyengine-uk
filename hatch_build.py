@@ -14,8 +14,9 @@ Every other build records nothing:
 - editable builds, which read the checkout's HEAD at runtime;
 - wheels built from an sdist, which has no ``.git``;
 - builds from another repository, or from a directory inside one;
-- trees with changes that ``git status`` reports, or with a file the wheel
-  would include that git does not track.
+- trees with changes that ``git status`` reports or cannot see
+  (assume-unchanged or skip-worktree files), or where the wheel would include
+  a file git does not track or a symlink.
 
 The file is written to a temporary directory, never into the source tree, and
 the sdist does not contain it.
@@ -124,7 +125,8 @@ def find_build_commit(
     ``included_paths`` are the project-relative paths of the files the wheel
     will contain. The result is ``(HEAD, "")`` only when ``root`` is the top
     level of a policyengine-uk checkout (the same checks the runtime lookup
-    makes), ``git status`` reports nothing, and git tracks every included
+    makes), ``git status`` reports nothing, git compares every tracked file
+    with the working tree, and every included file is a tracked regular
     file. Otherwise it is ``(None, reason)``.
     """
     try:
@@ -146,19 +148,38 @@ def find_build_commit(
         return None, "git status failed"
     if status:
         return None, "the checkout has uncommitted changes or untracked files"
+    # Each index entry is "<tag> <mode> <object> <stage>\t<path>". Status
+    # does not compare files marked assume-unchanged (lowercase tag) or
+    # skip-worktree ("S", as in a sparse checkout) with the working tree, so
+    # such a file could differ from HEAD unseen.
+    index = _git_output(build_metadata, root, "ls-files", "--stage", "-v", "-z")
+    if index is None:
+        return None, "git ls-files failed"
+    tracked_modes = {}
+    for entry in filter(None, index.split(b"\0")):
+        description, _, path = entry.partition(b"\t")
+        tag, mode = description.split(b" ")[:2]
+        if tag != b"H":
+            return None, (
+                f"git does not compare {os.fsdecode(path)!r} with the working "
+                "tree (assume-unchanged, skip-worktree or unmerged)"
+            )
+        tracked_modes[path] = mode
+    included = {os.fsencode(Path(path).as_posix()) for path in included_paths}
     # Git and hatchling ignore files differently: hatchling reads only the
     # top-level .gitignore, not nested ones, .git/info/exclude or the user's
     # global excludes. A file only git ignores would be packaged without
     # being committed.
-    tracked = _git_output(build_metadata, root, "ls-files", "-z")
-    if tracked is None:
-        return None, "git ls-files failed"
-    untracked = {os.fsencode(Path(path).as_posix()) for path in included_paths} - set(
-        tracked.split(b"\0")
-    )
+    untracked = included - tracked_modes.keys()
     if untracked:
         example = os.fsdecode(min(untracked))
         return None, f"the wheel would include {example!r}, which git does not track"
+    # hatchling packages what a symlink points to, which the commit does not
+    # contain.
+    symlinks = sorted(path for path in included if tracked_modes[path] == b"120000")
+    if symlinks:
+        example = os.fsdecode(symlinks[0])
+        return None, f"the wheel would include the symlink {example!r}"
     return git_sha, ""
 
 
