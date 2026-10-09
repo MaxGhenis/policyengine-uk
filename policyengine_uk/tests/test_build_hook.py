@@ -117,7 +117,7 @@ def _wheel_input_paths(root: Path) -> list[str]:
 
 
 def _find_build_commit(root: Path) -> tuple[str | None, str]:
-    return hatch_build.find_build_commit(root, _wheel_input_paths(root), build_metadata)
+    return hatch_build.build_commit(WheelBuilder(str(root)))
 
 
 def _build_wheel(root: Path, out: Path, version: str = "standard") -> Path:
@@ -283,11 +283,13 @@ def _exclusion_in_ignored_hatch_toml(root: Path) -> None:
     with (root / ".git" / "info" / "exclude").open("a") as file:
         file.write("hatch.toml\n")
     # Its [build] table replaces pyproject's [tool.hatch.build], so restate
-    # the package.
+    # the package and the hook, which would otherwise not run at all.
     (root / "hatch.toml").write_text(
         "[build.targets.wheel]\n"
         'packages = ["policyengine_uk"]\n'
         'exclude = ["policyengine_uk/parameters/rate.yaml"]\n'
+        "[build.targets.wheel.hooks.custom]\n"
+        'path = "hatch_build.py"\n'
     )
 
 
@@ -340,6 +342,13 @@ def _change_under_carriage_return_name(root: Path) -> None:
     _git(root, "add", "-A")
 
 
+def _ignored_symlink_alias(root: Path) -> None:
+    # .gitignore ignores "build". hatchling's walk follows the link first,
+    # excludes its files by that rule, then skips the real directory as
+    # already seen, so rate.yaml drops out without any change git reports.
+    (root / "policyengine_uk" / "build").symlink_to("parameters")
+
+
 DIRTY_TREES = {
     "modified tracked file": _modify_tracked,
     "staged change": _stage_change,
@@ -365,6 +374,7 @@ DIRTY_TREES = {
     "ignored PKG-INFO": _ignored_pkg_info,
     "deletion hidden by a stale fsmonitor": _deletion_hidden_by_stale_fsmonitor,
     "change under a carriage-return name": _change_under_carriage_return_name,
+    "ignored symlink alias of a tracked directory": _ignored_symlink_alias,
 }
 
 
@@ -452,7 +462,7 @@ def test_records_nothing_for_force_include_from_outside_the_checkout(project):
     _add_force_include(root, str(outside), "policyengine_uk/outside.txt", "")
     _commit(root, "force-include")
 
-    git_sha, reason = _find_build_commit_or_reason(root)
+    git_sha, reason = _find_build_commit(root)
 
     assert git_sha is None
     assert "outside the checkout" in reason
@@ -490,13 +500,6 @@ def test_records_nothing_for_ignored_legacy_license_file(project):
 
     assert git_sha is None
     assert "legal/terms.txt" in reason
-
-
-def _find_build_commit_or_reason(root: Path) -> tuple[str | None, str]:
-    paths, reason = hatch_build.wheel_input_paths(WheelBuilder(str(root)))
-    if paths is None:
-        return None, reason
-    return hatch_build.find_build_commit(root, paths, build_metadata)
 
 
 def test_records_nothing_without_git_directory(project):
@@ -611,6 +614,47 @@ def test_tracked_files_must_exist_whatever_git_status_says(project, monkeypatch)
 
     assert git_sha is None
     assert "policyengine_uk/__init__.py" in reason and "missing" in reason
+
+
+@pytest.mark.skipif(
+    os.name == "nt" or os.geteuid() == 0, reason="needs POSIX permissions"
+)
+def test_records_nothing_when_a_tracked_directory_is_unreadable(project):
+    # git can still lstat the files, so status is clean; hatchling's walk
+    # skips the directory silently and the wheel would lack rate.yaml.
+    root, _ = project
+    parameters = root / "policyengine_uk" / "parameters"
+    parameters.chmod(0o311)
+    try:
+        assert _git(root, "status", "--porcelain") == ""
+        git_sha, reason = _find_build_commit(root)
+    finally:
+        parameters.chmod(0o755)
+
+    assert git_sha is None
+    assert "rate.yaml" in reason
+
+
+def test_records_nothing_for_context_formatted_dependency(project):
+    # hatchling fills {env:...} from the build environment, so METADATA would
+    # depend on the machine.
+    root, _ = project
+    pyproject = root / "pyproject.toml"
+    pyproject.write_text(
+        pyproject.read_text().replace(
+            '"policyengine-core>=', '"policyengine-core>={env:PE_CORE_MIN:', 1
+        )
+    )
+    _commit(root, "context formatting")
+
+    git_sha, reason = _find_build_commit(root)
+
+    assert git_sha is None
+    assert "context formatting" in reason
+
+
+def test_build_info_name_matches_the_reader():
+    assert hatch_build.BUILD_INFO_NAME == build_metadata.BUILD_INFO_NAME
 
 
 def test_records_nothing_without_git_executable(project, monkeypatch):

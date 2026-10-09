@@ -24,9 +24,19 @@ Every other build records nothing:
   ``core.fileMode=false``. Git replacement refs are ignored;
 - builds where git's caches hide a deleted file: a tracked file must exist
   on disk, whatever an fsmonitor or untracked cache says;
+- builds where hatchling, walking HEAD's tree, would select other files,
+  for example because a tracked directory is unreadable or an ignored
+  symlink aliases it;
+- builds where a dependency uses context formatting (``{env:...}``), which
+  makes the metadata depend on the build machine;
 - builds where Python runs this hook from a cached ``.pyc`` that differs
   from ``hatch_build.py``;
-- Python before 3.11, where ``build_metadata.py`` cannot import ``tomllib``.
+- Python before 3.11, where ``build_metadata.py`` cannot import ``tomllib``,
+  and hatchling versions without the APIs this hook uses.
+
+The list of inputs comes from auditing hatchling 1.32.4's file and
+environment reads. Comparing selections with HEAD's tree covers file
+selection under any hatchling version.
 
 The file is written to a temporary directory, never into the source tree, and
 the sdist does not contain it.
@@ -50,6 +60,13 @@ from typing import Any
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
 BUILD_METADATA_PATH = Path("policyengine_uk", "build_metadata.py")
+# The name build_metadata.BUILD_INFO_NAME reads under extra_metadata/.
+BUILD_INFO_NAME = "build_info.json"
+# Files hatchling reads to choose what to package; the rest of HEAD's tree is
+# laid out empty when comparing selections.
+SELECTION_FILE_NAMES = frozenset(
+    {"pyproject.toml", "hatch.toml", "PKG-INFO", ".gitignore", ".hgignore"}
+)
 # Inputs whose bytes reach the wheel besides the packaged files.
 BUILD_CONFIGURATION_PATHS = ("pyproject.toml", "hatch_build.py")
 # Wheel options that add files this hook does not check.
@@ -85,19 +102,13 @@ class BuildInfoHook(BuildHookInterface):
             return
         # Provenance must never stop a build, so any failure records nothing.
         try:
-            root = Path(self.root)
-            paths, reason = wheel_input_paths(self.build_config.builder)
-            git_sha = None
-            if not hook_code_matches_source(globals()):
-                paths, reason = None, "hatch_build.py runs from a stale .pyc"
-            if paths is not None:
-                build_metadata = load_build_metadata(root)
-                git_sha, reason = find_build_commit(root, paths, build_metadata)
+            if hook_code_matches_source(globals()):
+                git_sha, reason = build_commit(self.build_config.builder)
+            else:
+                git_sha, reason = None, "hatch_build.py runs from a stale .pyc"
             if git_sha is not None:
                 build_info_path = self._write_build_info(git_sha)
-                build_data["extra_metadata"][build_info_path] = (
-                    build_metadata.BUILD_INFO_NAME
-                )
+                build_data["extra_metadata"][build_info_path] = BUILD_INFO_NAME
         except Exception as error:
             git_sha, reason = None, f"the commit lookup failed: {error!r}"
         if git_sha is None:
@@ -118,7 +129,7 @@ class BuildInfoHook(BuildHookInterface):
         )
         # finalize removes it; this covers a build that fails before then.
         atexit.register(shutil.rmtree, self._build_info_directory, True)
-        path = os.path.join(self._build_info_directory, "build_info.json")
+        path = os.path.join(self._build_info_directory, BUILD_INFO_NAME)
         build_info = {"git_sha": git_sha, "version": self.metadata.version}
         with open(path, "w", encoding="utf-8") as file:
             json.dump(build_info, file, sort_keys=True)
@@ -169,6 +180,22 @@ def hook_code_matches_source(module_globals: dict[str, Any]) -> bool:
     return loaded == compile(source, spec.origin, "exec", dont_inherit=True)
 
 
+def build_commit(builder: Any) -> tuple[str | None, str]:
+    """Return ``(HEAD, "")`` if ``builder`` builds exactly HEAD, else ``(None, reason)``."""
+    root = Path(builder.root)
+    paths, reason = wheel_input_paths(builder)
+    if paths is None:
+        return None, reason
+    build_metadata = load_build_metadata(root)
+    git_sha, reason = find_build_commit(root, paths, build_metadata)
+    if git_sha is None:
+        return None, reason
+    reason = head_selection_difference(builder, paths, build_metadata)
+    if reason:
+        return None, reason
+    return git_sha, ""
+
+
 def wheel_input_paths(builder: Any) -> tuple[list[str] | None, str]:
     """List the project-relative paths of every file the wheel build reads.
 
@@ -192,6 +219,14 @@ def wheel_input_paths(builder: Any) -> tuple[list[str] | None, str]:
             return None, f"the wheel target sets {option.replace('_', '-')}"
     root = os.path.abspath(builder.root)
     core = builder.metadata.core
+    # hatchling formats {env:...}, {root} and {home} fields in dependency
+    # strings, so the metadata would depend on the build machine.
+    optional = core.config.get("optional-dependencies") or {}
+    requirements = list(core.config.get("dependencies") or [])
+    for extra in optional.values() if isinstance(optional, dict) else []:
+        requirements.extend(extra or [])
+    if any("{" in str(requirement) for requirement in requirements):
+        return None, "a dependency uses context formatting such as {env:...}"
     sources = [included_file.path for included_file in builder.recurse_included_files()]
     sources.extend(os.path.join(root, path) for path in core.license_files)
     if core.readme_path:
@@ -330,6 +365,58 @@ def find_build_commit(
                 f"the executable bit of {os.fsdecode(path)!r} differs from HEAD",
             )
     return git_sha, ""
+
+
+def head_selection_difference(
+    builder: Any, paths: list[str], build_metadata: ModuleType
+) -> str:
+    """Return why hatchling would select other inputs from HEAD's tree, or "".
+
+    ``find_build_commit`` proves that every file the build reads is HEAD's,
+    not that the build reads every file HEAD would give it. Without any
+    change git reports, a tracked file can drop out of hatchling's walk: an
+    unreadable directory is skipped silently, and an ignored symlink alias
+    to a directory, visited first, makes the walk skip the real one. So lay
+    out HEAD's tree (the files that steer selection with their contents,
+    every other file empty, since hatchling selects by name) and compare
+    what the same builder selects there.
+    """
+    root = Path(builder.root)
+    tree = _git_output(
+        build_metadata, root, "ls-tree", "-r", "-z", "--full-tree", "HEAD"
+    )
+    if tree is None:
+        return "git ls-tree failed"
+    with tempfile.TemporaryDirectory(prefix="policyengine-uk-head-tree-") as directory:
+        head_root = Path(directory) / "tree"
+        # Stop hatchling's upward search for ignore files at this tree.
+        (head_root / ".git").mkdir(parents=True)
+        (head_root / ".hg").mkdir()
+        for entry in filter(None, tree.split(b"\0")):
+            description, _, path = entry.partition(b"\t")
+            mode, kind, object_id = description.split(b" ")
+            if kind != b"blob":
+                continue
+            target = head_root / os.fsdecode(path)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if target.name in SELECTION_FILE_NAMES:
+                content = _git_output(
+                    build_metadata, root, "cat-file", "blob", os.fsdecode(object_id)
+                )
+                if content is None:
+                    return "git cat-file failed"
+                target.write_bytes(content)
+            else:
+                target.touch()
+        head_paths, reason = wheel_input_paths(type(builder)(str(head_root)))
+    if head_paths is None:
+        return f"in HEAD's tree, {reason}"
+    missing = sorted(set(head_paths) - set(paths))
+    if missing:
+        return f"the build would leave out {missing[0]!r}, which HEAD packages"
+    if sorted(head_paths) != sorted(paths):
+        return "the build selects other files than HEAD's tree gives"
+    return ""
 
 
 def _git_output(build_metadata: ModuleType, root: Path, *args: str) -> bytes | None:
