@@ -16,10 +16,12 @@ Every other build records nothing:
 - builds from another repository, or from a directory inside one;
 - trees with changes that ``git status`` reports or cannot see
   (assume-unchanged or skip-worktree files);
-- builds where any file whose bytes reach the wheel (packaged files, licence
-  files, the readme, ``pyproject.toml`` and this hook) is untracked, a
-  symlink, or differs from HEAD in raw bytes or executable bit, for example
-  through line-ending conversion, a clean filter or ``core.fileMode=false``;
+- builds where any file the build reads (the sources of packaged files,
+  licence files, the readme, ``pyproject.toml``, ``hatch.toml``, this hook
+  and the ignore files hatchling loads) is outside the checkout, untracked,
+  a symlink, or differs from HEAD in raw bytes or executable bit, for
+  example through line-ending conversion, a clean filter or
+  ``core.fileMode=false``. Git replacement refs are ignored;
 - Python before 3.11, where ``build_metadata.py`` cannot import ``tomllib``.
 
 The file is written to a temporary directory, never into the source tree, and
@@ -132,27 +134,51 @@ def load_build_metadata(root: Path) -> ModuleType:
 
 
 def wheel_input_paths(builder: Any) -> tuple[list[str] | None, str]:
-    """List the project-relative paths of every file whose bytes reach the wheel.
+    """List the project-relative paths of every file the wheel build reads.
 
-    These are the files hatchling packages, the licence files and readme it
-    copies into the wheel's metadata, and the build configuration. hatchling
-    finds licence files by globbing (``LICEN[CS]E*`` and others) without
-    regard to .gitignore, so they are listed separately. Returns
-    ``(None, reason)`` if the wheel target adds files in ways this hook does
-    not check.
+    Two kinds of file count:
+
+    - files whose bytes reach the wheel: the source of every file hatchling
+      packages (``IncludedFile.path``, which for a force-included directory
+      differs from the packaged path), and the licence files and readme it
+      copies into the metadata. hatchling finds licence files by globbing
+      (``LICEN[CS]E*`` and others) without regard to .gitignore, so they are
+      listed separately;
+    - files that decide what is packaged or what the metadata says:
+      ``pyproject.toml``, ``hatch.toml`` and ``PKG-INFO`` if present, a
+      legacy licence file, this hook, and the ignore files hatchling loads.
+
+    Returns ``(None, reason)`` if the wheel target adds files in ways this
+    hook does not check, or reads a file outside the project root.
     """
     for option in UNCHECKED_WHEEL_OPTIONS:
         if getattr(builder.config, option, None):
             return None, f"the wheel target sets {option.replace('_', '-')}"
+    root = os.path.abspath(builder.root)
     core = builder.metadata.core
-    paths = [
-        included_file.relative_path
-        for included_file in builder.recurse_included_files()
-    ]
-    paths.extend(core.license_files)
+    sources = [included_file.path for included_file in builder.recurse_included_files()]
+    sources.extend(os.path.join(root, path) for path in core.license_files)
     if core.readme_path:
-        paths.append(core.readme_path)
-    paths.extend(BUILD_CONFIGURATION_PATHS)
+        sources.append(os.path.join(root, core.readme_path))
+    # A legacy ``license = {file = ...}`` table puts that file's text in the
+    # metadata.
+    license_table = core.config.get("license")
+    if isinstance(license_table, dict) and "file" in license_table:
+        sources.append(os.path.join(root, license_table["file"]))
+    for exclusion_files in builder.config.vcs_exclusion_files.values():
+        sources.extend(exclusion_files)
+    sources.extend(os.path.join(root, path) for path in BUILD_CONFIGURATION_PATHS)
+    # hatchling merges hatch.toml into the configuration, and fills dynamic
+    # metadata fields from a PKG-INFO.
+    for name in ("hatch.toml", "PKG-INFO"):
+        if os.path.lexists(os.path.join(root, name)):
+            sources.append(os.path.join(root, name))
+    paths = []
+    for source in sources:
+        path = os.path.relpath(os.path.abspath(source), root)
+        if path == os.pardir or path.startswith(os.pardir + os.sep):
+            return None, f"the wheel build reads {source!r}, outside the checkout"
+        paths.append(path)
     return paths, ""
 
 
@@ -163,8 +189,8 @@ def find_build_commit(
 ) -> tuple[str | None, str]:
     """Return the commit that a wheel built at ``root`` packages.
 
-    ``paths`` are the project-relative paths of the files whose bytes reach
-    the wheel (see ``wheel_input_paths``). The result is ``(HEAD, "")`` only
+    ``paths`` are the project-relative paths of the files the wheel build
+    reads (see ``wheel_input_paths``). The result is ``(HEAD, "")`` only
     when all of these hold:
 
     - ``root`` is the top level of a policyengine-uk checkout, by the same
@@ -268,7 +294,9 @@ def _git_output(
     }
     try:
         return subprocess.run(
-            ["git", "-C", str(root), *args],
+            # Replacement refs would make status and the index describe
+            # another commit's tree while HEAD still names this one.
+            ["git", "-C", str(root), "--no-replace-objects", *args],
             capture_output=True,
             check=True,
             env=env,

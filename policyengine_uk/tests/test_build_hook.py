@@ -265,6 +265,47 @@ def _content_hidden_by_clean_filter(root: Path) -> None:
     _git(root, "add", "policyengine_uk/parameters/rate.yaml")
 
 
+def _ignore_rule_hidden_by_clean_filter(root: Path) -> None:
+    # hatchling reads the raw .gitignore to choose files; status sees the
+    # cleaned one, which equals HEAD's.
+    with (root / ".git" / "info" / "attributes").open("a") as file:
+        file.write(".gitignore filter=hiderule\n")
+    _git(root, "config", "filter.hiderule.clean", "sed -e '/rate.yaml/d'")
+    with (root / ".gitignore").open("a") as file:
+        file.write("policyengine_uk/parameters/rate.yaml\n")
+    _git(root, "add", ".gitignore")
+
+
+def _exclusion_in_ignored_hatch_toml(root: Path) -> None:
+    # hatchling merges hatch.toml into the build configuration.
+    with (root / ".git" / "info" / "exclude").open("a") as file:
+        file.write("hatch.toml\n")
+    (root / "hatch.toml").write_text(
+        '[build.targets.wheel]\nexclude = ["policyengine_uk/parameters/rate.yaml"]\n'
+    )
+
+
+def _head_replaced_by_another_commit(root: Path) -> None:
+    # git replace S T: HEAD still names S, but status and the index use T.
+    original = _git(root, "rev-parse", "HEAD")
+    rate = root / "policyengine_uk" / "parameters" / "rate.yaml"
+    rate.write_text(rate.read_text() + "  2027-01-01: 0.99\n")
+    replacement = _commit(root, "replacement")
+    _git(root, "reset", "-q", "--hard", original)
+    _git(root, "replace", "-f", original, replacement)
+    _git(root, "reset", "-q", "--hard", original)
+
+
+def _ignored_pkg_info(root: Path) -> None:
+    # hatchling fills dynamic metadata fields from a root PKG-INFO.
+    with (root / ".git" / "info" / "exclude").open("a") as file:
+        file.write("PKG-INFO\n")
+    (root / "PKG-INFO").write_text(
+        "Metadata-Version: 2.1\nName: policyengine-uk\n"
+        f"Version: {_project_version(root)}\n"
+    )
+
+
 DIRTY_TREES = {
     "modified tracked file": _modify_tracked,
     "staged change": _stage_change,
@@ -284,6 +325,10 @@ DIRTY_TREES = {
     "CRLF hidden by core.autocrlf": _crlf_hidden_by_autocrlf,
     "exec bit hidden by core.fileMode": _exec_bit_hidden_by_file_mode,
     "content hidden by a clean filter": _content_hidden_by_clean_filter,
+    "ignore rule hidden by a clean filter": _ignore_rule_hidden_by_clean_filter,
+    "exclusion in an ignored hatch.toml": _exclusion_in_ignored_hatch_toml,
+    "HEAD replaced by another commit": _head_replaced_by_another_commit,
+    "ignored PKG-INFO": _ignored_pkg_info,
 }
 
 
@@ -322,6 +367,100 @@ def test_records_nothing_for_committed_symlink(project):
 
     assert git_sha is None
     assert "not a regular tracked file" in reason
+
+
+def _add_force_include(root: Path, source: str, target: str, exclude: str) -> None:
+    pyproject = root / "pyproject.toml"
+    pyproject.write_text(
+        pyproject.read_text()
+        + f"""
+[tool.hatch.build.targets.wheel.force-include]
+"{source}" = "{target}"
+"""
+    )
+    if exclude:
+        text = pyproject.read_text()
+        text = text.replace(
+            'packages = ["policyengine_uk"]',
+            f'packages = ["policyengine_uk"]\nexclude = ["{exclude}"]',
+            1,
+        )
+        pyproject.write_text(text)
+
+
+def test_records_nothing_for_force_include_from_an_ignored_directory(project):
+    # hatchling packages policyengine_uk/parameters from build/parameters,
+    # which .gitignore ignores; the tracked destination is not what ships.
+    root, _ = project
+    _add_force_include(
+        root,
+        "build/parameters",
+        "policyengine_uk/parameters",
+        "policyengine_uk/parameters/**",
+    )
+    _commit(root, "force-include")
+    (root / "build" / "parameters").mkdir(parents=True)
+    (root / "build" / "parameters" / "rate.yaml").write_text("values: {}\n")
+    assert _git(root, "status", "--porcelain") == ""
+
+    git_sha, reason = _find_build_commit(root)
+
+    assert git_sha is None
+    assert "build/parameters/rate.yaml" in reason
+
+
+def test_records_nothing_for_force_include_from_outside_the_checkout(project):
+    root, _ = project
+    outside = root.parent / "outside.txt"
+    outside.write_text("outside\n")
+    _add_force_include(root, str(outside), "policyengine_uk/outside.txt", "")
+    _commit(root, "force-include")
+
+    git_sha, reason = _find_build_commit_or_reason(root)
+
+    assert git_sha is None
+    assert "outside the checkout" in reason
+
+
+def test_records_head_for_force_include_of_a_tracked_file(project):
+    # Force inclusion itself is fine when its source is committed.
+    root, _ = project
+    (root / "extras").mkdir()
+    (root / "extras" / "notes.txt").write_text("notes\n")
+    _add_force_include(root, "extras/notes.txt", "policyengine_uk/notes.txt", "")
+    head = _commit(root, "force-include")
+
+    assert _find_build_commit(root) == (head, "")
+
+
+def test_records_nothing_for_ignored_legacy_license_file(project):
+    # A ``license = {file = ...}`` table copies the file's text into METADATA.
+    # The name avoids the default licence globs, which are checked anyway.
+    root, _ = project
+    pyproject = root / "pyproject.toml"
+    pyproject.write_text(
+        pyproject.read_text().replace(
+            'license = "AGPL-3.0"', 'license = {file = "legal/terms.txt"}', 1
+        )
+    )
+    _commit(root, "legacy licence table")
+    with (root / ".git" / "info" / "exclude").open("a") as file:
+        file.write("legal/terms.txt\n")
+    (root / "legal").mkdir()
+    (root / "legal" / "terms.txt").write_text("licence text\n")
+    assert _git(root, "status", "--porcelain") == ""
+
+    git_sha, reason = _find_build_commit(root)
+
+    assert git_sha is None
+    assert "legal/terms.txt" in reason
+
+
+def _find_build_commit_or_reason(root: Path) -> tuple[str | None, str]:
+    paths, reason = hatch_build.wheel_input_paths(WheelBuilder(str(root)))
+    if paths is None:
+        return None, reason
+    return hatch_build.find_build_commit(root, paths, build_metadata)
 
 
 def test_records_nothing_without_git_directory(project):
@@ -792,11 +931,14 @@ def test_git_sha_does_not_block_on_fifo_build_info(tmp_path):
         target=lambda: result.update(sha=_get_git_sha(package_root)), daemon=True
     )
     lookup.start()
-    lookup.join(timeout=30)
-    if lookup.is_alive():
-        # Release the blocked reader so the thread can finish.
+    lookup.join(timeout=10)
+    # Decide before releasing the reader, which would let a blocked lookup
+    # finish late and pass.
+    timed_out = lookup.is_alive()
+    if timed_out:
         os.close(os.open(build_info, os.O_WRONLY | os.O_NONBLOCK))
-    assert not lookup.is_alive()
+        lookup.join(timeout=5)
+    assert not timed_out
     assert result["sha"] is None
 
 
