@@ -12,6 +12,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import py_compile
 import re
 import shutil
 import stat
@@ -311,6 +312,34 @@ def _ignored_pkg_info(root: Path) -> None:
     )
 
 
+def _deletion_hidden_by_stale_fsmonitor(root: Path) -> None:
+    # A file-system monitor that reports nothing leaves a deleted file's
+    # entry fsmonitor-valid, so status trusts it; ls-files -v still says H.
+    monitor = root.parent / "fsmonitor"
+    monitor.write_text("#!/bin/sh\nprintf 'token\\000'\n")
+    monitor.chmod(0o755)
+    _git(root, "config", "core.fsmonitor", str(monitor))
+    _git(root, "config", "core.fsmonitorHookVersion", "2")
+    _git(root, "update-index", "--fsmonitor")
+    _git(root, "status", "--porcelain")
+    _git(root, "update-index", "--fsmonitor-valid", "policyengine_uk/__init__.py")
+    (root / "policyengine_uk" / "__init__.py").unlink()
+
+
+def _change_under_carriage_return_name(root: Path) -> None:
+    # git hash-object --stdin-paths strips a trailing carriage return, so a
+    # check that passed paths on stdin hashed "rate.yaml" for "rate.yaml\r".
+    rate = root / "policyengine_uk" / "parameters" / "rate.yaml"
+    twin = rate.with_name("rate.yaml\r")
+    twin.write_bytes(rate.read_bytes())
+    _commit(root, "carriage return name")
+    with (root / ".git" / "info" / "attributes").open("a") as file:
+        file.write("*rate.yaml? filter=hidecr\n")
+    _git(root, "config", "filter.hidecr.clean", f"cat '{rate}'")
+    twin.write_text("values:\n  2025-01-01: 0.9\n")
+    _git(root, "add", "-A")
+
+
 DIRTY_TREES = {
     "modified tracked file": _modify_tracked,
     "staged change": _stage_change,
@@ -334,6 +363,8 @@ DIRTY_TREES = {
     "exclusion in an ignored hatch.toml": _exclusion_in_ignored_hatch_toml,
     "HEAD replaced by another commit": _head_replaced_by_another_commit,
     "ignored PKG-INFO": _ignored_pkg_info,
+    "deletion hidden by a stale fsmonitor": _deletion_hidden_by_stale_fsmonitor,
+    "change under a carriage-return name": _change_under_carriage_return_name,
 }
 
 
@@ -562,6 +593,26 @@ def test_environment_git_config_cannot_hide_changes(
     assert "differs from HEAD" in reason
 
 
+def test_tracked_files_must_exist_whatever_git_status_says(project, monkeypatch):
+    # Defence in depth beside disabling git's caches: a tracked file that is
+    # missing on disk is found by lstat even if status reports nothing.
+    root, _ = project
+    (root / "policyengine_uk" / "__init__.py").unlink()
+    real_git_output = hatch_build._git_output
+
+    def blind_status(build_metadata, root, *args):
+        if "status" in args:
+            return b""
+        return real_git_output(build_metadata, root, *args)
+
+    monkeypatch.setattr(hatch_build, "_git_output", blind_status)
+
+    git_sha, reason = _find_build_commit(root)
+
+    assert git_sha is None
+    assert "policyengine_uk/__init__.py" in reason and "missing" in reason
+
+
 def test_records_nothing_without_git_executable(project, monkeypatch):
     root, _ = project
 
@@ -772,6 +823,63 @@ def test_build_writes_nothing_into_the_source_tree(project, tmp_path, monkeypatc
     )
     assert _git(root, "status", "--porcelain") == ""
     assert temporary and not any(Path(path).exists() for path in temporary)
+
+
+def _cache_alternate_source(path: Path, alternate: bytes) -> None:
+    """Leave a valid timestamp .pyc of ``alternate`` beside ``path``'s source.
+
+    Python runs a cached .pyc whose recorded mtime and size match the source,
+    so ``alternate`` must be no longer than the source; it is padded.
+    """
+    original = path.read_bytes()
+    times = path.stat()
+    assert len(alternate) <= len(original)
+    path.write_bytes(alternate.ljust(len(original), b" "))
+    os.utime(path, ns=(times.st_atime_ns, times.st_mtime_ns))
+    py_compile.compile(
+        str(path),
+        doraise=True,
+        invalidation_mode=py_compile.PycInvalidationMode.TIMESTAMP,
+    )
+    path.write_bytes(original)
+    os.utime(path, ns=(times.st_atime_ns, times.st_mtime_ns))
+
+
+def test_stale_build_metadata_cache_is_not_run(project, tmp_path):
+    # A cached build_metadata that reports an older commit must not run in
+    # place of the checked source.
+    root, old_head = project
+    _commit_change(root)
+    head = _git(root, "rev-parse", "HEAD")
+    path = root / "policyengine_uk" / "build_metadata.py"
+    lines = path.read_bytes().splitlines(keepends=True)
+    comments = [i for i, line in enumerate(lines) if line.startswith(b"#")][:4]
+    alternate = b"".join(line for i, line in enumerate(lines) if i not in comments)
+    alternate += f'\n_get_checkout_git_sha = lambda _: "{old_head}"\n'.encode()
+    _cache_alternate_source(path, alternate)
+
+    build_info = _wheel_build_info(_build_wheel(root, tmp_path / "dist"))
+
+    assert build_info["git_sha"] == head != old_head
+
+
+def test_stale_hook_cache_records_nothing(project, tmp_path):
+    # A cached copy of this hook with a check removed runs instead of the
+    # source, which was checked against HEAD. The hook compares the code it
+    # was loaded from with its source and records nothing.
+    root, _ = project
+    path = root / "hatch_build.py"
+    source = path.read_bytes()
+    assert source.count(b"    if status:\n") == 1
+    _cache_alternate_source(
+        path, source.replace(b"    if status:\n", b"    if False :\n")
+    )
+    # Only the status check catches this file, which the wheel never reads.
+    _untracked_outside_package(root)
+
+    wheel = _build_wheel(root, tmp_path / "dist")
+
+    assert _wheel_build_info(wheel) is None
 
 
 def test_failed_lookup_records_nothing_and_the_wheel_still_builds(project, tmp_path):

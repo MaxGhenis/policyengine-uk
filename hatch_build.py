@@ -22,6 +22,10 @@ Every other build records nothing:
   a symlink, or differs from HEAD in raw bytes or executable bit, for
   example through line-ending conversion, a clean filter or
   ``core.fileMode=false``. Git replacement refs are ignored;
+- builds where git's caches hide a deleted file: a tracked file must exist
+  on disk, whatever an fsmonitor or untracked cache says;
+- builds where Python runs this hook from a cached ``.pyc`` that differs
+  from ``hatch_build.py``;
 - Python before 3.11, where ``build_metadata.py`` cannot import ``tomllib``.
 
 The file is written to a temporary directory, never into the source tree, and
@@ -32,11 +36,11 @@ from __future__ import annotations
 
 import atexit
 from collections.abc import Iterable
-import importlib.util
 import json
 import os
 from pathlib import Path
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -58,6 +62,18 @@ UNCHECKED_WHEEL_OPTIONS = (
 REGULAR_FILE_MODES = {b"100644": False, b"100755": True}
 # Generous for `git status` on a large tree; a hung git records nothing.
 GIT_TIMEOUT_SECONDS = 60
+# Paths per `git hash-object` call, well under any argument-length limit.
+HASH_OBJECT_BATCH = 500
+# Every git call ignores replacement refs, which would make status and the
+# index describe another commit's tree while HEAD still names this one, and
+# git's caches, which can hide a deleted file from status.
+GIT_OPTIONS = (
+    "--no-replace-objects",
+    "-c",
+    "core.fsmonitor=false",
+    "-c",
+    "core.untrackedCache=false",
+)
 
 
 class BuildInfoHook(BuildHookInterface):
@@ -72,6 +88,8 @@ class BuildInfoHook(BuildHookInterface):
             root = Path(self.root)
             paths, reason = wheel_input_paths(self.build_config.builder)
             git_sha = None
+            if not hook_code_matches_source(globals()):
+                paths, reason = None, "hatch_build.py runs from a stale .pyc"
             if paths is not None:
                 build_metadata = load_build_metadata(root)
                 git_sha, reason = find_build_commit(root, paths, build_metadata)
@@ -116,21 +134,39 @@ def load_build_metadata(root: Path) -> ModuleType:
 
     The package imports policyengine-core and the whole model, none of which
     is installed in the build environment. build_metadata itself needs only
-    the standard library.
+    the standard library. It is compiled from its source, which the hook
+    checks against HEAD: an import could instead run a cached ``.pyc`` whose
+    recorded mtime and size happen to match. Nothing is written to
+    ``__pycache__``.
     """
-    spec = importlib.util.spec_from_file_location(
-        "_policyengine_uk_build_metadata_for_build_hook",
-        root / BUILD_METADATA_PATH,
-    )
-    module = importlib.util.module_from_spec(spec)
-    # Leave no __pycache__ in the package directory being built.
+    path = root / BUILD_METADATA_PATH
+    module = ModuleType("_policyengine_uk_build_metadata_for_build_hook")
+    module.__file__ = str(path)
+    code = compile(path.read_bytes(), str(path), "exec", dont_inherit=True)
+    exec(code, module.__dict__)
+    return module
+
+
+def hook_code_matches_source(module_globals: dict[str, Any]) -> bool:
+    """Whether this hook runs the code in its own source file.
+
+    hatchling imports this file, and Python runs a cached ``.pyc`` whenever
+    the mtime and size it recorded match the source. The hook checks the
+    source against HEAD, so it must also run that source. The loader's
+    ``get_code`` applies the same cache rules as the import did.
+    """
+    spec = module_globals.get("__spec__")
+    loader = getattr(spec, "loader", None)
+    if spec is None or spec.origin is None or not hasattr(loader, "get_code"):
+        return False
     dont_write_bytecode = sys.dont_write_bytecode
     sys.dont_write_bytecode = True
     try:
-        spec.loader.exec_module(module)
+        loaded = loader.get_code(spec.name)
     finally:
         sys.dont_write_bytecode = dont_write_bytecode
-    return module
+    source = Path(spec.origin).read_bytes()
+    return loaded == compile(source, spec.origin, "exec", dont_inherit=True)
 
 
 def wheel_input_paths(builder: Any) -> tuple[list[str] | None, str]:
@@ -239,6 +275,15 @@ def find_build_commit(
                 "tree (assume-unchanged, skip-worktree or unmerged)"
             )
         committed[path] = (mode, object_id)
+        # A deleted file never reaches hatchling's file list, so check that
+        # each tracked file is on disk, without trusting git's caches.
+        if mode in REGULAR_FILE_MODES:
+            try:
+                is_file = stat.S_ISREG(os.lstat(root / os.fsdecode(path)).st_mode)
+            except OSError:
+                is_file = False
+            if not is_file:
+                return None, f"tracked file {os.fsdecode(path)!r} is missing"
     inputs = sorted({os.fsencode(Path(path).as_posix()) for path in paths})
     for path in inputs:
         # Git and hatchling ignore files differently: hatchling reads only
@@ -249,20 +294,25 @@ def find_build_commit(
             return None, f"{os.fsdecode(path)!r} is not tracked by git"
         # hatchling packages what a symlink points to, which the commit does
         # not contain.
-        if committed[path][0] not in REGULAR_FILE_MODES or b"\n" in path:
+        if committed[path][0] not in REGULAR_FILE_MODES:
             return None, f"{os.fsdecode(path)!r} is not a regular tracked file"
     # Status compares content after line-ending conversion and clean filters,
     # and ignores the executable bit when core.fileMode is false. Compare the
     # raw bytes and the bit that the wheel will actually carry.
-    hashed = _git_output(
-        build_metadata,
-        root,
-        "hash-object",
-        "--no-filters",
-        "--stdin-paths",
-        input=b"".join(path + b"\n" for path in inputs),
-    )
-    object_ids = hashed.split() if hashed is not None else []
+    # Paths go on the command line: --stdin-paths strips a trailing carriage
+    # return and unquotes a leading double quote, so it can hash another file.
+    object_ids = []
+    for start in range(0, len(inputs), HASH_OBJECT_BATCH):
+        batch = inputs[start : start + HASH_OBJECT_BATCH]
+        hashed = _git_output(
+            build_metadata,
+            root,
+            "hash-object",
+            "--no-filters",
+            "--",
+            *(os.fsdecode(path) for path in batch),
+        )
+        object_ids.extend(hashed.split() if hashed is not None else [])
     if len(object_ids) != len(inputs):
         return None, "git hash-object failed"
     for path, object_id in zip(inputs, object_ids):
@@ -282,9 +332,7 @@ def find_build_commit(
     return git_sha, ""
 
 
-def _git_output(
-    build_metadata: ModuleType, root: Path, *args: str, input: bytes | None = None
-) -> bytes | None:
+def _git_output(build_metadata: ModuleType, root: Path, *args: str) -> bytes | None:
     # Raw bytes, so paths are compared without decoding them in the locale's
     # encoding. The runtime lookup's environment rules apply.
     env = {
@@ -294,13 +342,10 @@ def _git_output(
     }
     try:
         return subprocess.run(
-            # Replacement refs would make status and the index describe
-            # another commit's tree while HEAD still names this one.
-            ["git", "-C", str(root), "--no-replace-objects", *args],
+            ["git", "-C", str(root), *GIT_OPTIONS, *args],
             capture_output=True,
             check=True,
             env=env,
-            input=input,
             timeout=GIT_TIMEOUT_SECONDS,
         ).stdout
     except (OSError, ValueError, subprocess.SubprocessError):
