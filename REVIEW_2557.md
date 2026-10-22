@@ -205,13 +205,13 @@ The aggregate impact bot compares base main `9d81a5dfa` with head `28632cd8c`, w
 
 | Measure | Change | Direction check |
 |---|---:|---|
-| Universal Credit | **+£868.9m** (£84.93bn → £85.79bn) | up, as expected: CPI-linked elements +3.5% against +2.3%, standard allowance +4.31% against +3.1%; LCWRA and housing unchanged |
-| Pension Credit | **+£23.2m** | small rise, plausible: SMG unchanged; the carer and severe disability additions rise 3.5%; the higher additional SP is income to PC. I did not decompose it |
+| Universal Credit | **+£868.9m** (£84.93bn → £85.79bn) | up, as expected: the CPI-linked elements rise 3.5% against 2.3%, the standard allowance 4.31% against 3.1%, and the new-claimant LCWRA stays at £217.26 (parameter reads above; not decomposed) |
+| Pension Credit | **+£23.2m** | small rise, plausible: the SMG is unchanged at +2.3% and the carer and severe disability additions rise 3.5% against 2.3%. Not decomposed |
 | Total benefit spending (`gov_spending` / `household_benefits`) | **+£1.88bn** | up, as expected |
 | State Pension | +£189.7m | additional SP at 3.5% against 2.1%; triple lock unchanged |
 | PIP, CB, AA, DLA, CA | +£339.5m, +£203.2m, +£109.4m, +£94.4m, +£56.4m | about +1.17% of each line: 1.035 / 1.023 − 1 |
 | HB, CTR, WFP | −£2.9m, −£0.6m, −£0.5m | small; not traced |
-| Income tax | +£66.4m | taxable benefits (SP, CA) up |
+| Income tax | +£66.4m | up; consistent with the higher additional SP and CA, which are taxable. Not decomposed |
 | Government balance | −£1.82bn | |
 
 2025-26 and 2026-27 are zero in every line, as expected: every live amount has an explicit 2026 value. 57.6% of people gain more than £1 in 2027-28 and 0.6% lose more than £1 (not traced). Absolute child poverty after housing costs falls 0.44pp. The one check failing on both sides (negative VAT for 76 units) is unrelated.
