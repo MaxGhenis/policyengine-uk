@@ -1,0 +1,40 @@
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+.venv/lib/python3.13/site-packages/_pytest/pathlib.py:95
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED policyengine_uk/tests/test_water_uprating.py::test_water_uprating_properties
+1 failed, 256 passed, 161 warnings in 1526.05s (0:25:26)

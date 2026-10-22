@@ -1,0 +1,14 @@
+Uninstalled 1 package in 33ms
+Installed 1 package in 83ms
+bringing up nodes...
+bringing up nodes...
+.......                                                                  [100%]
+=============================== warnings summary ===============================
+policyengine_uk/tests/test_energy_projection_properties_review.py: 24 warnings
+  /Users/maxghenis/.subfleet/worktrees/20261022-110549-uk2571-review/.venv/lib/python3.13/site-packages/tables/path.py:146: NaturalNameWarning: object name is not a valid Python identifier: '2024'; it does not match the pattern ``^[a-zA-Z_][a-zA-Z0-9_]*$``; you will not be able to use natural naming to access this object; using ``getattr()`` will still work, though
+    check_attribute_name(name)
+policyengine_uk/tests/test_energy_projection_properties_review.py: 24 warnings
+  /Users/maxghenis/.subfleet/worktrees/20261022-110549-uk2571-review/.venv/lib/python3.13/site-packages/tables/path.py:146: NaturalNameWarning: object name is not a valid Python identifier: '2025'; it does not match the pattern ``^[a-zA-Z_][a-zA-Z0-9_]*$``; you will not be able to use natural naming to access this object; using ``getattr()`` will still work, though
+    check_attribute_name(name)
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+7 passed, 48 warnings in 199.12s (0:03:19)
