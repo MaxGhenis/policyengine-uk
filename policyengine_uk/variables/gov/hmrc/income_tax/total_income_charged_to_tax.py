@@ -1,4 +1,5 @@
 from policyengine_uk.model_api import *
+from policyengine_uk.utils.pensions import trading_profits_before_losses
 
 
 class total_income_charged_to_tax(Variable):
@@ -39,19 +40,10 @@ class total_income_charged_to_tax(Variable):
     ]
 
     def formula(person, period, parameters):
-        p = parameters(period).gov.hmrc.income_tax
-        profits = person("self_employment_income", period)
-        other_deductions = [
-            deduction
-            for deduction in p.bases.taxable_self_employment_income_deductions
-            if deduction != "loss_relief"
-        ]
-        profits_before_carry_forward = max_(
-            0, profits - add(person, period, other_deductions)
-        )
-        losses_brought_forward_deducted = profits_before_carry_forward - person(
-            "taxable_self_employment_income", period
-        )
+        hmrc = parameters(period).gov.hmrc
+        losses_brought_forward_deducted = trading_profits_before_losses(
+            person, period, hmrc
+        ) - person("taxable_self_employment_income", period)
         # Employment income is held gross of pension contributions, and the
         # relief for net pay contributions is given through allowances.
         return (
