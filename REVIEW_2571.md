@@ -134,3 +134,7 @@ All runs were in the foreground with `-n 2`. Load1 was under 110 at the start of
 - Lint, Changes, Fix evidence, Documentation build, Test documentation builds, and Install + smoke-import on py3.11–3.14: pass.
 
 `gh pr view --json mergeable` shows MERGEABLE. Main has moved 59 commits since the merge base 2f1606e99, including `uprating_indices.yaml`, but CI's aggregate run was on the merge with main.
+
+## Artifacts
+
+This file, the two review test files and `review_2571/` (the comparison script and log tails) are committed on the local branch `review/pr-2571-hub-review` in this worktree. Nothing was pushed, commented or merged, no process was left running, and `.hypothesis/` was deleted.
