@@ -148,12 +148,14 @@ helpers. It looks for draws, not for other reads that differ between runs,
 such as the clock (policyengine-uk#2875). A lookup that nests deeper than
 MAX_RESOLUTION_DEPTH fails the scan rather than passing unresolved.
 
-EXEMPT lists reviewed occurrences that are not draws; RATCHET lists today's
-engine-time draws that still have to move into the data. Both count exact
-occurrences per (file, enclosing scope, kind): an extra occurrence fails, and
-so does an entry that no longer matches as many as it says, so entries are
-lowered and removed as sites go. RATCHET_CEILING only ever falls, and
-RATCHET must reach zero.
+EXEMPT lists reviewed occurrences that are not draws, and one sampling tool:
+``Simulation.subsample`` draws a seeded sample of households only when a
+caller calls it, and the draw decides which households the simulation keeps
+and the weights they carry. RATCHET lists today's engine-time draws that
+still have to move into the data. Both count exact occurrences per (file,
+enclosing scope, kind): an extra occurrence fails, and so does an entry that
+no longer matches as many as it says, so entries are lowered and removed as
+sites go. RATCHET_CEILING only ever falls, and RATCHET must reach zero.
 """
 
 import ast
@@ -296,6 +298,20 @@ EXEMPT = {
     "utils/build_lha_published_rates.py": {
         ("<module>", "hash library"): 1,
         ("fetch", "hash use"): 1,
+    },
+    # Sampling tool: Simulation.subsample draws households when a caller asks
+    # for a sample, from a generator of its own that it seeds with the
+    # caller's seed or a fixed default. SHA-256 turns the seed into the same
+    # number in every process, and the module-level random source is the
+    # return annotation of _random_state. With these five covered, the
+    # functions that reach the draw are not draw helpers, so the scan does
+    # not report a call to them.
+    "utils/subsample.py": {
+        ("<module>", "hash library"): 1,
+        ("<module>", "random source"): 1,
+        ("_random_state", "hash use"): 1,
+        ("_random_state", "random source"): 1,
+        ("draw_household_counts", "sampling call"): 1,
     },
 }
 OFFLINE_MODULES = set()
